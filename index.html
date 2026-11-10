@@ -1042,6 +1042,13 @@
   function plink(p){
     return "["+p.name+" — ₹"+p.price.toLocaleString("en-IN")+"]("+STORE_BASE+"#/product/"+p.id+")";
   }
+  function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+  function toneOf(s){
+    const t = (s||"").toLowerCase();
+    if (/(bhai|bro|yaar|yr|arey|arrey|haha|lol|mast|wessing|chill|party|le beta|maza|zabardast|hell yeah|beazy|bhaisaab|bhaiya)/.test(t)) return "warm";
+    if (/(please|kindly|regards|esteemed|sir\b|ma'?am|thank you|carefully|dear|respected)/.test(t)) return "pro";
+    return "neutral";
+  }
   const PRODUCT_MINI = [
     {id:"p1", name:"White Cotton Plain Kurta", price:799, k:["white","plain","cotton plain","everyday kurta","casual kurta","best seller","popular"]},
     {id:"p2", name:"Onion Pink Cotton Self Work Kurta", price:1099, k:["pink","onion"]},
@@ -1081,8 +1088,21 @@
     return [...new Set(hits)].slice(0,3);
   }
   const CHAT_KB = [
-    {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:"Namaste! 🙏 Sohraaz Collections mein aapka swagat hai. Wedding, festive, ya casual — kuch bhi poochiye."},
-    {k:["wedding","groom","sherwani","haldi","mehndi","sangeet","phere","shaadi"], a:() => "Shaadi ke liye! 🎉 The Wedding Edit — haldi se phere tak: https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html#/lookbook\nOur favorites for pheras:\n"+plinks(WED_PICKS)+"\nFull groom package / sherwani styling — WhatsApp +91 91239 47668."},
+    {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:(q) => toneOf(q)==="warm"
+      ? pick(["Arre namaste! Sohraaz mein aapka swagat hai 🙌 Batao, aaj kya dekhna hai — wedding, festive, ya casual?"])
+      : toneOf(q)==="pro"
+        ? "Namaste, welcome to Sohraaz Collections. How may I assist you today — wedding, festive or casual wear?"
+        : "Namaste! Sohraaz Collections mein aapka swagat hai. Wedding, festive, ya casual — kuch bhi poochiye, main poora collection janta hoon."},
+    {k:["wedding","groom","sherwani","haldi","mehndi","sangeet","phere","shaadi"], a:(q) => {
+      const t = toneOf(q);
+      const head = t==="warm" ? "Ahh shaadi 🔥 The Wedding Edit — haldi se phere tak sab kuch hai:"
+                 : t==="pro"  ? "For your wedding celebrations, our Wedding Edit covers the complete wardrobe:"
+                 :               "Shaadi ke liye! 🎉 The Wedding Edit — haldi se phere tak:";
+      const tail = t==="warm" ? pick(["In teeno me aap sherwani se bhi zyada memorable lagenge — seriously. Full groom package? WhatsApp: +91 91239 47668."])
+                 : t==="pro"  ? "Each sits impeccably — you will look notably put-together. For a full groom styling package, WhatsApp +91 91239 47668."
+                 :               "In teeno mein aap superb dikhenge. Full groom package — WhatsApp +91 91239 47668.";
+      return head + " https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html#/lookbook\nOur favorites for the pheras:\n" + plinks(WED_PICKS) + "\n" + tail;
+    }},
     {k:["track","order status","where is my order","delivery status","parcel","shipped","tracking"], a:"Order confirm hone ke 24 ghante baad tracking link WhatsApp/SMS pe aayega. Can't find it? Call +91 91239 47668 with your order number."},
     {k:["size","fit","chest","length","measure","chart","fitting"], a:"Sohraaz kurtas regular fit chalte hain — usual size hi best hai (relaxed prefer karte ho to size up). Size chart har product page pe: 'Size & Fit Guide' button. Unsure? WhatsApp your chest + height: +91 91239 47668."},
     {k:["return","exchange","refund","replace"], a:"7 days from delivery. Items unused, tags intact. Size exchange FREE once per order. Full policy: #/policies"},
@@ -1098,7 +1118,6 @@
     {k:["price","cost","kitna","rate","sasta","cheap","budget","affordable"], a:"Kurtas from ₹799, festive ₹1,499–2,599, wedding ₹2,549–3,299, sherwanis ₹6,999–10,499. Full catalog: #/shop"},
   ];
   const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
-
   /* SOHRAAZ AI — Cloudflare Worker endpoint (live, key stays server-side). */
   const AI_ENDPOINT = "https://muddy-wood-754b.sprincezp7.workers.dev";
   const chatHistory = [];
@@ -1114,20 +1133,34 @@
     chatHistory.push({ role:"model", text: reply });
     if(chatHistory.length > 16) chatHistory.splice(0, chatHistory.length - 16);
   }
-  function curatedPicks(){
+  function curatedPicks(s){
     const top = PRODUCT_MINI.filter(p=>["p12","p7","p4"].includes(p.id));
-    return "Zaroor! Hamare top-selling pieces:\n" + top.map(plink).join("\n");
+    const t = toneOf(s);
+    const head = t==="warm" ? pick(["Arey bhai, hamare super-hits — Spark wala toh show-stealer hai:","Thik hain, yeh rahe hamare 3 best — log dekhta reh jaenge:"])
+               : t==="pro"  ? "Let me recommend our most-loved pieces:"
+               :               "Zaroor! Hamare top-selling pieces:";
+    const tail = t==="warm" ? "In teeno mein aap crisp aur well-turned-out lagenge — trust me. 😎"
+               : t==="pro"  ? "Each of these fits beautifully — you will look noticeably put-together."
+               :               "In teeno mein aap sharp dikhenge — classic waale cuts.";
+    return head + "\n" + top.map(plink).join("\n") + "\n" + tail;
   }
   function chatAnswer(q){
     const s = q.toLowerCase();
+    const t = toneOf(s);
     const found = findProducts(s);
     if(found.length){
-      return "Zaroor! Ye dekhiye:\n" + found.map(plink).join("\n");
+      const head = t==="warm" ? pick(["Arre bhaisaab, dekhiye yeh:","Pata hai yeh kitab best rahegi:","Arey, seedha exact pieces:"])
+                 : t==="pro"  ? "Certainly — here are the most relevant pieces:"
+                 :               "Zaroor! Ye dekhiye:";
+      const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me 😎","Is drape mein aap gorgeous dikhenge — pakka."])
+                 : t==="pro"  ? "Each sits impeccably — you will look notably refined."
+                 :               "Is fit me aap sharp dikhenge.";
+      return head + "\n" + found.map(plink).join("\n") + "\n" + tail;
     }
-    for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return typeof item.a === "function" ? item.a() : item.a; }
+    for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return typeof item.a === "function" ? item.a(s) : item.a; }
     const novel = s.length > 40 || /(kaun|kaisa|kaisi|which|suggest|recommend|choose|pick|best for|puchna chahta|samjha|advise)/.test(s);
     if(novel) return null;
-    return curatedPicks();
+    return curatedPicks(s);
   }
   function chatRenderHTML(text){
     let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -1144,23 +1177,7 @@
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
   }
-  function chatBotReply(text){
-    const body = document.getElementById("chatBody");
-    if(!body) return;
-    const typing = document.createElement("div");
-    typing.className = "chat-typing";
-    typing.innerHTML = "<i></i><i></i><i></i>";
-    body.appendChild(typing);
-    body.scrollTop = body.scrollHeight;
-    const finish = (reply) => { rememberTurn(text, reply); typing.remove(); chatAddMsg(reply, "bot"); };
-    const quick = chatAnswer(text);
-    if(quick){ setTimeout(()=>finish(quick), 380); return; }
-    if(AI_ENDPOINT){
-      askSohraazAI(text).then(finish).catch(()=>finish(curatedPicks()));
-      return;
-    }
-    finish(curatedPicks());
-  }
+
   (function initChat(){
     const fab   = document.getElementById('chatFab');
     const panel = document.getElementById('chatPanel');
