@@ -1039,8 +1039,8 @@
     {k:["coin","loyalty","reward"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — see yours in the store under My Account."},
   ];
   const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
-  /* SOHRAAZ AI — Cloudflare Worker endpoint. Paste your worker URL to go live; empty = canned fallback. */
-  const AI_ENDPOINT = "";
+  /* SOHRAAZ AI — Cloudflare Worker endpoint (live, key stays server-side). */
+  const AI_ENDPOINT = "https://muddy-wood-754b.sprincezp7.workers.dev";
   const chatHistory = [];
   async function askSohraazAI(text){
     const res = await fetch(AI_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message: text, history: chatHistory }) });
