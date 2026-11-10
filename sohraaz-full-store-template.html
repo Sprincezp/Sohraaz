@@ -340,6 +340,9 @@
   .trust .icon{margin:0 auto 8px;color:var(--gold)}
   .pdp-desc{margin-top:26px;color:#4C3B29;font-size:16px}
   .pair-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+  .like-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+  @media (max-width:1024px){.like-grid{grid-template-columns:repeat(4,1fr)}}
+  @media (max-width:760px){.like-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
   .pair-nudge{margin-top:14px;text-align:center;font-style:italic;color:var(--green);font-size:15px}
 
   /* cart drawer + cart page */
@@ -1304,7 +1307,7 @@ function renderProduct(id){
       </div>
       <div class="pdp-desc">${p.desc}</div>
       <div class="sec-head" style="margin-top:40px"><h2 style="font-size:16px">You may also like</h2></div>
-      <div class="pair-grid">${p.pair.map(pid=>prodCardHTML(P(pid))).join("")}</div>
+      <div class="like-grid">${(()=>{ const alsoLike=[...new Set([...(p.pair||[]),"p1","p6","p8","p12","p13"])].filter(id=>id!==p.id).slice(0,4); return alsoLike.map(id=>prodCardHTML(P(id))).join(""); })()}</div>
       <div class="pair-nudge">${gap>0?`Add ${inr(gap)} more and this order ships FREE (prepaid).`:`Pairing keeps you above ₹999 — FREE shipping stays.`}</div>
     </div>
   </div>
