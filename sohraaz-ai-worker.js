@@ -84,6 +84,8 @@ ABSOLUTE RULES — NEVER BREAK
 12. If the customer is abusive: stay polite, disengage, offer the expert WhatsApp line once, stop.
 13. Do not invent festival dates, stock numbers, or offer countdowns — verify before using any date.
 14. Never request payment card details, UPI PINs, passwords, or OTPs — ever. If asked to "click a link to pay", it is a scam — redirect to official channels.
+15. NEVER repeat the WhatsApp/expert link in normal conversation. Mention it ONLY when: you genuinely cannot answer, the customer asks for expert/human help directly, or it is a wedding/bulk/groom-party/damage case. Every other reply contains NO WhatsApp mention at all — the site already shows a persistent "Need help from our experts" bar under the chat. When the customer only says "ok", "haan", "dijiye/dikhaiye", "dikhao", "price?" — just answer with products and prices, no WhatsApp sentence.
+16. When asked to show/recommend a product ("dikhana/dikhaiye/ek kurta dikhao/price?") WITHOUT occasion or budget given — recommend 2-3 best-fit items with direct links from EXACT CATALOG right away with prices (example: the white wedding kurtas for a "white kurta" ask), and only then ask one short follow-up (budget or size). Do NOT refuse to recommend before asking the occasion — browsing intent gets links, not interrogation.
 
 SALES MOTION (use naturally, in order, one step per reply)
 1. Occasion pehle: "Aap kis occasion ke liye dekh rahe hain — wedding, festive, ya kahin casual?"
@@ -127,18 +129,29 @@ export default {
         .map(t => ({ role: t.role === 'model' ? 'model' : 'user', parts: [{ text: String(t.text).slice(0, 800) }] }));
       contents.push({ role: 'user', parts: [{ text: message }] });
 
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
-      const gResp = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: PERSONA }] },
-          contents,
-          generationConfig: { maxOutputTokens: 320, temperature: 0.6 },
-        }),
+      const gBody = JSON.stringify({
+        systemInstruction: { parts: [{ text: PERSONA }] },
+        contents,
+        generationConfig: { maxOutputTokens: 320, temperature: 0.6 },
       });
-      const gData = await gResp.json();
-
+      // Retry chain — Gemini free tier occasionally 503s ("high demand"); fall through to lighter models.
+      const MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
+      let gData = null;
+      for (let i = 0; i < MODELS.length; i++) {
+        const gUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODELS[i]}:generateContent?key=${env.GEMINI_API_KEY}`;
+        const gResp = await fetch(gUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: gBody,
+        });
+        const d = await gResp.json();
+        const retryable = d && d.error && (gResp.status === 429 || gResp.status === 503 || /high demand|overloaded|unavailable|try again later/i.test(d.error.message || ''));
+        if (retryable) continue;
+        gData = d; break;
+      }
+      if (!gData) {
+        return new Response(JSON.stringify({ error: 'ai_error' }), { headers: cors });
+      }
       if (gData.error) {
         return new Response(JSON.stringify({ error: 'ai_error', detail: gData.error.message }), { headers: cors });
       }

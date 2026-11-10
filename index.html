@@ -1041,6 +1041,28 @@
     {k:["coin","loyalty","reward"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — see yours in the store under My Account."},
   ];
   const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
+  const PRODUCT_MINI = [
+    {id:"p1", n:"White Cotton Plain Kurta", price:799, k:["white","plain","cotton plain","everyday kurta"]},
+    {id:"p2", n:"Onion Pink Cotton Self Work Kurta", price:1099, k:["pink","onion"]},
+    {id:"p3", n:"Cream Paper Cotton Kurta", price:1099, k:["cream","paper"]},
+    {id:"p4", n:"Beige Breeze Printed Kurta", price:1499, k:["beige","breeze","printed kurta"]},
+    {id:"p5", n:"Grey Poly Cotton Self Work Kurta", price:1699, k:["grey","gray"]},
+    {id:"p6", n:"Embroidered Black Giza Cotton Kurta", price:2299, k:["black","embroidered"]},
+    {id:"p7", n:"Festive Black Giza Cotton Kurta", price:2599, k:["black","festive black"]},
+    {id:"p8", n:"Off White Giza Cotton Moti Work Festive Kurta", price:2999, k:["off white","off-white","moti","wedding kurta","white festive"]},
+    {id:"p9", n:"Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, k:["blue","ice blue","jacket","jacket set"]},
+    {id:"p10", n:"Armani Black — Black Armani Embroidered Kurta", price:2549, k:["armani black","armani","black armani"]},
+    {id:"p11", n:"Armani Glow — White Armani Mirror Work Kurta", price:2649, k:["glow","mirror","white mirror","armani glow"]},
+    {id:"p12", n:"Armani Spark — White Armani Mirror Work Kurta", price:2549, k:["spark","mirror","white mirror","armani spark","white kurta"]},
+    {id:"p13", n:"Men's Elastic Waistband Pyjama with Pockets", price:449, k:["pyjama","pajama","bottom","pyjama set"]},
+    {id:"p14", n:"Men's White Cotton Blend Churidar", price:400, k:["churidar","churi"]},
+  ];
+  function findProducts(q){
+    const s = (q||"").toLowerCase();
+    const hits = [];
+    for (const p of PRODUCT_MINI) { if (p.k.some(k=>s.includes(k))) hits.push(p); }
+    return [...new Set(hits)].slice(0,3);
+  }
   /* SOHRAAZ AI — Cloudflare Worker endpoint (live, key stays server-side). */
   const AI_ENDPOINT = "https://muddy-wood-754b.sprincezp7.workers.dev";
   const chatHistory = [];
@@ -1059,7 +1081,11 @@
   function chatAnswer(q){
     const s = q.toLowerCase();
     for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
-    return "I can help with orders, sizing, wedding styling, returns, offers and our showroom. For anything else, our Sohraaz experts are one tap away: WhatsApp +91 91239 47668.";
+    const found = findProducts(s);
+    if(found.length){
+      return "Ji zaroor! Ye dekhiye:\n" + found.map(p => "["+p.n+" — ₹"+p.price.toLocaleString("en-IN")+"](https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html#/product/"+p.id+")").join("\n");
+    }
+    return "Mujhe yeh sawal theek se answer nahi kar paaun — WhatsApp kar dijiye: +91 91239 47668.";
   }
   function chatRenderHTML(text){
     let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
