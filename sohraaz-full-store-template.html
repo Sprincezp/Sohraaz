@@ -1159,6 +1159,50 @@ function renderProduct(id){
   </div></div>`;
 }
 
+function savingsBannerHTML(t){
+  if(!t.savings) return "";
+  return `<div class="save-banner"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>You're saving <b>${inr(t.savings)}</b> on this order</span></div>`;
+}
+function cartLeftHTML(t){
+  const addons=pairAddons(3);
+  const addl=addons.map(id=>{ const p=P(id); return `<div class="upsell-item">
+      <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+      <b>${p.name}</b>
+      <div><span>${inr(p.price)}</span></div>
+      <button data-quickadd="${p.id}|M" aria-label="Add ${p.name} to bag">Add to bag</button>
+    </div>`; }).join("");
+  return `${shipBarHTML(t)}${store.cart.map(cartLineHTML).join("")}${addl ? `<div class="cart-upsell"><h3>Complete the look <small>one tap to add — stitched for each other</small></h3><div class="upsell-strip">${addl}</div></div>` : ""}`;
+}
+function summaryCardHTML(t){
+  return `<h3>Order Summary <small>transparent pricing — always</small></h3>
+    <div id="savBannerWrap">${savingsBannerHTML(t)}</div>
+    <div id="payToggleWrap">${payToggleHTML(t)}</div>
+    ${welcomeBoxHTML()}
+    ${couponBoxHTML()}
+    <div id="sumRowsWrap">${summaryRowsHTML(t)}</div>
+    <button class="cta-big" data-nav="#/checkout">Secure Checkout →</button>
+    <div class="trust-mini">
+      <div><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>GST Verified</div>
+      <div><svg viewBox="0 0 24 24"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>COD Available</div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>Easy Exchange</div>
+      <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>24–48h Dispatch</div>
+    </div>
+    <p class="promise-mini">The breakdown you see is the exact price you pay — locked in before checkout.</p>`;
+}
+function cartStickyHTML(t){
+  return `<div class="cs-price"><small>${store.mode==="prepaid"?"Prepaid total":"COD total"}</small><b>${inr(t.total)}</b>${t.savings?`<span class="cs-save">You save ${inr(t.savings)}</span>`:""}</div><a href="#/checkout">Checkout →</a>`;
+}
+function refreshCartView(){
+  const sr = document.getElementById("sumRowsWrap") || document.getElementById("cartLeft");
+  if(!store.cart.length || !sr){ router(); return; }
+  const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+  const left=document.getElementById("cartLeft"); if(left) left.innerHTML=cartLeftHTML(t);
+  const sb=document.getElementById("savBannerWrap"); if(sb) sb.innerHTML=savingsBannerHTML(t);
+  const pt=document.getElementById("payToggleWrap"); if(pt) pt.innerHTML=payToggleHTML(t);
+  const srEl=document.getElementById("sumRowsWrap"); if(srEl) srEl.innerHTML=summaryRowsHTML(t);
+  const st=document.getElementById("cartSticky"); if(st) st.innerHTML=cartStickyHTML(t);
+  syncBadges();
+}
 function renderCart(){
   if(!store.cart.length){
     const feats=["p6","p9","p8"].map(id=>prodCardHTML(P(id))).join("");
@@ -1172,43 +1216,15 @@ function renderCart(){
     </div></div></section>`;
   }
   const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
-  const addons=pairAddons(3);
-  const addl=addons.map(id=>{ const p=P(id); return `<div class="upsell-item">
-      <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
-      <b>${p.name}</b>
-      <div><span>${inr(p.price)}</span></div>
-      <button data-quickadd="${p.id}|M" aria-label="Add ${p.name} to bag">Add to bag</button>
-    </div>`; }).join("");
+  const qty=bagQty();
   return `<section class="cart-page-active"><div class="container">
-    <div class="sec-head"><h2>Your Bag <span style="color:var(--gold)">· ${bagQty()} item${bagQty()>1?"s":""}</span></h2><a data-nav="#/shop" style="font-size:13px;color:var(--brown-900);border-bottom:1px solid var(--gold);cursor:pointer">Continue shopping →</a></div>
+    <div class="sec-head"><h2>Your Bag <span style="color:var(--gold)">· ${qty} item${qty>1?"s":""}</span></h2><a data-nav="#/shop" style="font-size:13px;color:var(--brown-900);border-bottom:1px solid var(--gold);cursor:pointer">Continue shopping →</a></div>
     <div class="cart-layout">
-      <div>
-        ${shipBarHTML(t)}
-        ${store.cart.map(cartLineHTML).join("")}
-        ${addl ? `<div class="cart-upsell"><h3>Complete the look <small>one tap to add — stitched for each other</small></h3><div class="upsell-strip">${addl}</div></div>` : ""}
-      </div>
-      <div class="summary-card">
-        <h3>Order Summary <small>transparent pricing — always</small></h3>
-        ${t.savings ? `<div class="save-banner"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>You're saving <b>${inr(t.savings)}</b> on this order</span></div>` : ""}
-        ${payToggleHTML(t)}
-        ${welcomeBoxHTML()}
-        ${couponBoxHTML()}
-        ${summaryRowsHTML(t)}
-        <button class="cta-big" data-nav="#/checkout">Secure Checkout →</button>
-        <div class="trust-mini">
-          <div><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>GST Verified</div>
-          <div><svg viewBox="0 0 24 24"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>COD Available</div>
-          <div><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>Easy Exchange</div>
-          <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>24–48h Dispatch</div>
-        </div>
-        <p class="promise-mini">The breakdown you see is the exact price you pay — locked in before checkout.</p>
-      </div>
+      <div id="cartLeft">${cartLeftHTML(t)}</div>
+      <aside class="summary-card" id="cartRight">${summaryCardHTML(t)}</aside>
     </div>
   </div>
-  <div class="cart-sticky">
-    <div class="cs-price"><small>${store.mode==="prepaid"?"Prepaid total":"COD total"}</small><b>${inr(t.total)}</b>${t.savings?`<span class="cs-save">You save ${inr(t.savings)}</span>`:""}</div>
-    <a href="#/checkout">Checkout →</a>
-  </div></section>`;
+  <div class="cart-sticky" id="cartSticky">${cartStickyHTML(t)}</div></section>`;
 }
 
 function renderCheckout(){
@@ -1444,7 +1460,9 @@ function router(){
   const [path,query]=hash.split("?");
   const q=new URLSearchParams(query||"");
   const app=document.getElementById("app");
-  closeDrawer(); window.scrollTo(0,0);
+  const pathChanged = store.lastPath !== path;
+  store.lastPath = path;
+  closeDrawer(); if(pathChanged) window.scrollTo(0,0);
   if(path.startsWith("#/product/")) app.innerHTML=renderProduct(path.split("/")[2]);
   else if(path==="#/shop") app.innerHTML=renderShop(q);
   else if(path==="#/cart") app.innerHTML=renderCart();
@@ -1470,12 +1488,12 @@ document.addEventListener("click",e=>{
   if(t.dataset.inc||t.dataset.dec){
     const [id,size]=(t.dataset.inc||t.dataset.dec).split("|");
     const l=store.cart.find(x=>x.id===id&&x.size===size);
-    if(l){ l.qty+=(t.dataset.inc?1:-1); if(l.qty<=0) store.cart=store.cart.filter(x=>x!==l); save(); syncBadges(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); }
+    if(l){ l.qty+=(t.dataset.inc?1:-1); if(l.qty<=0) store.cart=store.cart.filter(x=>x!==l); save(); syncBadges(); renderDrawer(); refreshCartView(); }
     return;
   }
-  if(t.dataset.remove){ const [id,size]=t.dataset.remove.split("|"); store.cart=store.cart.filter(x=>!(x.id===id&&x.size===size)); save(); syncBadges(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); toast("Removed from bag"); return; }
-  if(t.dataset.quickadd){ const [id,size]=t.dataset.quickadd.split("|"); addToCart(id,size,1); save(); syncBadges(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); toast("Added to your bag ✓"); return; }
-  if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); return; }
+  if(t.dataset.remove){ const [id,size]=t.dataset.remove.split("|"); store.cart=store.cart.filter(x=>!(x.id===id&&x.size===size)); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Removed from bag"); return; }
+  if(t.dataset.quickadd){ const [id,size]=t.dataset.quickadd.split("|"); addToCart(id,size,1); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Added to your bag ✓"); return; }
+  if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); refreshCartView(); return; }
   if(t.dataset.size){ const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return; }
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
@@ -1489,7 +1507,7 @@ document.addEventListener("click",e=>{
       save();
       const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
       if(t.couponError){ toast(t.couponError); }
-      else { toast(`Coupon applied — ${t.offerLabel}`); router(); }
+      else { toast(`Coupon applied — ${t.offerLabel}`); refreshCartView(); }
     } else {
       store.coupon="";
       save();
@@ -1504,10 +1522,11 @@ document.addEventListener("click",e=>{
       save();
       const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
       if(t.couponError){ toast(t.couponError); }
-      else { toast(`Coupon applied — ${t.offerLabel}`); router(); }
+      else { toast(`Coupon applied — ${t.offerLabel}`); refreshCartView(); }
     } else {
       store.coupon="";
       save();
+      refreshCartView();
       toast("Coupon cleared");
     }
     return;
@@ -1531,7 +1550,7 @@ document.getElementById("drawerClose").addEventListener("click",closeDrawer);
 document.getElementById("overlay").addEventListener("click",closeDrawer);
 document.getElementById("burger").addEventListener("click",()=>document.getElementById("mnav").classList.toggle("open"));
 document.addEventListener("change",e=>{
-  if(e.target.id==="newCust"){ store.isNew=e.target.checked; save(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); }
+  if(e.target.id==="newCust"){ store.isNew=e.target.checked; save(); renderDrawer(); refreshCartView(); }
   if(e.target.id==="sortSel"){ location.hash="#/shop?sort="+e.target.value+(new URLSearchParams(location.hash.split("?")[1]||"").get("cat")?"&cat="+new URLSearchParams(location.hash.split("?")[1]).get("cat"):""); }
 });
 /* announcement rotation */
