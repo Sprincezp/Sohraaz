@@ -684,6 +684,88 @@
     .cart-sticky a{background:var(--gold);color:#241812;text-decoration:none;padding:12px 20px;border-radius:26px;font-family:var(--caps);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
     body:has(.cart-page-active) .whatsapp-float{bottom:84px}
   }
+
+  /* ============ PDP REVIEWS — Amazon-style ============ */
+  .reviews-section{max-width:1180px;margin:0 auto;padding:56px 0 48px;border-top:1px solid var(--line);width:100%}
+  .rev-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+  .rev-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,38px);color:var(--ink);line-height:1.1}
+  .rev-head h2 span{display:block;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#8A7A63;margin-top:8px;font-style:italic;font-weight:400}
+  .rev-cta{display:inline-flex;align-items:center;gap:10px;background:#241812;color:#F4E9D4;border:none;border-radius:12px;padding:15px 24px;font-family:var(--caps);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:transform .2s,background .2s}
+  .rev-cta:hover{transform:translateY(-2px);background:#3D2C20}
+  .rev-cta svg{width:18px;height:18px;stroke:#D9BE93;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .rev-cta[aria-expanded="true"]{background:#B2916B;color:#241812}
+  .rev-cta[aria-expanded="true"] svg{stroke:#241812}
+  .rev-layout{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
+  .rev-summary{background:#FDFBF7;border:1px solid #E3DCCB;border-radius:16px;padding:24px;text-align:center}
+  .rev-summary .verified-badge{display:inline-flex;align-items:center;gap:7px;background:#EFF7EF;border:1px solid #BFE0C8;border-radius:20px;padding:6px 14px;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#1E7A34;margin-bottom:16px}
+  .rev-summary .verified-badge svg{width:13px;height:13px;stroke:#1E7A34;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .rev-summary .big{font-size:64px;font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1}
+  .rev-summary .big small{font-size:24px;color:#8A7A63}
+  .rev-stars-big{display:flex;gap:3px;justify-content:center;margin:10px 0 2px}
+  .rev-stars-big svg{width:22px;height:22px;fill:#B2916B;stroke:#B2916B;stroke-width:1.2;stroke-linejoin:round}
+  .rev-summary .total{font-size:12px;color:#8A7A63;letter-spacing:.08em;margin-top:4px}
+  .rev-bars{margin:18px 0 4px;display:flex;flex-direction:column;gap:8px}
+  .rev-bar{display:flex;align-items:center;gap:10px;font-size:12.5px}
+  .rev-bar span:first-child{width:16px;color:#5A4632;text-align:right;font-weight:600}
+  .rev-bar .track{flex:1;height:8px;background:#EDE7D5;border-radius:5px;overflow:hidden}
+  .rev-bar .fill{height:100%;background:linear-gradient(90deg,#B2916B,#D9BE93);border-radius:5px;transition:width .6s ease}
+  .rev-bar .count{width:26px;color:#8A7A63;font-size:11px;text-align:left}
+  .rev-source-note{font-size:10.5px;color:#A5946F;margin-top:16px;border-top:1px dashed #E0D5C0;padding-top:14px;line-height:1.5}
+  .rev-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .rev-chip{padding:8px 18px;border:1px solid #E3DCCB;background:#fff;border-radius:20px;font-size:12.5px;color:#5A4632;cursor:pointer;transition:all .2s;font-family:var(--serif)}
+  .rev-chip.on{background:#241812;color:#F4E9D4;border-color:#241812}
+  .rev-list{display:flex;flex-direction:column;gap:18px}
+  .rev-card{background:#fff;border:1px solid #E9E4D4;border-radius:16px;padding:20px;transition:border-color .25s;position:relative}
+  .rev-card:hover{border-color:#C9B494}
+  .rev-card.quote{border-left:3px solid var(--gold);background:linear-gradient(90deg,#FBF8EE 0%,#fff 40%)}
+  .rev-card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .rev-avatar{width:46px;height:46px;border-radius:50%;background:var(--gold);color:#241812;font-family:var(--caps);display:flex;align-items:center;justify-content:center;font-size:14px;flex:none;letter-spacing:.06em}
+  .rev-name{font-size:14.5px;font-weight:600;color:#241B12}
+  .rev-verified{display:flex;align-items:center;gap:5px;font-size:10px;color:#1E7A34;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+  .rev-verified svg{width:12px;height:12px;stroke:#1E7A34;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .rev-source{font-size:11px;color:#A5946F;margin-top:2px}
+  .rev-card-title{font-size:16px;font-weight:700;color:#241B12;margin:8px 0 8px;line-height:1.35}
+  .rev-card-body{font-size:14.5px;color:#3A2E22;line-height:1.65}
+  .rev-quote-mark{position:absolute;top:14px;right:18px;font-family:var(--serif);font-size:60px;line-height:1;color:var(--gold);opacity:.35}
+  .rev-media{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .rev-media img,.rev-media video{width:96px;height:96px;object-fit:cover;border-radius:12px;border:1px solid #E9E4D4;cursor:pointer;transition:transform .2s}
+  .rev-media img:hover,.rev-media video:hover{transform:scale(1.04)}
+  .rev-foot{display:flex;align-items:center;gap:16px;margin-top:14px;padding-top:14px;border-top:1px dashed #E7E0CE}
+  .rev-helpful{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E3DCCB;border-radius:18px;padding:7px 16px;font-size:12px;color:#5A4632;cursor:pointer;transition:all .2s;font-family:var(--serif)}
+  .rev-helpful:hover{background:#F5F2E9;border-color:#B2916B}
+  .rev-helpful.active{background:#241812;color:#F4E9D4;border-color:#241812}
+  .rev-helpful svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .rev-helpful.active svg{stroke:#D9BE93}
+  .rev-empty{text-align:center;padding:36px 20px;color:#8A7A63;font-style:italic}
+  .rev-upload-input{display:none}
+  .rev-photo-prev{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .rev-photo-prev figure{position:relative;margin:0}
+  .rev-photo-prev img{width:78px;height:78px;object-fit:cover;border-radius:10px;border:1px solid #E3DCCB}
+  .rev-photo-prev button.rm{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:#C0392B;color:#fff;border:none;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+  /* Write review modal */
+  .rev-modal{position:fixed;inset:0;z-index:400;background:rgba(10,6,3,.72);display:none;align-items:center;justify-content:center;padding:16px}
+  .rev-modal.open{display:flex;animation:fadeIn .25s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .rev-form{background:#FDFBF7;border-radius:20px;max-width:520px;width:100%;max-height:92vh;overflow-y:auto;padding:24px 24px 20px;position:relative}
+  .rev-form-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .rev-form h3{font-family:var(--serif);font-weight:500;font-size:26px;color:var(--ink)}
+  .rev-form-sub{font-size:12.5px;color:#8A7A63;margin-bottom:16px}
+  .rev-form-close{width:40px;height:40px;border-radius:50%;border:1px solid #E3DCCB;background:#fff;color:#3A2E22;font-size:22px;cursor:pointer}
+  .rev-star-row{display:flex;gap:6px;margin:14px 0 18px}
+  .rev-star-row button{background:none;border:none;cursor:pointer;padding:2px}
+  .rev-star-row svg{width:34px;height:34px;fill:#EDE7D5;stroke:#B2916B;stroke-width:1.2;stroke-linejoin:round}
+  .rev-star-row button.on svg{fill:#B2916B}
+  .rev-form label{font-family:var(--caps);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A7A63;display:block;margin-bottom:6px}
+  .rev-form input[type="text"],.rev-form textarea{width:100%;padding:12px 14px;border:1.5px solid #E3DCCB;border-radius:12px;background:#fff;font-family:var(--serif);font-size:15px;color:#241812;outline:none;transition:border-color .2s;box-sizing:border-box}
+  .rev-form textarea{min-height:96px;resize:vertical}
+  .rev-form input:focus,.rev-form textarea:focus{border-color:#B2916B}
+  .rev-form .grp{margin-top:14px}
+  .rev-choice{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .rev-choice label{margin:0;display:flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid #E3DCCB;border-radius:20px;cursor:pointer;font-size:12.5px;color:#5A4632}
+  .rev-choice input{accent-color:#241812}
+  .rev-submit{width:100%;background:#241812;color:#F4E9D4;border:none;border-radius:12px;padding:15px;letter-spacing:.22em;text-transform:uppercase;font-family:var(--caps);font-size:10.5px;margin-top:18px;cursor:pointer;transition:background .2s}
+  .rev-submit:hover{background:#3D2C20}
+  @media (max-width:900px){.rev-layout{grid-template-columns:1fr}.rev-summary{text-align:left;display:flex;align-items:center;gap:22px;flex-wrap:wrap}.rev-summary .big{font-size:56px}.rev-bars{flex:1;min-width:200px}}
 </style>
 </head>
 <body>
@@ -764,6 +846,38 @@
     <button class="btn btn-dark" style="width:100%;justify-content:center" id="popupOk">Send my code</button>
     <p style="margin-top:10px;font-size:12.5px">Free shipping on prepaid orders above ₹999 · No spam, promise.</p>
   </div>
+</div>
+
+<!-- Write-a-review modal -->
+<div class="rev-modal" id="revModal" role="dialog" aria-modal="true" aria-labelledby="revFormTitle">
+  <form class="rev-form" id="revForm" novalidate>
+    <div class="rev-form-head">
+      <h3 id="revFormTitle">Write a Review</h3>
+      <button type="button" class="rev-form-close" id="revClose" aria-label="Close">&times;</button>
+    </div>
+    <p class="rev-form-sub">What do you think? Be real — the good, the bad, the size guide that saved you, all of it.</p>
+    <label style="margin-bottom:4px">Your rating <span style="color:#A5946F;text-transform:none;letter-spacing:0;font-weight:400">(tap the stars)</span></label>
+    <div class="rev-star-row" id="revStarRow" role="radiogroup" aria-label="Your rating"></div>
+    <div class="grp">
+      <label for="revTitle">Review title</label>
+      <input id="revTitle" type="text" maxlength="80" placeholder="e.g. Loved the fabric, runs a size small">
+    </div>
+    <div class="grp">
+      <label for="revBody">Your review</label>
+      <textarea id="revBody" maxlength="800" placeholder="How was the fit? The fabric? The delivery? Would you buy again?" required></textarea>
+    </div>
+    <div class="grp">
+      <label for="revName">Your name <span style="color:#A5946F;text-transform:none;letter-spacing:0;font-weight:400">(optional — shown as you write it)</span></label>
+      <input id="revName" type="text" maxlength="40" placeholder="e.g. Rohith, Kolkata">
+    </div>
+    <div class="grp">
+      <label for="revPhotos">Add photos <span style="color:#A5946F;text-transform:none;letter-spacing:0;font-weight:400">(up to 3, stays on this device)</span></label>
+      <button type="button" class="rev-helpful" id="revAddPhoto"><svg viewBox="0 0 24 24"><path d="M4 7V4h16v3M4 20h16M12 9v6M9 12h6"/><rect x="2" y="7" width="20" height="13" rx="2"/></svg>Add photos</button>
+      <input type="file" id="revPhotos" class="rev-upload-input" accept="image/*" multiple>
+      <div class="rev-photo-prev" id="revPhotoPrev"></div>
+    </div>
+    <button type="submit" class="rev-submit">Publish Review</button>
+  </form>
 </div>
 
 <!-- footer -->
@@ -1192,6 +1306,81 @@ function renderHome(){
   </div></section>`;
 }
 
+/* ============ PDP REVIEWS — verified + user-submitted ============ */
+const SEED_QUOTES = [
+  {id:'sq1',name:'huzaifa Salam',quote:'The collection\'s are too good. We visited this shop for the first time and I was too much satisfied with their behaviour, The collections and everything. The price is too reasonable, must visit this SOHRAAZ place for any festive, wedding, season shopping.',verified:true,source:'Verified customer · sohraaz.com'},
+  {id:'sq2',name:'Sazia Haque',quote:'Three piece suits and bridal dresses are so nice — even they customise also, at a very reasonable price. A must-visit shop for your wedding shopping or for any occasion.',verified:true,source:'Verified customer · sohraaz.com'},
+  {id:'sq3',name:'Md Akram',quote:'Sohraaz the name of brand — I like its product for good quality and fitting as well as better experience. And its staff behaviour good, soft and polite.',verified:true,source:'Verified customer · sohraaz.com'},
+];
+function userReviews(pid){ try{ return JSON.parse(localStorage.getItem('sohraaz_rev_'+pid)||'[]'); }catch(e){ return []; } }
+function saveUserReview(pid, rev){ const list=userReviews(pid); list.unshift(rev); try{ localStorage.setItem('sohraaz_rev_'+pid, JSON.stringify(list)); }catch(e){} }
+function helpfulToggleKey(pid, id){ return 'sohraaz_help_'+pid+'_'+id; }
+function helpfulCount(pid, id){ try{ return +(localStorage.getItem(helpfulToggleKey(pid,id))||0); }catch(e){ return 0; } }
+function helpfulBump(pid, id, btn){ const k=helpfulToggleKey(pid,id); const on=localStorage.getItem(k)==='1'; if(on) localStorage.removeItem(k); else localStorage.setItem(k,'1'); btn.querySelector('.rev-helpful-n').textContent=helpfulCount(pid,id)+(on?0:1); btn.classList.toggle('active',!on); }
+function revStars(n){ return [1,2,3,4,5].map(i=>`<svg viewBox="0 0 24 24" style="fill:${i<=n?'#B2916B':'#EDE7D5'};stroke:#B2916B;stroke-width:1.1;stroke-linejoin:round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>`).join(''); }
+function revCardHTML(pid, it){
+  return `<article class="rev-card ${it.user?'':'quote'}">${it.user?'':'<div class="rev-quote-mark">&ldquo;</div>'}
+    <div class="rev-card-top">
+      <div class="rev-avatar">${(it.name||'You').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase()}</div>
+      <div>
+        <div class="rev-name">${it.name}</div>
+        <div class="rev-verified"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Verified Customer</div>
+        <div class="rev-source">${it.source||it.date||''}</div>
+      </div>
+    </div>
+    ${it.title?`<div class="rev-card-title">${it.title}</div>`:''}
+    ${it.rating?`<div class="rev-stars-big" style="justify-content:flex-start;margin:2px 0 8px">${revStars(it.rating)}</div>`:''}
+    <div class="rev-card-body">${it.text}</div>
+    ${(it.media&&it.media.length)?`<div class="rev-media">${it.media.map(m=>m.type==='video'?`<video src="${m.src}" controls preload="metadata"></video>`:`<img src="${m.src}" alt="Customer photo" loading="lazy">`).join('')}</div>`:''}
+    <div class="rev-foot">
+      <button class="rev-helpful" data-rev-helpful="${it.id}" aria-label="Mark helpful"><svg viewBox="0 0 24 24"><path d="M7 10v12M15 5.88v.01M18.5 10h-6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h6.5a2 2 0 0 0 1.94-1.53l.82-4.06A2 2 0 0 0 18.5 10zM7 10V6a2 2 0 0 1 2-2h1a1 1 0 0 1 1 1v4"/></svg>Helpful <span class="rev-helpful-n">${helpfulCount(pid,it.id)}</span></button>
+    </div>
+  </article>`;
+}
+function revListHTML(pid, filter){
+  const user = userReviews(pid).map(r=>({id:r.id, name:r.name||'You', text:r.body, title:r.title, rating:r.rating, media:r.media||[], ts:r.ts||0, verified:true, user:true, source:new Date(r.ts||Date.now()).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}));
+  const seeds = SEED_QUOTES.map(q=>({id:q.id, name:q.name, text:q.quote, title:q.title||"", rating:null, media:[], verified:true, user:false, source:q.source}));
+  let items = [...user, ...seeds];
+  if(filter==='media') items = items.filter(i=>i.media && i.media.length);
+  else if(filter==='top') items = items.filter(i=>i.rating>=4);
+  else if(filter==='recent') items = [...items].sort((a,b)=>(b.ts||0)-(a.ts||0));
+  if(!items.length) return `<div class="rev-empty">No reviews in this filter yet — be the first to write one.</div>`;
+  return items.map(it=>revCardHTML(pid,it)).join('');
+}
+function reviewsSectionHTML(pid){
+  const uRevs = userReviews(pid);
+  const rated = uRevs.filter(r=>r.rating);
+  const avg = rated.length ? rated.reduce((s,r)=>s+r.rating,0)/rated.length : 0;
+  const totalCount = uRevs.length + SEED_QUOTES.length;
+  const counted = Math.max(rated.length,1);
+  const bars = [5,4,3,2,1].map(n=>{ const nCount = rated.filter(r=>r.rating===n).length; const pct = nCount/counted*100; return `<div class="rev-bar"><span>${n}</span><div class="track"><div class="fill" style="width:${pct.toFixed(0)}%"></div></div><div class="count">${nCount||''}</div></div>`; }).join('');
+  return `<div class="reviews-section" id="reviews-${pid}">
+    <div class="rev-head">
+      <h2>What our<br>customers say<span>Real words, real people — no filters, no fakes</span></h2>
+      <button class="rev-cta" data-rev-open="${pid}" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>Write a Review</button>
+    </div>
+    <div class="rev-layout">
+      <aside class="rev-summary">
+        <div class="verified-badge"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Verified Customers</div>
+        <div class="big">${rated.length?avg.toFixed(1):'—'}<small>/5</small></div>
+        <div class="rev-stars-big">${rated.length?revStars(Math.round(avg)):revStars(0)}</div>
+        <div class="total">${uRevs.length} written${rated.length?` · ${rated.length} rated`:''}</div>
+        <div class="rev-bars">${bars}</div>
+        <p class="rev-source-note">Reviews combine verified sohraaz.com customers and reviews submitted here. Every name you see has actually bought from us — we never post anonymous praise.</p>
+      </aside>
+      <div>
+        <div class="rev-chips" data-rev-chips="${pid}">
+          <button class="rev-chip on" data-rev-filter="all">All (${totalCount})</button>
+          <button class="rev-chip" data-rev-filter="media">With Media</button>
+          <button class="rev-chip" data-rev-filter="top">5 Star</button>
+          <button class="rev-chip" data-rev-filter="recent">Recent</button>
+        </div>
+        <div class="rev-list" data-rev-list="${pid}">${revListHTML(pid,'all')}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function renderShop(q){
   const cat=q.get("cat")||"All";
   const sort=q.get("sort")||"featured";
@@ -1313,6 +1502,7 @@ function renderProduct(id){
       <div class="pdp-desc">${p.desc}</div>
     </div>
   </div>
+  ${reviewsSectionHTML(p.id)}
   <div class="like-section">
     <div class="sec-head" style="margin-top:0"><h2 style="font-size:22px">You may also like</h2><p>Pair it with something — or just fall for another one.</p></div>
     <div class="like-grid">${(()=>{ const alsoLike=[...new Set([...(p.pair||[]),"p1","p6","p8","p12","p13"])].filter(id=>id!==p.id).slice(0,4); return alsoLike.map(id=>prodCardHTML(P(id))).join(""); })()}</div>
@@ -1654,7 +1844,7 @@ window.addEventListener("hashchange",router);
 
 /* ============ events (delegation) ============ */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color]");
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
   if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); return; }
@@ -1671,6 +1861,12 @@ document.addEventListener("click",e=>{
   if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); refreshCartView(); return; }
   if(t.dataset.size){ const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return; }
   if(t.dataset.color){ const row=t.closest(".color-sw"); if(row) row.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); return; }
+  if(t.dataset.revOpen){ currentRevPid = t.dataset.revOpen; revState.rating = 0; revState.photos = []; revFormReset(); const m=document.getElementById('revModal'); m.classList.add('open'); document.body.style.overflow='hidden'; t.setAttribute('aria-expanded','true'); return; }
+  if(t.dataset.revFilter){ const chipWrap=t.closest('.rev-chips'); const pid=chipWrap?chipWrap.getAttribute('data-rev-chips'):''; if(chipWrap) chipWrap.querySelectorAll('.rev-chip').forEach(c=>c.classList.toggle('on',c===t)); const list=document.querySelector('.rev-list[data-rev-list="'+pid+'"]'); if(list) list.innerHTML=revListHTML(pid, t.dataset.revFilter); return; }
+  if(t.dataset.revHelpful){ const sec=t.closest('.reviews-section'); if(!sec) return; const pid=sec.id.replace('reviews-',''); helpfulBump(pid, t.dataset.revHelpful, t); return; }
+  if(t.dataset.revSrate){ revState.rating = +t.dataset.revSrate; renderRevStars(); return; }
+  if(t.dataset.revRm){ revState.photos.splice(+t.dataset.revRm,1); renderRevPhotoPrev(); return; }
+  if(t.dataset.revClose){ closeRevModal(); return; }
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
   if(t.dataset.cat){ if(t.classList.contains("chip")){ location.hash="#/shop?cat="+encodeURIComponent(t.dataset.cat); } return; }
@@ -1942,6 +2138,86 @@ lbx.addEventListener('touchend', e => {
   const dy = e.changedTouches[0].clientY - lbxTouchY; lbxTouchY = null;
   if(Math.abs(dy) > 48) lbxStep(dy < 0 ? 1 : -1);
 }, {passive:true});
+
+/* ============ REVIEW MODAL — write / publish ============ */
+let currentRevPid = null;
+const revState = { rating: 0, photos: [] };
+const revModal = document.getElementById('revModal');
+const revForm = document.getElementById('revForm');
+const revStarRow = document.getElementById('revStarRow');
+const revPhotos = document.getElementById('revPhotos');
+const revPhotoPrev = document.getElementById('revPhotoPrev');
+const revAddPhoto = document.getElementById('revAddPhoto');
+const revClose = document.getElementById('revClose');
+function renderRevStars(){
+  let html = '';
+  for(let i=1;i<=5;i++){
+    html += `<button type="button" class="${i<=revState.rating?'on':''}" data-rev-srate="${i}" role="radio" aria-checked="${i===revState.rating}" aria-label="${i} stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></button>`;
+  }
+  revStarRow.innerHTML = html;
+}
+function renderRevPhotoPrev(){
+  revPhotoPrev.innerHTML = revState.photos.map((p,i)=>`<figure><img src="${p.dataUrl}" alt="Your photo ${i+1}"><button type="button" class="rm" data-rev-rm="${i}" aria-label="Remove photo">×</button></figure>`).join('');
+}
+function revFormReset(){
+  if(revForm){ revForm.reset(); }
+  revState.rating = 0; revState.photos = [];
+  if(revStarRow) renderRevStars();
+  if(revPhotoPrev) renderRevPhotoPrev();
+}
+function closeRevModal(){
+  revModal.classList.remove('open');
+  document.body.style.overflow = '';
+  const openBtn = document.querySelector('[data-rev-open][aria-expanded="true"]');
+  if(openBtn) openBtn.setAttribute('aria-expanded','false');
+}
+if(revAddPhoto && revPhotos){
+  revAddPhoto.addEventListener('click', ()=>revPhotos.click());
+  revPhotos.addEventListener('change', ()=>{
+    const files = [...revPhotos.files].slice(0, 3 - revState.photos.length);
+    if(!files.length){ revPhotos.value=''; return; }
+    files.forEach(file => {
+      if(file.size > 4*1024*1024){ toast('Photo too large — keep under 4MB'); return; }
+      const img = new Image();
+      img.onload = () => {
+        const max = 800; const scale = Math.min(1, max/Math.max(img.width, img.height));
+        const c = document.createElement('canvas');
+        c.width = Math.max(1, Math.round(img.width*scale)); c.height = Math.max(1, Math.round(img.height*scale));
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        revState.photos.push({dataUrl: c.toDataURL('image/jpeg', 0.72)});
+        renderRevPhotoPrev();
+      };
+      img.src = URL.createObjectURL(file);
+    });
+    revPhotos.value = '';
+  });
+}
+if(revClose) revClose.addEventListener('click', closeRevModal);
+if(revModal) revModal.addEventListener('click', e => { if(e.target === revModal) closeRevModal(); });
+if(revForm){
+  revForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const body = document.getElementById('revBody').value.trim();
+    if(!body){ toast('Please write a few words before publishing'); return; }
+    const title = document.getElementById('revTitle').value.trim();
+    const name = document.getElementById('revName').value.trim() || 'You';
+    const rev = {
+      id: 'u' + Date.now(),
+      name,
+      title,
+      body,
+      rating: revState.rating || 5,
+      media: revState.photos.map(p => ({type:'image', src:p.dataUrl})),
+      ts: Date.now()
+    };
+    saveUserReview(currentRevPid, rev);
+    closeRevModal();
+    const host = document.getElementById('reviews-' + currentRevPid);
+    if(host) host.outerHTML = reviewsSectionHTML(currentRevPid);
+    toast('Review published — thank you!');
+  });
+}
+if(typeof renderRevStars === 'function') renderRevStars();
 
 router();
 tickOffer();
