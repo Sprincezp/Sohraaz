@@ -1748,41 +1748,66 @@ function renderAccount(){
 }
 
 /* ============ SOHRAAZ ASSISTANT (CHAT) ============ */
-const CHAT_KB = [
-  {k:["track","order status","where is my order"], a:"Once your order is confirmed, the tracking link reaches you on WhatsApp/SMS within 24 hours of dispatch. Can't find it? Call +91 91239 47668 with your order number."},
-  {k:["size","fit","chest","length"], a:"Sohraaz kurtas run regular — take your usual size, or size up if you prefer a relaxed drape. Full chart: tap 'Size & Fit Guide' on any product page. Still unsure? WhatsApp us your chest and height — we'll guide you."},
-  {k:["wedding","groom","sherwani","haldi","mehndi","sangeet"], a:"The Wedding Edit is built for the whole celebration — haldi to phere. See the looks here: https://sprincezp.github.io/Sohraaz/#/lookbook · For a full groom package (sherwani + churidar + styling), WhatsApp +91 91239 47668."},
-  {k:["return","exchange","refund"], a:"7 days from delivery. Items unused, tags intact. Size exchange is FREE once. Full policy: #/policies"},
-  {k:["code","discount","offer","coupon","welcome"], a:"WELCOME10 — 10% off your first order (max ₹200). Prepaid orders always get 5% off, and free shipping above ₹999. That's the complete, honest list — no hidden codes."},
-  {k:["cod","cash"], a:"Yes, Cash on Delivery is available on serviceable PIN codes. A ₹49 COD handling fee applies below ₹1,999 (shown at checkout before you pay). Choosing prepaid saves the fee and earns 5% off."},
-  {k:["delivery","shipping","how long"], a:"Metro cities: 3–5 business days. Other cities: 5–7. Remote: 7–10. Every order is dispatched from Kolkata with tracking shared on WhatsApp."},
-  {k:["fabric","cotton","giza","care"], a:"Our kurtas are stitched in-house from Giza cotton, paper cotton and poly-cotton blends. Wash separately, cold water, shade dry. Full care notes sit on every product page."},
-  {k:["store","showroom","visit","address"], a:"Sohraaz Collections, 12/1 Picnic Garden, 3rd Lane, Ground Floor, near 42 Bus Stand, Kolkata 700039. Open most days — call ahead +91 91239 47668."},
-  {k:["coin","loyalty","reward"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — see yours: #/account"},
-];
-const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
+const STORE_BASE = "https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html";
+function plink(p){
+  return "["+p.name+" — ₹"+p.price.toLocaleString("en-IN")+"]("+STORE_BASE+"#/product/"+p.id+")";
+}
 const PRODUCT_MINI = [
-  {id:"p1", n:"White Cotton Plain Kurta", price:799, k:["white","plain","cotton plain","everyday kurta"]},
-  {id:"p2", n:"Onion Pink Cotton Self Work Kurta", price:1099, k:["pink","onion"]},
-  {id:"p3", n:"Cream Paper Cotton Kurta", price:1099, k:["cream","paper"]},
-  {id:"p4", n:"Beige Breeze Printed Kurta", price:1499, k:["beige","breeze","printed kurta"]},
-  {id:"p5", n:"Grey Poly Cotton Self Work Kurta", price:1699, k:["grey","gray"]},
-  {id:"p6", n:"Embroidered Black Giza Cotton Kurta", price:2299, k:["black","embroidered"]},
-  {id:"p7", n:"Festive Black Giza Cotton Kurta", price:2599, k:["black","festive black"]},
-  {id:"p8", n:"Off White Giza Cotton Moti Work Festive Kurta", price:2999, k:["off white","off-white","moti","wedding kurta","white festive"]},
-  {id:"p9", n:"Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, k:["blue","ice blue","jacket","jacket set"]},
-  {id:"p10", n:"Armani Black — Black Armani Embroidered Kurta", price:2549, k:["armani black","armani","black armani"]},
-  {id:"p11", n:"Armani Glow — White Armani Mirror Work Kurta", price:2649, k:["glow","mirror","white mirror","armani glow"]},
-  {id:"p12", n:"Armani Spark — White Armani Mirror Work Kurta", price:2549, k:["spark","mirror","white mirror","armani spark","white kurta"]},
-  {id:"p13", n:"Men's Elastic Waistband Pyjama with Pockets", price:449, k:["pyjama","pajama","bottom","pyjama set"]},
-  {id:"p14", n:"Men's White Cotton Blend Churidar", price:400, k:["churidar","churi"]},
+  {id:"p1", name:"White Cotton Plain Kurta", price:799, k:["white","plain","cotton plain","everyday kurta","casual kurta","best seller","popular"]},
+  {id:"p2", name:"Onion Pink Cotton Self Work Kurta", price:1099, k:["pink","onion"]},
+  {id:"p3", name:"Cream Paper Cotton Kurta", price:1099, k:["cream","paper"]},
+  {id:"p4", name:"Beige Breeze Printed Kurta", price:1499, k:["beige","breeze","printed kurta","best seller","popular"]},
+  {id:"p5", name:"Grey Poly Cotton Self Work Kurta", price:1699, k:["grey","gray"]},
+  {id:"p6", name:"Embroidered Black Giza Cotton Kurta", price:2299, k:["black","embroidered"]},
+  {id:"p7", name:"Festive Black Giza Cotton Kurta", price:2599, k:["black","festive black","best seller","popular","diwali","puja"]},
+  {id:"p8", name:"Off White Giza Cotton Moti Work Festive Kurta", price:2999, k:["off white","off-white","moti","wedding kurta","shaadi","festive"]},
+  {id:"p9", name:"Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, k:["blue","ice blue","jacket","jacket set","shaadi"]},
+  {id:"p10", name:"Armani Black — Black Armani Embroidered Kurta", price:2549, k:["armani black","armani","black armani"]},
+  {id:"p11", name:"Armani Glow — White Armani Mirror Work Kurta", price:2649, k:["glow","mirror","white mirror","armani glow","mirror work"]},
+  {id:"p12", name:"Armani Spark — White Armani Mirror Work Kurta", price:2549, k:["spark","mirror","white mirror","armani spark","white kurta","mirror work","wedding","best seller","popular","diwali","puja"]},
+  {id:"p13", name:"Men's Elastic Waistband Pyjama with Pockets", price:449, k:["pyjama","pajama","bottom","pyjama set","trouser"]},
+  {id:"p14", name:"Men's White Cotton Blend Churidar", price:400, k:["churidar","churi","pyjama"]},
 ];
+const CURATED_TOP = ["p12","p7","p4"];
+const WED_PICKS = ["p8","p12","p9"];
+function plinks(list){
+  return list.map(id => plink(PRODUCT_MINI.find(p=>p.id===id))).join("\n");
+}
 function findProducts(q){
   const s = (q||"").toLowerCase();
   const hits = [];
   for (const p of PRODUCT_MINI) { if (p.k.some(k=>s.includes(k))) hits.push(p); }
+  // budget like "2000 tak", "₹5000 me", "3k ke andar"
+  const priceMatch = s.match(/(\d{1,5})\s*(?:k|rs|₹|rupee|rupee me|tak|under|andar|only)?/);
+  if (priceMatch){
+    let cap = parseInt(priceMatch[1], 10);
+    if (/k\b/.test(s) || cap < 20) cap = cap * 1000;
+    if (cap >= 500){
+      const asked = /(tak|under|andar|se kam|budget|within|upto|up to|me sirf|sasta|only)/.test(s);
+      const capHits = PRODUCT_MINI.filter(p=>p.price <= cap);
+      if (capHits.length && (asked || hits.length === 0)) { hits.length = 0; hits.push(...capHits.slice(0,3)); }
+    }
+  }
   return [...new Set(hits)].slice(0,3);
 }
+const CHAT_KB = [
+  {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:"Namaste! 🙏 Sohraaz Collections mein aapka swagat hai. Wedding, festive, ya casual — kuch bhi poochiye."},
+  {k:["wedding","groom","sherwani","haldi","mehndi","sangeet","phere","shaadi"], a:() => "Shaadi ke liye! 🎉 The Wedding Edit — haldi se phere tak: https://sprincezp.github.io/Sohraaz/#/lookbook\nOur favorites for pheras:\n"+plinks(WED_PICKS)+"\nFull groom package / sherwani styling — WhatsApp +91 91239 47668."},
+  {k:["track","order status","where is my order","delivery status","parcel","shipped","tracking"], a:"Order confirm hone ke 24 ghante baad tracking link WhatsApp/SMS pe aayega. Can't find it? Call +91 91239 47668 with your order number."},
+  {k:["size","fit","chest","length","measure","chart","fitting"], a:"Sohraaz kurtas regular fit chalte hain — usual size hi best hai (relaxed prefer karte ho to size up). Size chart har product page pe: 'Size & Fit Guide' button. Unsure? WhatsApp your chest + height: +91 91239 47668."},
+  {k:["return","exchange","refund","replace"], a:"7 days from delivery. Items unused, tags intact. Size exchange FREE once per order. Full policy: #/policies"},
+  {k:["code","discount","offer","coupon","welcome","promo","sale","off"], a:"WELCOME10 — 10% off your first order (max ₹200). Prepaid orders always get 5% off + free shipping above ₹999. Complete honest list — koi hidden codes nahi."},
+  {k:["cod","cash","cash on delivery"], a:"Yes, COD available on serviceable PIN codes. Below ₹999, ₹49 shipping + ₹49 COD handling fee (shown at checkout). Prepaid saves the fee and earns 5% off."},
+  {k:["delivery","shipping","how long","dispatch","when will"], a:"Dispatch within 1-3 business days from our Kolkata workshop. Metro 3-5 days, other cities 5-7, remote 7-10. Tracking link on WhatsApp once dispatched."},
+  {k:["fabric","cotton","giza","care","wash","paper cotton","poly"], a:"Our kurtas stitch in-house from Giza cotton, paper cotton & soft poly-blends. Wash separately, cold water, shade dry. Full care notes on every product page."},
+  {k:["store","showroom","visit","address","location","open"], a:"Sohraaz Collections, 12/1 Picnic Garden, 3rd Lane, Ground Floor, near 42 Bus Stand, Kolkata 700039. Open most days — call ahead on +91 91239 47668."},
+  {k:["coin","loyalty","reward","points","sohraaz coin"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — you can see yours: #/account"},
+  {k:["wishlist","favourite","favorite","save","saved"], a:"Tap the heart icon on any product — everything you save waits for you at #/wishlist. No account, no password."},
+  {k:["checkout","buy","place order","how to order","payment","pay","upi","card"], a:"Browse → add to bag → checkout (UPI, card, netbanking, COD). Total with all charges shown before you pay. Or WhatsApp order: +91 91239 47668."},
+  {k:["contact","call","help","support","expert","human","agent","care"], a:"Our experts are always one tap away: WhatsApp or call +91 91239 47668. Showroom at 12/1, Picnic Garden, 3rd Lane, Kolkata."},
+  {k:["price","cost","kitna","rate","sasta","cheap","budget","affordable"], a:"Kurtas from ₹799, festive ₹1,499–2,599, wedding ₹2,549–3,299, sherwanis ₹6,999–10,499. Full catalog: #/shop"},
+];
+const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
 /* SOHRAAZ AI — Cloudflare Worker endpoint (live, key stays server-side). */
 const AI_ENDPOINT = "https://muddy-wood-754b.sprincezp7.workers.dev";
 const chatHistory = [];
@@ -1793,14 +1818,21 @@ async function askSohraazAI(text){
   if(!data.reply) throw new Error("ai empty reply");
   return data.reply;
 }
+function curatedPicks(){
+  const top = PRODUCT_MINI.filter(p=>["p12","p7","p4"].includes(p.id));
+  return "Zaroor! Hamare top-selling pieces:\n" + top.map(plink).join("\n");
+}
 function chatAnswer(q){
   const s = q.toLowerCase();
-  for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
+  // Products first — colour, item, budget ("2000 tak"), "festive" etc. get direct links
   const found = findProducts(s);
   if(found.length){
-    return "Ji zaroor! Ye dekhiye:\n" + found.map(p => "["+p.n+" — ₹"+p.price.toLocaleString("en-IN")+"](https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html#/product/"+p.id+")").join("\n");
+    return "Zaroor! Ye dekhiye:\n" + found.map(plink).join("\n");
   }
-  return "Mujhe yeh sawal theek se answer nahi kar paaun — WhatsApp kar dijiye: +91 91239 47668.";
+  for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return typeof item.a === "function" ? item.a() : item.a; }
+  const novel = s.length > 40 || /(kaun|kaisa|kaisi|which|suggest|recommend|choose|pick|best for|puchna chahta|samjha|advise)/.test(s);
+  if(novel) return null;
+  return curatedPicks();
 }
 function chatRenderHTML(text){
   let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -1830,13 +1862,14 @@ function chatBotReply(text){
   typing.innerHTML = "<i></i><i></i><i></i>";
   body.appendChild(typing);
   body.scrollTop = body.scrollHeight;
-  const fallback = () => { const reply = chatAnswer(text); rememberTurn(text, reply); typing.remove(); chatAddMsg(reply, "bot"); };
-  if(!AI_ENDPOINT){ setTimeout(fallback, 650); return; }
-  askSohraazAI(text).then(reply => {
-    rememberTurn(text, reply);
-    typing.remove();
-    chatAddMsg(reply, "bot");
-  }).catch(() => setTimeout(fallback, 250));
+  const finish = (reply) => { rememberTurn(text, reply); typing.remove(); chatAddMsg(reply, "bot"); };
+  const quick = chatAnswer(text);
+  if(quick){ setTimeout(()=>finish(quick), 380); return; }
+  if(AI_ENDPOINT){
+    askSohraazAI(text).then(finish).catch(()=>finish(curatedPicks()));
+    return;
+  }
+  finish(curatedPicks());
 }
 
 /* ============ WEDDING LOOKBOOK ============ */
