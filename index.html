@@ -892,20 +892,40 @@
     });
   });
 
-  /* add to bag demo */
+  /* add to bag — real add to shared cart */
   const buyButton=document.getElementById("buyButton");
   const toast=document.createElement("div");
   toast.className="toast";
   toast.id="toast";
-  toast.textContent="Product added to your bag!";
+  toast.innerHTML="Added to your bag — Off White Giza Cotton Moti Work Kurta (M)";
   document.body.appendChild(toast);
+  let buyState="add";
+  function setBagQty(){
+    try{
+      const cart=JSON.parse(localStorage.getItem('sohraaz_cart')||'[]');
+      const qty=cart.reduce((s,l)=>s+(+l.qty||0),0);
+      ['bagCount','bagCountM'].forEach(id=>{const e=document.getElementById(id); if(e) e.textContent=qty;});
+      const wish=JSON.parse(localStorage.getItem('sohraaz_wish')||'[]');
+      const we=document.getElementById('wishCount'); if(we) we.textContent=wish.length;
+    }catch(e){}
+  }
   buyButton.addEventListener("click",()=>{
-    toast.classList.add("show");
-    buyButton.textContent="ADDED TO BAG ✓";
-    setTimeout(()=>{
-      toast.classList.remove("show");
-      buyButton.textContent="ADD TO BAG — ₹2,849";
-    },2200)
+    if(buyState==="view"){ window.location.href="sohraaz-full-store-template.html#/cart"; return; }
+    try{
+      const cart=JSON.parse(localStorage.getItem('sohraaz_cart')||'[]');
+      const e=cart.find(l=>l.id==='p8'&&l.size==='M');
+      if(e) e.qty=(+e.qty||1)+1; else cart.push({id:'p8',size:'M',qty:1});
+      localStorage.setItem('sohraaz_cart',JSON.stringify(cart));
+      setBagQty();
+      toast.classList.add("show");
+      buyButton.textContent="VIEW BAG →";
+      buyState="view";
+      setTimeout(()=>{
+        toast.classList.remove("show");
+        buyButton.textContent="ADD TO BAG — ₹2,849";
+        buyState="add";
+      },3000);
+    }catch(e){ window.location.href="sohraaz-full-store-template.html#/product/p8"; }
   });
 
   /* newsletter (demo) */
