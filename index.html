@@ -624,10 +624,10 @@
         Honest price, no inflated MRP games.<br>
       </p>
       <div class="price">
-        ₹2,999
+        ₹2,549
       </div>
-      <button class="buy-button" id="buyButton">ADD TO BAG — ₹2,849</button>
-      <a href="sohraaz-full-store-template.html#/product/p8" class="view-link" id="viewLink">VIEW PRODUCT DETAILS</a>
+      <button class="buy-button" id="buyButton">ADD TO BAG — ₹2,422</button>
+      <a href="sohraaz-full-store-template.html#/product/p12" class="view-link" id="viewLink">VIEW PRODUCT DETAILS</a>
     </div>
 
   </div>
@@ -897,7 +897,7 @@
   const toast=document.createElement("div");
   toast.className="toast";
   toast.id="toast";
-  toast.innerHTML="Added to your bag — Off White Giza Cotton Moti Work Kurta (M)";
+  toast.innerHTML="Added to your bag — Armani Spark, White Armani Mirror Work Kurta (M)";
   document.body.appendChild(toast);
   let buyState="add";
   function setBagQty(){
@@ -913,8 +913,8 @@
     if(buyState==="view"){ window.location.href="sohraaz-full-store-template.html#/cart"; return; }
     try{
       const cart=JSON.parse(localStorage.getItem('sohraaz_cart')||'[]');
-      const e=cart.find(l=>l.id==='p8'&&l.size==='M');
-      if(e) e.qty=(+e.qty||1)+1; else cart.push({id:'p8',size:'M',qty:1});
+      const e=cart.find(l=>l.id==='p12'&&l.size==='M');
+      if(e) e.qty=(+e.qty||1)+1; else cart.push({id:'p12',size:'M',qty:1});
       localStorage.setItem('sohraaz_cart',JSON.stringify(cart));
       setBagQty();
       toast.classList.add("show");
@@ -922,7 +922,7 @@
       buyState="view";
       setTimeout(()=>{
         toast.classList.remove("show");
-        buyButton.textContent="ADD TO BAG — ₹2,849";
+        buyButton.textContent="ADD TO BAG — ₹2,422";
         buyState="add";
       },3000);
     }catch(e){ window.location.href="sohraaz-full-store-template.html#/product/p8"; }
