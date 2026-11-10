@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  /* Root-URL SPA redirects: /#/shop, /#/product/x, /#/lookbook, etc → the full store */
+  (function(){
+    var h = location.hash || "";
+    var exact = ["#/shop","#/cart","#/checkout","#/wishlist","#/account","#/success","#/policies","#/about","#/watch","#/lookbook"];
+    if (exact.indexOf(h) !== -1 || h.indexOf("#/product/") === 0) {
+      location.replace("sohraaz-full-store-template.html" + h);
+    }
+  })();
+</script>
 <title>SOHRAAZ — The Art of Modern Indian Elegance</title>
 <meta name="description" content="Sohraaz — Kolkata-born house of modern Indian menswear. Kurtas, sherwanis and festive wear crafted for every celebration.">
 <meta name="robots" content="index, follow">
@@ -1072,7 +1082,7 @@
   }
   const CHAT_KB = [
     {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:"Namaste! 🙏 Sohraaz Collections mein aapka swagat hai. Wedding, festive, ya casual — kuch bhi poochiye."},
-    {k:["wedding","groom","sherwani","haldi","mehndi","sangeet","phere","shaadi"], a:() => "Shaadi ke liye! 🎉 The Wedding Edit — haldi se phere tak: https://sprincezp.github.io/Sohraaz/#/lookbook\nOur favorites for pheras:\n"+plinks(WED_PICKS)+"\nFull groom package / sherwani styling — WhatsApp +91 91239 47668."},
+    {k:["wedding","groom","sherwani","haldi","mehndi","sangeet","phere","shaadi"], a:() => "Shaadi ke liye! 🎉 The Wedding Edit — haldi se phere tak: https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html#/lookbook\nOur favorites for pheras:\n"+plinks(WED_PICKS)+"\nFull groom package / sherwani styling — WhatsApp +91 91239 47668."},
     {k:["track","order status","where is my order","delivery status","parcel","shipped","tracking"], a:"Order confirm hone ke 24 ghante baad tracking link WhatsApp/SMS pe aayega. Can't find it? Call +91 91239 47668 with your order number."},
     {k:["size","fit","chest","length","measure","chart","fitting"], a:"Sohraaz kurtas regular fit chalte hain — usual size hi best hai (relaxed prefer karte ho to size up). Size chart har product page pe: 'Size & Fit Guide' button. Unsure? WhatsApp your chest + height: +91 91239 47668."},
     {k:["return","exchange","refund","replace"], a:"7 days from delivery. Items unused, tags intact. Size exchange FREE once per order. Full policy: #/policies"},
