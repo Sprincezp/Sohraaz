@@ -261,8 +261,6 @@
   .thumbs button{width:72px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);opacity:.75;transition:opacity .25s;cursor:pointer}
   /* PDP premium extras */
   .pdp-sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--gold);margin:6px 0 2px}
-  .img-badge{position:absolute;top:14px;left:14px;z-index:2;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;padding:8px 12px;border-radius:8px}
-  .img-badge b{color:#D9BE93}
   .pdp-wishlist{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:transparent;border:1px solid var(--ink);border-radius:12px;padding:14px;margin-top:12px;font-family:var(--caps);font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
   .pdp-wishlist:hover{background:var(--ink);color:#F4E9D4}
   .pdp-wishlist svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -1221,7 +1219,7 @@ function renderProduct(id){
   <div class="pdp">
     <div class="pdp-gallery">
       <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}"><img src="${IMG(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
-      <div class="main"><span class="img-badge">Handmade in <b>Kolkata</b></span><img class="zoomable" src="${IMG(img)}" alt="${p.name}" style="cursor:zoom-in"></div>
+      <div class="main"><img class="zoomable" src="${IMG(img)}" alt="${p.name}" style="cursor:zoom-in"></div>
     </div>
     <div>
       <h1>${p.name}</h1>
