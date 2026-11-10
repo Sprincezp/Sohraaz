@@ -1816,17 +1816,6 @@ const CHAT_KB = [
     : toneOf(q)==="pro"
       ? "Namaste, welcome to Sohraaz Collections. How may I assist you today — wedding, festive or casual wear?"
       : "Namaste! Sohraaz Collections mein aapka swagat hai. Bataiye, kya dekh rahe hain aaj?"},
-  {k:["wedding","groom","sherwani","haldi","mehndi","sangeet","phere","shaadi","shadi"], a:(q) => {
-    const t = toneOf(q);
-    const head = t==="warm" ? "Ahh shaadi 🔥 The Wedding Edit — haldi se phere tak sab kuch hai:"
-               : t==="pro"  ? "For your wedding celebrations, our Wedding Edit covers the complete wardrobe:"
-               :               "Shaadi ke liye! 🎉 The Wedding Edit — haldi se phere tak:";
-    const tail = t==="warm" ? pick(["In teeno me aap sherwani se bhi zyada memorable lagenge — seriously. Full groom package? WhatsApp: +91 91239 47668."])
-               : t==="pro"  ? "Each sits impeccably — you will look notably put-together. For a full groom styling package, WhatsApp +91 91239 47668."
-               :               "In teeno mein aap superb dikhenge. Full groom package — WhatsApp +91 91239 47668.";
-    WED_PICKS.forEach(id => shownIds.push(id));
-    return head + " https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html#/lookbook\nOur favorites for the pheras:\n" + plinks(WED_PICKS) + "\n" + tail;
-  }},
   {k:["track","order status","where is my order","delivery status","parcel","shipped","tracking"], a:"Order confirm hone ke 24 ghante baad tracking link WhatsApp/SMS pe aayega. Can't find it? Call +91 91239 47668 with your order number."},
   {k:["size","fit","chest","length","measure","chart","fitting"], a:"Sohraaz kurtas regular fit chalte hain — usual size hi best hai (relaxed prefer karte ho to size up). Size chart har product page pe: 'Size & Fit Guide' button. Unsure? WhatsApp your chest + height: +91 91239 47668."},
   {k:["return","exchange","refund","replace"], a:"7 days from delivery. Items unused, tags intact. Size exchange FREE once per order. Full policy: #/policies"},
@@ -1839,7 +1828,6 @@ const CHAT_KB = [
   {k:["wishlist","favourite","favorite","save","saved"], a:"Tap the heart icon on any product — everything you save waits for you at #/wishlist. No account, no password."},
   {k:["checkout","buy","place order","how to order","payment","pay","upi","card"], a:"Browse → add to bag → checkout (UPI, card, netbanking, COD). Total with all charges shown before you pay. Or WhatsApp order: +91 91239 47668."},
   {k:["contact","call","help","support","expert","human","agent","care"], a:"Our experts are always one tap away: WhatsApp or call +91 91239 47668. Showroom at 12/1, Picnic Garden, 3rd Lane, Kolkata."},
-  {k:["price","cost","kitna","rate","sasta","cheap","budget","affordable"], a:"Kurtas from ₹799, festive ₹1,499–2,599, wedding ₹2,549–3,299, sherwanis ₹6,999–10,499. Full catalog: #/shop"},
 ];
 const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
 /* SOHRAAZ AI — Cloudflare Worker endpoint (live, key stays server-side). */
