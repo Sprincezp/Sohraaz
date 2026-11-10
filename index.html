@@ -345,7 +345,9 @@
   .chat-head small{font-size:10.5px;color:#D9BE93;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
   .chat-close{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,231,213,.25);color:#F4E9D4;font-size:19px;display:flex;align-items:center;justify-content:center}
   .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#F5F2E9}
-  .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line}
+  .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere}
+  .chat-link{color:#8A6A3F;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+  .chat-msg.user .chat-link{color:#E8C87A}
   .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#3A2E22}
   .chat-msg.user{background:#241812;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
   .chat-typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #E9E4D4;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px}
@@ -1059,12 +1061,18 @@
     for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
     return "I can help with orders, sizing, wedding styling, returns, offers and our showroom. For anything else, a real human is one tap away: WhatsApp +91 91239 47668.";
   }
+  function chatRenderHTML(text){
+    let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    s = s.replace(/\[([^\]]{1,90})\]\((https?:\/\/[^\s)]+)\)/g, '<a class="chat-link" href="$2" target="_blank" rel="noopener">$1</a>');
+    s = s.replace(/(^|[\s(])(https?:\/\/[^\s)<]+)/g, '$1<a class="chat-link" href="$2" target="_blank" rel="noopener">$2</a>');
+    return s.replace(/\n/g,"<br>");
+  }
   function chatAddMsg(text, who){
     const body = document.getElementById("chatBody");
     if(!body) return;
     const div = document.createElement("div");
     div.className = "chat-msg " + who;
-    div.textContent = text;
+    div.innerHTML = chatRenderHTML(text);
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
   }
