@@ -1039,6 +1039,21 @@
     {k:["coin","loyalty","reward"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — see yours in the store under My Account."},
   ];
   const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
+  /* SOHRAAZ AI — Cloudflare Worker endpoint. Paste your worker URL to go live; empty = canned fallback. */
+  const AI_ENDPOINT = "";
+  const chatHistory = [];
+  async function askSohraazAI(text){
+    const res = await fetch(AI_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message: text, history: chatHistory }) });
+    if(!res.ok) throw new Error("ai http " + res.status);
+    const data = await res.json();
+    if(!data.reply) throw new Error("ai empty reply");
+    return data.reply;
+  }
+  function rememberTurn(text, reply){
+    chatHistory.push({ role:"user", text });
+    chatHistory.push({ role:"model", text: reply });
+    if(chatHistory.length > 16) chatHistory.splice(0, chatHistory.length - 16);
+  }
   function chatAnswer(q){
     const s = q.toLowerCase();
     for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
@@ -1061,7 +1076,13 @@
     typing.innerHTML = "<i></i><i></i><i></i>";
     body.appendChild(typing);
     body.scrollTop = body.scrollHeight;
-    setTimeout(()=>{ typing.remove(); chatAddMsg(chatAnswer(text), "bot"); }, 650);
+    const fallback = () => { const reply = chatAnswer(text); rememberTurn(text, reply); typing.remove(); chatAddMsg(reply, "bot"); };
+    if(!AI_ENDPOINT){ setTimeout(fallback, 650); return; }
+    askSohraazAI(text).then(reply => {
+      rememberTurn(text, reply);
+      typing.remove();
+      chatAddMsg(reply, "bot");
+    }).catch(() => setTimeout(fallback, 250));
   }
   (function initChat(){
     const fab   = document.getElementById('chatFab');
