@@ -1128,8 +1128,8 @@ function toneOf(s){
     const res = await fetch(AI_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message: text, history: chatHistory }) });
     if(!res.ok) throw new Error("ai http " + res.status);
     const data = await res.json();
-    if(!data.reply) throw new Error("ai empty reply");
-    return data.reply;
+    if(!data.reply) throw new Error("ai empty or truncated reply");
+    return String(data.reply);
   }
   function rememberTurn(text, reply){
     chatHistory.push({ role:"user", text });
