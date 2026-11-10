@@ -817,7 +817,7 @@
     <input id="chatInput" type="text" placeholder="Type your question…" autocomplete="off" aria-label="Type your question">
     <button id="chatSend">Send</button>
   </div>
-  <div class="chat-wa">Prefer a human? <a href="https://wa.me/919123947668?text=Namaste! I need help with my Sohraaz order." target="_blank" rel="noopener">WhatsApp +91 91239 47668</a></div>
+  <div class="chat-wa">Need help from our experts? <a href="https://wa.me/919123947668?text=Namaste! I need help with my Sohraaz order." target="_blank" rel="noopener">WhatsApp +91 91239 47668</a></div>
 </div>
 
 <div class="float-dock float-right" id="waDock">
@@ -1059,7 +1059,7 @@
   function chatAnswer(q){
     const s = q.toLowerCase();
     for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
-    return "I can help with orders, sizing, wedding styling, returns, offers and our showroom. For anything else, a real human is one tap away: WhatsApp +91 91239 47668.";
+    return "I can help with orders, sizing, wedding styling, returns, offers and our showroom. For anything else, our Sohraaz experts are one tap away: WhatsApp +91 91239 47668.";
   }
   function chatRenderHTML(text){
     let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
