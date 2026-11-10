@@ -246,6 +246,40 @@
   .pdp-gallery .main{aspect-ratio:4/5;overflow:hidden;background:var(--cream-2)}
   .pdp-gallery .main img{width:100%;height:100%;object-fit:cover}
   .thumbs{display:flex;gap:10px;margin-top:12px}
+  @media (min-width:900px){
+    .pdp-gallery{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:start}
+    .pdp-gallery .thumbs{flex-direction:column;margin-top:0;gap:10px}
+    .pdp-gallery .thumbs button{width:76px;aspect-ratio:4/5}
+    .pdp-gallery .thumbs img{width:100%;height:100%;object-fit:cover}
+    .pdp-gallery .main{aspect-ratio:4/5}
+  }
+  .thumbs button{width:72px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);opacity:.75;transition:opacity .25s;cursor:pointer}
+  /* PDP premium extras */
+  .pdp-sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--gold);margin:6px 0 2px}
+  .img-badge{position:absolute;top:14px;left:14px;z-index:2;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;padding:8px 12px;border-radius:8px}
+  .img-badge b{color:#D9BE93}
+  .pdp-wishlist{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:transparent;border:1px solid var(--ink);border-radius:12px;padding:14px;margin-top:12px;font-family:var(--caps);font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+  .pdp-wishlist:hover{background:var(--ink);color:#F4E9D4}
+  .pdp-wishlist svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .pdp-wishlist.on{background:#241B12;color:#F4E9D4;border-color:#241B12}
+  .pdp-wishlist.on svg{fill:#FF4D6B;stroke:#FF4D6B}
+  .color-row{display:flex;align-items:center;gap:14px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .color-row .cl{font-family:var(--caps);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A7A63}
+  .color-sw{display:flex;gap:10px}
+  .color-sw button{width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line),0 2px 6px rgba(43,28,16,.2);cursor:pointer;transition:transform .2s,box-shadow .2s;padding:0}
+  .color-sw button:hover{transform:scale(1.15)}
+  .color-sw button.on{box-shadow:0 0 0 2px var(--gold),0 2px 8px rgba(43,28,16,.3);transform:scale(1.18)}
+  .acc{border-top:1px solid var(--line);margin-top:22px}
+  .acc details{border-bottom:1px solid var(--line)}
+  .acc summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:18px 4px;cursor:pointer;font-family:var(--caps);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#3A2E22;user-select:none}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary .chev{width:18px;height:18px;transition:transform .3s}
+  .acc details[open] summary .chev{transform:rotate(180deg)}
+  .acc .acc-body{padding:0 4px 18px;font-size:14.5px;color:#5A4632;line-height:1.65}
+  .acc .acc-body ul{padding-left:18px;margin:8px 0}
+  .acc .acc-body li{margin:4px 0}
+  .qv-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(20,13,8,.85);color:#F4E9D4;border:1px solid rgba(217,190,147,.6);font-family:var(--caps);font-size:10px;letter-spacing:.24em;padding:11px 18px;border-radius:24px;opacity:0;transition:opacity .25s;pointer-events:none;backdrop-filter:blur(3px);white-space:nowrap}
+  .prod:hover .qv-label{opacity:1}
   .thumbs button{width:72px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);opacity:.75;transition:opacity .25s;cursor:pointer}
   .thumbs button.on{opacity:1;border-color:var(--gold)}
   .thumbs img{width:100%;height:100%;object-fit:cover}
@@ -928,6 +962,7 @@ function prodCardHTML(p){
         <svg class="icon sm" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg>
       </button>
       <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+      <span class="qv-label">Quick View</span>
     </div>
     <div class="prod-info">
       <div class="prod-name">${p.name}</div>
@@ -1164,14 +1199,15 @@ function renderProduct(id){
   const outSz=OUT[id]||[];
   const pre=Math.round(p.price*0.95), gap=Math.max(0,999-p.price);
   return `
-  <div class="container"><div class="crumb"><a data-nav="#/">Home</a> / <a data-nav="#/shop">Shop</a> / <span>${p.name}</span></div>
+  <div class="container"><div class="crumb"><a data-nav="#/">Home</a> / <a data-nav="#/shop">Shop</a> / <a data-nav="#/shop?cat=${p.cat}">${p.cat}</a> / <span>${p.name}</span></div>
   <div class="pdp">
     <div class="pdp-gallery">
-      <div class="main"><img src="${IMG(img)}" alt="${p.name}"></div>
       <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}"><img src="${IMG(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
+      <div class="main"><span class="img-badge">Handmade in <b>Kolkata</b></span><img src="${IMG(img)}" alt="${p.name}"></div>
     </div>
     <div>
       <h1>${p.name}</h1>
+      <div class="pdp-sub">The Art of Modern Indian Elegance</div>
       <div class="pdp-price">
         ${p.mrp && p.mrp>p.price ? `<span class="mrp">₹${p.mrp.toLocaleString("en-IN")}</span><span class="pct-off">-${Math.round(((p.mrp-p.price)/p.mrp)*100)}%</span>` : ""}
         <span class="price">${inr(p.price)}</span>
@@ -1201,16 +1237,49 @@ function renderProduct(id){
       </ul>
       <div class="opt-row"><span class="opt-label">Size</span><span class="opt-label" style="cursor:pointer" data-nav="#/policies">Size guide</span></div>
       <div class="sizes">${SIZES.map(s=>`<button class="size ${s===st.size?"on":""} ${outSz.includes(s)?"out":""}" data-size="${s}" ${outSz.includes(s)?"disabled":""}>${s}</button>`).join("")}</div>
+      <div class="color-row"><span class="cl">Select Color</span><div class="color-sw">${p.swatches.map((s,i)=>`<button style="background:${s}" class="${i===0?"on":""}" data-color="${s}" aria-label="Color ${s}"></button>`).join("")}</div></div>
       <div class="opt-row"><span class="opt-label">Quantity</span></div>
       <span class="qty"><button data-pqty="-1">−</button><span id="pdpQty">1</span><button data-pqty="1">+</button></span>
       <div class="pdp-ctas">
         <button class="btn btn-dark" data-add="${p.id}">Add to cart <svg class="icon" viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/></svg></button>
         <button class="btn btn-solid" data-buynow="${p.id}">Buy it now</button>
       </div>
+      <button class="pdp-wishlist ${store.wish.includes(p.id)?"on":""}" data-wish="${p.id}"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg><span>${store.wish.includes(p.id)?"Saved to wishlist":"Add to Wishlist"}</span></button>
       <div class="ship-note">In stock — dispatched from our in-house Kolkata workshop within 24–48 hrs</div>
       <div class="pinrow"><input id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit PIN code"><button class="btn btn-dark" data-pin>Check</button></div>
       <div class="pin-result" id="pinResult"></div>
       <a class="wa-cta" href="https://wa.me/919123947668?text=Namaste! Size, fabric aur delivery ke baare mein poochna hai." target="_blank" rel="noopener">💬 Size ya fabric? Chat with a stylist on WhatsApp</a>
+      <div class="acc">
+        <details open>
+          <summary>Fabric &amp; Care <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="acc-body">
+            Hand-wash cold water with a mild detergent. Shade-dry only — direct sun fades the embroidery. Iron inside-out on low. Avoid bleach and dry-cleaning. Natural cotton softens beautifully with every wash.
+          </div>
+        </details>
+        <details>
+          <summary>Fit &amp; Details <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="acc-body">
+            <ul>
+              <li>Regular fit — true to size. Model shown wearing size M.</li>
+              <li>Stitched in-house at our Kolkata workshop; every piece is checked before it leaves.</li>
+              <li>Giza/paper cotton with hand embroidery (design as pictured).</li>
+              <li>Exact fabric may vary by ±5% in shade from screen to garment.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Shipping &amp; Returns <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="acc-body">
+            <ul>
+              <li>Dispatch in 24–48 hrs from our Kolkata workshop</li>
+              <li>Free shipping across India on orders above ₹999 — prepaid &amp; COD</li>
+              <li>Metro 3–5 business days · rest of India 5–7 days</li>
+              <li>COD available (+₹49 handling fee)</li>
+              <li>3-day easy return / exchange as per our published policy</li>
+            </ul>
+          </div>
+        </details>
+      </div>
       <div class="trust-row">
         <div class="trust"><svg class="icon" viewBox="0 0 24 24"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Delivery 3–5 days</div>
         <div class="trust"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>COD available (+₹49)</div>
@@ -1218,7 +1287,7 @@ function renderProduct(id){
         <div class="trust"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/></svg>Ships from Kolkata</div>
       </div>
       <div class="pdp-desc">${p.desc}</div>
-      <div class="sec-head" style="margin-top:40px"><h2 style="font-size:16px">Pair it with</h2></div>
+      <div class="sec-head" style="margin-top:40px"><h2 style="font-size:16px">You may also like</h2></div>
       <div class="pair-grid">${p.pair.map(pid=>prodCardHTML(P(pid))).join("")}</div>
       <div class="pair-nudge">${gap>0?`Add ${inr(gap)} more and this order ships FREE (prepaid).`:`Pairing keeps you above ₹999 — FREE shipping stays.`}</div>
     </div>
@@ -1559,10 +1628,10 @@ window.addEventListener("hashchange",router);
 
 /* ============ events (delegation) ============ */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd]");
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
-  if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); t.classList.toggle("on",store.wish.includes(id)); save(); syncBadges(); toast(i>=0?"Removed from wishlist":"Saved to wishlist"); return; }
+  if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); return; }
   if(t.dataset.add){ const st=store.lastProduct; addToCart(t.dataset.add, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); openDrawer(); return; }
   if(t.dataset.buynow){ const st=store.lastProduct; addToCart(t.dataset.buynow, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); location.hash="#/checkout"; return; }
   if(t.dataset.inc||t.dataset.dec){
@@ -1575,6 +1644,7 @@ document.addEventListener("click",e=>{
   if(t.dataset.quickadd){ const [id,size]=t.dataset.quickadd.split("|"); addToCart(id,size,1); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Added to your bag ✓"); return; }
   if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); refreshCartView(); return; }
   if(t.dataset.size){ const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return; }
+  if(t.dataset.color){ const row=t.closest(".color-sw"); if(row) row.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); return; }
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
   if(t.dataset.cat){ if(t.classList.contains("chip")){ location.hash="#/shop?cat="+encodeURIComponent(t.dataset.cat); } return; }
