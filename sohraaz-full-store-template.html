@@ -106,7 +106,6 @@
     .pdp-sticky .ps-price b{font-size:19px;color:#2C2117}
     .pdp-sticky .btn{padding:12px 22px;font-size:13px}
   }
-  body:has(.pdp) .whatsapp-float{bottom:84px}
 
   /* header */
   .header{position:sticky;top:0;z-index:50;background:#241812;border-bottom:1px solid var(--line-dark)}
@@ -485,15 +484,35 @@
   .popup-card input{width:100%;margin:18px 0 12px;border:1px solid var(--line);padding:12px;font-family:var(--serif);font-size:15px;outline:none}
   .popup-x{position:absolute;top:10px;right:14px;font-size:22px;color:var(--muted)}
 
-  /* floating WhatsApp */
-  .whatsapp-float{
-    position:fixed;bottom:24px;right:24px;z-index:1000;width:56px;height:56px;
-    background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-size:28px;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:transform .25s,background .25s;
-    text-decoration:none
-  }
-  .whatsapp-float:hover{transform:scale(1.08);background:#1eb555}
-  .whatsapp-float:focus{outline:3px solid #25D366;outline-offset:2px}
+  /* floating helpers — matched pair */
+  .float-dock{position:fixed;z-index:900;display:flex;flex-direction:column;gap:8px}
+  .float-wrap{position:relative}
+  .float-right{right:20px;bottom:20px;align-items:flex-end}
+  .float-left{left:20px;bottom:20px;align-items:flex-start}
+  .float-btn{position:relative;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(20,13,8,.35);transition:transform .25s,box-shadow .25s;text-decoration:none;cursor:pointer}
+  .float-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(20,13,8,.45)}
+  .float-btn:focus-visible{outline:3px solid #D9BE93;outline-offset:3px}
+  .float-btn svg{display:block}
+  .whatsapp-float{background:linear-gradient(155deg,#25D366 0%,#128C4B 100%)}
+  .whatsapp-float svg{width:30px;height:30px;fill:#fff}
+  .chat-fab{background:linear-gradient(155deg,#3D2C20 0%,#241812 100%)}
+  .chat-fab svg.bubble{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .chat-dot{position:absolute;bottom:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
+  .float-tip{position:absolute;bottom:50%;transform:translateY(50%) translateX(8px);opacity:0;pointer-events:none;white-space:nowrap;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:9px 13px;border-radius:9px;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(20,13,8,.35)}
+  .float-right .float-tip{right:calc(100% + 14px);left:auto;transform:translateY(50%) translateX(-8px)}
+  .float-left .float-tip{left:calc(100% + 14px)}
+  .float-btn:hover .float-tip,.float-btn:focus-visible .float-tip{opacity:1;transform:translateY(50%) translateX(0)}
+  .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #D9BE93;color:#241812;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
+  .float-min:hover{transform:scale(1.15)}
+  .float-left .float-min{right:auto;left:-7px}
+  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#241812;color:#D9BE93;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
+  .float-handle.show{display:flex}
+  .float-handle:hover{background:#3D2C20}
+  .float-handle-left{left:0;border-radius:0 14px 14px 0}
+  .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
+  .float-handle-right:hover{background:#25D366;color:#083A1E}
+  body:has(.pdp) .float-dock,body:has(.cart-page-active) .float-dock{bottom:88px}
+  body:has(.pdp) .float-handle,body:has(.cart-page-active) .float-handle{bottom:150px}
 
   /* responsive */
   @media (max-width:1080px){
@@ -526,7 +545,10 @@
     .paycards{grid-template-columns:1fr}
     section{padding:48px 0}
     .foot-bottom{flex-direction:column;gap:12px}
-    .whatsapp-float{width:50px;height:50px;font-size:24px;bottom:20px;right:20px}
+    .float-dock{right:12px;bottom:12px}
+    .float-left{left:12px;bottom:12px}
+    .float-btn{width:52px;height:52px}
+    .float-handle{bottom:96px}
   }
   @media (max-width:520px){
     .gal-grid{grid-template-columns:repeat(2,1fr)}
@@ -686,7 +708,7 @@
     .cart-sticky .cs-price b{font-size:19px;color:#fff}
     .cart-sticky .cs-save{font-size:10.5px;color:#9FBE9B}
     .cart-sticky a{background:var(--gold);color:#241812;text-decoration:none;padding:12px 20px;border-radius:26px;font-family:var(--caps);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
-    body:has(.cart-page-active) .whatsapp-float{bottom:84px}
+
   }
 
   /* ============ PDP REVIEWS — Amazon-style ============ */
@@ -801,11 +823,7 @@
   .restock-btn{display:inline-flex;align-items:center;gap:8px;background:#241812;color:#F4E9D4;padding:11px 18px;border-radius:24px;font-family:var(--caps);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;flex:none}
   .restock-btn svg{width:15px;height:15px;stroke:#D9BE93;stroke-width:1.8}
   /* ============ SOHRAAZ ASSISTANT (CHAT) ============ */
-  .chat-fab{position:fixed;left:18px;bottom:22px;z-index:250;width:56px;height:56px;border-radius:50%;background:#241812;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(20,13,8,.35);transition:transform .2s}
-  .chat-fab:hover,.chat-fab:focus-visible{transform:scale(1.1)}
-  .chat-fab svg{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .chat-fab .chat-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
-  .chat-panel{position:fixed;left:16px;bottom:90px;z-index:260;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .chat-head{background:#241812;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
@@ -909,8 +927,7 @@
     .occ-row .occ-tile:nth-child(n+4){display:none}
     .lbk-kit{grid-template-columns:1fr}
     .lbk-hero{padding:64px 20px 60px}
-    .chat-panel{left:8px;bottom:82px}
-    .chat-fab{left:12px;bottom:84px}
+    .chat-panel{left:8px;bottom:88px}
   }
   .coin-earn{display:inline-flex;align-items:center;gap:10px;background:#241812;color:#D9BE93;border-radius:28px;padding:12px 22px;margin:18px auto 0;font-family:var(--caps);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
   .coin-earn b{color:#fff;font-size:15px}
@@ -1032,10 +1049,17 @@
 <div id="sizeModalHost"></div>
 
 <!-- Sohraaz Assistant — chat -->
-<button class="chat-fab" id="chatFab" aria-label="Open Sohraaz Assistant chat">
-  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg>
-  <span class="chat-dot" aria-hidden="true"></span>
-</button>
+<div class="float-dock float-left" id="chatDock">
+  <div class="float-wrap">
+    <button class="float-btn chat-fab" id="chatFab" aria-label="Open Sohraaz Assistant chat">
+      <svg class="bubble" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg>
+      <span class="chat-dot" aria-hidden="true"></span>
+      <span class="float-tip">Ask Sohraaz</span>
+    </button>
+    <button class="float-min" id="chatMin" aria-label="Hide assistant button">−</button>
+  </div>
+</div>
+<button class="float-handle float-handle-left" id="chatHandle" aria-label="Show Sohraaz Assistant">Ask Sohraaz</button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Sohraaz Assistant">
   <div class="chat-head">
     <div class="chat-head-av">S</div>
@@ -1099,7 +1123,16 @@
 </footer>
 
 <!-- floating WhatsApp -->
-<a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">💬</a>
+<div class="float-dock float-right" id="waDock">
+  <div class="float-wrap">
+    <a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="float-btn whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.49 1.694.627.712.226 1.36.194 1.871.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41-.074-.122-.272-.198-.57-.347m-5.421 5.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a8.19 8.19 0 0 1-1.26-4.827 8.287 8.287 0 0 1 8.287-8.287c2.21 0 4.288.86 5.858 2.42a8.28 8.28 0 0 1 2.423 5.861c-.001 4.581-3.73 8.293-8.29 8.293m7.119-18.41A10.36 10.36 0 0 0 12.046 0C5.495 0 .16 5.334.157 11.892c0 2.087.547 4.14 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.68 1.448h.006c6.55 0 11.89-5.335 11.89-11.893a11.82 11.82 0 0 0-3.48-8.413z"/></svg>
+      <span class="float-tip">Chat on WhatsApp</span>
+    </a>
+    <button class="float-min" id="waMin" aria-label="Hide WhatsApp button">−</button>
+  </div>
+</div>
+<button class="float-handle float-handle-right" id="waHandle" aria-label="Show WhatsApp button">WhatsApp</button>
 
 <script>
 /* ================================================================
@@ -2669,6 +2702,33 @@ if(revForm){
   });
 }
 if(typeof renderRevStars === 'function') renderRevStars();
+
+/* ============ FLOATING HELPERS — hide / restore ============ */
+(function initFloatDocks(){
+  const bind = (dockId, minId, handleId, key, onHide) => {
+    const dock = document.getElementById(dockId);
+    const min = document.getElementById(minId);
+    const handle = document.getElementById(handleId);
+    if(!dock || !min || !handle) return;
+    try{ if(localStorage.getItem(key) === "1"){ dock.style.display = "none"; handle.classList.add("show"); } }catch(e){}
+    min.addEventListener("click", () => {
+      dock.style.display = "none";
+      handle.classList.add("show");
+      try{ localStorage.setItem(key, "1"); }catch(e){}
+      if(onHide) onHide();
+    });
+    handle.addEventListener("click", () => {
+      dock.style.display = "flex";
+      handle.classList.remove("show");
+      try{ localStorage.removeItem(key); }catch(e){}
+    });
+  };
+  bind("waDock", "waMin", "waHandle", "sohraaz_wa_hide");
+  bind("chatDock", "chatMin", "chatHandle", "sohraaz_chat_hide", () => {
+    const p = document.getElementById("chatPanel");
+    if(p) p.classList.remove("open");
+  });
+})();
 
 /* ============ SOHRAAZ ASSISTANT — wiring ============ */
 (function initChat(){
