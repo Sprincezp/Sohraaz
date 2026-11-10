@@ -1545,7 +1545,7 @@ function router(){
   else if(path==="#/success") app.innerHTML=renderSuccess();
   else if(path==="#/policies") app.innerHTML=renderPolicies(q);
   else if(path==="#/about") app.innerHTML=renderAbout();
-  else if(path==="#/watch"){ app.innerHTML=renderWatch(); wbInitWatch(); }
+  else if(path==="#/watch"){ app.innerHTML=renderWatch(); wbInitWatch(parseInt(q.get('r'))||0); }
   else app.innerHTML=renderHome();
   syncBadges();
   tickOffer();
@@ -1688,11 +1688,11 @@ function wbDoLike(reel){
   const btn = reel.querySelector('[data-wblike]');
   if(btn){ btn.classList.toggle('liked', next); btn.querySelector('.wb-like-n').textContent = next ? '1' : '0'; }
 }
-function wbInitWatch(){
-  wbActive=0;
+function wbInitWatch(startIdx){
+  wbActive=Math.max(0,Math.min(WB_REELS.length-1, startIdx|0));
   const reels=document.querySelectorAll('.wb-reel');
   if(!reels.length) return;
-  wbShow(0);
+  wbShow(wbActive);
 }
 function wbEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 /* reel buttons — delegated, isolated from store handlers */
