@@ -1159,6 +1159,22 @@
                :               "In teeno mein aap sharp dikhenge — classic waale cuts.";
     return head + "\n" + top.map(plink).join("\n") + "\n" + tail;
   }
+  function productFallback(q){
+    const s = q.toLowerCase();
+    const t = toneOf(s);
+    const found = findProducts(s);
+    if(found.length){
+      const head = t==="warm" ? pick(["Arre bhaisaab, dekhiye yeh:","Pata hai yeh pieces best rahegi:","Arey, seedha exact pieces:"])
+                 : t==="pro"  ? "Certainly — here are the most relevant pieces:"
+                 :               "Zaroor! Ye dekhiye:";
+      const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me 😎","Is drape mein aap gorgeous dikhenge — pakka."])
+                 : t==="pro"  ? "Each sits impeccably — you will look notably refined."
+                 :               "Is fit me aap sharp dikhenge.";
+      found.forEach(p => shownIds.push(p.id));
+      return head + "\n" + found.map(plink).join("\n") + "\n" + tail;
+    }
+    return curatedPicks(q);
+  }
   function chatAnswer(q){
     const s = q.toLowerCase();
     const t = toneOf(s);
@@ -1174,21 +1190,8 @@
                  :               "Innmein se kuch pasand aayega.";
       return head + "\n" + picks.map(plink).join("\n") + "\n" + tail;
     }
-    const found = findProducts(s);
-    if(found.length){
-      const head = t==="warm" ? pick(["Arre bhaisaab, dekhiye yeh:","Pata hai yeh pieces best rahegi:","Arey, seedha exact pieces:"])
-                 : t==="pro"  ? "Certainly — here are the most relevant pieces:"
-                 :               "Zaroor! Ye dekhiye:";
-      const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me 😎","Is drape mein aap gorgeous dikhenge — pakka."])
-                 : t==="pro"  ? "Each sits impeccably — you will look notably refined."
-                 :               "Is fit me aap sharp dikhenge.";
-      found.forEach(p => shownIds.push(p.id));
-      return head + "\n" + found.map(plink).join("\n") + "\n" + tail;
-    }
     for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return typeof item.a === "function" ? item.a(s) : item.a; }
-    const novel = s.length > 40 || /(kaun|kaisa|kaisi|which|suggest|recommend|choose|pick|best for|puchna chahta|samjha|advise)/.test(s);
-    if(novel) return null;
-    return curatedPicks(s);
+    return null;  // -> AI conversational path
   }
   function chatRenderHTML(text){
     let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -1218,10 +1221,10 @@
     const quick = chatAnswer(text);
     if(quick){ setTimeout(()=>finish(quick), 380); return; }
     if(AI_ENDPOINT){
-      askSohraazAI(text).then(finish).catch(()=>finish(curatedPicks(text)));
+      askSohraazAI(text).then(finish).catch(()=>finish(productFallback(text)));
       return;
     }
-    finish(curatedPicks(text));
+    finish(productFallback(text));
   }
 
   (function initChat(){

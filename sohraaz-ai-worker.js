@@ -140,7 +140,7 @@ export default {
       const gBody = JSON.stringify({
         systemInstruction: { parts: [{ text: PERSONA }] },
         contents,
-        generationConfig: { maxOutputTokens: 320, temperature: 0.6 },
+        generationConfig: { maxOutputTokens: 512, temperature: 0.6, thinkingConfig: { thinkingBudget: 0 } },
       });
       // Retry chain — Gemini free tier occasionally 503s ("high demand"); fall through to lighter models.
       const MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
@@ -163,8 +163,8 @@ export default {
       if (gData.error) {
         return new Response(JSON.stringify({ error: 'ai_error', detail: gData.error.message }), { headers: cors });
       }
-      const reply =
-        gData?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      const parts = (gData?.candidates?.[0]?.content?.parts || []);
+      const reply = parts.map(p => String(p.text || '')).join('').trim() ||
         'Is sawal ka jawab mere paas nahi — WhatsApp pe bata dete hain: +91 91239 47668.';
       return new Response(JSON.stringify({ reply }), { headers: cors });
     } catch (err) {
