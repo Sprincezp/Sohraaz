@@ -44,7 +44,7 @@
   SOHRAAZ — static homepage template (single self-contained file).
   Images use local assets from /assets/extracted/ with external fallback.
   Offer messaging follows the approved plan: free shipping above Rs 999,
-  5% extra off online payment, one new-buyer offer, honest pricing — no inflated MRPs, no fake urgency.
+  5% extra off online payment, one new-buyer offer, with clear pricing and honest offers.
 -->
 <style>
   :root{
@@ -115,8 +115,10 @@
   .actions{display:flex;align-items:center;gap:20px}
   .actions button,.actions a{color:#E4D5BB;display:inline-flex;position:relative;transition:color .25s}
   .actions button:hover,.actions a:hover{color:var(--gold)}
-  .badge-wrap .count{position:absolute;top:-7px;right:-9px;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#241812;font-family:var(--caps);font-size:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;font-weight:700;pointer-events:none}
-  .mnav .count{display:inline-flex;min-width:18px;height:18px;border-radius:9px;background:var(--gold);color:#241812;font-family:var(--caps);font-size:9.5px;align-items:center;justify-content:center;padding:0 5px;margin-left:8px;vertical-align:middle}
+  .badge-wrap .count{position:absolute;top:-6px;right:-1px;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#241812;font-family:var(--caps);font-size:9px;display:flex;align-items:center;justify-content:center;padding:0 5px;pointer-events:none;line-height:1;box-sizing:border-box}
+  .badge-wrap .count:empty{display:none}
+  .mnav .count{display:inline-flex;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#241812;font-family:var(--caps);font-size:9px;align-items:center;justify-content:center;padding:0 5px;margin-left:8px;vertical-align:middle;line-height:1}
+  .mnav .count:empty{display:none}
   .burger{display:none;color:#E4D5BB}
 
   /* mobile nav */
@@ -761,14 +763,14 @@
       var qty=cart.reduce(function(s,l){return s+(+l.qty||0)},0);
       var wish=JSON.parse(localStorage.getItem('sohraaz_wish')||'[]');
       var b1=document.getElementById('bagCount'), b2=document.getElementById('bagCountM'), w=document.getElementById('wishCount');
-      if(b1) b1.textContent=qty;
-      if(b2) b2.textContent=qty;
-      if(w) w.textContent=wish.length;
+      if(b1) b1.textContent=qty>0?qty:"";
+      if(b2) b2.textContent=qty>0?qty:"";
+      if(w) w.textContent=wish.length>0?wish.length:"";
     }catch(e){}
   })();
 
   /* offer countdown — change this ONE block to a REAL offer + REAL end date.
-     Honesty rule: never count down to a fake deadline. The bar hides itself
+     Honesty rule: never count down to a false deadline. The bar hides itself
      automatically once the date passes or when end is set to null. */
   var OFFER = { end: "2026-11-27T23:59:59+05:30", name: "Black Friday", text: "Festive sale — extra savings valid till 27 Nov" };
   function pad2(n){ return String(n).padStart(2,"0"); }
