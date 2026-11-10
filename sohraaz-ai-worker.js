@@ -140,7 +140,7 @@ export default {
       const gBody = JSON.stringify({
         systemInstruction: { parts: [{ text: PERSONA }] },
         contents,
-        generationConfig: { maxOutputTokens: 512, temperature: 0.6 },
+        generationConfig: { maxOutputTokens: 900, temperature: 0.6 },
       });
       // Retry chain — 2.5-flash hit quota-cap; use 3.5-flash-lite (verified working), 3.5-flash backup.
       const MODELS = ['gemini-3.5-flash-lite', 'gemini-3.5-flash'];
@@ -164,9 +164,13 @@ export default {
         return new Response(JSON.stringify({ error: 'ai_error', detail: gData.error.message }), { headers: cors });
       }
       const parts = (gData?.candidates?.[0]?.content?.parts || []);
-      const reply = parts.map(p => String(p.text || '')).join('').trim() ||
-        'Is sawal ka jawab mere paas nahi — WhatsApp pe bata dete hain: +91 91239 47668.';
-      return new Response(JSON.stringify({ reply }), { headers: cors });
+      const finishReason = gData?.candidates?.[0]?.finishReason || null;
+      const reply = parts.map(p => String(p.text || '')).join('').trim();
+      // Hard safety: never emit a truncated/empty reply — signal the client to fall back to the catalog
+      if (!reply || finishReason === 'MAX_TOKENS') {
+        return new Response(JSON.stringify({ error: 'ai_truncated', detail: finishReason || 'empty' }), { headers: cors });
+      }
+      return new Response(JSON.stringify({ reply, finishReason }), { headers: cors });
     } catch (err) {
       return new Response(JSON.stringify({ error: 'server_error' }), { status: 500, headers: cors });
     }

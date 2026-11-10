@@ -1838,8 +1838,8 @@ async function askSohraazAI(text){
   const res = await fetch(AI_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message: text, history: chatHistory }) });
   if(!res.ok) throw new Error("ai http " + res.status);
   const data = await res.json();
-  if(!data.reply) throw new Error("ai empty reply");
-  return data.reply;
+  if(!data.reply) throw new Error("ai empty or truncated reply");
+  return String(data.reply);
 }
 function curatedPicks(s){
   const top = PRODUCT_MINI.filter(p=>["p12","p7","p4"].includes(p.id));
