@@ -314,6 +314,22 @@
   .whatsapp-float:hover{transform:scale(1.08);background:#1eb555}
   .whatsapp-float:focus{outline:3px solid #25D366;outline-offset:2px}
 
+  /* watch & buy strip */
+  .watchbuy{padding:64px 0;border-top:1px solid var(--line)}
+  .wb-strip{display:flex;gap:14px;overflow-x:auto;padding:2px 4px 16px;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .wb-strip::-webkit-scrollbar{display:none}
+  .wb-tile{position:relative;flex:0 0 168px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;scroll-snap-align:start;border:1px solid var(--line);box-shadow:0 12px 30px rgba(43,28,16,.22);display:block;background:#111;transition:transform .3s}
+  .wb-tile:hover{transform:translateY(-6px)}
+  .wb-tile img{width:100%;height:100%;object-fit:cover;display:block}
+  .wb-play{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;backdrop-filter:blur(4px)}
+  .wb-play svg{width:15px;height:15px;fill:#fff;margin-left:2px}
+  .wb-cap{position:absolute;left:0;right:0;bottom:0;padding:30px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font-size:11.5px;line-height:1.4}
+  .wb-cap b{display:block;color:#F4E9D4;font-weight:600}
+  .wb-cap small{color:#D9BE93}
+  .wb-strip-cta{text-align:center;margin-top:4px}
+  @media(min-width:1024px){.wb-strip{justify-content:center;gap:16px}.wb-tile{flex:0 0 172px}}
+  @media(max-width:640px){.wb-tile{flex:0 0 148px}}
+
   /* responsive */
   @media (max-width:1024px){
     .nav{display:none}
@@ -379,6 +395,7 @@
         <li><a href="sohraaz-full-store-template.html#/shop">Shop All</a></li>
         <li><a href="#occasions">Kurtas</a></li>
         <li><a href="sohraaz-full-store-template.html#/shop?cat=Wedding">Wedding</a></li>
+        <li><a href="sohraaz-full-store-template.html#/watch">Watch &amp; Buy</a></li>
         <li><a href="sohraaz-full-store-template.html#/shop?cat=Indo-Western">Indo-Western</a></li>
       </ul>
     </nav>
@@ -398,6 +415,7 @@
     <a href="sohraaz-full-store-template.html#/shop">Shop All</a>
     <a href="#occasions">Kurtas</a>
     <a href="sohraaz-full-store-template.html#/shop?cat=Wedding">Wedding</a>
+    <a href="sohraaz-full-store-template.html#/watch">Watch &amp; Buy</a>
     <a href="sohraaz-full-store-template.html#/shop?cat=Indo-Western">Indo-Western</a>
   </nav>
 </header>
@@ -523,6 +541,32 @@
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- watch & buy reels -->
+<section class="watchbuy" aria-label="Watch and Buy reels">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="overline" style="color:var(--gold)">Watch &amp; Buy</span>
+        <h2>Pehen lo dekh ke.<br>Bag mein add karo.</h2>
+      </div>
+      <p>Sohraaz ke asli videos — fabric, fit aur detail. Swipe, watch, add to bag.</p>
+    </div>
+    <div class="wb-strip" aria-label="Watch and Buy reels">
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354787.webp" alt="Green Serene kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Green Serene</b>Giza Cotton · <small>₹2,649</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354785.webp" alt="Black Glory kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Black Glory</b>Giza Cotton · <small>₹2,099</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354789.webp" alt="Sunshine Royal kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Sunshine Royal</b>Premium Cotton · <small>₹749</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354791.webp" alt="Dupion Royal kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Dupion Royal</b>Red Self Work · <small>₹499</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354792.webp" alt="Luxury Beige reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Luxury Beige</b>Armani Embroidered · <small>₹2,549</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354783.webp" alt="Beige Breeze reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Beige Breeze</b>Paper Cotton · <small>₹1,499</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354800.webp" alt="Armani Stitch reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Armani Stitch</b>White Armani · <small>₹2,999</small></span></a>
+      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch"><img src="assets/extracted/watch-buy/wbposter_354788.webp" alt="Maroon Majesty reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Maroon Majesty</b>Giza Cotton · <small>₹2,599</small></span></a>
+    </div>
+    <div class="wb-strip-cta"><a class="btn btn-dark" href="sohraaz-full-store-template.html#/watch">Watch all reels
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+    </a></div>
   </div>
 </section>
 
