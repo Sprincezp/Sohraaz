@@ -140,10 +140,10 @@ export default {
       const gBody = JSON.stringify({
         systemInstruction: { parts: [{ text: PERSONA }] },
         contents,
-        generationConfig: { maxOutputTokens: 512, temperature: 0.6, thinkingConfig: { thinkingBudget: 0 } },
+        generationConfig: { maxOutputTokens: 512, temperature: 0.6 },
       });
-      // Retry chain — Gemini free tier occasionally 503s ("high demand"); fall through to lighter models.
-      const MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
+      // Retry chain — 2.5-flash hit quota-cap; use 3.5-flash-lite (verified working), 3.5-flash backup.
+      const MODELS = ['gemini-3.5-flash-lite', 'gemini-3.5-flash'];
       let gData = null;
       for (let i = 0; i < MODELS.length; i++) {
         const gUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODELS[i]}:generateContent?key=${env.GEMINI_API_KEY}`;
@@ -153,7 +153,7 @@ export default {
           body: gBody,
         });
         const d = await gResp.json();
-        const retryable = d && d.error && (gResp.status === 429 || gResp.status === 503 || /high demand|overloaded|unavailable|try again later/i.test(d.error.message || ''));
+        const retryable = d && d.error && (gResp.status === 429 || gResp.status === 503 || gResp.status === 404 || gResp.status === 400 || /high demand|overloaded|unavailable|try again later|no longer available/i.test(d.error.message || ''));
         if (retryable) continue;
         gData = d; break;
       }
