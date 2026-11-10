@@ -1263,15 +1263,20 @@ function cartStickyHTML(t){
   return `<div class="cs-price"><small>${store.mode==="prepaid"?"Prepaid total":"COD total"}</small><b>${inr(t.total)}</b>${t.savings?`<span class="cs-save">You save ${inr(t.savings)}</span>`:""}</div><a href="#/checkout">Checkout →</a>`;
 }
 function refreshCartView(){
-  const sr = document.getElementById("sumRowsWrap") || document.getElementById("cartLeft");
-  if(!store.cart.length || !sr){ router(); return; }
+  const onCartPage = document.getElementById("cartLeft") || document.getElementById("sumRowsWrap");
+  if(!store.cart.length){
+    if(onCartPage){ router(); } else { renderDrawer(); }
+    return;
+  }
   const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
-  const left=document.getElementById("cartLeft"); if(left) left.innerHTML=cartLeftHTML(t);
-  const sb=document.getElementById("savBannerWrap"); if(sb) sb.innerHTML=savingsBannerHTML(t);
-  const pt=document.getElementById("payToggleWrap"); if(pt) pt.innerHTML=payToggleHTML(t);
-  const srEl=document.getElementById("sumRowsWrap"); if(srEl) srEl.innerHTML=summaryRowsHTML(t);
-  const st=document.getElementById("cartSticky"); if(st) st.innerHTML=cartStickyHTML(t);
-  syncBadges();
+  if(onCartPage){
+    const left=document.getElementById("cartLeft"); if(left) left.innerHTML=cartLeftHTML(t);
+    const sb=document.getElementById("savBannerWrap"); if(sb) sb.innerHTML=savingsBannerHTML(t);
+    const pt=document.getElementById("payToggleWrap"); if(pt) pt.innerHTML=payToggleHTML(t);
+    const sr=document.getElementById("sumRowsWrap"); if(sr) sr.innerHTML=summaryRowsHTML(t);
+    const st=document.getElementById("cartSticky"); if(st) st.innerHTML=cartStickyHTML(t);
+  }
+  renderDrawer();
 }
 function renderCart(){
   if(!store.cart.length){
