@@ -1753,6 +1753,7 @@ function plink(p){
   return "["+p.name+" — ₹"+p.price.toLocaleString("en-IN")+"]("+STORE_BASE+"#/product/"+p.id+")";
 }
 function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+function kwMatch(s, k){ var esc = k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); if (k.length <= 3) return new RegExp("\\b" + esc + "\\b", "i").test(s); return s.indexOf(k) !== -1; }
 function toneOf(s){
   const t = (s||"").toLowerCase();
   if (/(bhai|bro|yaar|yr|arey|arrey|haha|lol|mast|wessing|chill|party|le beta|maza|zabardast|hell yeah|beazy|bhaisaab|bhaiya)/.test(t)) return "warm";
@@ -1781,7 +1782,7 @@ function plinks(list){
   return list.map(id => plink(PRODUCT_MINI.find(p=>p.id===id))).join("\n");
 }
 const shownIds = [];
-const FOLLOWUP_RE = /(nahi (kuch|or|dikha|aur)|nope|dusra|aur kuch|kuch or|or dikhao|something else|other|different|ek or dikhao|aur dikhao|bakal|aur)/;
+const FOLLOWUP_RE = /(nahi|nope|none|bakal|or dikhao|something else|other|different|ek or dikhao|aur dikhao|aur kuch|kuch or|alternate|another|prefer|dislike|don't like|chutiya|haha|ha nahi|haan baki|kuch theek nahi|kuhu bakot|nai pasand)/;
 function isFollowup(s){
   const t = (s||"").toLowerCase().trim();
   return FOLLOWUP_RE.test(t);
@@ -1883,7 +1884,7 @@ function chatAnswer(q){
                :               "Innmein se kuch pasand aayega.";
     return head + "\n" + picks.map(plink).join("\n") + "\n" + tail;
   }
-  for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return typeof item.a === "function" ? item.a(s) : item.a; }
+  for(const item of CHAT_KB){ if(item.k.some(k=>kwMatch(s,k))) return typeof item.a === "function" ? item.a(s) : item.a; }
   return null;  // -> AI conversational path
 }
 function chatRenderHTML(text){
