@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOHRAAZ — The Art of Modern Indian Elegance</title>
+<meta name="description" content="Sohraaz — Kolkata-born house of modern Indian menswear. Kurtas, sherwanis and festive wear. Transparent pricing: prepaid total and COD total shown upfront, no hidden charges.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="assets/extracted/newlogo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Sohraaz Collections",
+  "url": "https://sohraaz.com/",
+  "logo": "https://sohraaz.com/assets/extracted/newlogo.png",
+  "legalName": "Sohraaz Collections",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12/1, Picnic Garden, 3rd Lane, Ground Floor",
+    "addressLocality": "Kolkata",
+    "addressRegion": "West Bengal",
+    "postalCode": "700039",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-91239-47668",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Hindi"]
+  },
+  "sameAs": [
+    "https://www.instagram.com/sohraazcollections",
+    "https://www.facebook.com/sohraazcollections"
+  ]
+}
+</script>
+<!--
+  SOHRAAZ — full store template v2 (single self-contained file: home, shop,
+  product, cart, checkout, success, policies, about).
+  Images use local assets from /assets/extracted/ with fallback handling.
+  Pricing engine implements the approved rules:
+    - Prepaid:  FREE shipping above Rs 999, flat Rs 49 below, extra 5% off (max Rs 150)
+    - COD:      FREE shipping above Rs 999, below: Rs 49 shipping + Rs 49 COD handling
+    - Welcome:  10% off first order with coupon WELCOME10 (max Rs 200, min order Rs 799)
+    - Coupon code input available on product page, cart, and checkout
+  Checkout here is a front-end demo — in production it is replaced by the
+  Shopify native checkout / payment gateway.
+-->
+<style>
+  :root{
+    --cream:#EAE3D3; --cream-2:#F1EBDE; --tan:#DCCEB6; --ink:#2C2117; --muted:#77664F;
+    --brown-950:#33241A; --brown-900:#3D2C20; --brown-850:#4A3828;
+    --gold:#B2916B; --line:#C9BBA1; --line-dark:rgba(240,231,213,.22);
+    --green:#2E7D4F; --green-bg:#EAF2EC; --red:#B33A3A;
+    --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --caps:'Marcellus', 'Cormorant Garamond', Georgia, serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%;width:auto;height:auto}
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+  .container{max-width:1280px;margin:0 auto;padding:0 40px}
+  .icon{width:20px;height:20px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .icon.sm{width:16px;height:16px}
+
+  /* skip link */
+  .skip-link{position:absolute;left:-9999px;top:20px;z-index:1000;background:var(--gold);color:#2C2117;padding:8px 16px;font-family:var(--caps);text-transform:uppercase;font-size:12px;letter-spacing:.14em}
+  .skip-link:focus{left:20px}
+
+  /* announcement */
+  .announce{background:var(--brown-850);color:#EFE6D4;text-align:center;overflow:hidden}
+  .announce-track{position:relative;height:36px}
+  .announce-track span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--caps);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;opacity:0;transition:opacity .6s ease;padding:0 16px;white-space:nowrap}
+  .announce-track span.on{opacity:1}
+  .announce-track b{color:#D9BE93;font-weight:400}
+
+  /* offer countdown bar */
+  .offer-bar{background:linear-gradient(90deg,#3D2C20,#55402D);color:#F4E9D4;display:flex;align-items:center;justify-content:center;gap:14px;padding:8px 16px;font-family:var(--caps);font-size:11px;letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap}
+  .offer-bar .ob-name{background:var(--gold);color:#2C2117;padding:2px 10px;letter-spacing:.18em;font-weight:700}
+  .offer-bar .ob-text{color:#E8DCC3}
+  .offer-bar .ob-timer{color:#fff;white-space:nowrap}
+  .offer-bar .ob-timer b{display:inline-block;background:rgba(255,255,255,.14);border-radius:6px;min-width:30px;text-align:center;padding:3px 4px;margin:0 2px;font-size:12px;letter-spacing:.06em}
+  @media (max-width:640px){.offer-bar{font-size:9px;gap:8px;padding:8px 10px}.offer-bar .ob-text{display:none}}
+
+  /* PDP offer line + WhatsApp stylist CTA */
+  .pdp-offer{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#FBF6EA;border:1px solid var(--gold);border-radius:10px;padding:10px 14px;margin:14px 0;font-size:13px;color:#5A4632}
+  .pdp-offer b{color:#2C2117}
+  .pdp-offer .pdp-cd b{display:inline-block;background:#2C2117;color:#F4E9D4;border-radius:5px;min-width:26px;text-align:center;padding:2px 4px;font-size:12px;margin:0 1px}
+  .wa-cta{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:#1E7A34;font-size:13px;border:1px solid #1E7A34;border-radius:24px;padding:9px 18px;transition:background .25s,color .25s;text-decoration:none}
+  .wa-cta:hover{background:#1E7A34;color:#fff}
+
+  /* Sticky mobile Add-to-Cart bar (PDP only) */
+  .pdp-sticky{display:none}
+  @media (max-width:820px){
+    .pdp-sticky{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:70;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(253,251,247,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+    .pdp-sticky .ps-price{display:flex;flex-direction:column;line-height:1.2}
+    .pdp-sticky .ps-price small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8B7B63}
+    .pdp-sticky .ps-price b{font-size:19px;color:#2C2117}
+    .pdp-sticky .btn{padding:12px 22px;font-size:13px}
+  }
+  body:has(.pdp) .whatsapp-float{bottom:84px}
+
+  /* header */
+  .header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--line)}
+  .header-in{position:relative;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav ul{display:flex;gap:22px}
+  .nav a{white-space:nowrap;font-family:var(--caps);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4C3B29;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .25s,color .25s;cursor:pointer}
+  .nav a:hover{color:var(--ink);border-color:var(--gold)}
+  .logo{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;cursor:pointer}
+  .logo img{height:44px;width:auto;display:block}
+  .actions{display:flex;align-items:center;gap:20px}
+  .actions button{color:#4C3B29;display:inline-flex;position:relative;transition:color .25s}
+  .actions button:hover{color:var(--gold)}
+  .count{position:absolute;top:-7px;right:-9px;min-width:16px;height:16px;border-radius:8px;background:var(--gold);color:#fff;font-family:var(--caps);font-size:9.5px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  .burger{display:none}
+  .mnav{display:none;background:var(--cream);border-bottom:1px solid var(--line)}
+  .mnav.open{display:block}
+  .mnav a{display:block;padding:14px 24px;font-family:var(--caps);font-size:13px;letter-spacing:.18em;text-transform:uppercase;border-top:1px solid var(--line);cursor:pointer}
+
+  /* hero */
+  .hero{position:relative;background:linear-gradient(100deg,#2C1F17 0%,var(--brown-900) 55%,#55402D 100%);overflow:hidden}
+  .hero-media{position:absolute;inset:0 0 0 40%}
+  .hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
+  .hero-media video{pointer-events:none}
+  .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--brown-900) 0%,rgba(61,44,32,.55) 22%,rgba(61,44,32,0) 55%)}
+  .hero-inner{position:relative;z-index:2;display:flex;align-items:center;min-height:520px;padding-top:56px;padding-bottom:56px}
+  .hero-copy{max-width:540px;color:#F1E8D7}
+  .hero-copy .brand{font-family:var(--caps);font-size:clamp(44px,5.6vw,68px);letter-spacing:.14em;line-height:1.05}
+  .hero-copy .rule{width:64px;height:1px;background:var(--gold);margin:22px 0 18px}
+  .hero-copy .kicker{font-family:var(--caps);font-size:14px;letter-spacing:.34em;text-transform:uppercase;color:#E4D5BB}
+  .hero-copy .tag{font-style:italic;font-size:20px;color:#D8C7A9;margin-top:14px}
+  .btn{display:inline-flex;align-items:center;gap:12px;border:1px solid currentColor;padding:13px 26px;font-family:var(--caps);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s,color .3s,border-color .3s;background:transparent}
+  .btn .icon{width:16px;height:16px;transition:transform .3s}
+  .btn:hover .icon{transform:translateX(4px)}
+  .btn-cream{color:#F1E8D7}
+  .btn-cream:hover{background:#F1E8D7;color:var(--brown-900);border-color:#F1E8D7}
+  .btn-dark{color:var(--ink)}
+  .btn-dark:hover{background:var(--ink);color:#F1E8D7;border-color:var(--ink)}
+  .btn-solid{background:var(--brown-900);color:#F1E8D7;border-color:var(--brown-900)}
+  .btn-solid:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+  .hero-cta{margin-top:30px}
+  .hero-note{margin-top:26px;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#CBB18F}
+  .hero-note b{color:#E2CEA6;font-weight:400}
+
+  /* sections */
+  section{padding:64px 0}
+  .sec-head{display:flex;align-items:center;gap:24px;justify-content:center;margin-bottom:38px}
+  .sec-head::before,.sec-head::after{content:"";height:1px;background:var(--line);flex:0 0 clamp(40px,12vw,150px)}
+  .sec-head h2{font-family:var(--caps);font-weight:400;font-size:21px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:#3E2F20;text-align:center}
+  .sec-sub{text-align:center;font-style:italic;color:var(--muted);margin:-26px 0 36px;font-size:17px}
+
+  /* occasions / gallery */
+  .occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .occ{position:relative;aspect-ratio:3/4.1;overflow:hidden;background:#CDBDA2;display:block;cursor:pointer}
+  .occ img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .occ:hover img{transform:scale(1.05)}
+  .occ::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,13,8,0) 42%,rgba(20,13,8,.78) 100%)}
+  .occ span{position:absolute;z-index:2;left:0;right:0;bottom:22px;text-align:center;color:#F2EADA;font-family:var(--caps);font-size:14.5px;letter-spacing:.2em;line-height:1.55;text-transform:uppercase;padding:0 10px}
+  .gal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .gal{aspect-ratio:3/4;overflow:hidden;background:var(--cream-2)}
+  .gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .gal:hover img{transform:scale(1.06)}
+
+  /* product cards */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prod{position:relative;cursor:pointer}
+  .prod-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--cream-2)}
+  .prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .prod:hover .prod-img img{transform:scale(1.04)}
+  .wish{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;border-radius:50%;background:rgba(241,235,222,.92);display:flex;align-items:center;justify-content:center;color:#5C4A34;transition:color .25s,background .25s}
+  .wish:hover,.wish.on{color:var(--red)}
+  .wish.on svg{fill:var(--red);stroke:var(--red)}
+  .stock{position:absolute;top:12px;left:12px;z-index:2;background:var(--red);color:#fff;font-family:var(--caps);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px}
+  .prod-info{padding:14px 4px 0;text-align:center}
+  .prod-name{font-size:16.5px;line-height:1.35;color:#33271B}
+  .prod-prices{margin-top:6px;display:flex;justify-content:center;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .price{font-size:15.5px;font-weight:600}
+  .prod-prices .mrp{font-size:13px;color:var(--muted);text-decoration:line-through;opacity:0.7}
+  .prod-prices .pct-off{font-size:11px;color:var(--green);font-weight:700;background:var(--green-bg);padding:2px 6px;border-radius:3px}
+  .prepaid-tag{font-family:var(--caps);font-size:10px;letter-spacing:.08em;color:var(--green)}
+  .swatches{display:flex;gap:6px;justify-content:center;margin-top:10px}
+  .sw{width:11px;height:11px;border-radius:50%;border:1px solid rgba(0,0,0,.18)}
+
+  /* story / values / banner */
+  .story{display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+  .story-img{overflow:hidden;background:#CDBDA2}
+  .story-img img{width:100%;height:100%;object-fit:cover}
+  .story-panel{background:var(--tan);display:flex;align-items:center;padding:70px 8%}
+  .story-panel h2{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.25;color:#3A2C1E}
+  .story-panel p{margin:18px 0 26px;font-style:italic;color:#6B5A42;max-width:380px}
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+  .value{background:var(--cream);text-align:center;padding:44px 26px}
+  .value .vicon{color:var(--gold);margin:0 auto 14px;width:34px;height:34px}
+  .value h3{font-family:var(--caps);font-weight:400;font-size:13.5px;letter-spacing:.22em;text-transform:uppercase;color:#4C3B29}
+  .value p{margin-top:8px;font-style:italic;font-size:14.5px;color:var(--muted)}
+  .banner{position:relative;min-height:400px;display:flex;align-items:center;overflow:hidden;background:#241A12}
+  .banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85}
+  .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,12,7,.55) 0%,rgba(18,12,7,.25) 45%,rgba(18,12,7,.65) 100%)}
+  .banner-in{position:relative;z-index:2;margin-left:auto;max-width:480px;padding:60px 40px 60px 0;color:#F2EADA;text-align:right}
+  .banner-in h2{font-family:var(--serif);font-weight:500;font-size:36px;line-height:1.25}
+  .banner-in p{margin:14px 0 24px;font-style:italic;color:#E3D5BB}
+
+  /* footer */
+  footer{background:var(--brown-950);color:#CBBBA2;padding:56px 0 0}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.4fr;gap:40px;padding-bottom:44px}
+  .foot-brand .flogo{font-family:var(--caps);font-size:24px;letter-spacing:.4em;color:#EFE6D4}
+  .foot-brand p{margin-top:12px;font-style:italic;font-size:14.5px;color:#9C8B72}
+  footer h4{font-family:var(--caps);font-weight:400;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#8E7C63;margin-bottom:16px}
+  footer li{margin:9px 0}
+  footer li a{cursor:pointer;transition:color .25s}
+  footer li a:hover{color:#EFE6D4}
+  .news{display:flex;border:1px solid var(--line-dark)}
+  .news input{flex:1;background:transparent;border:none;outline:none;color:#EFE6D4;padding:12px 14px;font-family:var(--serif);font-size:14px}
+  .news input::placeholder{color:#9C8B72}
+  .news button{background:var(--gold);color:#fff;padding:0 18px;display:flex;align-items:center;cursor:pointer}
+  .foot-bottom{border-top:1px solid var(--line-dark);padding:18px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#9C8B72}
+  .socials{display:flex;gap:18px}
+
+  /* shop / filters */
+  .shop-tools{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+  .chips{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);padding:8px 18px;font-family:var(--caps);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5C4A34;transition:all .25s;cursor:pointer}
+  .chip.on,.chip:hover{background:var(--brown-900);border-color:var(--brown-900);color:#F1E8D7}
+  .sortsel{border:1px solid var(--line);background:transparent;padding:9px 14px;font-family:var(--caps);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5C4A34;cursor:pointer}
+
+  /* product page */
+  .crumb{font-family:var(--caps);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:26px 0 0}
+  .crumb a{cursor:pointer}
+  .crumb a:hover{color:var(--ink)}
+  .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;padding:28px 0 64px}
+  .pdp-gallery .main{aspect-ratio:4/5;overflow:hidden;background:var(--cream-2)}
+  .pdp-gallery .main img{width:100%;height:100%;object-fit:cover}
+  .thumbs{display:flex;gap:10px;margin-top:12px}
+  .thumbs button{width:72px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);opacity:.75;transition:opacity .25s;cursor:pointer}
+  .thumbs button.on{opacity:1;border-color:var(--gold)}
+  .thumbs img{width:100%;height:100%;object-fit:cover}
+  .pdp h1{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.25;color:#33271B}
+  .pdp-price{display:flex;align-items:baseline;gap:14px;margin:14px 0 4px}
+  .pdp-price .price{font-size:22px}
+  .pdp-price .mrp{font-size:16px;color:var(--muted);text-decoration:line-through;opacity:0.8}
+  .pdp-price .pct-off{font-size:13px;color:var(--green);font-weight:700;background:var(--green-bg);padding:2px 8px;border-radius:3px;margin-left:8px}
+  .pdp .saves{color:var(--green);font-size:14.5px;font-style:italic}
+  .price-promise{margin:10px 0 18px;font-size:14px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:8px;background:var(--green-bg);padding:12px 16px;border-radius:4px;border:1px solid var(--line)}
+  .paycards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 6px}
+  .paycard{border:1px solid var(--line);background:var(--cream-2);padding:16px 18px}
+  .paycard.best{border:1.5px solid var(--green);background:var(--green-bg)}
+  .paycard .pc-label{font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5C4A34}
+  .paycard .pc-total{font-size:22px;font-weight:600;margin-top:6px;color:#33271B}
+  .paycard.best .pc-total{color:var(--green)}
+  .paycard .pc-sub{font-size:13px;color:var(--muted);font-style:italic;margin-top:2px}
+  .breakdown{margin:16px 0 0;padding:12px 16px;border:1px dashed var(--line);font-size:14.5px;color:#5C4A34;background:rgba(241,235,222,.6)}
+  .offer-list{margin:18px 0 0;border:1px solid var(--line);background:var(--cream-2)}
+  .offer-list li{display:flex;gap:10px;align-items:center;padding:9px 16px;border-top:1px solid var(--line);font-size:14.5px;color:#4C3B29}
+  .offer-list li:first-child{border-top:none}
+  .offer-list .icon.sm{color:var(--gold);flex:0 0 auto}
+  .opt-row{display:flex;align-items:center;justify-content:space-between;margin-top:22px}
+  .opt-label{font-family:var(--caps);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5C4A34}
+  .sizes{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .size{min-width:44px;padding:9px 10px;border:1px solid var(--line);text-align:center;font-family:var(--caps);font-size:12px;letter-spacing:.08em;color:#4C3B29;cursor:pointer;transition:all .2s}
+  .size:hover{border-color:var(--gold)}
+  .size.on{background:var(--brown-900);border-color:var(--brown-900);color:#F1E8D7}
+  .size.out{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+  .qty{display:inline-flex;align-items:center;border:1px solid var(--line)}
+  .qty button{width:38px;height:40px;color:#4C3B29}
+  .qty span{min-width:40px;text-align:center;font-weight:600}
+  .pdp-ctas{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .pdp-ctas .btn{flex:1;justify-content:center;min-width:180px}
+  .ship-note{margin-top:18px;font-size:14.5px;font-style:italic;color:var(--muted)}
+  .ship-note b{color:var(--green);font-weight:600}
+  .pinrow{display:flex;gap:10px;margin-top:10px}
+  .pinrow input{flex:1;max-width:220px;border:1px solid var(--line);background:var(--cream-2);padding:10px 12px;font-family:var(--serif);font-size:15px;outline:none}
+  .pin-result{margin-top:8px;font-size:14.5px;color:var(--green)}
+  .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:26px}
+  .trust{background:var(--cream-2);padding:14px 10px;text-align:center;font-family:var(--caps);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5C4A34}
+  .trust .icon{margin:0 auto 8px;color:var(--gold)}
+  .pdp-desc{margin-top:26px;color:#4C3B29;font-size:16px}
+  .pair-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+  .pair-nudge{margin-top:14px;text-align:center;font-style:italic;color:var(--green);font-size:15px}
+
+  /* cart drawer + cart page */
+  .overlay{position:fixed;inset:0;background:rgba(20,13,8,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:90}
+  .overlay.on{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,92vw);background:var(--cream);z-index:100;transform:translateX(102%);transition:transform .35s ease;display:flex;flex-direction:column}
+  .drawer.on{transform:none}
+  .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
+  .drawer-head h3{font-family:var(--caps);font-weight:400;font-size:14px;letter-spacing:.2em;text-transform:uppercase}
+  .drawer-body{flex:1;overflow-y:auto;padding:18px 22px}
+  .ship-bar{margin-bottom:18px}
+  .ship-bar .sb-text{font-size:14.5px;color:#4C3B29;margin-bottom:8px}
+  .ship-bar .sb-text b{color:var(--green)}
+  .sb-track{height:6px;background:var(--cream-2);border:1px solid var(--line);overflow:hidden}
+  .sb-fill{height:100%;background:linear-gradient(90deg,var(--gold),#D9BE93);width:0;transition:width .5s ease}
+  .sb-done{background:var(--green)}
+  .cart-line{display:grid;grid-template-columns:74px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .cart-line .cl-img{width:74px;height:92px;object-fit:cover;background:var(--cream-2)}
+  .cart-line .cl-name{font-size:15px;line-height:1.3;color:#33271B}
+  .cart-line .cl-meta{font-size:13px;color:var(--muted);margin-top:2px}
+  .cart-line .cl-qty{display:inline-flex;align-items:center;border:1px solid var(--line);margin-top:8px}
+  .cart-line .cl-qty button{width:28px;height:30px}
+  .cart-line .cl-qty span{min-width:30px;text-align:center;font-size:14px}
+  .cart-line .cl-price{font-weight:600;text-align:right}
+  .cart-line .cl-remove{font-size:12px;color:var(--red);text-decoration:underline;cursor:pointer;margin-top:8px;display:inline-block}
+  .drawer-foot{border-top:1px solid var(--line);padding:16px 22px 20px}
+  .sumrow{display:flex;justify-content:space-between;font-size:15px;color:#4C3B29;margin:5px 0}
+  .sumrow.total{font-size:18px;font-weight:600;color:#33271B;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+  .sumrow .free{color:var(--green);font-weight:600}
+  .sumrow .neg{color:var(--green)}
+  .paytoggle{display:flex;border:1px solid var(--line);margin:14px 0 4px}
+  .paytoggle button{flex:1;padding:11px 6px;font-family:var(--caps);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C4A34;transition:all .25s}
+  .paytoggle button.on{background:var(--brown-900);color:#F1E8D7}
+  .paytoggle .savehint{font-size:9.5px;letter-spacing:.06em;color:#D9BE93}
+  .drawer-foot .btn{width:100%;justify-content:center;margin-top:12px}
+  .cartpage{display:grid;grid-template-columns:1.5fr 1fr;gap:44px;padding:30px 0 64px}
+  .cartpage .sumbox{border:1px solid var(--line);background:var(--cream-2);padding:24px;height:max-content;position:sticky;top:96px}
+  .sumbox h3{font-family:var(--caps);font-weight:400;font-size:13px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px;color:#4C3B29}
+  .welcomebox{display:flex;gap:10px;align-items:flex-start;margin:12px 0;border:1px dashed var(--gold);padding:10px 12px;font-size:13.5px;color:#5C4A34}
+  .welcomebox input{margin-top:3px}
+  .emptycart{text-align:center;padding:70px 0;color:var(--muted)}
+  .emptycart .btn{margin-top:20px}
+
+  /* checkout */
+  .checkout{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;padding:30px 0 64px}
+  .ck-card{border:1px solid var(--line);background:var(--cream-2);padding:24px;margin-bottom:18px}
+  .ck-card h3{font-family:var(--caps);font-weight:400;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#4C3B29;margin-bottom:14px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-family:var(--caps);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#77664F;margin-bottom:6px}
+  .field input,.field textarea{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;font-family:var(--serif);font-size:15px;outline:none}
+  .field input:focus,.field textarea:focus{border-color:var(--gold)}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .payopts{display:grid;gap:12px}
+  .payopt{border:1px solid var(--line);background:#fff;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;transition:border-color .25s}
+  .payopt.on{border:1.5px solid var(--green);background:var(--green-bg)}
+  .payopt input{margin-top:4px}
+  .payopt .po-name{font-family:var(--caps);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#33271B}
+  .payopt .po-sub{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:3px}
+  .payopt .po-save{color:var(--green);font-size:13.5px;font-weight:600}
+  .payopt .po-fee{color:var(--red);font-size:13.5px}
+  .ck-sum{border:1px solid var(--line);background:var(--cream-2);padding:24px;height:max-content;position:sticky;top:96px}
+  .ck-sum table{width:100%;border-collapse:collapse;font-size:14.5px}
+  .ck-sum td{padding:7px 0;color:#4C3B29}
+  .ck-sum td:last-child{text-align:right;font-weight:500}
+  .ck-sum tr.total td{border-top:1px solid var(--line);padding-top:12px;font-size:18px;font-weight:600;color:#33271B}
+  .ck-sum .neg{color:var(--green)}
+  .promise{margin-top:14px;font-size:13px;font-style:italic;color:var(--green);display:flex;gap:8px;align-items:center}
+
+  /* success */
+  .success{max-width:640px;margin:0 auto;padding:70px 20px;text-align:center}
+  .success .big{font-family:var(--caps);font-size:26px;letter-spacing:.2em;text-transform:uppercase;color:#33271B}
+  .success .ordno{font-size:18px;color:var(--green);font-weight:600;margin-top:10px}
+  .success .box{border:1px solid var(--line);background:var(--cream-2);padding:24px;margin:26px 0;text-align:left}
+  .success .wa{font-style:italic;color:var(--muted);font-size:15px;margin-top:16px}
+
+  /* policies */
+  .pol-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+  .pol-body{max-width:820px;padding-bottom:64px}
+  .pol-body h2{font-family:var(--serif);font-weight:500;font-size:28px;color:#33271B;margin-bottom:14px}
+  .pol-body h3{font-family:var(--caps);font-weight:400;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#4C3B29;margin:22px 0 8px}
+  .pol-body p,.pol-body li{color:#4C3B29;font-size:16px;margin-bottom:8px}
+  .pol-body ul{list-style:none}
+  .pol-body li{padding-left:18px;position:relative}
+  .pol-body li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:1px;background:var(--gold)}
+  .promise-hero{background:var(--brown-900);color:#F1E8D7;text-align:center;padding:44px 24px;margin-bottom:30px}
+  .promise-hero .big{font-family:var(--serif);font-size:30px;font-weight:500}
+  .promise-hero p{font-style:italic;color:#D8C7A9;margin-top:10px}
+
+  /* about */
+  .about-wrap{max-width:800px;padding:26px 0 64px}
+  .about-wrap h2{font-family:var(--serif);font-weight:500;font-size:30px;color:#33271B;margin-bottom:16px}
+  .about-wrap p{color:#4C3B29;margin-bottom:12px}
+  .about-addr{border:1px solid var(--line);background:var(--cream-2);padding:20px 24px;margin-top:20px;font-size:15.5px}
+
+  /* toast + popup */
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,80px);background:var(--brown-950);color:#F1E8D7;padding:13px 22px;font-family:var(--caps);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;z-index:120;opacity:0;transition:all .35s ease;border:1px solid var(--gold)}
+  .toast.on{transform:translate(-50%,0);opacity:1}
+  .toast b{color:#D9BE93}
+  .popup{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;background:rgba(20,13,8,.55)}
+  .popup.on{display:flex}
+  .popup-card{background:var(--cream);max-width:440px;width:92%;padding:40px 36px;text-align:center;position:relative;border:1px solid var(--gold)}
+  .popup-card .kicker{font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  .popup-card h3{font-family:var(--serif);font-size:30px;font-weight:500;margin:12px 0 6px;color:#33271B}
+  .popup-card p{font-style:italic;color:var(--muted);font-size:15.5px}
+  .popup-card input{width:100%;margin:18px 0 12px;border:1px solid var(--line);padding:12px;font-family:var(--serif);font-size:15px;outline:none}
+  .popup-x{position:absolute;top:10px;right:14px;font-size:22px;color:var(--muted)}
+
+  /* floating WhatsApp */
+  .whatsapp-float{
+    position:fixed;bottom:24px;right:24px;z-index:1000;width:56px;height:56px;
+    background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:28px;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:transform .25s,background .25s;
+    text-decoration:none
+  }
+  .whatsapp-float:hover{transform:scale(1.08);background:#1eb555}
+  .whatsapp-float:focus{outline:3px solid #25D366;outline-offset:2px}
+
+  /* responsive */
+  @media (max-width:1080px){
+    .prod-grid,.occ-grid{grid-template-columns:repeat(3,1fr)}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:820px){
+    .container{padding:0 20px}
+    .nav{display:none}
+    .burger{display:inline-flex}
+    .header-in{justify-content:flex-start;gap:14px}
+    .logo{position:static;transform:none}
+    .actions{margin-left:auto;gap:14px}
+    .logo img{height:32px}
+    .hero-media{inset:0}
+    .hero-media::after{background:rgba(35,24,15,.62)}
+    .hero-inner{justify-content:center;text-align:center;min-height:440px}
+    .hero-copy .rule{margin-left:auto;margin-right:auto}
+    .hero-copy{max-width:600px}
+    .prod-grid,.occ-grid{grid-template-columns:repeat(2,1fr)}
+    .values{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr}
+    .story-panel{padding:44px 8%}
+    .banner-in{margin:0 auto;padding:50px 24px;text-align:center}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .pdp{grid-template-columns:1fr;gap:30px}
+    .cartpage,.checkout{grid-template-columns:1fr;gap:26px}
+    .cartpage .sumbox,.ck-sum{position:static}
+    .trust-row{grid-template-columns:repeat(2,1fr)}
+    .paycards{grid-template-columns:1fr}
+    section{padding:48px 0}
+    .foot-bottom{flex-direction:column;gap:12px}
+    .whatsapp-float{width:50px;height:50px;font-size:24px;bottom:20px;right:20px}
+  }
+  @media (max-width:520px){
+    .gal-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr}
+    .frow{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- announcement bar -->
+<div class="announce"><div class="announce-track" id="announceTrack">
+  <span class="on">Free shipping on <b>prepaid orders above ₹999</b></span>
+  <span>Pay online &amp; save an <b>extra 5%</b> — automatically</span>
+  <span><b>7-day easy size exchange</b> · Ships from Kolkata</span>
+</div></div>
+<div class="offer-bar" role="status" aria-label="Current offer">
+  <span class="ob-name">Black Friday</span>
+  <span class="ob-text">Festive sale — extra savings valid till 27 Nov</span>
+  <span class="ob-timer">Ends in <span class="js-cd">…</span></span>
+</div>
+
+<!-- header -->
+<header class="header" id="header">
+  <div class="container header-in">
+    <button class="burger" id="burger" aria-label="Menu">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav">
+      <ul>
+        <li><a data-nav="#/shop">New Arrivals</a></li>
+        <li><a data-nav="#/shop">Kurtas</a></li>
+        <li><a data-nav="#/shop">Festive</a></li>
+        <li><a data-nav="#/shop">Wedding</a></li>
+        <li><a data-nav="#/policies">Policies</a></li>
+      </ul>
+    </nav>
+    <a class="logo" href="sohraaz-homepage-template.html"><img src="assets/extracted/Sohraaz-logo-transparent.png" alt="Sohraaz Collections"></a>
+    <div class="actions">
+      <button aria-label="Search" data-nav="#/shop"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <button aria-label="Account" data-nav="#/about"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
+      <button aria-label="Wishlist" data-nav="#/shop"><svg class="icon sm" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg><span class="count" id="wishCount">0</span></button>
+      <button aria-label="Bag" id="bagBtn"><svg class="icon sm" viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" id="bagCount">0</span></button>
+    </div>
+  </div>
+  <div class="mnav" id="mnav">
+    <a data-nav="#/shop">New Arrivals</a>
+    <a data-nav="#/shop">Kurtas</a>
+    <a data-nav="#/shop">Festive</a>
+    <a data-nav="#/shop">Wedding</a>
+    <a data-nav="#/cart">Bag</a>
+    <a data-nav="#/policies">Policies</a>
+    <a data-nav="#/about">About</a>
+  </div>
+</header>
+
+<main id="app" id="main"></main>
+
+<!-- cart drawer -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your Bag (<span id="drawerCount">0</span>)</h3>
+    <button id="drawerClose" aria-label="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>
+
+<!-- toast -->
+<div class="toast" id="toast"></div>
+
+<!-- exit-intent popup (demo) -->
+<div class="popup" id="popup">
+  <div class="popup-card">
+    <button class="popup-x" id="popupX">&times;</button>
+    <div class="kicker">A note before you go</div>
+    <h3>10% off your first order</h3>
+    <p>Drop your email or WhatsApp number and we will send the welcome code — plus a heads-up when new festive drops land.</p>
+    <input type="email" id="popupEmail" placeholder="Email or WhatsApp number">
+    <button class="btn btn-dark" style="width:100%;justify-content:center" id="popupOk">Send my code</button>
+    <p style="margin-top:10px;font-size:12.5px">Free shipping on prepaid orders above ₹999 · No spam, promise.</p>
+  </div>
+</div>
+
+<!-- footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="flogo">SOHRAAZ</div>
+        <p>The art of modern Indian elegance — born in Kolkata, worn across India.</p>
+        <p style="margin-top:10px">GSTIN 19DIBPA3993Q12M</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a data-nav="#/about">About Us</a></li>
+          <li><a data-nav="#/shop">Shop Collections</a></li>
+          <li><a data-nav="#/policies?t=promise">Transparent Pricing Promise</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a data-nav="#/policies?t=shipping">Shipping</a></li>
+          <li><a data-nav="#/policies?t=cod">COD</a></li>
+          <li><a data-nav="#/policies?t=returns">Returns &amp; Exchange</a></li>
+          <li><a data-nav="#/policies?t=cancel">Cancellation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Be part of the Sohraaz world</h4>
+        <div class="news"><input type="email" placeholder="Enter your email address" id="newsEmail"><button id="newsOk" aria-label="Subscribe"><svg class="icon sm" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button></div>
+        <p style="margin-top:12px;font-size:13.5px">📞 +91 91239 47668 &nbsp;·&nbsp; ✉ care@sohraaz.com</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sohraaz Collections. The price you see is the price you pay.</span>
+      <div class="socials">
+        <a aria-label="Facebook"><svg class="icon sm" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v9h4v-9h3l1-4h-4V8z"/></svg></a>
+        <a aria-label="Instagram"><svg class="icon sm" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/></svg></a>
+        <a aria-label="YouTube"><svg class="icon sm" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- floating WhatsApp -->
+<a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">💬</a>
+
+<script>
+/* ================================================================
+   SOHRAAZ store template v2 — data + pricing engine + SPA views
+================================================================ */
+
+const ASSET = (name) => `assets/extracted/${name}`;
+const CDN = {
+  hero:"Banner_1.png", video:"WhatsApp_Video_2026-11-08.mp4", occasionEveryday:"New_Arrival.png", occasionFestive:"Trending_Item.png",
+  occasionWedding:"Wedding_Series_Resized_Banner_2000x500_px.png", occasionSignature:"Best_Seller.png",
+  craft:"DSC_6025.jpg", banner:"Banner_3.png",
+  g1:"Banner_1.png", g2:"Banner_2.png", g3:"Banner_3.png", g4:"Banner_4.png",
+  g5:"Trending_Item.png", g6:"New_Arrival.png",
+};
+const IMG = (name) => ASSET(name);
+
+/* ================================================================
+   OFFER TIMER — change this ONE block to a REAL offer + REAL end date.
+   Honesty rule: never count down to a fake deadline. The bar/timer
+   hides itself automatically once the date passes or is cleared.
+   Set end:null to remove the offer bar entirely.
+   ================================================================ */
+const OFFER = { end: "2026-11-27T23:59:59+05:30", name: "Black Friday", text: "Festive sale — extra savings valid till 27 Nov" };
+function pad2(n){ return String(n).padStart(2,"0"); }
+function tickOffer(){
+  const end = OFFER && OFFER.end ? new Date(OFFER.end).getTime() : NaN;
+  const wraps = document.querySelectorAll(".offer-bar,.pdp-offer");
+  if(isNaN(end)){ wraps.forEach(w=>w.style.display="none"); return; }
+  const diff = end - Date.now();
+  if(diff <= 0){ wraps.forEach(w=>w.style.display="none"); return; }
+  document.querySelectorAll("[data-offer-name]").forEach(el=>el.textContent=OFFER.name);
+  document.querySelectorAll("[data-offer-text]").forEach(el=>el.textContent=OFFER.text);
+  const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+  document.querySelectorAll(".js-cd").forEach(el=>{ el.innerHTML = `<b>${pad2(d)}</b>d <b>${pad2(h)}</b>h <b>${pad2(m)}</b>m <b>${pad2(s)}</b>s`; });
+}
+
+/* PRODUCTS — real sohraaz.com prices (scraped 2026-11-09).
+   mrp: genuine MRP shown crossed out above selling price — no fake discount games. */
+const PRODUCTS = [
+  {id:"p1", name:"White Cotton Plain Kurta – Essential Wear", price:799, mrp:999, cat:"Everyday", stock:9, swatches:["#F3EFE6","#E8DFC8"], img:"DSC_5755.jpg", alt:"Elegant_Kurta_Portrait_in_Warm_Light.png", pair:["p13"], desc:"Breathable pure cotton kurta with a soft mandarin collar. Stitched in-house at our Kolkata workshop. ₹799 is the honest selling price — no fake discount games."},
+  {id:"p2", name:"Onion Pink Cotton Self Work Kurta", price:1099, mrp:1500, cat:"Everyday", stock:6, swatches:["#D98E8E","#C87676"], img:"DSC_5757.jpg", alt:"Warm_Beige_Kurta_Portrait.png", pair:["p13"], desc:"Self-textured cotton kurta in a warm onion pink. Subtle sheen, straight cut. Stitched in-house at our Kolkata workshop. ₹1,099 is the honest selling price — no fake discount games. Pairs beautifully with white pyjama."},
+  {id:"p3", name:"Men's Cream Paper Cotton Plain Kurta", price:1099, mrp:1499, cat:"Everyday", stock:8, swatches:["#EFE3CB","#E2D2B2"], img:"DSC_6020.jpg", alt:"Elegant_Plum_Kurta_Courtyard_Portrait.png", pair:["p13"], desc:"Crisp paper-cotton kurta in cream with a fluid drape. Stitched in-house at our Kolkata workshop. ₹1,099 is the honest selling price — no fake discount games. Lightweight enough for long days, smart enough for evenings."},
+  {id:"p4", name:"Beige Breeze – Luxury Paper Cotton Printed Kurta", price:1499, mrp:1999, cat:"Everyday", stock:5, swatches:["#D9C6A4","#C4AE87"], img:"DSC_6025.jpg", alt:"Elegant_Plum_Kurta_Courtyard_Portrait_1.png", pair:["p13"], desc:"Signature print on luxury paper cotton. Stitched in-house at our Kolkata workshop. ₹1,499 is the honest selling price — no fake discount games. A statement piece that stays understated — the Beige Breeze is a best-seller."},
+  {id:"p5", name:"Men's Grey Poly Cotton Self Work Kurta", price:1699, mrp:2299, cat:"Festive", stock:7, swatches:["#8B8B8B","#6F6F6F"], img:"DSC_5755.jpg", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors.png", pair:["p13"], desc:"Self-work texture in a cool grey. Stitched in-house at our Kolkata workshop. ₹1,699 is the honest selling price — no fake discount games. Designed for festive evenings where the occasion is real but the mood is relaxed."},
+  {id:"p6", name:"Embroidered Black Giza Cotton Kurta", price:2299, mrp:2999, cat:"Festive", stock:4, swatches:["#1C1C1C","#2E2E2E"], img:"DSC_5757.jpg", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors_1.png", pair:["p13"], desc:"Premium Giza cotton with tonal embroidery. Stitched in-house at our Kolkata workshop. ₹2,299 is the honest selling price — no fake discount games. Black done the Sohraaz way — deep, matte, and quietly powerful."},
+  {id:"p7", name:"Festive Black Giza Cotton Embroidered Kurta", price:2599, mrp:3499, cat:"Festive", stock:3, swatches:["#141414","#33302B"], img:"DSC_6020.jpg", alt:"Men_s_Kurta.png", pair:["p13"], desc:"Festive-weight Giza cotton with dense embroidery work. Stitched in-house at our Kolkata workshop. ₹2,599 is the honest selling price — no fake discount games. Made for nights that end after midnight."},
+  {id:"p8", name:"Men's Off White Giza Cotton Moti Work Festive Kurta", price:2999, mrp:3999, cat:"Wedding", stock:5, swatches:["#F1E9D8","#E4D7BC"], img:"DSC_6025.jpg", alt:"Warm_Beige_Kurta_Portrait.png", pair:["p14"], desc:"Moti (pearl) hand-work on off-white Giza cotton. Stitched in-house at our Kolkata workshop — every kurta is checked for fabric, stitching and embroidery before it leaves. ₹2,999 is the honest selling price — no fake discount games. A wedding-season hero piece for haldi, sangeet and receptions."},
+  {id:"p9", name:"Men's Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, mrp:4299, cat:"Wedding", stock:4, swatches:["#BFD3D6","#A6BFc2"], img:"Men_s_Kurta.png", alt:"Elegant_Kurta_Portrait_in_Warm_Light.png", pair:["p14"], desc:"Two-piece set: ice-blue self-work kurta with a matching jacket. Stitched in-house at our Kolkata workshop. ₹3,299 is the honest selling price — no fake discount games. Full wedding-ready look in one box."},
+  {id:"p10", name:"Armani Black – Black Armani Embroidered Kurta", price:2549, mrp:3499, cat:"Wedding", stock:3, swatches:["#101010","#262626"], img:"Warm_Beige_Kurta_Portrait.png", alt:"Elegant_Plum_Kurta_Courtyard_Portrait.png", pair:["p13"], desc:"The Armani series — imported blend with signature embroidery. Stitched in-house at our Kolkata workshop. ₹2,549 is the honest selling price — no fake discount games. Black, for the man who dresses first and talks later."},
+  {id:"p11", name:"Armani Glow – White Armani Mirror Work Kurta", price:2649, mrp:3599, cat:"Wedding", stock:3, swatches:["#F2ECE0","#E7DECB"], img:"Elegant_Kurta_Portrait_in_Warm_Light.png", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors.png", pair:["p14"], desc:"Mirror-work Armani kurta in white. Stitched in-house at our Kolkata workshop. ₹2,649 is the honest selling price — no fake discount games. Catches every light in the room — reception-ready out of the box."},
+  {id:"p12", name:"Armani Spark – White Armani Mirror Work Kurta", price:2549, mrp:3499, cat:"Wedding", stock:6, swatches:["#F4EFE3","#E9E0CD"], img:"Elegant_Plum_Kurta_Courtyard_Portrait.png", alt:"Elegant_Plum_Kurta_Courtyard_Portrait_1.png", pair:["p14"], desc:"A lighter take on the Armani mirror work. Stitched in-house at our Kolkata workshop. ₹2,549 is the honest selling price — no fake discount games. Spark without the weight — great for back-to-back functions."},
+  {id:"p13", name:"Men's Elastic Waistband Pyjama With Pockets", price:449, mrp:599, cat:"Accessories", stock:12, swatches:["#F2EFE8","#E5DCC8"], img:"DSC_5755.jpg", alt:"DSC_5757.jpg", pair:["p1","p2","p3"], desc:"The everyday pyjama — elastic waist, side pockets, cotton-blend comfort. Stitched in-house at our Kolkata workshop. ₹449 is the honest selling price — no fake discount games. Pairs with every kurta in the store."},
+  {id:"p14", name:"Men's White Cotton Blend Churidar", price:400, mrp:550, cat:"Accessories", stock:10, swatches:["#F4F2EC"], img:"DSC_5757.jpg", alt:"DSC_6020.jpg", pair:["p8","p9","p11"], desc:"Classic churidar fit with gentle gather at the ankle. Stitched in-house at our Kolkata workshop. ₹400 is the honest selling price — no fake discount games. The traditional partner for festive and wedding kurtas."},
+];
+const SIZES = ["XS","S","M","L","XL","XXL"];
+const OUT = { p7:["XS"], p9:["XXL"], p11:["XS","S"] };
+
+/* ============ PRICING ENGINE ============ */
+const RULES = {
+  prepaid:{ freeAbove:999, flat:49 },
+  cod:{ freeAbove:999, flat:49, handlingFee:49 },
+  prepaidDiscount:{ rate:0.05, cap:150 },
+  welcome:{ rate:0.10, cap:200, minOrder:799, code:"WELCOME10" },
+};
+const COUPONS = {
+  WELCOME10:{ rate:0.10, cap:200, minOrder:799, label:"Welcome offer — 10% off (max ₹200)" },
+};
+function applyCoupon(code, subtotal){
+  const c = COUPONS[code.toUpperCase().trim()];
+  if(!c) return {discount:0, label:"", error:"Invalid coupon code"};
+  if(subtotal < c.minOrder) return {discount:0, label:"", error:`Minimum order ₹${c.minOrder} required for this coupon`};
+  const discount = Math.min(Math.round(subtotal * c.rate), c.cap);
+  return {discount, label:c.label, error:null};
+}
+function computeTotals(items, mode, isNew, couponCode){
+  const itemTotal = items.reduce((s,i)=>s+i.price*i.qty,0);
+  let offer=0, offerLabel="", couponError=null;
+  if(couponCode){
+    const r = applyCoupon(couponCode, itemTotal);
+    if(r.error) couponError=r.error;
+    else { offer=r.discount; offerLabel=r.label; }
+  } else if(isNew && itemTotal>=RULES.welcome.minOrder){
+    offer=Math.min(Math.round(itemTotal*RULES.welcome.rate), RULES.welcome.cap);
+    offerLabel="Welcome offer (10%)";
+  }
+  const afterOffer=itemTotal-offer;
+  const preDisc = mode==="prepaid" ? Math.min(Math.round(afterOffer*RULES.prepaidDiscount.rate), RULES.prepaidDiscount.cap) : 0;
+  const chargedItem = afterOffer-preDisc;
+  let ship=0, codFee=0;
+  if(mode==="prepaid"){ ship = afterOffer>=RULES.prepaid.freeAbove ? 0 : RULES.prepaid.flat; }
+  else { ship = afterOffer>=RULES.cod.freeAbove ? 0 : RULES.cod.flat; codFee = RULES.cod.handlingFee; }
+  const total = chargedItem+ship+codFee;
+  const need = (mode==="prepaid"?RULES.prepaid.freeAbove:RULES.cod.freeAbove) - afterOffer;
+  return {itemTotal, offer, offerLabel, couponError, preDisc, chargedItem, ship, codFee, total,
+          savings:offer+preDisc, freeShipGap:Math.max(0,need),
+          freeShipTarget:(mode==="prepaid"?RULES.prepaid.freeAbove:RULES.cod.freeAbove)};
+}
+
+/* ============ state ============ */
+const store = {
+  cart: JSON.parse(localStorage.getItem("sohraaz_cart")||"[]"),
+  wish: JSON.parse(localStorage.getItem("sohraaz_wish")||"[]"),
+  mode: localStorage.getItem("sohraaz_mode")||"prepaid",
+  isNew: localStorage.getItem("sohraaz_isnew")==="1",
+  coupon: localStorage.getItem("sohraaz_coupon")||"",
+  lastProduct: null,
+};
+const save = () => {
+  localStorage.setItem("sohraaz_cart",JSON.stringify(store.cart));
+  localStorage.setItem("sohraaz_wish",JSON.stringify(store.wish));
+  localStorage.setItem("sohraaz_mode",store.mode);
+  localStorage.setItem("sohraaz_isnew",store.isNew?"1":"0");
+  localStorage.setItem("sohraaz_coupon",store.coupon);
+};
+const P = id => PRODUCTS.find(p=>p.id===id);
+const inr = n => "₹" + Number(n).toLocaleString("en-IN");
+const cartItems = () => store.cart.map(l=>({...P(l.id), size:l.size, qty:l.qty}));
+const bagQty = () => store.cart.reduce((s,l)=>s+l.qty,0);
+
+function addToCart(id,size,qty){
+  const ex=store.cart.find(l=>l.id===id&&l.size===size);
+  if(ex) ex.qty+=qty; else store.cart.push({id,size,qty});
+  save(); syncBadges(); renderDrawer();
+  const t=computeTotals(cartItems(),"prepaid",store.isNew,store.coupon);
+  toast(`Added to bag — prepaid total <b>${inr(t.total)}</b>`);
+}
+function toast(html){
+  const el=document.getElementById("toast");
+  el.innerHTML=html; el.classList.add("on");
+  clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"),2600);
+}
+function syncBadges(){
+  document.getElementById("bagCount").textContent=bagQty();
+  document.getElementById("wishCount").textContent=store.wish.length;
+  document.getElementById("drawerCount").textContent=bagQty();
+}
+
+/* image error fallback: retry once, then local coloured placeholder */
+const IMG_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23F1EBDE'/%3E%3Ctext x='200' y='255' font-family='Georgia,serif' font-size='26' letter-spacing='6' fill='%23B2916B' text-anchor='middle'%3ESOHRAAZ%3C/text%3E%3C/svg%3E";
+document.addEventListener("error", e=>{
+  const img=e.target;
+  if(img.tagName!=="IMG") return;
+  if(img.dataset.fbk==="2"){ img.src=IMG_FALLBACK; return; }
+  if(img.dataset.fbk==="1"){ img.dataset.fbk="2"; img.src=IMG_FALLBACK; return; }
+  img.dataset.fbk="1";
+  setTimeout(()=>{ if(img.dataset.fbk==="1"){ img.src=img.src; } },1200);
+},true);
+
+/* ============ shared renderers ============ */
+function prodCardHTML(p){
+  const pct = p.mrp && p.mrp>p.price ? Math.round(((p.mrp-p.price)/p.mrp)*100) : 0;
+  const prepaidPrice = Math.round(p.price*0.95);
+  return `<div class="prod" data-nav="#/product/${p.id}">
+    <div class="prod-img">
+      ${p.stock<=3?`<span class="stock">Only ${p.stock} left</span>`:""}
+      <button class="wish ${store.wish.includes(p.id)?"on":""}" data-wish="${p.id}" aria-label="Wishlist">
+        <svg class="icon sm" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg>
+      </button>
+      <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+    </div>
+    <div class="prod-info">
+      <div class="prod-name">${p.name}</div>
+      <div class="prod-prices">
+        ${p.mrp && p.mrp>p.price ? `<span class="mrp">₹${p.mrp.toLocaleString("en-IN")}</span><span class="pct-off">-${pct}%</span>` : ""}
+        <span class="price">${inr(p.price)}</span>
+        <span class="prepaid-tag">${inr(prepaidPrice)} prepaid</span>
+      </div>
+      <div class="swatches">${p.swatches.map(s=>`<span class="sw" style="background:${s}"></span>`).join("")}</div>
+    </div>
+  </div>`;
+}
+function cartLineHTML(l){
+  const p=P(l.id);
+  return `<div class="cart-line">
+    <img class="cl-img" src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+    <div>
+      <div class="cl-name">${p.name}</div>
+      <div class="cl-meta">Size ${l.size} · ${inr(p.price)}</div>
+      <span class="cl-qty">
+        <button data-dec="${l.id}|${l.size}" aria-label="Decrease">−</button>
+        <span>${l.qty}</span>
+        <button data-inc="${l.id}|${l.size}" aria-label="Increase">+</button>
+      </span>
+      <br><span class="cl-remove" data-remove="${l.id}|${l.size}">Remove</span>
+    </div>
+    <div class="cl-price">${inr(p.price*l.qty)}</div>
+  </div>`;
+}
+function shipBarHTML(t){
+  const pct=Math.min(100,Math.round((t.freeShipTarget-Math.max(t.freeShipGap,0))/t.freeShipTarget*100));
+  const done=t.freeShipGap===0;
+  return `<div class="ship-bar">
+    <div class="sb-text">${done
+      ? `You have unlocked <b>FREE shipping</b> 🎉`
+      : `Add <b>${inr(t.freeShipGap)}</b> more for <b>FREE shipping</b>`}</div>
+    <div class="sb-track"><div class="sb-fill ${done?"sb-done":""}" style="width:${done?100:pct}%"></div></div>
+  </div>`;
+}
+function payToggleHTML(t){
+  const tPre=computeTotals(cartItems(),"prepaid",store.isNew,store.coupon);
+  const tCod=computeTotals(cartItems(),"cod",store.isNew,store.coupon);
+  const savePre=Math.max(0,tCod.total-tPre.total);
+  return `<div class="paytoggle">
+    <button class="${store.mode==="prepaid"?"on":""}" data-mode="prepaid">Prepaid <span class="savehint">save ${inr(savePre)}</span></button>
+    <button class="${store.mode==="cod"?"on":""}" data-mode="cod">COD <span class="savehint">+${inr(tCod.codFee)} fee</span></button>
+  </div>`;
+}
+function summaryRowsHTML(t){
+  let offerHtml="";
+  if(t.couponError){
+    offerHtml=`<div class="sumrow neg"><span>Coupon</span><span style="color:var(--red)">${t.couponError}</span></div>`;
+  } else if(store.coupon && t.offer){
+    offerHtml=`<div class="sumrow neg"><span>${store.coupon}</span><span>− ${inr(t.offer)}</span></div>`;
+  } else if(t.offer && !store.coupon){
+    offerHtml=`<div class="sumrow neg"><span>${t.offerLabel}</span><span>− ${inr(t.offer)}</span></div>`;
+  }
+  return `
+    <div class="sumrow"><span>Items (${bagQty()})</span><span>${inr(t.itemTotal)}</span></div>
+    ${offerHtml}
+    ${t.preDisc?`<div class="sumrow neg"><span>Prepaid discount (5%)</span><span>− ${inr(t.preDisc)}</span></div>`:""}
+    <div class="sumrow"><span>Shipping</span><span class="${t.ship===0?"free":""}">${t.ship===0?"FREE":inr(t.ship)}</span></div>
+    ${t.codFee?`<div class="sumrow"><span>COD handling fee</span><span>${inr(t.codFee)}</span></div>`:""}
+    <div class="sumrow total"><span>Total</span><span>${inr(t.total)}</span></div>
+    ${t.savings?`<div class="sumrow neg"><span>You save ${inr(t.savings)}</span><span></span></div>`:""}`;
+}
+function couponBoxHTML(){
+  return `<div class="welcomebox" style="border:none;padding:0;margin:14px 0">
+    <div style="display:flex;gap:8px;align-items:center">
+      <input type="text" id="cartCoupon" placeholder="Coupon code (e.g. WELCOME10)" value="${store.coupon}" style="flex:1;padding:10px 12px;border:1px solid var(--line);font-family:var(--serif);font-size:14px">
+      <button class="btn btn-dark" data-cartcoupon style="padding:10px 16px">Apply</button>
+    </div>
+    ${store.coupon?`<p style="font-size:12.5px;color:var(--green);margin-top:6px">${store.coupon} applied</p>`:""}
+  </div>`;
+}
+function welcomeBoxHTML(){
+  return `<label class="welcomebox"><input type="checkbox" id="newCust" ${store.isNew?"checked":""}>
+    <span>First order here? Apply the <b>welcome offer</b> — 10% off (max ₹200, min order ₹799). Can't stack with volume offers.</span></label>`;
+}
+
+/* ============ drawer ============ */
+function renderDrawer(){
+  const body=document.getElementById("drawerBody");
+  const foot=document.getElementById("drawerFoot");
+  if(!store.cart.length){
+    body.innerHTML=`<div class="emptycart"><p>Your bag is empty.</p><button class="btn btn-dark" data-nav="#/shop">Shop the collection</button></div>`;
+    foot.innerHTML="";
+    return;
+  }
+  const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+  body.innerHTML=shipBarHTML(t)+store.cart.map(cartLineHTML).join("");
+  foot.innerHTML=payToggleHTML(t)+summaryRowsHTML(t)+couponBoxHTML()+`<button class="btn btn-solid" data-nav="#/checkout">Proceed to checkout</button>`;
+}
+function openDrawer(){ renderDrawer(); document.getElementById("drawer").classList.add("on"); document.getElementById("overlay").classList.add("on"); }
+function closeDrawer(){ document.getElementById("drawer").classList.remove("on"); document.getElementById("overlay").classList.remove("on"); }
+
+/* ============ views ============ */
+function renderHome(){
+  const feat=["p1","p6","p9","p8"];
+  return `
+  <section class="hero"><div class="hero-media"><video src="${IMG(CDN.video)}" autoplay muted loop playsinline preload="auto" poster="${IMG(CDN.hero)}" aria-hidden="true"></video></div>
+    <div class="container hero-inner"><div class="hero-copy">
+      <div class="kicker">Festive '26 Collection</div>
+      <div class="brand">SOHRAAZ</div>
+      <div class="rule"></div>
+      <div class="kicker">The Art of Modern Indian Elegance</div>
+      <div class="tag">Redefining the language of Indian celebration</div>
+      <div class="hero-cta"><button class="btn btn-cream" data-nav="#/shop">Explore the collection <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button></div>
+      <div class="hero-note">Free shipping <b>prepaid above ₹999</b> · Pay online &amp; save <b>an extra 5%</b></div>
+    </div></div>
+  </section>
+  <section><div class="container">
+    <div class="sec-head"><h2>Shop by Occasion</h2></div>
+    <div class="occ-grid">
+      <a class="occ" data-nav="#/shop" data-cat="Everyday"><img src="${IMG(CDN.occasionEveryday)}" alt="Everyday elegance" loading="lazy"><span>Everyday<br>Elegance</span></a>
+      <a class="occ" data-nav="#/shop" data-cat="Festive"><img src="${IMG(CDN.occasionFestive)}" alt="Festive collection" loading="lazy"><span>Festive<br>Collection</span></a>
+      <a class="occ" data-nav="#/shop" data-cat="Wedding"><img src="${IMG(CDN.occasionWedding)}" alt="Wedding edit" loading="lazy"><span>Wedding<br>Edit</span></a>
+      <a class="occ" data-nav="#/shop" data-cat="Signature"><img src="${IMG(CDN.occasionSignature)}" alt="Signature style" loading="lazy"><span>Signature<br>Style</span></a>
+    </div>
+  </div></section>
+  <section style="background:var(--cream-2)"><div class="container">
+    <div class="sec-head"><h2>The Latest Collection</h2></div>
+    <div class="sec-sub">Honest prices — the selling price you see is what you pay. Never a fake MRP.</div>
+    <div class="prod-grid">${feat.map(id=>prodCardHTML(P(id))).join("")}</div>
+    <div style="text-align:center;margin-top:34px"><button class="btn btn-dark" data-nav="#/shop">View all</button></div>
+  </div></section>
+  <section style="padding:0"><div class="story">
+    <div class="story-img"><img src="${IMG(CDN.craft)}" alt="Chikankari embroidery" loading="lazy"></div>
+    <div class="story-panel"><div>
+      <h2>Rooted in heritage.<br>Designed for today.</h2>
+      <p>At Sohraaz, we are a Kolkata-born brand, celebrating the timeless spirit of Indian dressing through contemporary design and thoughtful craftsmanship.</p>
+      <button class="btn btn-dark" data-nav="#/about">Discover our story <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button>
+    </div></div>
+  </div></section>
+  <section><div class="banner">
+    <img src="${IMG(CDN.banner)}" alt="Wedding sherwani" loading="lazy">
+    <div class="container" style="display:flex"><div class="banner-in">
+      <h2>Made for moments<br>that last forever.</h2>
+      <p>Sherwanis and wedding sets crafted for the celebrations you will never forget.</p>
+      <button class="btn btn-cream" data-nav="#/shop" data-cat="Wedding">Explore wedding collection <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button>
+    </div></div>
+  </div></section>
+  <section><div class="container">
+    <div class="values">
+      <div class="value"><svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 21h16M6 21V10l6-4 6 4v11M10 21v-6h4v6"/><circle cx="12" cy="9" r="1"/></svg>
+        <h3>Craftsmanship</h3><p>Thoughtful details. Imagined in Kolkata.</p></div>
+      <div class="value"><svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3l2.5 5 5.5.7-4 3.8 1 5.5-5-2.8-5 2.8 1-5.5-4-3.8L9.5 8z"/></svg>
+        <h3>Designed for Celebrations</h3><p>Indian fashion for unforgettable occasions.</p></div>
+      <div class="value"><svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20 6L9 17l-5-5"/></svg>
+        <h3>The Transparent Promise</h3><p>Prepaid &amp; COD totals shown upfront. No hidden charges, ever.</p></div>
+    </div>
+  </div></section>
+  <section style="padding-top:0"><div class="container">
+    <div class="sec-head"><h2>The World of Sohraaz</h2></div>
+    <div class="gal-grid">
+      ${[CDN.g1,CDN.g2,CDN.g3,CDN.g4,CDN.g5,CDN.g6].map(g=>`<a class="gal" data-nav="#/shop"><img src="${IMG(g)}" alt="Sohraaz lookbook" loading="lazy"></a>`).join("")}
+    </div>
+  </div></section>`;
+}
+
+function renderShop(q){
+  const cat=q.get("cat")||"All";
+  const sort=q.get("sort")||"featured";
+  let list=PRODUCTS.filter(p=>cat==="All"||p.cat===cat||(cat==="Everyday"&&p.cat==="Accessories")||(cat==="Signature"&&["p10","p11","p12"].includes(p.id)));
+  if(sort==="low") list=[...list].sort((a,b)=>a.price-b.price);
+  if(sort==="high") list=[...list].sort((a,b)=>b.price-a.price);
+  const chips=["All","Everyday","Festive","Wedding","Signature","Accessories"];
+  return `
+  <section><div class="container">
+    <div class="sec-head"><h2>Shop Collections</h2></div>
+    <div class="shop-tools">
+      <div class="chips">${chips.map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${c}">${c}</button>`).join("")}</div>
+      <select class="sortsel" id="sortSel">
+        <option value="featured" ${sort==="featured"?"selected":""}>Featured</option>
+        <option value="low" ${sort==="low"?"selected":""}>Price: low to high</option>
+        <option value="high" ${sort==="high"?"selected":""}>Price: high to low</option>
+      </select>
+    </div>
+    <div class="prod-grid">${list.map(prodCardHTML).join("")}</div>
+  </div></section>`;
+}
+
+function renderProduct(id){
+  const p=P(id); if(!p) return renderShop(new URLSearchParams());
+  const st=store.lastProduct&&store.lastProduct.id===id?store.lastProduct:{id,imgIdx:0,size:"M"};
+  if(!store.lastProduct||store.lastProduct.id!==id) store.lastProduct=st;
+  const gal=[p.img,p.alt];
+  const img=gal[st.imgIdx]||p.img;
+  const outSz=OUT[id]||[];
+  const pre=Math.round(p.price*0.95), gap=Math.max(0,999-p.price);
+  return `
+  <div class="container"><div class="crumb"><a data-nav="#/">Home</a> / <a data-nav="#/shop">Shop</a> / <span>${p.name}</span></div>
+  <div class="pdp">
+    <div class="pdp-gallery">
+      <div class="main"><img src="${IMG(img)}" alt="${p.name}"></div>
+      <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}"><img src="${IMG(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
+    </div>
+    <div>
+      <h1>${p.name}</h1>
+      <div class="pdp-price">
+        ${p.mrp && p.mrp>p.price ? `<span class="mrp">₹${p.mrp.toLocaleString("en-IN")}</span><span class="pct-off">-${Math.round(((p.mrp-p.price)/p.mrp)*100)}%</span>` : ""}
+        <span class="price">${inr(p.price)}</span>
+      </div>
+      <div class="paycards">
+        <div class="paycard best">
+          <div class="pc-label">Pay online — recommended</div>
+          <div class="pc-total">${inr(pre)}</div>
+          <div class="pc-sub">5% prepaid discount applied</div>
+        </div>
+        <div class="paycard">
+          <div class="pc-label">Cash on delivery</div>
+          <div class="pc-total">${inr(p.price+49)}</div>
+          <div class="pc-sub">+₹49 COD handling</div>
+        </div>
+      </div>
+      <div class="breakdown">Item ${inr(p.price)} − prepaid 5% (${inr(p.price-pre)}) = <b>${inr(pre)} prepaid</b> &nbsp;|&nbsp; COD = <b>${inr(p.price+49)}</b></div>
+      <div class="pdp-offer" role="status" aria-label="Limited time offer">
+        <span>⚡ <b data-offer-name>Black Friday</b> — <span data-offer-text>Festive sale till 27 Nov</span></span>
+        <span class="pdp-cd">Ends in <span class="js-cd">…</span></span>
+      </div>
+      <ul class="offer-list">
+        <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> 10% off your first order (max ₹200) — use coupon <b>WELCOME10</b></li>
+        <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> 5% extra off on online payment — automatic</li>
+        <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> Coupon code: <input type="text" id="pdpCoupon" placeholder="Enter code" style="width:140px;padding:4px 8px;border:1px solid var(--line);font-family:var(--serif);font-size:13px"> <button class="btn btn-dark" style="padding:6px 12px;font-size:11px" data-pdcoupon>Apply</button></li>
+        <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> ${gap>0?`Add ${inr(gap)} more to your bag for FREE shipping`:`FREE shipping on this order (prepaid)`}</li>
+      </ul>
+      <div class="opt-row"><span class="opt-label">Size</span><span class="opt-label" style="cursor:pointer" data-nav="#/policies">Size guide</span></div>
+      <div class="sizes">${SIZES.map(s=>`<button class="size ${s===st.size?"on":""} ${outSz.includes(s)?"out":""}" data-size="${s}" ${outSz.includes(s)?"disabled":""}>${s}</button>`).join("")}</div>
+      <div class="opt-row"><span class="opt-label">Quantity</span></div>
+      <span class="qty"><button data-pqty="-1">−</button><span id="pdpQty">1</span><button data-pqty="1">+</button></span>
+      <div class="pdp-ctas">
+        <button class="btn btn-dark" data-add="${p.id}">Add to cart <svg class="icon" viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/></svg></button>
+        <button class="btn btn-solid" data-buynow="${p.id}">Buy it now</button>
+      </div>
+      <div class="ship-note">In stock — dispatched from our in-house Kolkata workshop within 24–48 hrs</div>
+      <div class="pinrow"><input id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit PIN code"><button class="btn btn-dark" data-pin>Check</button></div>
+      <div class="pin-result" id="pinResult"></div>
+      <a class="wa-cta" href="https://wa.me/919123947668?text=Namaste! Size, fabric aur delivery ke baare mein poochna hai." target="_blank" rel="noopener">💬 Size ya fabric? Chat with a stylist on WhatsApp</a>
+      <div class="trust-row">
+        <div class="trust"><svg class="icon" viewBox="0 0 24 24"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Delivery 3–5 days</div>
+        <div class="trust"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>COD available (+₹49)</div>
+        <div class="trust"><svg class="icon" viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>7-day size exchange</div>
+        <div class="trust"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/></svg>Ships from Kolkata</div>
+      </div>
+      <div class="pdp-desc">${p.desc}</div>
+      <div class="sec-head" style="margin-top:40px"><h2 style="font-size:16px">Pair it with</h2></div>
+      <div class="pair-grid">${p.pair.map(pid=>prodCardHTML(P(pid))).join("")}</div>
+      <div class="pair-nudge">${gap>0?`Add ${inr(gap)} more and this order ships FREE (prepaid).`:`Pairing keeps you above ₹999 — FREE shipping stays.`}</div>
+    </div>
+  </div>
+  <div class="pdp-sticky" aria-hidden="false">
+    <div class="ps-price"><small>Prepaid price</small><b>${inr(pre)}</b></div>
+    <button class="btn btn-solid" data-add="${p.id}">Add to cart · ${inr(pre)}</button>
+  </div></div>`;
+}
+
+function renderCart(){
+  if(!store.cart.length){
+    return `<section><div class="container"><div class="emptycart">
+      <div class="sec-head"><h2>Your Bag</h2></div>
+      <p>Your bag is empty — the good stuff is one tap away.</p>
+      <button class="btn btn-dark" data-nav="#/shop">Shop the collection</button>
+    </div></div></section>`;
+  }
+  const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+  return `<section><div class="container">
+    <div class="sec-head"><h2>Your Bag</h2></div>
+    <div class="cartpage">
+      <div>${shipBarHTML(t)}${store.cart.map(cartLineHTML).join("")}</div>
+      <div class="sumbox">
+        <h3>Order summary</h3>
+        ${welcomeBoxHTML()}
+        ${payToggleHTML(t)}
+        ${couponBoxHTML()}
+        ${summaryRowsHTML(t)}
+        <button class="btn btn-solid" data-nav="#/checkout" style="width:100%;justify-content:center;margin-top:14px">Proceed to checkout</button>
+        <div class="promise"><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>The price you see is the price you pay — full breakdown shown.</div>
+      </div>
+    </div>
+  </div></section>`;
+}
+
+function renderCheckout(){
+  if(!store.cart.length) return renderCart();
+  const t=computeTotals(cartItems(),store.mode,store.isNew);
+  const tPre=computeTotals(cartItems(),"prepaid",store.isNew,store.coupon);
+  const tCod=computeTotals(cartItems(),"cod",store.isNew,store.coupon);
+  const savePre=Math.max(0,tCod.total-tPre.total);
+  return `<section><div class="container">
+    <div class="sec-head"><h2>Checkout</h2></div>
+    <div class="checkout">
+      <div>
+        <div class="ck-card">
+          <h3>Contact &amp; delivery address</h3>
+          <div class="frow">
+            <div class="field"><label>Full name</label><input id="ckName" placeholder="Your name"></div>
+            <div class="field"><label>Phone (WhatsApp)</label><input id="ckPhone" inputmode="numeric" maxlength="10" placeholder="10-digit mobile"></div>
+          </div>
+          <div class="field"><label>Address</label><textarea id="ckAddr" rows="2" placeholder="House no, street, area"></textarea></div>
+          <div class="frow">
+            <div class="field"><label>PIN code</label><input id="ckPin" inputmode="numeric" maxlength="6" placeholder="6-digit PIN"></div>
+            <div class="field"><label>City</label><input id="ckCity" placeholder="City"></div>
+          </div>
+        </div>
+        <div class="ck-card">
+          <h3>Payment method</h3>
+          <div class="payopts">
+            <label class="payopt ${store.mode==="prepaid"?"on":""}" data-pay="prepaid">
+              <input type="radio" name="pay" ${store.mode==="prepaid"?"checked":""}>
+              <div><div class="po-name">Pay online — UPI / Card / Netbanking</div>
+              <div class="po-save">Saves ${inr(savePre)} — 5% discount + no COD fee</div>
+              <div class="po-sub">Recommended. UPI, cards and netbanking via secure gateway.</div></div>
+            </label>
+            <label class="payopt ${store.mode==="cod"?"on":""}" data-pay="cod">
+              <input type="radio" name="pay" ${store.mode==="cod"?"checked":""}>
+              <div><div class="po-name">Cash on delivery</div>
+              <div class="po-fee">${tCod.codFee?`+${inr(tCod.codFee)} COD handling fee`:"No COD fee on this order"} · ₹100 refundable token to confirm</div>
+              <div class="po-sub">Pay by cash or UPI at your doorstep.</div></div>
+            </label>
+          </div>
+          <div class="promise"><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Every charge on this page is the final charge. If anything extra appears, we refund it.</div>
+        </div>
+      </div>
+      <div class="ck-sum">
+        <h3>Order summary</h3>
+        ${welcomeBoxHTML()}
+        ${couponBoxHTML()}
+        <table>
+          ${store.cart.map(l=>`<tr><td>${P(l.id).name} <span style="color:#77664F">× ${l.qty} (${l.size})</span></td><td>${inr(P(l.id).price*l.qty)}</td></tr>`).join("")}
+          ${t.offer?`<tr><td>${t.offerLabel}</td><td class="neg">− ${inr(t.offer)}</td></tr>`:""}
+          ${t.preDisc?`<tr><td>Prepaid discount (5%)</td><td class="neg">− ${inr(t.preDisc)}</td></tr>`:""}
+          <tr><td>Shipping</td><td class="${t.ship===0?"neg":""}">${t.ship===0?"FREE":inr(t.ship)}</td></tr>
+          ${t.codFee?`<tr><td>COD handling fee</td><td>${inr(t.codFee)}</td></tr>`:""}
+          <tr class="total"><td>Total</td><td>${inr(t.total)}</td></tr>
+        </table>
+        <button class="btn btn-solid" data-placeorder style="width:100%;justify-content:center;margin-top:16px">Place order — ${inr(t.total)}</button>
+      </div>
+    </div>
+  </div></section>`;
+}
+
+function renderSuccess(){
+  const t=store.lastTotals||computeTotals(cartItems(),"prepaid",store.isNew,store.coupon);
+  const ord="SOZ"+Math.floor(100000+Math.random()*900000);
+  return `<div class="success">
+    <div class="kicker" style="font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)">Order confirmed</div>
+    <div class="big">Shukriya!</div>
+    <div class="ordno">Order ${ord}</div>
+    <div class="box"><table style="width:100%;border-collapse:collapse;font-size:15px">
+      <tr><td style="padding:6px 0;color:#4C3B29">Items</td><td style="text-align:right">${inr(t.itemTotal)}</td></tr>
+      ${t.offer?`<tr><td style="color:var(--green)">${store.coupon?store.coupon:t.offerLabel}</td><td class="neg" style="text-align:right;color:var(--green)">− ${inr(t.offer)}</td></tr>`:""}
+      ${t.preDisc?`<tr><td style="color:var(--green)">Prepaid discount</td><td style="text-align:right;color:var(--green)">− ${inr(t.preDisc)}</td></tr>`:""}
+      <tr><td style="color:#4C3B29">Shipping</td><td style="text-align:right">${t.ship===0?"FREE":inr(t.ship)}</td></tr>
+      ${t.codFee?`<tr><td style="color:#4C3B29">COD handling</td><td style="text-align:right">${inr(t.codFee)}</td></tr>`:""}
+      <tr><td style="border-top:1px solid var(--line);padding-top:10px;font-weight:600">Paid / Payable</td><td style="border-top:1px solid var(--line);padding-top:10px;font-weight:600;text-align:right">${inr(t.total)}</td></tr>
+    </table></div>
+    <p class="wa">You will get a WhatsApp confirmation with the tracking link within 24 hours. ${t.codFee?"Our team will call to re-confirm your COD order before dispatch.":"Dispatch in 1–3 business days."}</p>
+    <div style="margin-top:24px"><button class="btn btn-dark" data-nav="#/shop">Continue shopping</button></div>
+  </div>`;
+}
+
+function renderPolicies(q){
+  const tab=q.get("t")||"shipping";
+  const tabs={shipping:"Shipping",cod:"COD",returns:"Returns & Exchange",cancel:"Cancellation",promise:"Transparent Pricing Promise"};
+  const body={
+    shipping:`<h2>Shipping Policy</h2>
+      <ul>
+        <li>Orders are dispatched within 1–3 business days of confirmation.</li>
+        <li>Delivery: metro cities 3–5 days, other cities &amp; towns 5–7 days, remote locations 7–10 days.</li>
+        <li><b>Prepaid orders:</b> FREE shipping above ₹999; flat ₹49 shipping below ₹999.</li>
+        <li><b>COD orders:</b> FREE shipping above ₹999; below that ₹49 shipping + ₹49 COD handling fee — shown before you pay.</li>
+        <li>All orders ship from Kolkata, West Bengal via Delhivery, Xpressbees or Ekart.</li>
+        <li>Tracking link is shared on SMS, WhatsApp and email once dispatched.</li>
+        <li>We currently deliver across India only — no international shipping yet.</li>
+      </ul>`,
+    cod:`<h2>COD Policy</h2>
+      <ul>
+        <li>Cash on Delivery is available on serviceable PIN codes.</li>
+        <li>Confirm your COD order with a <b>₹100 token</b> — it is adjusted into your order total.</li>
+        <li>The token is <b>fully refunded</b> if you cancel before dispatch.</li>
+        <li>Balance is payable at delivery — cash or UPI.</li>
+        <li>COD orders carry a ₹49 handling fee (waived above ₹1,999) because courier partners charge us for cash collection. Choosing prepaid saves this fee <b>and</b> earns 5% back.</li>
+        <li>Our team re-confirms COD orders on WhatsApp before dispatch — a quick reply keeps your order safe.</li>
+      </ul>`,
+    returns:`<h2>Returns &amp; Exchange Policy</h2>
+      <ul>
+        <li><b>7-day window</b> from delivery for returns and exchanges.</li>
+        <li>Items must be unused, unwashed, with original tags and packaging intact.</li>
+        <li><b>Size exchange is FREE once</b> — reverse pickup is on us.</li>
+        <li>Damaged, defective or wrong items are replaced free of charge.</li>
+        <li>Change-of-mind returns carry a ₹99 reverse pickup fee where pickup is available; otherwise self-ship to: Sohraaz Collections, 1st Floor, 56 Topsia Road, Kolkata – 700039.</li>
+        <li>Refunds: prepaid orders to the original payment method in 5–7 working days; COD orders via UPI or bank transfer.</li>
+        <li>Not returnable: customised/altered items and items marked Final Sale.</li>
+      </ul>`,
+    cancel:`<h2>Cancellation Policy</h2>
+      <ul>
+        <li>Cancel free of cost any time <b>before dispatch</b> — full refund including any token paid.</li>
+        <li>Once shipped, an order cannot be cancelled; use the 7-day return window instead.</li>
+        <li>Customised or altered items can be cancelled only before production begins.</li>
+        <li>COD token refunds are processed within 5–7 working days of cancellation.</li>
+      </ul>`,
+    promise:`<div class="promise-hero"><div class="big">The price you see is the price you pay.</div>
+      <p>Our announcements match our checkout. Always.</p></div>
+      <ul>
+        <li>Every cart and checkout shows the full breakdown — items, offers, shipping, COD fee.</li>
+        <li>We do not use inflated MRP strikethroughs. Our selling price is our honest price.</li>
+        <li>Prepaid and COD totals are shown side by side on every product page.</li>
+        <li>If you ever find a charge on your invoice that is not listed on this page, we refund it — no questions asked.</li>
+      </ul>`,
+  };
+  return `<section><div class="container">
+    <div class="sec-head"><h2>Policies</h2></div>
+    <div class="pol-tabs">${Object.entries(tabs).map(([k,v])=>`<button class="chip ${k===tab?"on":""}" data-pol="${k}">${v}</button>`).join("")}</div>
+    <div class="pol-body">${body[tab]}</div>
+  </div></section>`;
+}
+
+function renderAbout(){
+  return `<section><div class="container"><div class="about-wrap">
+    <div class="sec-head"><h2>Our Story</h2></div>
+    <h2>Welcome to Sohraaz Collections</h2>
+    <p>Born in the heart of Kolkata, Sohraaz Collections was created with a simple vision — to make ethnic wear feel stylish, modern, and truly special for today's generation. For years we served customers offline with premium ethnic wear and handcrafted designs; after immense love and trust from our showroom customers, we brought Sohraaz online to serve the same quality across India.</p>
+    <p>Traditional fashion is not just clothing — it is identity, culture and the memory of every celebration. Our promise is simple: honest prices, transparent charges, and craftsmanship you can feel.</p>
+    <p style="margin-top:18px"><a class="btn btn-dark" href="sohraaz-story.html">Discover our story — the film &amp; the journey
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+    </a></p>
+    <div class="about-addr">
+      <b>Showroom:</b> 1st Floor, 56 Topsia Road, beside Jora Mazar, Kolkata, West Bengal – 700039<br>
+      <b>Support:</b> +91 91239 47668 · care@sohraaz.com<br>
+      <b>GSTIN:</b> 19DIBPA3993Q12M
+    </div>
+  </div></div></section>`;
+}
+
+/* ============ router ============ */
+function router(){
+  const hash=location.hash||"#/";
+  const [path,query]=hash.split("?");
+  const q=new URLSearchParams(query||"");
+  const app=document.getElementById("app");
+  closeDrawer(); window.scrollTo(0,0);
+  if(path.startsWith("#/product/")) app.innerHTML=renderProduct(path.split("/")[2]);
+  else if(path==="#/shop") app.innerHTML=renderShop(q);
+  else if(path==="#/cart") app.innerHTML=renderCart();
+  else if(path==="#/checkout") app.innerHTML=renderCheckout();
+  else if(path==="#/success") app.innerHTML=renderSuccess();
+  else if(path==="#/policies") app.innerHTML=renderPolicies(q);
+  else if(path==="#/about") app.innerHTML=renderAbout();
+  else app.innerHTML=renderHome();
+  syncBadges();
+  tickOffer();
+}
+window.addEventListener("hashchange",router);
+
+/* ============ events (delegation) ============ */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon]");
+  if(!t) return;
+  if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
+  if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); t.classList.toggle("on",store.wish.includes(id)); save(); syncBadges(); toast(i>=0?"Removed from wishlist":"Saved to wishlist"); return; }
+  if(t.dataset.add){ const st=store.lastProduct; addToCart(t.dataset.add, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); openDrawer(); return; }
+  if(t.dataset.buynow){ const st=store.lastProduct; addToCart(t.dataset.buynow, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); location.hash="#/checkout"; return; }
+  if(t.dataset.inc||t.dataset.dec){
+    const [id,size]=(t.dataset.inc||t.dataset.dec).split("|");
+    const l=store.cart.find(x=>x.id===id&&x.size===size);
+    if(l){ l.qty+=(t.dataset.inc?1:-1); if(l.qty<=0) store.cart=store.cart.filter(x=>x!==l); save(); syncBadges(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); }
+    return;
+  }
+  if(t.dataset.remove){ const [id,size]=t.dataset.remove.split("|"); store.cart=store.cart.filter(x=>!(x.id===id&&x.size===size)); save(); syncBadges(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); toast("Removed from bag"); return; }
+  if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); return; }
+  if(t.dataset.size){ const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return; }
+  if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
+  if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
+  if(t.dataset.cat){ if(t.classList.contains("chip")){ location.hash="#/shop?cat="+encodeURIComponent(t.dataset.cat); } return; }
+  if(t.dataset.pol){ location.hash="#/policies?t="+t.dataset.pol; return; }
+  if(t.dataset.pay){ store.mode=t.dataset.pay; save(); router(); return; }
+  if(t.dataset.pdcoupon!==undefined){
+    const inp=document.getElementById("pdpCoupon");
+    if(inp.value.trim()){
+      store.coupon=inp.value.trim().toUpperCase();
+      save();
+      const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+      if(t.couponError){ toast(t.couponError); }
+      else { toast(`Coupon applied — ${t.offerLabel}`); router(); }
+    } else {
+      store.coupon="";
+      save();
+      toast("Coupon cleared");
+    }
+    return;
+  }
+  if(t.dataset.cartcoupon!==undefined){
+    const inp=document.getElementById("cartCoupon");
+    if(inp.value.trim()){
+      store.coupon=inp.value.trim().toUpperCase();
+      save();
+      const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+      if(t.couponError){ toast(t.couponError); }
+      else { toast(`Coupon applied — ${t.offerLabel}`); router(); }
+    } else {
+      store.coupon="";
+      save();
+      toast("Coupon cleared");
+    }
+    return;
+  }
+  if(t.dataset.placeorder!==undefined){
+    const name=document.getElementById("ckName"), phone=document.getElementById("ckPhone"), pin=document.getElementById("ckPin"), addr=document.getElementById("ckAddr");
+    if(!name.value.trim()||!phone.value.trim()||!addr.value.trim()||!/^\d{6}$/.test(pin.value.trim())||!/^\d{10}$/.test(phone.value.trim())){
+      toast("Please fill name, 10-digit phone, address and 6-digit PIN"); return;
+    }
+    store.lastTotals=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+    store.cart=[]; save(); syncBadges(); renderDrawer(); location.hash="#/success"; return;
+  }
+  if(t.dataset.pin!==undefined){
+    const v=document.getElementById("pinInput").value.trim();
+    document.getElementById("pinResult").textContent=/^\d{6}$/.test(v)?`Delivers in 3–5 business days to ${v} · COD serviceable`:"Please enter a valid 6-digit PIN code";
+    return;
+  }
+});
+document.getElementById("bagBtn").addEventListener("click",openDrawer);
+document.getElementById("drawerClose").addEventListener("click",closeDrawer);
+document.getElementById("overlay").addEventListener("click",closeDrawer);
+document.getElementById("burger").addEventListener("click",()=>document.getElementById("mnav").classList.toggle("open"));
+document.addEventListener("change",e=>{
+  if(e.target.id==="newCust"){ store.isNew=e.target.checked; save(); renderDrawer(); if(location.hash.startsWith("#/cart")||location.hash.startsWith("#/checkout")) router(); }
+  if(e.target.id==="sortSel"){ location.hash="#/shop?sort="+e.target.value+(new URLSearchParams(location.hash.split("?")[1]||"").get("cat")?"&cat="+new URLSearchParams(location.hash.split("?")[1]).get("cat"):""); }
+});
+/* announcement rotation */
+(function(){ let i=0; const spans=document.querySelectorAll("#announceTrack span");
+  setInterval(()=>{ spans[i].classList.remove("on"); i=(i+1)%spans.length; spans[i].classList.add("on"); },3400); })();
+
+/* exit-intent popup (desktop only, once per session) */
+if(!sessionStorage.getItem("sohraaz_popup")){
+  document.addEventListener("mouseout",e=>{ if(!e.relatedTarget&&e.clientY<10&&window.innerWidth>820){ document.getElementById("popup").classList.add("on"); sessionStorage.setItem("sohraaz_popup","1"); } });
+}
+document.getElementById("popupX").addEventListener("click",()=>document.getElementById("popup").classList.remove("on"));
+document.getElementById("popupOk").addEventListener("click",()=>{ document.getElementById("popup").classList.remove("on"); toast("Welcome code on its way — <b>10% off</b> your first order"); });
+document.getElementById("newsOk").addEventListener("click",()=>{ const el=document.getElementById("newsEmail"); if(el.value.trim()){ el.value=""; toast("Welcome to the Sohraaz world"); } });
+
+/* offer countdown — starts immediately, re-paints every second */
+setInterval(tickOffer,1000);
+
+router();
+tickOffer();
+</script>
+</body>
+</html>
