@@ -154,6 +154,8 @@
   .btn-dark:hover{background:var(--ink);color:#F1E8D7;border-color:var(--ink)}
   .btn-solid{background:var(--brown-900);color:#F1E8D7;border-color:var(--brown-900)}
   .btn-solid:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+  .btn-ghost{color:var(--ink);border-color:var(--tan)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--brown-850);background:#fff}
   .hero-cta{margin-top:30px}
   .hero-note{margin-top:26px;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#CBB18F}
   .hero-note b{color:#E2CEA6;font-weight:400}
@@ -768,6 +770,150 @@
   .rev-submit{width:100%;background:#241812;color:#F4E9D4;border:none;border-radius:12px;padding:15px;letter-spacing:.22em;text-transform:uppercase;font-family:var(--caps);font-size:10.5px;margin-top:18px;cursor:pointer;transition:background .2s}
   .rev-submit:hover{background:#3D2C20}
   @media (max-width:900px){.rev-layout{grid-template-columns:1fr}.rev-summary{text-align:left;display:flex;align-items:center;gap:22px;flex-wrap:wrap}.rev-summary .big{font-size:56px}.rev-bars{flex:1;min-width:200px}}
+
+  /* ============ WISHLIST PAGE ============ */
+  .wl-wrap{max-width:1280px;margin:0 auto;padding:44px 0 64px}
+  .wl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:30px}
+  .wl-kicker{font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:#8A7A63;display:block;margin-bottom:10px}
+  .wl-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(36px,5vw,54px);color:var(--ink);line-height:1}
+  .wl-head p{color:var(--muted);font-size:15.5px;margin-top:10px}
+  .wl-empty{text-align:center;padding:52px 20px 72px}
+  .wl-empty svg{width:66px;height:66px;stroke:var(--gold);stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 20px}
+  .wl-empty h3{font-family:var(--serif);font-weight:500;font-size:30px;color:var(--ink);margin-bottom:10px}
+  .wl-empty p{color:var(--muted);max-width:440px;margin:0 auto 24px;line-height:1.6}
+  .wl-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  /* ============ SIZE & FIT GUIDE MODAL ============ */
+  .sfg-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:16px 0 6px}
+  .sfg-table th,.sfg-table td{padding:9px 6px;border-bottom:1px solid #EDE7D5;text-align:center}
+  .sfg-table th{font-family:var(--caps);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A7A63;background:#F5F2E9}
+  .sfg-note{font-size:11px;color:#A5946F;line-height:1.55;border-top:1px dashed #E0D5C0;padding-top:12px;margin-top:6px}
+  .sfg-how{margin:14px 0 4px;padding:14px 16px;background:#F5F2E9;border-radius:12px}
+  .sfg-how b{font-family:var(--caps);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A63;display:block;margin-bottom:8px}
+  .sfg-how ol{margin-left:18px;font-size:13.5px;line-height:1.7;color:#3A2E22}
+  .sfg-row{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .size-link{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--brown-900);border-bottom:1.5px solid var(--gold);padding-bottom:2px;cursor:pointer;background:none;margin-top:12px}
+  .size-link svg{width:14px;height:14px;stroke:var(--gold);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  /* ============ RESTOCK WAITLIST ============ */
+  .restock-row{display:flex;align-items:center;gap:12px;margin-top:16px;padding:14px 16px;border:1px dashed #DCCEB6;border-radius:14px;background:#FBF8EE}
+  .restock-row svg{width:22px;height:22px;stroke:var(--brown-850);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .restock-row small{font-size:12.5px;color:#5A4632;line-height:1.45;display:block}
+  .restock-row b{font-size:13px;color:#241812}
+  .restock-btn{display:inline-flex;align-items:center;gap:8px;background:#241812;color:#F4E9D4;padding:11px 18px;border-radius:24px;font-family:var(--caps);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;flex:none}
+  .restock-btn svg{width:15px;height:15px;stroke:#D9BE93;stroke-width:1.8}
+  /* ============ SOHRAAZ ASSISTANT (CHAT) ============ */
+  .chat-fab{position:fixed;left:18px;bottom:22px;z-index:250;width:56px;height:56px;border-radius:50%;background:#241812;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(20,13,8,.35);transition:transform .2s}
+  .chat-fab:hover,.chat-fab:focus-visible{transform:scale(1.1)}
+  .chat-fab svg{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .chat-fab .chat-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
+  .chat-panel{position:fixed;left:16px;bottom:90px;z-index:260;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel.open{display:flex;animation:chatIn .28s ease}
+  @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .chat-head{background:#241812;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
+  .chat-head-av{width:42px;height:42px;border-radius:50%;background:#B2916B;color:#241812;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;flex:none}
+  .chat-head b{font-size:15.5px;display:block;letter-spacing:.02em}
+  .chat-head small{font-size:10.5px;color:#D9BE93;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
+  .chat-close{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,231,213,.25);color:#F4E9D4;font-size:19px;display:flex;align-items:center;justify-content:center}
+  .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#F5F2E9}
+  .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line}
+  .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#3A2E22}
+  .chat-msg.user{background:#241812;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
+  .chat-typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #E9E4D4;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px}
+  .chat-typing i{width:7px;height:7px;border-radius:50%;background:#B2916B;animation:chatBlink 1.2s infinite}
+  .chat-typing i:nth-child(2){animation-delay:.18s}.chat-typing i:nth-child(3){animation-delay:.36s}
+  @keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+  .chat-chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 12px;background:#F5F2E9}
+  .chat-chip{border:1.5px solid #DCCEB6;background:#fff;color:#4A3828;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--serif)}
+  .chat-chip:hover{border-color:#B2916B;color:#241812}
+  .chat-inputrow{display:flex;border-top:1px solid #E3DCCB;background:#fff}
+  .chat-inputrow input{flex:1;border:none;outline:none;padding:15px 16px;font-family:var(--serif);font-size:14px;background:transparent}
+  .chat-inputrow button{background:#241812;color:#D9BE93;padding:0 20px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .chat-wa{display:block;text-align:center;font-size:11px;color:#8A7A63;padding:8px;background:#fff;border-top:1px solid #EDE7D5}
+  .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
+  /* ============ ACCOUNT + LOYALTY ============ */
+  .acct-wrap{max-width:1180px;margin:0 auto;padding:44px 0 64px;display:grid;grid-template-columns:360px 1fr;gap:26px;align-items:start}
+  .acct-card{background:#FDFBF7;border:1px solid #E3DCCB;border-radius:18px;padding:24px}
+  .acct-hero{text-align:center}
+  .acct-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(140deg,#B2916B,#D9BE93);color:#241812;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:36px;margin:0 auto 14px}
+  .acct-hero h2{font-family:var(--serif);font-weight:500;font-size:26px;color:var(--ink)}
+  .acct-id{font-family:var(--caps);font-size:10px;letter-spacing:.24em;color:#8A7A63;text-transform:uppercase;margin-top:6px}
+  .acct-input{width:100%;margin-top:14px;padding:12px 14px;border:1.5px solid #E3DCCB;border-radius:12px;background:#fff;font-family:var(--serif);font-size:15px;outline:none}
+  .acct-input:focus{border-color:#B2916B}
+  .coin-wallet{margin-top:18px;background:#241812;border-radius:16px;padding:18px 20px;color:#F4E9D4;position:relative;overflow:hidden}
+  .coin-wallet::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(217,190,147,.25);top:-70px;right:-70px}
+  .coin-wallet small{font-family:var(--caps);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#D9BE93;display:block;margin-bottom:6px}
+  .coin-wallet .coin-n{font-family:var(--serif);font-size:44px;line-height:1;color:#fff}
+  .coin-wallet .coin-n span{font-size:16px;color:#D9BE93;margin-left:6px}
+  .coin-wallet .coin-sub{font-size:11px;color:#A5946F;margin-top:6px;position:relative}
+  .tier-track{display:flex;gap:6px;margin:14px 0 4px}
+  .tier-pip{flex:1;height:6px;border-radius:3px;background:#EDE7D5;position:relative}
+  .tier-pip.on{background:linear-gradient(90deg,#B2916B,#D9BE93)}
+  .tier-labels{display:flex;justify-content:space-between;font-family:var(--caps);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:#A5946F}
+  .tier-progress{margin-top:12px;font-size:12.5px;color:#5A4632}
+  .acct-sec{margin-top:26px}
+  .acct-sec h3{font-family:var(--caps);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A7A63;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .tier-list{display:flex;flex-direction:column;gap:8px}
+  .tier-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #E9E4D4;border-radius:12px;font-size:13.5px}
+  .tier-item b{min-width:88px;color:#241812}
+  .tier-item small{color:#8A7A63}
+  .tier-item.here{border-color:#B2916B;background:#FBF8EE}
+  .tier-item.here b{color:#8A6A3F}
+  .order-row{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #E9E4D4;border-radius:12px;font-size:13px;margin-bottom:8px}
+  .order-row b{color:#241812}
+  .order-row small{color:#8A7A63;display:block}
+  .ref-box{background:linear-gradient(140deg,#33241A,#241812);border-radius:16px;padding:20px;color:#F4E9D4}
+  .ref-box small{font-family:var(--caps);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#D9BE93;display:block;margin-bottom:8px}
+  .ref-code{display:flex;gap:10px;align-items:center;margin:12px 0}
+  .ref-code code{flex:1;background:rgba(240,231,213,.1);border:1.5px dashed rgba(217,190,147,.5);border-radius:12px;padding:13px;text-align:center;font-size:19px;letter-spacing:.22em;color:#fff;font-family:var(--caps)}
+  .ref-btn{background:#B2916B;color:#241812;border-radius:12px;padding:13px 16px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+  .ref-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#083A1E;border-radius:12px;padding:13px;font-size:13px;font-weight:700}
+  .ref-wa svg{width:17px;height:17px;fill:#083A1E}
+  /* ============ WEDDING LOOKBOOK ============ */
+  .lbk{max-width:1280px;margin:0 auto;padding:36px 0 70px}
+  .lbk-hero{position:relative;overflow:hidden;border-radius:26px;padding:96px 36px 84px;text-align:center;background:radial-gradient(1200px 500px at 50% -10%,#4A3828 0%,#241812 60%,#1A110A 100%);color:#F4E9D4}
+  .lbk-kicker{font-family:var(--caps);font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:#D9BE93;display:block;margin-bottom:18px}
+  .lbk-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.4vw,74px);line-height:1.02;letter-spacing:-.01em}
+  .lbk-hero h1 em{font-style:italic;color:#D9BE93}
+  .lbk-hero p{max-width:560px;margin:20px auto 0;color:#CBBBA0;font-size:17px;line-height:1.6}
+  .lbk-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+  .lbk-btn-gold{background:#B2916B;color:#241812;border-radius:28px;padding:16px 30px;font-family:var(--caps);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+  .lbk-btn-ghost{border:1.5px solid rgba(240,231,213,.4);color:#F4E9D4;border-radius:28px;padding:16px 30px;font-family:var(--caps);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+  .occ-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:36px 0}
+  .occ-tile{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#FDFBF7;text-align:center;padding:20px 8px 18px;transition:transform .25s,border-color .25s}
+  .occ-tile:hover{transform:translateY(-4px);border-color:#B2916B}
+  .occ-tile span{font-family:var(--caps);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5A4632}
+  .occ-tile small{display:block;font-size:10.5px;color:#A5946F;margin-top:6px;font-style:italic}
+  .lbk-sec{margin-top:44px}
+  .lbk-proof{margin-top:36px;background:#FDFBF7;border-left:3px solid var(--gold);border-radius:0 16px 16px 0;padding:20px 24px;font-style:italic;color:#4A3828;line-height:1.65}
+  .lbk-proof b{font-style:normal;display:block;margin-top:10px;font-size:12.5px;color:#8A6A3F;letter-spacing:.08em}
+  .lbk-kit{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px;align-items:center}
+  .lbk-kit-txt h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.4vw,40px);line-height:1.15}
+  .lbk-kit-txt p{color:var(--muted);margin-top:12px;line-height:1.65}
+  .lbk-kit-list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .lbk-kit-list li{display:flex;align-items:center;gap:10px;font-size:14.5px;color:#3A2E22}
+  .lbk-kit-list svg{width:17px;height:17px;stroke:var(--green);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .lbk-kit-card{background:#241812;border-radius:22px;padding:30px;color:#F4E9D4}
+  .lbk-kit-card small{font-family:var(--caps);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#D9BE93;display:block;margin-bottom:10px}
+  .lbk-kit-card h3{font-family:var(--serif);font-weight:500;font-size:24px}
+  .lbk-kit-card-row{display:flex;justify-content:space-between;border-bottom:1px solid rgba(240,231,213,.15);padding:13px 0;font-size:14px}
+  .lbk-kit-card-row span:first-child{color:#CBBBA0}
+  .lbk-kit-cta{display:block;background:#B2916B;color:#241812;border-radius:14px;padding:15px;text-align:center;font-family:var(--caps);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;margin-top:18px}
+  .lbk-faq{margin-top:44px}
+  .lbk-faq details{border-bottom:1px solid var(--line);padding:18px 4px}
+  .lbk-faq summary{cursor:pointer;font-size:16.5px;color:#241812;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .lbk-faq summary::after{content:"+";font-size:22px;color:#B2916B}
+  .lbk-faq details[open] summary::after{content:"−"}
+  .lbk-faq p{color:var(--muted);font-size:14.5px;line-height:1.65;margin-top:12px;max-width:760px}
+  @media (max-width:900px){
+    .acct-wrap{grid-template-columns:1fr;padding-top:28px}
+    .occ-row{grid-template-columns:repeat(3,1fr)}
+    .occ-row .occ-tile:nth-child(n+4){display:none}
+    .lbk-kit{grid-template-columns:1fr}
+    .lbk-hero{padding:64px 20px 60px}
+    .chat-panel{left:8px;bottom:82px}
+    .chat-fab{left:12px;bottom:84px}
+  }
+  .coin-earn{display:inline-flex;align-items:center;gap:10px;background:#241812;color:#D9BE93;border-radius:28px;padding:12px 22px;margin:18px auto 0;font-family:var(--caps);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+  .coin-earn b{color:#fff;font-size:15px}
 </style>
 </head>
 <body>
@@ -804,8 +950,8 @@
     <a class="logo" href="index.html"><img src="assets/extracted/Sohraaz-logo-transparent.png" alt="Sohraaz Collections"></a>
     <div class="actions">
       <button aria-label="Search" data-nav="#/shop"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
-      <button aria-label="Account" data-nav="#/about"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
-      <button aria-label="Wishlist" data-nav="#/shop"><svg class="icon sm" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg><span class="count" id="wishCount">0</span></button>
+      <button aria-label="Account" data-nav="#/account"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
+      <button aria-label="Wishlist" data-nav="#/wishlist"><svg class="icon sm" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg><span class="count" id="wishCount">0</span></button>
       <button aria-label="Bag" id="bagBtn"><svg class="icon sm" viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" id="bagCount">0</span></button>
     </div>
   </div>
@@ -813,7 +959,7 @@
     <a data-nav="#/shop" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>New Arrivals<small>Just landed</small></a>
     <a data-nav="#/shop" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Kurtas<small>Everyday elegant</small></a>
     <a data-nav="#/shop" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Festive Collection<small>Sweet Eid ready</small></a>
-    <a data-nav="#/shop" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 4.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wedding Edit<small>Groom &amp; crew</small></a>
+    <a data-nav="#/lookbook" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 4.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wedding Edit<small>Groom &amp; crew</small></a>
     <a data-nav="#/cart" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Bag<small>Your cart</small></a>
     <a data-nav="#/policies" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Policies<small>Ship &amp; returns</small></a>
     <a data-nav="#/about" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>About Sohraaz<small>Our story</small></a>
@@ -882,6 +1028,31 @@
   </form>
 </div>
 
+<!-- Size & Fit Guide modal (injected markup at load) -->
+<div id="sizeModalHost"></div>
+
+<!-- Sohraaz Assistant — chat -->
+<button class="chat-fab" id="chatFab" aria-label="Open Sohraaz Assistant chat">
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg>
+  <span class="chat-dot" aria-hidden="true"></span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Sohraaz Assistant">
+  <div class="chat-head">
+    <div class="chat-head-av">S</div>
+    <div><b>Sohraaz Assistant</b><small>Instant answers · 24×7</small></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">Namaste! I'm the Sohraaz Assistant. Ask me anything — orders, sizing, wedding styling, returns, offers — or tap a topic below.</div>
+  </div>
+  <div class="chat-chips" id="chatChips"></div>
+  <div class="chat-inputrow">
+    <input id="chatInput" type="text" placeholder="Type your question…" autocomplete="off" aria-label="Type your question">
+    <button id="chatSend">Send</button>
+  </div>
+  <div class="chat-wa">Prefer a human? <a href="https://wa.me/919123947668?text=Namaste! I need help with my Sohraaz order." target="_blank" rel="noopener">WhatsApp +91 91239 47668</a></div>
+</div>
+
 <!-- footer -->
 <footer>
   <div class="container">
@@ -896,6 +1067,8 @@
         <ul>
           <li><a data-nav="#/about">About Us</a></li>
           <li><a data-nav="#/shop">Shop Collections</a></li>
+          <li><a data-nav="#/lookbook">The Wedding Edit</a></li>
+          <li><a data-nav="#/account">My Account &amp; Coins</a></li>
           <li><a data-nav="#/policies?t=promise">Transparent Pricing Promise</a></li>
         </ul>
       </div>
@@ -1386,6 +1559,258 @@ function reviewsSectionHTML(pid){
   </div>`;
 }
 
+/* ============ WISHLIST PAGE ============ */
+function renderWishlist(){
+  const saved = store.wish.map(id=>P(id)).filter(Boolean);
+  const head = `<section><div class="wl-wrap"><div class="wl-head">
+    <div><span class="wl-kicker">Your Edit</span><h1>Wishlist</h1><p>${saved.length? saved.length + (saved.length>1?' pieces':' piece') + ' saved — the ones you keep coming back to.' : 'Everything you loved, gathered in one place.'}</p></div>
+    <a class="btn btn-dark" data-nav="#/shop">Continue shopping<svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+  </div>`;
+  if(!saved.length){
+    return head + `<div class="wl-empty">
+      <svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg>
+      <h3>Nothing saved yet</h3>
+      <p>Tap the heart on any product and it will wait for you here. No account, no password — just the pieces you love, held for you.</p>
+      <div class="wl-ctas"><a class="btn btn-solid" data-nav="#/shop">Explore the collection</a><a class="btn btn-ghost" data-nav="#/lookbook">The Wedding Edit</a></div>
+    </div></div></section>`;
+  }
+  return head + `<div class="prod-grid">${saved.map(prodCardHTML).join("")}</div></div></section>`;
+}
+
+/* ============ SIZE & FIT GUIDE ============ */
+const SIZE_CHART = [
+  {s:"XS", chest:"34", waist:"28", shoulder:"15.5", len:"40"},
+  {s:"S",  chest:"36", waist:"30", shoulder:"16",   len:"41"},
+  {s:"M",  chest:"38", waist:"32", shoulder:"16.5", len:"42"},
+  {s:"L",  chest:"40", waist:"34", shoulder:"17",   len:"43"},
+  {s:"XL", chest:"42", waist:"36", shoulder:"17.5", len:"44"},
+  {s:"XXL",chest:"44", waist:"38", shoulder:"18",   len:"45"},
+];
+function sizeGuideHTML(){
+  return `<div class="rev-modal" id="sizeModal" role="dialog" aria-modal="true" aria-labelledby="sfgTitle">
+    <div class="rev-form" style="max-width:560px">
+      <div class="rev-form-head">
+        <h3 id="sfgTitle" style="font-size:24px">Size &amp; Fit Guide</h3>
+        <button type="button" class="rev-form-close" data-sfg-close aria-label="Close">&times;</button>
+      </div>
+      <p class="rev-form-sub">Sohraaz kurtas run regular — neither skinny nor oversized. All measurements in inches.</p>
+      <table class="sfg-table">
+        <thead><tr><th>Size</th><th>Chest</th><th>Waist</th><th>Shoulder</th><th>Kurta length</th></tr></thead>
+        <tbody>${SIZE_CHART.map(r=>`<tr><td><b>${r.s}</b></td><td>${r.chest}&Prime;</td><td>${r.waist}&Prime;</td><td>${r.shoulder}&Prime;</td><td>${r.len}&Prime;</td></tr>`).join("")}</tbody>
+      </table>
+      <div class="sfg-how"><b>How to measure (2 minutes)</b>
+        <ol>
+          <li><b>Chest:</b> tape under the arms, across the fullest part — breathe normally.</li>
+          <li><b>Shoulder:</b> bone to bone across the back, standing straight.</li>
+          <li><b>Kurta length:</b> nape of neck down — our kurtas finish near mid-thigh.</li>
+        </ol>
+      </div>
+      <div class="sfg-row">
+        <a class="restock-btn" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! I need help with Sohraaz size — my chest is __ and my usual size is __.")}" target="_blank" rel="noopener" style="background:#25D366;color:#083A1E"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.07 2.9 1.22 3.1.15.2 2.11 3.23 5.12 4.52.72.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35z" fill="#083A1E" stroke="none"/></svg>Ask our fit expert</a>
+      </div>
+      <p class="sfg-note">Between two sizes? Choose the larger — our in-house stitching sits comfortably. Every piece is checked before dispatch; small hand-finished variations (±0.5&Prime;) are part of the craft, not defects. For exact fits on custom orders, WhatsApp us before you place the order.</p>
+    </div>
+  </div>`;
+}
+
+/* ============ REFERRAL ============ */
+function myReferralCode(){
+  let c = null;
+  try{ c = localStorage.getItem("sohraaz_referral"); }catch(e){}
+  if(!c){
+    const rand = Math.random().toString(36).slice(2, 6).toUpperCase().replace(/[^A-Z0-9]/g, "K");
+    c = "SOH" + rand + String(Math.floor(Math.random() * 90) + 10);
+    try{ localStorage.setItem("sohraaz_referral", c); }catch(e){}
+  }
+  return c;
+}
+function referralMsg(){
+  return "Namaste! I shop men's ethnic wear at Sohraaz Collections, Kolkata — real in-house stitching, honest prices. My pick for you: the festive edit. First order 10% off with code WELCOME10 → https://sprincezp.github.io/Sohraaz/";
+}
+
+/* ============ LOYALTY COINS + ACCOUNT ============ */
+const TIERS = [
+  {name:"Member",    at:0,   perks:"Early access to festive drops · Style notes on WhatsApp"},
+  {name:"Silver",    at:100, perks:"Free size exchange · Priority WhatsApp support"},
+  {name:"Gold",      at:300, perks:"Private preview of new collections · Free gift wrap"},
+  {name:"Signature", at:750, perks:"Direct line to the fit team · First access to hand-finished pieces"},
+];
+function getCoins(){ try{ return +(localStorage.getItem("sohraaz_coins")||0); }catch(e){ return 0; } }
+function getOrders(){ try{ return JSON.parse(localStorage.getItem("sohraaz_orders")||"[]"); }catch(e){ return []; } }
+function getProfile(){ try{ return JSON.parse(localStorage.getItem("sohraaz_profile")||"{}"); }catch(e){ return {}; } }
+function tierFor(coins){ let t = TIERS[0]; for(const tier of TIERS){ if(coins >= tier.at) t = tier; } return t; }
+function nextTier(coins){ for(const tier of TIERS){ if(coins < tier.at) return tier; } return null; }
+function tierIndex(name){ return TIERS.findIndex(t=>t.name===name); }
+function creditOrderCoins(ord){
+  const earned = Math.max(0, Math.floor((ord.total||0)/100));
+  const coins = getCoins() + earned;
+  try{
+    localStorage.setItem("sohraaz_coins", String(coins));
+    const orders = getOrders();
+    orders.unshift({id: ord.id, total: ord.total, coins: earned, date: Date.now(), mode: ord.mode||"prepaid"});
+    localStorage.setItem("sohraaz_orders", JSON.stringify(orders.slice(0, 40)));
+    localStorage.setItem("sohraaz_last_order", JSON.stringify({id: ord.id, earned: earned, balance: coins, total: ord.total}));
+  }catch(e){}
+  return {earned, balance: coins};
+}
+function renderAccount(){
+  const coins = getCoins();
+  const tier = tierFor(coins);
+  const nxt = nextTier(coins);
+  const profile = getProfile();
+  const orders = getOrders();
+  const tIdx = tierIndex(tier.name);
+  const toNext = nxt ? (nxt.at - coins) : 0;
+  const pct = nxt ? Math.min(100, Math.round((coins - tier.at) / (nxt.at - tier.at) * 100)) : 100;
+  const nameShown = profile.name || "Sohraaz Member";
+  const initials = (profile.name || "S").trim().split(/\s+/).map(w=>w[0]||"").slice(0,2).join("").toUpperCase() || "S";
+  return `<section><div class="acct-wrap">
+    <div class="acct-card acct-hero">
+      <div class="acct-avatar">${initials}</div>
+      <h2>${nameShown}</h2>
+      <div class="acct-id">Sohraaz ID · ${profile.id || myReferralCode().replace("SOH","SOZ")}</div>
+      <input class="acct-input" id="acctName" maxlength="48" placeholder="Your name" value="${profile.name||""}" aria-label="Your name">
+      <button class="btn btn-dark" data-acct-save style="width:100%;justify-content:center;margin-top:12px">Save name</button>
+      <div class="coin-wallet">
+        <small>Sohraaz Coins</small>
+        <div class="coin-n">${coins}<span>coins</span></div>
+        <div class="coin-sub">Earn 1 coin for every ₹100 you spend · Coins track your loyalty with Sohraaz</div>
+      </div>
+      <div style="margin-top:18px;text-align:left">
+        <div class="tier-track">${TIERS.map((t,i)=>`<div class="tier-pip ${i<=tIdx?'on':''}"></div>`).join("")}</div>
+        <div class="tier-labels">${TIERS.map(t=>`<span>${t.name}</span>`).join("")}</div>
+        <div class="tier-progress">${nxt ? `<b>${toNext} coins</b> to <b>${nxt.name}</b>` : `You are at <b>Signature</b> — our highest tier. Thank you.`}</div>
+      </div>
+    </div>
+    <div>
+      <div class="acct-card">
+        <div class="acct-sec" style="margin-top:0">
+          <h3>Your Tier</h3>
+          <div class="tier-list">
+            ${TIERS.map(t=>`<div class="tier-item ${t.name===tier.name?'here':''}"><b>${t.name}</b><small>${t.at===0?'From your first order':'From '+t.at+' coins'} · ${t.perks}</small></div>`).join("")}
+          </div>
+        </div>
+      </div>
+      <div class="acct-card" style="margin-top:18px">
+        <div class="acct-sec" style="margin-top:0">
+          <h3>Refer Sohraaz to a friend</h3>
+          <div class="ref-box">
+            <small>Share the craft · both of you get the first-order welcome code</small>
+            <div class="ref-code"><code>${myReferralCode()}</code><button class="ref-btn" data-ref-copy>Copy</button></div>
+            <a class="ref-wa" href="https://wa.me/?text=${encodeURIComponent(referralMsg())}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.07 2.9 1.22 3.1.15.2 2.11 3.23 5.12 4.52.72.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35z"/></svg>Share on WhatsApp</a>
+            <p style="font-size:11px;color:#A5946F;margin-top:10px">They get 10% off their first order with WELCOME10. No forms, no tracking links — just the craft, shared.</p>
+          </div>
+        </div>
+      </div>
+      <div class="acct-card" style="margin-top:18px">
+        <div class="acct-sec" style="margin-top:0">
+          <h3>Order History</h3>
+          ${orders.length ? orders.slice(0,8).map(o=>`<div class="order-row"><div><b>${o.id}</b><small>${new Date(o.date).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})} · ${o.mode==="cod"?"COD":"Prepaid"}</small></div><div style="text-align:right"><b>${inr(o.total)}</b><small>+${o.coins} coins</small></div></div>`).join("") : `<div style="text-align:center;padding:28px 10px;color:#A5946F;font-style:italic">No orders yet — your first piece is waiting.<br><a class="btn btn-solid" data-nav="#/shop" style="margin-top:16px">Start exploring</a></div>`}
+        </div>
+      </div>
+    </div>
+  </div></section>`;
+}
+
+/* ============ SOHRAAZ ASSISTANT (CHAT) ============ */
+const CHAT_KB = [
+  {k:["track","order status","where is my order"], a:"Once your order is confirmed, the tracking link reaches you on WhatsApp/SMS within 24 hours of dispatch. Can't find it? Call +91 91239 47668 with your order number."},
+  {k:["size","fit","chest","length"], a:"Sohraaz kurtas run regular — take your usual size, or size up if you prefer a relaxed drape. Full chart: tap 'Size & Fit Guide' on any product page. Still unsure? WhatsApp us your chest and height — we'll guide you."},
+  {k:["wedding","groom","sherwani","haldi","mehndi","sangeet"], a:"The Wedding Edit is built for the whole celebration — haldi to phere. See the looks here: https://sprincezp.github.io/Sohraaz/#/lookbook · For a full groom package (sherwani + churidar + styling), WhatsApp +91 91239 47668."},
+  {k:["return","exchange","refund"], a:"7 days from delivery. Items unused, tags intact. Size exchange is FREE once. Full policy: #/policies"},
+  {k:["code","discount","offer","coupon","welcome"], a:"WELCOME10 — 10% off your first order (max ₹200). Prepaid orders always get 5% off, and free shipping above ₹999. That's the complete, honest list — no hidden codes."},
+  {k:["cod","cash"], a:"Yes, Cash on Delivery is available on serviceable PIN codes. A ₹49 COD handling fee applies below ₹1,999 (shown at checkout before you pay). Choosing prepaid saves the fee and earns 5% off."},
+  {k:["delivery","shipping","how long"], a:"Metro cities: 3–5 business days. Other cities: 5–7. Remote: 7–10. Every order is dispatched from Kolkata with tracking shared on WhatsApp."},
+  {k:["fabric","cotton","giza","care"], a:"Our kurtas are stitched in-house from Giza cotton, paper cotton and poly-cotton blends. Wash separately, cold water, shade dry. Full care notes sit on every product page."},
+  {k:["store","showroom","visit","address"], a:"Sohraaz Collections, 12/1 Picnic Garden, 3rd Lane, Ground Floor, near 42 Bus Stand, Kolkata 700039. Open most days — call ahead +91 91239 47668."},
+  {k:["coin","loyalty","reward"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — see yours: #/account"},
+];
+const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
+function chatAnswer(q){
+  const s = q.toLowerCase();
+  for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
+  return "I can help with orders, sizing, wedding styling, returns, offers and our showroom. For anything else, a real human is one tap away: WhatsApp +91 91239 47668.";
+}
+function chatAddMsg(text, who){
+  const body = document.getElementById("chatBody");
+  if(!body) return;
+  const div = document.createElement("div");
+  div.className = "chat-msg " + who;
+  div.textContent = text;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+function chatBotReply(text){
+  const body = document.getElementById("chatBody");
+  if(!body) return;
+  const typing = document.createElement("div");
+  typing.className = "chat-typing";
+  typing.innerHTML = "<i></i><i></i><i></i>";
+  body.appendChild(typing);
+  body.scrollTop = body.scrollHeight;
+  setTimeout(()=>{ typing.remove(); chatAddMsg(chatAnswer(text), "bot"); }, 650);
+}
+
+/* ============ WEDDING LOOKBOOK ============ */
+const WED_OCCASIONS = [
+  {n:"Haldi", d:"Yellows & creams", q:"cat=Festive"},
+  {n:"Mehndi", d:"Greens & festive", q:"cat=Festive"},
+  {n:"Sangeet", d:"Standout sets", q:"cat=Wedding"},
+  {n:"Phere", d:"Sherwanis", q:"cat=Wedding"},
+  {n:"Reception", d:"The grand look", q:"cat=Wedding"},
+];
+const WED_PRODUCTS = ["p9","p10","p11","p12","p8"];
+function renderLookbook(){
+  const curated = WED_PRODUCTS.map(id=>P(id)).filter(Boolean);
+  return `<section><div class="lbk">
+    <div class="lbk-hero">
+      <span class="lbk-kicker">The Wedding Edit · Kolkata</span>
+      <h1>Haldi se <em>Phere</em> tak,<br>ek hi soch.</h1>
+      <p>From the turmeric morning to the varmala — sherwanis, bandhgalas and hand-embroidered kurtas, stitched in-house and fitted for the man of the day.</p>
+      <div class="lbk-ctas">
+        <a class="lbk-btn-gold" href="#/shop?cat=Wedding">Shop the Wedding Edit</a>
+        <a class="lbk-btn-ghost" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! I'm planning my/wedding-groom shopping. Help me pick the look.")}" target="_blank" rel="noopener">Talk to our stylist</a>
+      </div>
+    </div>
+    <div class="occ-row">${WED_OCCASIONS.map(o=>`<a class="occ-tile" data-nav="#/shop?${o.q}"><span>${o.n}</span><small>${o.d}</small></a>`).join("")}</div>
+    <div class="prod-grid">${curated.map(prodCardHTML).join("")}</div>
+    <div class="lbk-kit">
+      <div class="lbk-kit-txt">
+        <h2>Complete the<br>groom's kit.</h2>
+        <p>One look is never just a kurta. Here's how most grooms build their wedding wardrobe with us — piece by piece, fitted once, finished in time.</p>
+        <ul class="lbk-kit-list">
+          <li><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>Sherwani or mirror-work kurta — your statement piece</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>Churidar or elastic pyjama — the foundation</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>Custom fitting session at the showroom or over WhatsApp</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>One free size exchange if the fit isn't right</li>
+        </ul>
+      </div>
+      <div class="lbk-kit-card">
+        <small>Build your look</small>
+        <h3>The Groom's Checklist</h3>
+        <div style="margin-top:14px">
+          <div class="lbk-kit-card-row"><span>Wedding kurta / sherwani</span><span>₹2,549 – ₹10,499</span></div>
+          <div class="lbk-kit-card-row"><span>Churidar / pyjama</span><span>₹400 – ₹449</span></div>
+          <div class="lbk-kit-card-row"><span>Custom measurements</span><span>Complimentary</span></div>
+          <div class="lbk-kit-card-row"><span>Size exchange</span><span>FREE, once</span></div>
+        </div>
+        <a class="lbk-kit-cta" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! Groom shopping for wedding — help me build the full look.")}" target="_blank" rel="noopener">WhatsApp the wedding team</a>
+      </div>
+    </div>
+    <blockquote class="lbk-proof">
+      “Three piece suits and bridal dresses are so nice — even they customise also, at a very reasonable price. A must-visit shop for your wedding shopping or for any occasion.”
+      <b>Sazia Haque · Verified customer, sohraaz.com</b>
+    </blockquote>
+    <div class="lbk-faq">
+      <div class="sec-head"><h2>Wedding FAQs</h2></div>
+      <details><summary>Can I get a custom fit for my wedding?</summary><p>Yes — our atelier stitches in-house and takes custom measurements. Share your chest, waist, height and ceremony date on WhatsApp +91 91239 47668 before ordering, and we'll confirm your slot.</p></details>
+      <details><summary>Which look works for Haldi vs Phere?</summary><p>Haldi and Mehndi call for light, breathable festive kurtas (creams, yellows, greens). The Phere is for weight — sherwanis, mirror work and hand embroidery. Reception is where you can go boldest.</p></details>
+      <details><summary>Can the whole groomsmen party order together?</summary><p>Absolutely — coordinated shades and fabrics for the full crew. Message us on WhatsApp with headcount and dates, and we'll share options. B2B/bulk enquiries welcome.</p></details>
+      <details><summary>What if the fit is wrong before the wedding?</summary><p>One free size exchange, always. If anything goes wrong, reach us on WhatsApp — the wedding team handles these personally.</p></details>
+    </div>
+  </div></section>`;
+}
+
 function renderShop(q){
   const cat=q.get("cat")||"All";
   const sort=q.get("sort")||"featured";
@@ -1453,7 +1878,7 @@ function renderProduct(id){
         <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> Coupon code: <input type="text" id="pdpCoupon" placeholder="Enter code" style="width:140px;padding:4px 8px;border:1px solid var(--line);font-family:var(--serif);font-size:13px"> <button class="btn btn-dark" style="padding:6px 12px;font-size:11px" data-pdcoupon>Apply</button></li>
         <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> ${gap>0?`Add ${inr(gap)} more to your bag for FREE shipping`:`FREE shipping on this order (prepaid)`}</li>
       </ul>
-      <div class="opt-row"><span class="opt-label">Size</span><span class="opt-label" style="cursor:pointer" data-nav="#/policies">Size guide</span></div>
+      <div class="opt-row"><span class="opt-label">Size</span><button class="size-link" data-size-guide><svg viewBox="0 0 24 24"><path d="M3 8V4h18v4M3 20h18M6 4v16M12 4v16M18 4v16"/></svg>Size &amp; Fit Guide</button></div>
       <div class="sizes">${SIZES.map(s=>`<button class="size ${s===st.size?"on":""} ${outSz.includes(s)?"out":""}" data-size="${s}" ${outSz.includes(s)?"disabled":""}>${s}</button>`).join("")}</div>
       <div class="color-row"><span class="cl">Select Color</span><div class="color-sw">${p.swatches.map((s,i)=>`<button style="background:${s}" class="${i===0?"on":""}" data-color="${s}" aria-label="Color ${s}"></button>`).join("")}</div></div>
       <div class="opt-row"><span class="opt-label">Quantity</span></div>
@@ -1463,6 +1888,11 @@ function renderProduct(id){
         <button class="btn btn-solid" data-buynow="${p.id}">Buy it now</button>
       </div>
       <button class="pdp-wishlist ${store.wish.includes(p.id)?"on":""}" data-wish="${p.id}"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg><span>${store.wish.includes(p.id)?"Saved to wishlist":"Add to Wishlist"}</span></button>
+      <div class="restock-row">
+        <svg viewBox="0 0 24 24"><path d="M12 8v4l2.5 2.5M20.5 12a8.5 8.5 0 1 1-2.3-5.7M20.5 3v4.3h-4.3"/></svg>
+        <div><b>Size out of stock?</b><small>Tell us your size — we'll WhatsApp you the moment this is restitched in-house.</small></div>
+        <a class="restock-btn" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! Please restock \u201C" + p.name + "\u201D — my size is ___. Ping me on WhatsApp.")}" target="_blank" rel="noopener">Notify me<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
       <div class="ship-note">In stock — dispatched from our in-house Kolkata workshop within 24–48 hrs</div>
       <div class="pinrow"><input id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit PIN code"><button class="btn btn-dark" data-pin>Check</button></div>
       <div class="pin-result" id="pinResult"></div>
@@ -1653,11 +2083,14 @@ function renderCheckout(){
 
 function renderSuccess(){
   const t=store.lastTotals||computeTotals(cartItems(),"prepaid",store.isNew,store.coupon);
-  const ord="SOZ"+Math.floor(100000+Math.random()*900000);
+  let ord="SOZ"+Math.floor(100000+Math.random()*900000);
+  let earned=0, balance=getCoins();
+  try{ const lo=JSON.parse(localStorage.getItem("sohraaz_last_order")||"null"); if(lo){ ord=lo.id; earned=lo.earned||0; balance=lo.balance||balance; } }catch(e){}
   return `<div class="success">
     <div class="kicker" style="font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)">Order confirmed</div>
     <div class="big">Shukriya!</div>
     <div class="ordno">Order ${ord}</div>
+    <div class="coin-earn">Sohraaz Coins <b>+${earned}</b> · balance ${balance}</div>
     <div class="box"><table style="width:100%;border-collapse:collapse;font-size:15px">
       <tr><td style="padding:6px 0;color:#4C3B29">Items</td><td style="text-align:right">${inr(t.itemTotal)}</td></tr>
       ${t.offer?`<tr><td style="color:var(--green)">${store.coupon?store.coupon:t.offerLabel}</td><td class="neg" style="text-align:right;color:var(--green)">− ${inr(t.offer)}</td></tr>`:""}
@@ -1667,7 +2100,7 @@ function renderSuccess(){
       <tr><td style="border-top:1px solid var(--line);padding-top:10px;font-weight:600">Paid / Payable</td><td style="border-top:1px solid var(--line);padding-top:10px;font-weight:600;text-align:right">${inr(t.total)}</td></tr>
     </table></div>
     <p class="wa">You will get a WhatsApp confirmation with the tracking link within 24 hours. ${t.codFee?"Our team will call to re-confirm your COD order before dispatch.":"Dispatch in 1–3 business days."}</p>
-    <div style="margin-top:24px"><button class="btn btn-dark" data-nav="#/shop">Continue shopping</button></div>
+    <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="btn btn-dark" data-nav="#/shop">Continue shopping</button><button class="btn btn-ghost" data-nav="#/account">Your coins &amp; tier</button></div>
   </div>`;
 }
 
@@ -1835,6 +2268,9 @@ function router(){
   closeDrawer(); if(pathChanged) window.scrollTo(0,0);
   if(path.startsWith("#/product/")) app.innerHTML=renderProduct(path.split("/")[2]);
   else if(path==="#/shop") app.innerHTML=renderShop(q);
+  else if(path==="#/wishlist") app.innerHTML=renderWishlist();
+  else if(path==="#/account") app.innerHTML=renderAccount();
+  else if(path==="#/lookbook") app.innerHTML=renderLookbook();
   else if(path==="#/cart") app.innerHTML=renderCart();
   else if(path==="#/checkout") app.innerHTML=renderCheckout();
   else if(path==="#/success") app.innerHTML=renderSuccess();
@@ -1849,10 +2285,12 @@ window.addEventListener("hashchange",router);
 
 /* ============ events (delegation) ============ */
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close]");
+  const sm=e.target.closest('#sizeModal');
+  if(sm && e.target===sm){ sm.classList.remove('open'); document.body.style.overflow=''; return; }
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
-  if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); return; }
+  if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); if(location.hash==="#/wishlist"){ const app=document.getElementById("app"); if(app) app.innerHTML=renderWishlist(); } return; }
   if(t.dataset.add){ const st=store.lastProduct; addToCart(t.dataset.add, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); openDrawer(); return; }
   if(t.dataset.buynow){ const st=store.lastProduct; addToCart(t.dataset.buynow, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); location.hash="#/checkout"; return; }
   if(t.dataset.inc||t.dataset.dec){
@@ -1872,6 +2310,10 @@ document.addEventListener("click",e=>{
   if(t.dataset.revSrate){ revState.rating = +t.dataset.revSrate; renderRevStars(); return; }
   if(t.dataset.revRm){ revState.photos.splice(+t.dataset.revRm,1); renderRevPhotoPrev(); return; }
   if(t.dataset.revClose){ closeRevModal(); return; }
+  if(t.dataset.sizeGuide!==undefined){ const h=document.getElementById('sizeModalHost'); if(h && !document.getElementById('sizeModal')) h.innerHTML=sizeGuideHTML(); const m=document.getElementById('sizeModal'); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; } return; }
+  if(t.dataset.sfgClose!==undefined || (t.id==='sizeModal' && e.target===t)){ const m=document.getElementById('sizeModal'); if(m){ m.classList.remove('open'); document.body.style.overflow=''; } return; }
+  if(t.dataset.acctSave!==undefined){ const input=document.getElementById('acctName'); if(input){ const v=input.value.trim(); const prof=getProfile(); prof.name=v; try{ localStorage.setItem("sohraaz_profile", JSON.stringify(prof)); }catch(e2){} if(location.hash==="#/account"){ document.getElementById("app").innerHTML=renderAccount(); } toast(v?("Welcome, "+v.split(" ")[0]+" — name saved"):"Name cleared"); } return; }
+  if(t.dataset.refCopy!==undefined){ const code=myReferralCode(); const done=()=>{ t.textContent="Copied!"; setTimeout(()=>{ t.textContent="Copy"; },1600); }; if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(code).then(done).catch(done); } else { done(); } return; }
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
   if(t.dataset.cat){ if(t.classList.contains("chip")){ location.hash="#/shop?cat="+encodeURIComponent(t.dataset.cat); } return; }
@@ -1914,6 +2356,10 @@ document.addEventListener("click",e=>{
       toast("Please fill name, 10-digit phone, address and 6-digit PIN"); return;
     }
     store.lastTotals=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
+    try{
+      const prof=getProfile(); if(!prof.name && name.value.trim()){ prof.name=name.value.trim(); localStorage.setItem("sohraaz_profile", JSON.stringify(prof)); }
+    }catch(e){}
+    creditOrderCoins({id:"SOZ"+Math.floor(100000+Math.random()*900000), total:store.lastTotals.total, mode:store.mode});
     store.cart=[]; save(); syncBadges(); renderDrawer(); location.hash="#/success"; return;
   }
   if(t.dataset.pin!==undefined){
@@ -2223,6 +2669,24 @@ if(revForm){
   });
 }
 if(typeof renderRevStars === 'function') renderRevStars();
+
+/* ============ SOHRAAZ ASSISTANT — wiring ============ */
+(function initChat(){
+  const fab   = document.getElementById('chatFab');
+  const panel = document.getElementById('chatPanel');
+  const close = document.getElementById('chatClose');
+  const input = document.getElementById('chatInput');
+  const send  = document.getElementById('chatSend');
+  const chips = document.getElementById('chatChips');
+  if(chips) chips.innerHTML = CHAT_CHIPS.map(c=>`<button type="button" class="chat-chip">${c}</button>`).join('');
+  if(fab && panel) fab.addEventListener('click', ()=>{ panel.classList.toggle('open'); if(panel.classList.contains('open') && input) input.focus(); });
+  if(close && panel) close.addEventListener('click', ()=>panel.classList.remove('open'));
+  const fire = () => { if(!input) return; const v=input.value.trim(); if(!v) return; chatAddMsg(v,'user'); input.value=''; chatBotReply(v); };
+  if(send) send.addEventListener('click', fire);
+  if(input) input.addEventListener('keydown', e=>{ if(e.key==='Enter') fire(); });
+  if(chips) chips.addEventListener('click', e=>{ const b=e.target.closest('.chat-chip'); if(!b) return; const v=b.textContent.trim(); chatAddMsg(v,'user'); chatBotReply(v); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel) panel.classList.remove('open'); });
+})();
 
 router();
 tickOffer();
