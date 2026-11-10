@@ -242,7 +242,7 @@
   .crumb{font-family:var(--caps);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:26px 0 0}
   .crumb a{cursor:pointer}
   .crumb a:hover{color:var(--ink)}
-  .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;padding:28px 0 64px}
+  .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;padding:28px 0 0}
   .pdp-gallery .main{aspect-ratio:4/5;overflow:hidden;background:var(--cream-2)}
   .pdp-gallery .main img{width:100%;height:100%;object-fit:cover}
   .thumbs{display:flex;gap:10px;margin-top:12px}
@@ -341,6 +341,11 @@
   .pdp-desc{margin-top:26px;color:#4C3B29;font-size:16px}
   .pair-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
   .like-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+  .like-section{padding:48px 0 32px;border-top:1px solid var(--line)}
+  .like-section .sec-head{border-bottom:none;margin-bottom:18px;flex-direction:column;gap:6px}
+  .like-section .sec-head::before,.like-section .sec-head::after{flex:0 0 clamp(30px,10vw,90px)}
+  .like-section .sec-head h2{font-size:22px}
+  .like-section .sec-head p{font-size:14px;color:var(--muted);font-style:italic;text-transform:none;letter-spacing:0;text-indent:0}
   @media (max-width:1024px){.like-grid{grid-template-columns:repeat(4,1fr)}}
   @media (max-width:760px){.like-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
   .pair-nudge{margin-top:14px;text-align:center;font-style:italic;color:var(--green);font-size:15px}
@@ -1306,10 +1311,12 @@ function renderProduct(id){
         <div class="trust"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/></svg>Ships from Kolkata</div>
       </div>
       <div class="pdp-desc">${p.desc}</div>
-      <div class="sec-head" style="margin-top:40px"><h2 style="font-size:16px">You may also like</h2></div>
-      <div class="like-grid">${(()=>{ const alsoLike=[...new Set([...(p.pair||[]),"p1","p6","p8","p12","p13"])].filter(id=>id!==p.id).slice(0,4); return alsoLike.map(id=>prodCardHTML(P(id))).join(""); })()}</div>
-      <div class="pair-nudge">${gap>0?`Add ${inr(gap)} more and this order ships FREE (prepaid).`:`Pairing keeps you above ₹999 — FREE shipping stays.`}</div>
     </div>
+  </div>
+  <div class="like-section">
+    <div class="sec-head" style="margin-top:0"><h2 style="font-size:22px">You may also like</h2><p>Pair it with something — or just fall for another one.</p></div>
+    <div class="like-grid">${(()=>{ const alsoLike=[...new Set([...(p.pair||[]),"p1","p6","p8","p12","p13"])].filter(id=>id!==p.id).slice(0,4); return alsoLike.map(id=>prodCardHTML(P(id))).join(""); })()}</div>
+    <div class="pair-nudge">${gap>0?`Add ${inr(gap)} more and this order ships FREE (prepaid).`:`Pairing keeps you above ₹999 — FREE shipping stays.`}</div>
   </div>
   <div class="pdp-sticky" aria-hidden="false">
     <div class="ps-price"><small>Prepaid price</small><b>${inr(pre)}</b></div>
