@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — Sohraaz Collections | Born in Kolkata, Made In-House</title>
+<meta name="description" content="Born in the heart of Kolkata — Sohraaz Collections. Premium ethnic wear, handcrafted in-house at our Picnic Garden workshop and shipped across India. The story of tradition, style and confidence.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="assets/extracted/newlogo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Sohraaz Collections",
+  "url": "https://sohraaz.com/",
+  "logo": "https://sohraaz.com/cdn/shop/files/newlogo_600x.png",
+  "legalName": "Sohraaz Collections",
+  "description": "Kolkata-born house of men's ethnic wear — kurtas, sherwanis, Nehru jackets — crafted in-house and shipped across India.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12/1, Picnic Garden, 3rd Lane, Ground Floor (near 42 Bus Stand)",
+    "addressLocality": "Kolkata",
+    "addressRegion": "West Bengal",
+    "postalCode": "700039",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-91239-47668",
+    "email": "care@sohraaz.com",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Hindi", "Bengali"]
+  },
+  "sameAs": [
+    "https://www.instagram.com/sohraazcollections",
+    "https://www.facebook.com/sohraazcollections"
+  ]
+}
+</script>
+<style>
+:root{
+  --cream:#EAE3D3;
+  --paper:#FDFBF7;
+  --ink:#2C2117;
+  --brown-900:#3D2C20;
+  --brown-850:#4A3828;
+  --brown-700:#55402D;
+  --gold:#B2916B;
+  --gold-light:#D9BE93;
+  --line:#C9BBA1;
+  --line-dark:rgba(240,231,213,.22);
+  --muted:#8B7B63;
+  --radius:14px;
+  --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --caps:'Marcellus', 'Cormorant Garamond', Georgia, serif;
+  --shadow:0 18px 44px rgba(43,28,16,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,100% - 48px);margin-inline:auto}
+.skip-link{position:absolute;left:-9999px;top:20px;z-index:1000;background:var(--gold);color:var(--ink);padding:8px 16px;font-family:var(--caps);text-transform:uppercase;font-size:12px;letter-spacing:.14em}
+.skip-link:focus{left:20px}
+.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--caps);letter-spacing:.18em;text-transform:uppercase;font-size:13px;padding:15px 30px;border:1px solid transparent;border-radius:2px;transition:transform .25s,background .25s,color .25s,border-color .25s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#F4E9D4}
+.btn-dark:hover{background:var(--brown-700)}
+.btn-outline{border-color:rgba(244,233,212,.6);color:#F4E9D4}
+.btn-outline:hover{background:#F4E9D4;color:var(--ink)}
+.btn-gold{background:var(--gold);color:#2C2117}
+.btn-gold:hover{background:#C6A578}
+.overline{font-family:var(--caps);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px}
+.sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.15}
+.sec-head p{max-width:420px;color:#5A4632;font-size:16px}
+
+/* ============ header ============ */
+.header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--line)}
+.header-in{position:relative;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav ul{display:flex;gap:26px;list-style:none}
+.nav a{font-family:var(--caps);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4C3B29;padding:6px 2px;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.nav a:hover{color:var(--ink);border-color:var(--gold)}
+.nav a.active{color:var(--ink);border-color:var(--gold)}
+.logo{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;cursor:pointer}
+.logo img{height:44px;width:auto;display:block}
+.header-actions{display:flex;align-items:center;gap:16px}
+.wa-icon{display:inline-flex;color:#1E7A34;transition:transform .25s}
+.wa-icon:hover{transform:scale(1.12)}
+.burger{display:none;color:var(--ink);padding:6px}
+.mnav{display:none;background:var(--cream);border-bottom:1px solid var(--line)}
+.mnav.open{display:block}
+.mnav a{display:block;padding:14px 24px;font-family:var(--caps);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-top:1px solid var(--line)}
+
+/* ============ hero ============ */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--brown-900)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:saturate(.92) brightness(.72)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(75deg,rgba(30,20,13,.88) 0%,rgba(30,20,13,.62) 38%,rgba(30,20,13,.18) 75%,rgba(30,20,13,.35) 100%)}
+.hero-inner{position:relative;z-index:2;padding:120px 0 72px;max-width:820px}
+.hero h1{font-weight:500;font-size:clamp(44px,6.4vw,76px);line-height:1.04;color:#F6EEDD;letter-spacing:.01em;margin:18px 0 22px}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero p{font-size:clamp(17px,1.6vw,21px);color:#E4D5BB;max-width:520px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
+.hero-facts{margin-top:40px;display:flex;gap:28px;flex-wrap:wrap;font-family:var(--caps);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#CBB18F}
+.hero-facts span{display:flex;align-items:center;gap:10px}
+.hero-facts i{width:5px;height:5px;background:var(--gold);border-radius:50%;display:inline-block}
+.scroll-cue{position:absolute;z-index:2;bottom:26px;right:36px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#D8C7A9;font-family:var(--caps);font-size:9px;letter-spacing:.34em;text-transform:uppercase;writing-mode:vertical-rl}
+.scroll-cue::after{content:"";width:1px;height:56px;background:linear-gradient(#E4D5BB,transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.6);opacity:.5}50%{transform:scaleY(1);opacity:1}}
+
+/* ============ trust strip ============ */
+.trust-strip{background:var(--brown-850);border-bottom:1px solid rgba(255,255,255,.08)}
+.trust-strip-in{display:grid;grid-template-columns:repeat(5,1fr)}
+.ts-item{padding:16px 16px;border-left:1px solid rgba(255,255,255,.09);display:flex;flex-direction:column;gap:3px;align-items:center;text-align:center}
+.ts-item:first-child{border-left:none}
+.ts-item b{font-family:var(--caps);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#E4D5BB;white-space:nowrap}
+.ts-item span{font-size:10.5px;color:#A5946F}
+
+/* ============ film ============ */
+.film{background:#211510;padding:96px 0}
+.film .overline{display:block;text-align:center}
+.film h2{color:#F6EEDD;text-align:center;font-weight:500;font-size:clamp(30px,4vw,46px);margin:16px 0 8px}
+.film .film-sub{text-align:center;color:#A5946F;font-style:italic;margin-bottom:44px}
+.film-frame{position:relative;max-width:940px;margin:0 auto;border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#000}
+.film-frame video{width:100%;aspect-ratio:16/9;display:block}
+.film-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(rgba(20,12,7,.45),rgba(20,12,7,.55));cursor:pointer;transition:opacity .35s}
+.film-overlay:hover{background:linear-gradient(rgba(20,12,7,.3),rgba(20,12,7,.42))}
+.film-overlay.hidden{opacity:0;pointer-events:none}
+.play-ring{width:96px;height:96px;border:1.5px solid var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(20,12,7,.4);transition:transform .3s}
+.film-overlay:hover .play-ring{transform:scale(1.08)}
+.play-ring svg{width:34px;height:34px;fill:var(--gold-light);margin-left:6px}
+.film-overlay span{font-family:var(--caps);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E4D5BB}
+.film-note{max-width:940px;margin:22px auto 0;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#8B7B63;font-size:13px}
+.film-note b{color:#E4D5BB;font-family:var(--caps);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+
+/* ============ chapters ============ */
+.chapters{padding:96px 0 40px}
+.chapter{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;padding:44px 0;border-top:1px solid var(--line)}
+.chapter:first-of-type{border-top:none}
+.chapter:nth-child(even){grid-template-columns:1.1fr 0.9fr}
+.chapter:nth-child(even) .chapter-media{order:2}
+.chapter-num{font-family:var(--caps);font-size:11px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.chapter h3{font-weight:500;font-size:clamp(26px,2.6vw,38px);line-height:1.15;margin-bottom:14px}
+.chapter p{color:#4C3B29;font-size:17px}
+.chapter p em{font-style:italic;color:var(--brown-700)}
+.chapter-media{border-radius:var(--radius);overflow:hidden;box-shadow:0 16px 40px rgba(43,28,16,.22);border:1px solid var(--line)}
+.chapter-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/4.6;object-position:center}
+
+/* ============ pull quotes ============ */
+.pullquote{padding:64px 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper)}
+.pullquote blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,40px);line-height:1.3;color:var(--brown-900);max-width:900px;margin:0 auto}
+.pullquote blockquote span{color:var(--gold)}
+
+/* ============ pillars ============ */
+.pillars{padding:96px 0}
+.pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--paper)}
+.pillar{padding:34px 28px;border-left:1px solid var(--line)}
+.pillar:first-child{border-left:none}
+.pillar-icon{width:52px;height:52px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--brown-900);margin-bottom:16px}
+.pillar h3{font-family:var(--caps);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;color:var(--brown-900)}
+.pillar p{font-size:14.5px;color:#5A4632;line-height:1.55}
+
+/* ============ reviews ============ */
+.love{background:var(--brown-900);padding:96px 0;color:#F4E9D4}
+.love .sec-head h2{color:#F4E9D4}
+.love .sec-head p{color:#CBB18F}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.review{background:rgba(255,255,255,.035);border:1px solid var(--line-dark);border-radius:var(--radius);padding:28px 26px;display:flex;flex-direction:column;gap:16px}
+.review p{font-style:italic;font-size:16px;color:#EDE1CB;line-height:1.6}
+.review-foot{display:flex;align-items:center;gap:12px;margin-top:auto}
+.review-foot img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold)}
+.review-foot b{display:block;font-size:15px;font-weight:600}
+.verified{display:flex;align-items:center;gap:6px;font-family:var(--caps);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#9FBE9B}
+.verified svg{width:12px;height:12px;stroke:#9FBE9B}
+.love-note{margin-top:26px;text-align:center;font-size:12.5px;color:#8B7B63;font-style:italic}
+
+/* ============ visit ============ */
+.visit{padding:96px 0}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
+.visit h2{font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.12;margin:16px 0 18px}
+.visit-address{font-size:19px;color:#4C3B29}
+.visit-address b{color:var(--ink)}
+.visit-meta{margin:22px 0 30px;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.visit-meta a{color:var(--brown-900);border-bottom:1px solid var(--gold)}
+.visit-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 14px 36px rgba(43,28,16,.2);min-height:380px}
+.map-wrap iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+
+/* ============ cta band ============ */
+.cta-band{background:linear-gradient(120deg,#2A1D12,#3D2C20);padding:88px 0;text-align:center}
+.cta-band h2{color:#F6EEDD;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.15;max-width:820px;margin:0 auto 28px}
+.cta-band h2 em{font-style:italic;color:var(--gold-light)}
+.cta-band .hero-ctas{justify-content:center}
+
+/* ============ footer ============ */
+.footer{background:#241812;color:#CBB18F;padding:56px 0 28px}
+.footer-in{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:44px;align-items:start}
+.f-logo img{height:46px;width:auto}
+.f-tag{font-size:13px;color:#8B7B63;margin-top:10px;font-style:italic}
+.f-h{font-family:var(--caps);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#E4D5BB;margin-bottom:12px}
+.f-col a{display:block;font-size:14px;padding:4px 0;color:#A5946F;transition:color .25s}
+.f-col a:hover{color:#F4E9D4}
+.socials{display:flex;gap:12px}
+.socials a{display:inline-flex;color:#CBB18F;border:1px solid var(--line-dark);border-radius:50%;width:40px;height:40px;align-items:center;justify-content:center;transition:color .25s,border-color .25s}
+.socials a:hover{color:#F4E9D4;border-color:var(--gold)}
+.f-bottom{border-top:1px solid var(--line-dark);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#8B7B63}
+
+/* ============ responsive ============ */
+@media (max-width:1024px){
+  .nav{display:none}
+  .burger{display:inline-flex}
+  .header-in{justify-content:flex-start;gap:14px}
+  .logo{position:static;transform:none}
+  .logo img{height:34px}
+  .header-actions{margin-left:auto}
+  .chapter,.chapter:nth-child(even){grid-template-columns:1fr;gap:26px}
+  .chapter:nth-child(even) .chapter-media{order:0}
+  .chapter-media img{aspect-ratio:16/11}
+  .pillar-grid{grid-template-columns:repeat(2,1fr)}
+  .pillar:nth-child(3),.pillar:nth-child(4){border-top:1px solid var(--line)}
+  .pillar:nth-child(3){border-left:none}
+  .review-grid{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .trust-strip-in{grid-template-columns:repeat(3,1fr)}
+  .ts-item{border-left:none;border-top:1px solid rgba(255,255,255,.09)}
+  .ts-item:nth-child(-n+3){border-top:none}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .footer-in{grid-template-columns:1fr 1fr}
+  .scroll-cue{display:none}
+}
+@media (max-width:640px){
+  .container{width:min(1180px,100% - 32px)}
+  .header-in{height:60px}
+  .hero-inner{padding:96px 0 56px}
+  .hero h1{font-size:clamp(38px,11vw,52px)}
+  .trust-strip-in{grid-template-columns:repeat(2,1fr)}
+  .ts-item:nth-child(-n+2){border-top:none}
+  .pillar-grid{grid-template-columns:1fr}
+  .pillar{border-left:none;border-top:1px solid var(--line)}
+  .pillar:first-child{border-top:none}
+  .footer-in{grid-template-columns:1fr}
+  .hero-facts{gap:16px}
+  .film-note{flex-direction:column;align-items:flex-start;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .scroll-cue::after{animation:none}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- header -->
+<header class="header" id="header">
+  <div class="container header-in">
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav" aria-label="Primary"><ul>
+      <li><a href="sohraaz-homepage-template.html">Home</a></li>
+      <li><a href="sohraaz-full-store-template.html#/shop">Shop</a></li>
+      <li><a class="active" href="sohraaz-story.html" aria-current="page">Our Story</a></li>
+      <li><a href="#visit">Showroom</a></li>
+    </ul></nav>
+    <a class="logo" href="sohraaz-homepage-template.html" aria-label="Sohraaz Collections — home">
+      <img src="assets/extracted/Sohraaz-logo-transparent.png" alt="Sohraaz Collections" height="44">
+    </a>
+    <div class="header-actions">
+      <a class="wa-icon" href="https://wa.me/919123947668?text=Namaste! Sohraaz Collections ke baare mein jaanna chahta hoon." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg class="icon" viewBox="0 0 24 24" style="width:26px;height:26px"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9.5 10.5c.4 1.6 3 4.2 4.6 4.6.4-.3 1-1.2 1.3-1.6"/></svg>
+      </a>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="sohraaz-homepage-template.html">Home</a>
+    <a href="sohraaz-full-store-template.html#/shop">Shop the Collection</a>
+    <a href="sohraaz-story.html">Our Story</a>
+    <a href="#visit">Visit the Showroom</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-label="Sohraaz Collections — our story">
+  <video id="heroVideo" src="assets/extracted/Sohraaz_story.mp4" autoplay muted loop playsinline preload="auto" poster="assets/extracted/sohraaz_story_poster.jpg" aria-hidden="true"></video>
+  <div class="container hero-inner">
+    <span class="overline">Our Story · Born in Kolkata</span>
+    <h1>Tradition,<br><em>stitched with intention.</em></h1>
+    <p>From a showroom on Picnic Garden to homes across India — premium ethnic wear, made in-house, cut for real life and worn for the biggest moments.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-gold" href="#film">Watch the story
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+      <a class="btn btn-outline" href="sohraaz-full-store-template.html#/shop">Shop the collection
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="hero-facts">
+      <span><i></i>Kolkata Showroom First</span>
+      <span><i></i>In-House Manufacturing</span>
+      <span><i></i>Ships Across India</span>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust-strip" role="region" aria-label="Why shop with us">
+  <div class="trust-strip-in">
+    <div class="ts-item"><b>Free shipping</b><span>On orders above ₹999</span></div>
+    <div class="ts-item"><b>COD available</b><span>Cash on delivery pan-India</span></div>
+    <div class="ts-item"><b>In-house made</b><span>Designed &amp; stitched by us</span></div>
+    <div class="ts-item"><b>GST verified</b><span>19DIBPA3993Q12M</span></div>
+    <div class="ts-item"><b>10% off first order</b><span>Code WELCOME10</span></div>
+  </div>
+</div>
+
+<!-- ================= THE FILM ================= -->
+<section class="film" id="film" aria-label="Watch the Sohraaz film">
+  <div class="container">
+    <span class="overline">The Film</span>
+    <h2>26 Seconds. The Whole Story.</h2>
+    <p class="film-sub">From raw fabric to the man who wears it — press play.</p>
+    <div class="film-frame">
+      <video id="filmVideo" src="assets/extracted/Sohraaz_story.mp4" preload="none" poster="assets/extracted/sohraaz_story_poster.jpg" controls playsinline aria-label="Sohraaz — The Story (26 seconds, with audio)"></video>
+      <button class="film-overlay" id="filmOverlay" aria-label="Play the Sohraaz story video with sound">
+        <span class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span>Play with sound</span>
+      </button>
+    </div>
+    <div class="film-note">
+      <span><b>Sohraaz — The Story</b></span>
+      <span>Shot for Sohraaz Collections · 0:26 · Contains audio</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHAPTERS ================= -->
+<section class="chapters" aria-label="The chapters of our journey">
+
+  <article class="chapter">
+    <div class="chapter-media">
+      <img src="assets/extracted/DSC_6025.jpg" alt="Off White Giza Cotton Moti Work Kurta — a signature Sohraaz wedding piece" loading="lazy">
+    </div>
+    <div class="chapter-copy">
+      <div class="chapter-num">01 · Born in Kolkata</div>
+      <h3>A vision stitched into cloth</h3>
+      <p>Sohraaz Collections was born in the heart of Kolkata with one simple vision — to make ethnic wear feel <em>stylish, modern, and truly special</em> for today's generation.</p>
+      <p style="margin-top:12px">We believe traditional fashion is not just clothing. It is identity, culture, emotion — and the memories wrapped into every celebration.</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="chapter-media">
+      <img src="assets/extracted/sohraaz_story_poster.jpg" alt="Hands working on gold embroidery — the Sohraaz workshop at work" loading="lazy">
+    </div>
+    <div class="chapter-copy">
+      <div class="chapter-num">02 · Made by Us, Not by Middlemen</div>
+      <h3>One workshop. Every detail.</h3>
+      <p>We are not just sellers — <em>we are the manufacturer</em>. Every kurta, sherwani and Nehru jacket is designed and stitched at our own Kolkata workshop, checked piece by piece before it reaches you.</p>
+      <p style="margin-top:12px">That is why the stitching holds, the fabric feels real, and the fit works — and why honest pricing is possible without cutting corners.</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="chapter-media">
+      <img src="assets/extracted/DSC_5757.jpg" alt="White Cotton Plain Kurta — the Essential Wear at the heart of the Sohraaz collection" loading="lazy">
+    </div>
+    <div class="chapter-copy">
+      <div class="chapter-num">03 · The Offline Years</div>
+      <h3>Decades of trust, one showroom at a time</h3>
+      <p>For years, Kolkata walked into our <em>Picnic Garden showroom</em> — for Eid, weddings, puja and first impressions. Every customer was fitted, styled and sent home feeling like the best version of themselves.</p>
+      <p style="margin-top:12px">The love was so real, so repeated, that one question answered itself: why should only Kolkata have access to this?</p>
+    </div>
+  </article>
+
+  <article class="chapter">
+    <div class="chapter-media">
+      <img src="assets/extracted/DSC_6020.jpg" alt="Textured festive kurta — Sohraaz Now ships across India" loading="lazy">
+    </div>
+    <div class="chapter-copy">
+      <div class="chapter-num">04 · Online, The Sohraaz Way</div>
+      <h3>The same warmth — now at your doorstep</h3>
+      <p>We took Sohraaz online so the <em>same quality, style and experience</em> that filled our showroom could reach homes across India.</p>
+      <p style="margin-top:12px">Same fabrics. Same craftsmanship. Same honest pricing. Just delivered pan-India — with COD, free shipping above ₹999, and the showroom's warmth behind every WhatsApp chat.</p>
+    </div>
+  </article>
+
+</section>
+
+<!-- ================= PULL QUOTE 1 ================= -->
+<section class="pullquote" aria-label="Sohraaz philosophy">
+  <div class="container">
+    <blockquote>“Desi pehchaan ko modern style ke saath<br><span>carry karna hi asli swag hai.”</span></blockquote>
+  </div>
+</section>
+
+<!-- ================= PILLARS ================= -->
+<section class="pillars" aria-label="What we stand for">
+  <div class="container">
+    <div class="sec-head">
+      <h2>What made us,<br>and what keeps us.</h2>
+      <p>Every Sohraaz piece passes through four promises — from the first sketch to the final stitch.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 15l9 5 9-5M3 10l9 5 9-5M3 5l9 5 9-5z"/></svg></div>
+        <h3>Premium Fabrics</h3>
+        <p>Carefully selected Giza cotton, paper cotton and blends — breathable, drape-right and made for Indian weather.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l4 2 4-6 4 6 2-4"/><circle cx="12" cy="6" r="1"/></svg></div>
+        <h3>Handcrafted Detail</h3>
+        <p>Moti work, embroidery and finish hand-checked at our workshop. It is the difference you feel in one wear.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></div>
+        <h3>Honest Pricing</h3>
+        <p>We are the manufacturer — no middlemen, no games. The price you see is the price you pay.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 9 9c0 4.5-3 8.4-9 9-6-.6-9-4.5-9-9a9 9 0 0 1 9-9z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Comfortable Fit</h3>
+        <p>Cut for real bodies. S to XXL ready, and custom fit on request — because confidence starts with comfort.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PULL QUOTE 2 ================= -->
+<section class="pullquote" aria-label="Sohraaz philosophy">
+  <div class="container">
+    <blockquote>“Har outfit sirf kapda nahi hota,<br><span>kabhi kabhi woh confidence bhi hota hai.”</span></blockquote>
+  </div>
+</section>
+
+<!-- ================= LOVED BY CUSTOMERS ================= -->
+<section class="love" aria-label="Reviews from our customers">
+  <div class="container">
+    <div class="sec-head">
+      <h2>The people who<br>wear us.</h2>
+      <p>Real, verified reviews from customers — the same warmth our showroom is famous for, now online.</p>
+    </div>
+    <div class="review-grid">
+      <figure class="review">
+        <p>“The collections are too good. We visited this shop for the first time and I was too much satisfied with their behaviour, the collections and everything. The price is too reasonable — a must visit for any festive, wedding, season shopping.”</p>
+        <div class="review-foot">
+          <img src="assets/extracted/huzaifa_Salam_150x150.png" alt="huzaifa Salam, verified customer">
+          <div>
+            <b>huzaifa Salam</b>
+            <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Verified Customer</span>
+          </div>
+        </div>
+      </figure>
+      <figure class="review">
+        <p>“Three-piece suits and bridal dresses are so nice — even they customise also, at a very reasonable price. A must-visit shop for your wedding shopping or for any occasion.”</p>
+        <div class="review-foot">
+          <img src="assets/extracted/Sazia_Haque_150x150.png" alt="Sazia Haque, verified customer">
+          <div>
+            <b>Sazia Haque</b>
+            <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Verified Customer</span>
+          </div>
+        </div>
+      </figure>
+      <figure class="review">
+        <p>“Sohraaz the name of the brand. I like its products for good quality and fitting as well as a better experience. And their staff behaviour — good, soft and polite welcome.”</p>
+        <div class="review-foot">
+          <img src="assets/extracted/Md_Akram_150x150.png" alt="Md Akram, verified customer">
+          <div>
+            <b>Md Akram</b>
+            <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Verified Customer</span>
+          </div>
+        </div>
+      </figure>
+    </div>
+    <p class="love-note">Verified customer reviews as published on sohraaz.com · Sohraaz Collections, Kolkata</p>
+  </div>
+</section>
+
+<!-- ================= VISIT ================= -->
+<section class="visit" id="visit" aria-label="Visit our showroom">
+  <div class="container visit-grid">
+    <div>
+      <span class="overline">Visit The Showroom</span>
+      <h2>Nothing beats<br>trying it on.</h2>
+      <p class="visit-address"><b>Sohraaz Collections</b><br>12/1, Picnic Garden, 3rd Lane, Ground Floor<br>near 42 Bus Stand, Kolkata — 700039</p>
+      <div class="visit-meta">
+        <span>📞 <a href="tel:+919123947668">+91 91239 47668</a></span>
+        <span>✉️ <a href="mailto:care@sohraaz.com">care@sohraaz.com</a></span>
+        <span>🧾 GSTIN: 19DIBPA3993Q12M</span>
+      </div>
+      <div class="visit-ctas">
+        <a class="btn btn-dark" href="https://www.google.com/maps/search/12/1+Picnic+Garden+3rd+Lane+Kolkata+700039" target="_blank" rel="noopener">Get directions
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 3v3M4.5 12l2-1M17 11l2.5 1M7 18h10M9 21h6"/><path d="M12 8a4 4 0 0 1 4 4c0 2.8-4 8-4 8s-4-5.2-4-8a4 4 0 0 1 4-4z"/></svg>
+        </a>
+        <a class="btn btn-outline" style="color:var(--ink);border-color:var(--ink)" href="https://wa.me/919123947668?text=Namaste! Showroom aane se pehle pickup timing confirm karna hai." target="_blank" rel="noopener">WhatsApp before visiting</a>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps?q=12/1%20Picnic%20Garden%203rd%20Lane%20Kolkata%20700039&output=embed" title="Sohraaz Collections on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band" aria-label="Shop Sohraaz">
+  <div class="container">
+    <span class="overline" style="color:var(--gold-light)">The Sohraaz Promise</span>
+    <h2>Ready for your<br><em>next celebration?</em></h2>
+    <div class="hero-ctas">
+      <a class="btn btn-gold" href="sohraaz-full-store-template.html#/shop">Shop the collection
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-outline" href="https://wa.me/919123947668?text=Namaste! Sohraaz collection ke baare mein jaanna hai." target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-in">
+      <div class="f-brand">
+        <div class="f-logo"><img src="assets/extracted/Sohraaz-logo-transparent.png" alt="Sohraaz Collections"></div>
+        <p class="f-tag">Har Dhage me Sohraaz.</p>
+      </div>
+      <nav class="f-col" aria-label="Discover">
+        <div class="f-h">Discover</div>
+        <a href="sohraaz-homepage-template.html">Home</a>
+        <a href="sohraaz-full-store-template.html#/shop">Shop the Collection</a>
+        <a href="sohraaz-story.html">Our Story</a>
+      </nav>
+      <nav class="f-col" aria-label="Support">
+        <div class="f-h">Support</div>
+        <a href="https://wa.me/919123947668" target="_blank" rel="noopener">WhatsApp Us</a>
+        <a href="https://sohraaz.com/pages/contact-us">Contact Us</a>
+        <a href="https://sohraaz.com/pages/exchange-and-return-policy">Exchange / Return Policy</a>
+      </nav>
+      <div>
+        <div class="f-h">Follow Us</div>
+        <div class="socials">
+          <a href="https://www.instagram.com/sohraazcollections" aria-label="Instagram" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/sohraazcollections" aria-label="Facebook" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H6v4h2v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h4z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Sohraaz Collections · All Rights Reserved</span>
+      <span>GSTIN 19DIBPA3993Q12M · www.sohraaz.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* burger menu */
+var burger=document.getElementById("burger");
+var mnav=document.getElementById("mnav");
+burger.addEventListener("click",function(){
+  var open=mnav.classList.toggle("open");
+  burger.setAttribute("aria-expanded",open?"true":"false");
+});
+
+/* respect reduced-motion: don't autoplay the hero video */
+var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
+var heroVideo=document.getElementById("heroVideo");
+if(reduce.matches){ heroVideo.removeAttribute("autoplay"); heroVideo.pause(); }
+
+/* film player: big play button starts video with sound + controls */
+var filmOverlay=document.getElementById("filmOverlay");
+var filmVideo=document.getElementById("filmVideo");
+filmOverlay.addEventListener("click",function(){
+  filmOverlay.classList.add("hidden");
+  filmVideo.setAttribute("controls","");
+  filmVideo.muted=false;
+  filmVideo.currentTime=0;
+  filmVideo.play().catch(function(){ filmVideo.muted=true; filmVideo.play(); });
+});
+filmVideo.addEventListener("ended",function(){ filmOverlay.classList.remove("hidden"); });
+</script>
+</body>
+</html>
