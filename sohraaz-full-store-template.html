@@ -2710,18 +2710,13 @@ if(typeof renderRevStars === 'function') renderRevStars();
     const min = document.getElementById(minId);
     const handle = document.getElementById(handleId);
     if(!dock || !min || !handle) return;
-    try{ if(localStorage.getItem(key) === "1"){ dock.style.display = "none"; handle.classList.add("show"); } }catch(e){}
-    min.addEventListener("click", () => {
-      dock.style.display = "none";
-      handle.classList.add("show");
-      try{ localStorage.setItem(key, "1"); }catch(e){}
-      if(onHide) onHide();
-    });
-    handle.addEventListener("click", () => {
-      dock.style.display = "flex";
-      handle.classList.remove("show");
-      try{ localStorage.removeItem(key); }catch(e){}
-    });
+    const show = () => { dock.style.display = "flex"; handle.classList.remove("show"); };
+    const hide = () => { dock.style.display = "none"; handle.classList.add("show"); };
+    let stored = null;
+    try{ stored = localStorage.getItem(key); }catch(e){}
+    if(stored === "0") show(); else hide(); /* default: minimized */
+    min.addEventListener("click", () => { hide(); try{ localStorage.setItem(key, "1"); }catch(e){} if(onHide) onHide(); });
+    handle.addEventListener("click", () => { show(); try{ localStorage.setItem(key, "0"); }catch(e){} });
   };
   bind("waDock", "waMin", "waHandle", "sohraaz_wa_hide");
   bind("chatDock", "chatMin", "chatHandle", "sohraaz_chat_hide", () => {

@@ -308,15 +308,58 @@
   .socials a{color:#B4A385;transition:color .25s}
   .socials a:hover{color:#E2CEA6}
 
-  /* floating WhatsApp button */
-  .whatsapp-float{
-    position:fixed;bottom:24px;right:24px;z-index:1000;width:56px;height:56px;
-    background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-size:28px;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:transform .25s,background .25s;
-    text-decoration:none;aria-label:"Message us on WhatsApp"
-  }
-  .whatsapp-float:hover{transform:scale(1.08);background:#1eb555}
-  .whatsapp-float:focus{outline:3px solid #25D366;outline-offset:2px}
+  /* floating helpers — matched pair */
+  .float-dock{position:fixed;z-index:900;display:flex;flex-direction:column;gap:8px}
+  .float-wrap{position:relative}
+  .float-right{right:20px;bottom:20px;align-items:flex-end}
+  .float-left{left:20px;bottom:20px;align-items:flex-start}
+  .float-btn{position:relative;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(20,13,8,.35);transition:transform .25s,box-shadow .25s;text-decoration:none;cursor:pointer}
+  .float-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(20,13,8,.45)}
+  .float-btn:focus-visible{outline:3px solid #D9BE93;outline-offset:3px}
+  .float-btn svg{display:block}
+  .whatsapp-float{background:linear-gradient(155deg,#25D366 0%,#128C4B 100%)}
+  .whatsapp-float svg{width:30px;height:30px;fill:#fff}
+  .chat-fab{background:linear-gradient(155deg,#3D2C20 0%,#241812 100%)}
+  .chat-fab svg.bubble{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .chat-dot{position:absolute;bottom:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
+  .float-tip{position:absolute;bottom:50%;transform:translateY(50%) translateX(8px);opacity:0;pointer-events:none;white-space:nowrap;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:9px 13px;border-radius:9px;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(20,13,8,.35)}
+  .float-right .float-tip{right:calc(100% + 14px);left:auto;transform:translateY(50%) translateX(-8px)}
+  .float-left .float-tip{left:calc(100% + 14px)}
+  .float-btn:hover .float-tip,.float-btn:focus-visible .float-tip{opacity:1;transform:translateY(50%) translateX(0)}
+  .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #D9BE93;color:#241812;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
+  .float-min:hover{transform:scale(1.15)}
+  .float-left .float-min{right:auto;left:-7px}
+  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#241812;color:#D9BE93;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
+  .float-handle.show{display:flex}
+  .float-handle:hover{background:#3D2C20}
+  .float-handle-left{left:0;border-radius:0 14px 14px 0}
+  .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
+  .float-handle-right:hover{background:#25D366;color:#083A1E}
+  /* Sohraaz Assistant — chat */
+  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel.open{display:flex;animation:chatIn .28s ease}
+  @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .chat-head{background:#241812;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
+  .chat-head-av{width:42px;height:42px;border-radius:50%;background:#B2916B;color:#241812;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;flex:none}
+  .chat-head b{font-size:15.5px;display:block;letter-spacing:.02em}
+  .chat-head small{font-size:10.5px;color:#D9BE93;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
+  .chat-close{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,231,213,.25);color:#F4E9D4;font-size:19px;display:flex;align-items:center;justify-content:center}
+  .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#F5F2E9}
+  .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line}
+  .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#3A2E22}
+  .chat-msg.user{background:#241812;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
+  .chat-typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #E9E4D4;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px}
+  .chat-typing i{width:7px;height:7px;border-radius:50%;background:#B2916B;animation:chatBlink 1.2s infinite}
+  .chat-typing i:nth-child(2){animation-delay:.18s}.chat-typing i:nth-child(3){animation-delay:.36s}
+  @keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+  .chat-chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 12px;background:#F5F2E9}
+  .chat-chip{border:1.5px solid #DCCEB6;background:#fff;color:#4A3828;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--serif)}
+  .chat-chip:hover{border-color:#B2916B;color:#241812}
+  .chat-inputrow{display:flex;border-top:1px solid #E3DCCB;background:#fff}
+  .chat-inputrow input{flex:1;border:none;outline:none;padding:15px 16px;font-family:var(--serif);font-size:14px;background:transparent}
+  .chat-inputrow button{background:#241812;color:#D9BE93;padding:0 20px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .chat-wa{display:block;text-align:center;font-size:11px;color:#8A7A63;padding:8px;background:#fff;border-top:1px solid #EDE7D5}
+  .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
 
   /* watch & buy strip */
   .watchbuy{padding:64px 0;border-top:1px solid var(--line)}
@@ -368,7 +411,11 @@
     .footer-in{grid-template-columns:1fr;gap:28px;padding:44px 0 36px}
     .f-bottom-in{flex-direction:column}
     .announce-track span{font-size:9.5px;letter-spacing:.18em}
-    .whatsapp-float{width:50px;height:50px;font-size:24px;bottom:20px;right:20px}
+    .float-dock{right:12px;bottom:12px}
+    .float-left{left:12px;bottom:12px}
+    .float-btn{width:52px;height:52px}
+    .float-handle{bottom:96px}
+    .chat-panel{left:8px;bottom:88px}
   }
 </style>
 </head>
@@ -741,8 +788,46 @@
   </div>
 </footer>
 
-<!-- floating WhatsApp -->
-<a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">💬</a>
+<!-- floating helpers: WhatsApp + Sohraaz Assistant (minimized by default) -->
+<div class="float-dock float-left" id="chatDock">
+  <div class="float-wrap">
+    <button class="float-btn chat-fab" id="chatFab" aria-label="Open Sohraaz Assistant chat">
+      <svg class="bubble" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg>
+      <span class="chat-dot" aria-hidden="true"></span>
+      <span class="float-tip">Ask Sohraaz</span>
+    </button>
+    <button class="float-min" id="chatMin" aria-label="Hide assistant button">−</button>
+  </div>
+</div>
+<button class="float-handle float-handle-left" id="chatHandle" aria-label="Show Sohraaz Assistant">Ask Sohraaz</button>
+
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Sohraaz Assistant">
+  <div class="chat-head">
+    <div class="chat-head-av">S</div>
+    <div><b>Sohraaz Assistant</b><small>Instant answers · 24×7</small></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">Namaste! I'm the Sohraaz Assistant. Ask me anything — orders, sizing, wedding styling, returns, offers — or tap a topic below.</div>
+  </div>
+  <div class="chat-chips" id="chatChips"></div>
+  <div class="chat-inputrow">
+    <input id="chatInput" type="text" placeholder="Type your question…" autocomplete="off" aria-label="Type your question">
+    <button id="chatSend">Send</button>
+  </div>
+  <div class="chat-wa">Prefer a human? <a href="https://wa.me/919123947668?text=Namaste! I need help with my Sohraaz order." target="_blank" rel="noopener">WhatsApp +91 91239 47668</a></div>
+</div>
+
+<div class="float-dock float-right" id="waDock">
+  <div class="float-wrap">
+    <a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="float-btn whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.49 1.694.627.712.226 1.36.194 1.871.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41-.074-.122-.272-.198-.57-.347m-5.421 5.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a8.19 8.19 0 0 1-1.26-4.827 8.287 8.287 0 0 1 8.287-8.287c2.21 0 4.288.86 5.858 2.42a8.28 8.28 0 0 1 2.423 5.861c-.001 4.581-3.73 8.293-8.29 8.293m7.119-18.41A10.36 10.36 0 0 0 12.046 0C5.495 0 .16 5.334.157 11.892c0 2.087.547 4.14 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.68 1.448h.006c6.55 0 11.89-5.335 11.89-11.893a11.82 11.82 0 0 0-3.48-8.413z"/></svg>
+      <span class="float-tip">Chat on WhatsApp</span>
+    </a>
+    <button class="float-min" id="waMin" aria-label="Hide WhatsApp button">−</button>
+  </div>
+</div>
+<button class="float-handle float-handle-right" id="waHandle" aria-label="Show WhatsApp button">WhatsApp</button>
 
 <script>
   /* announcement rotation */
@@ -937,6 +1022,83 @@
       e.preventDefault();
       f.hidden=true;
       document.getElementById('newsOk').hidden=false;
+    });
+  })();
+
+  /* ============ SOHRAAZ ASSISTANT — chat (shared KB with store) ============ */
+  const CHAT_KB = [
+    {k:["track","order status","where is my order"], a:"Once your order is confirmed, the tracking link reaches you on WhatsApp/SMS within 24 hours of dispatch. Can't find it? Call +91 91239 47668 with your order number."},
+    {k:["size","fit","chest","length"], a:"Sohraaz kurtas run regular — take your usual size, or size up if you prefer a relaxed drape. Full chart lives on every product page ('Size & Fit Guide'). Still unsure? WhatsApp us your chest and height."},
+    {k:["wedding","groom","sherwani","haldi","mehndi","sangeet"], a:"The Wedding Edit is built for the whole celebration — haldi to phere. See the looks: sohraaz-full-store-template.html#/lookbook · For a full groom package, WhatsApp +91 91239 47668."},
+    {k:["return","exchange","refund"], a:"7 days from delivery. Items unused, tags intact. Size exchange is FREE once. Full policy: sohraaz-full-store-template.html#/policies"},
+    {k:["code","discount","offer","coupon","welcome"], a:"WELCOME10 — 10% off your first order (max ₹200). Prepaid orders always get 5% off, and free shipping above ₹999. That's the complete, honest list."},
+    {k:["cod","cash"], a:"Yes, Cash on Delivery is available on serviceable PIN codes. A ₹49 COD handling fee applies below ₹1,999 (shown at checkout). Prepaid saves the fee and earns 5% off."},
+    {k:["delivery","shipping","how long"], a:"Metro cities: 3–5 business days. Other cities: 5–7. Remote: 7–10. Every order is dispatched from Kolkata with tracking shared on WhatsApp."},
+    {k:["fabric","cotton","giza","care"], a:"Our kurtas are stitched in-house from Giza cotton, paper cotton and poly-cotton blends. Wash separately, cold water, shade dry."},
+    {k:["store","showroom","visit","address"], a:"Sohraaz Collections, 12/1 Picnic Garden, 3rd Lane, Ground Floor, near 42 Bus Stand, Kolkata 700039. Open most days — call ahead +91 91239 47668."},
+    {k:["coin","loyalty","reward"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — see yours in the store under My Account."},
+  ];
+  const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
+  function chatAnswer(q){
+    const s = q.toLowerCase();
+    for(const item of CHAT_KB){ if(item.k.some(k=>s.includes(k))) return item.a; }
+    return "I can help with orders, sizing, wedding styling, returns, offers and our showroom. For anything else, a real human is one tap away: WhatsApp +91 91239 47668.";
+  }
+  function chatAddMsg(text, who){
+    const body = document.getElementById("chatBody");
+    if(!body) return;
+    const div = document.createElement("div");
+    div.className = "chat-msg " + who;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+  function chatBotReply(text){
+    const body = document.getElementById("chatBody");
+    if(!body) return;
+    const typing = document.createElement("div");
+    typing.className = "chat-typing";
+    typing.innerHTML = "<i></i><i></i><i></i>";
+    body.appendChild(typing);
+    body.scrollTop = body.scrollHeight;
+    setTimeout(()=>{ typing.remove(); chatAddMsg(chatAnswer(text), "bot"); }, 650);
+  }
+  (function initChat(){
+    const fab   = document.getElementById('chatFab');
+    const panel = document.getElementById('chatPanel');
+    const close = document.getElementById('chatClose');
+    const input = document.getElementById('chatInput');
+    const send  = document.getElementById('chatSend');
+    const chips = document.getElementById('chatChips');
+    if(chips) chips.innerHTML = CHAT_CHIPS.map(c=>'<button type="button" class="chat-chip">'+c+'</button>').join('');
+    if(fab && panel) fab.addEventListener('click', ()=>{ panel.classList.toggle('open'); if(panel.classList.contains('open') && input) input.focus(); });
+    if(close && panel) close.addEventListener('click', ()=>panel.classList.remove('open'));
+    const fire = () => { if(!input) return; const v=input.value.trim(); if(!v) return; chatAddMsg(v,'user'); input.value=''; chatBotReply(v); };
+    if(send) send.addEventListener('click', fire);
+    if(input) input.addEventListener('keydown', e=>{ if(e.key==='Enter') fire(); });
+    if(chips) chips.addEventListener('click', e=>{ const b=e.target.closest('.chat-chip'); if(!b) return; const v=b.textContent.trim(); chatAddMsg(v,'user'); chatBotReply(v); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel) panel.classList.remove('open'); });
+  })();
+
+  /* ============ FLOATING HELPERS — hide / restore (default: minimized) ============ */
+  (function initFloatDocks(){
+    const bind = (dockId, minId, handleId, key, onHide) => {
+      const dock = document.getElementById(dockId);
+      const min = document.getElementById(minId);
+      const handle = document.getElementById(handleId);
+      if(!dock || !min || !handle) return;
+      let stored = null;
+      try{ stored = localStorage.getItem(key); }catch(e){}
+      const show = () => { dock.style.display = "flex"; handle.classList.remove("show"); };
+      const hide = () => { dock.style.display = "none"; handle.classList.add("show"); };
+      if(stored === "0") show(); else hide(); /* default minimized */
+      min.addEventListener("click", () => { hide(); try{ localStorage.setItem(key, "1"); }catch(e){} if(onHide) onHide(); });
+      handle.addEventListener("click", () => { show(); try{ localStorage.setItem(key, "0"); }catch(e){} });
+    };
+    bind("waDock", "waMin", "waHandle", "sohraaz_wa_hide");
+    bind("chatDock", "chatMin", "chatHandle", "sohraaz_chat_hide", () => {
+      const p = document.getElementById("chatPanel");
+      if(p) p.classList.remove("open");
     });
   })();
 </script>
