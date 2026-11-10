@@ -285,6 +285,19 @@
   .acc .acc-body li{margin:4px 0}
   .qv-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(20,13,8,.85);color:#F4E9D4;border:1px solid rgba(217,190,147,.6);font-family:var(--caps);font-size:10px;letter-spacing:.24em;padding:11px 18px;border-radius:24px;opacity:0;transition:opacity .25s;pointer-events:none;backdrop-filter:blur(3px);white-space:nowrap}
   .prod:hover .qv-label{opacity:1}
+  /* fullscreen image lightbox */
+  .lbx{position:fixed;inset:0;z-index:300;background:rgba(10,6,3,.94);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+  .lbx.open{opacity:1;pointer-events:auto}
+  .lbx-img{max-width:min(94vw,760px);max-height:88dvh;width:auto;height:auto;object-fit:contain;border:1px solid rgba(255,255,255,.12);border-radius:6px;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+  .lbx-close{position:absolute;top:18px;right:18px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .lbx-close:hover{background:rgba(255,255,255,.18)}
+  .lbx-nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .lbx-nav:hover{background:rgba(255,255,255,.2)}
+  .lbx-prev{left:18px}.lbx-next{right:18px}
+  .lbx-nav svg{width:26px;height:26px}
+  .lbx-counter{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-family:var(--caps);font-size:11px;letter-spacing:.24em;color:#E4D5BB}
+  .lbx-hint{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A63}
+  @media (max-width:640px){.lbx-nav{width:44px;height:44px}.lbx-nav svg{width:20px;height:20px}.lbx-close{width:42px;height:42px;font-size:24px}.lbx-img{max-height:78dvh}}
   .thumbs button{width:72px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);opacity:.75;transition:opacity .25s;cursor:pointer}
   .thumbs button.on{opacity:1;border-color:var(--gold)}
   .thumbs img{width:100%;height:100%;object-fit:cover}
@@ -1208,7 +1221,7 @@ function renderProduct(id){
   <div class="pdp">
     <div class="pdp-gallery">
       <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}"><img src="${IMG(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
-      <div class="main"><span class="img-badge">Handmade in <b>Kolkata</b></span><img src="${IMG(img)}" alt="${p.name}"></div>
+      <div class="main"><span class="img-badge">Handmade in <b>Kolkata</b></span><img class="zoomable" src="${IMG(img)}" alt="${p.name}" style="cursor:zoom-in"></div>
     </div>
     <div>
       <h1>${p.name}</h1>
@@ -1871,6 +1884,56 @@ document.addEventListener('keydown', e=>{
   if(e.key==='ArrowDown'||e.key==='PageDown'){ e.preventDefault(); wbShow(wbActive+1); }
   else if(e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); wbShow(wbActive-1); }
 });
+
+/* image lightbox — fullscreen zoom for PDP product images */
+const lbx = document.createElement('div');
+lbx.className = 'lbx'; lbx.id = 'lbx';
+lbx.setAttribute('role','dialog'); lbx.setAttribute('aria-modal','true'); lbx.setAttribute('aria-label','Product image preview');
+lbx.innerHTML = '<button class="lbx-close" aria-label="Close image preview">&times;</button><button class="lbx-nav lbx-prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><img class="lbx-img" alt="Product image"><button class="lbx-nav lbx-next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><div class="lbx-counter"></div><div class="lbx-hint">ESC to close · tap backdrop</div>';
+document.body.appendChild(lbx);
+let lbxImgs = [], lbxIdx = 0, lbxTouchY = null;
+function lbxOpen(elements, startIdx){
+  lbxImgs = elements; lbxIdx = startIdx;
+  if(!lbxImgs.length) return;
+  lbxRender();
+  lbx.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function lbxRender(){
+  const img = lbx.querySelector('.lbx-img');
+  img.src = lbxImgs[lbxIdx].src;
+  img.alt = lbxImgs[lbxIdx].alt || 'Product image';
+  lbx.querySelector('.lbx-counter').textContent = (lbxIdx+1) + ' / ' + lbxImgs.length;
+  lbx.querySelectorAll('.lbx-nav').forEach(btn => btn.style.visibility = lbxImgs.length > 1 ? 'visible' : 'hidden');
+}
+function lbxClose(){ lbx.classList.remove('open'); document.body.style.overflow = ''; }
+function lbxStep(n){ if(lbxImgs.length<2) return; lbxIdx = (lbxIdx + n + lbxImgs.length) % lbxImgs.length; lbxRender(); }
+lbx.addEventListener('click', e => {
+  if(e.target === lbx || e.target.classList.contains('lbx-close')) lbxClose();
+  else if(e.target.closest('.lbx-prev')) lbxStep(-1);
+  else if(e.target.closest('.lbx-next')) lbxStep(1);
+});
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('.zoomable');
+  if(!t) return;
+  e.preventDefault();
+  const imgs = [...document.querySelectorAll('.thumbs button img')];
+  const currentSrc = t.src;
+  const startIdx = Math.max(0, imgs.findIndex(i => i.src === currentSrc));
+  lbxOpen(imgs, startIdx);
+});
+document.addEventListener('keydown', e => {
+  if(!lbx.classList.contains('open')) return;
+  if(e.key === 'Escape'){ lbxClose(); }
+  else if(e.key === 'ArrowLeft'){ e.preventDefault(); lbxStep(-1); }
+  else if(e.key === 'ArrowRight'){ e.preventDefault(); lbxStep(1); }
+});
+lbx.addEventListener('touchstart', e => { lbxTouchY = e.touches[0].clientY; }, {passive:true});
+lbx.addEventListener('touchend', e => {
+  if(lbxTouchY === null) return;
+  const dy = e.changedTouches[0].clientY - lbxTouchY; lbxTouchY = null;
+  if(Math.abs(dy) > 48) lbxStep(dy < 0 ? 1 : -1);
+}, {passive:true});
 
 router();
 tickOffer();
