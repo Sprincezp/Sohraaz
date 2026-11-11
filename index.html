@@ -58,25 +58,19 @@
 -->
 <style>
   :root{
-     --cream: linear-gradient(
-        135deg,
-        #FFF8DC,
-        #E8D9A8,
-        #C8B77A,
-        #8C7945
-    );
+     --cream:#eddaa4;
 
     --cream-2:#e7c57c;
     --tan:#DCCEB6;
     --ink:#2C2117;
-    --muted:#77664F;
+    --muted:#5A4B38;
     --brown-950:#2b231b;
     --brown-900:#3D2C20;
     --brown-850:#4A3828;
-    --gold:#B2916B;
+    --gold:#B2916B; --gold-text:#6B4F2C;
     --line:#E2DCCE;
     --line-dark:rgba(240,231,213,.22);
-    --green:#2E7D4F;
+    --green:#176034;
     --green-bg:#EAF2EC;
     --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --caps:'Marcellus','Cormorant Garamond',Georgia,serif;
@@ -414,7 +408,7 @@
   .ic-solid{fill:currentColor;stroke:none}
   /* ==== shared chrome (build-injected) ==== */
 /* ============================================================================
-   SOHRAAZ — SHARED CHROME (build-injected into every page)
+   SOHRAAZ â€” SHARED CHROME (build-injected into every page)
    Canonical header + footer styles. Injected LAST in <style>, so these rules
    win over per-page leftovers. Single source of truth for the site chrome.
    ========================================================================= */
@@ -541,7 +535,7 @@
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
-  /* Sohraaz Assistant — chat */
+  /* Sohraaz Assistant â€” chat */
   .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -574,7 +568,7 @@
     .float-btn{width:52px;height:52px}
     .float-handle{bottom:96px}
     .chat-panel{left:8px;bottom:88px}
-    /* announcement message must wrap on phones — it was clipped mid-word */
+    /* announcement message must wrap on phones â€” it was clipped mid-word */
     .announce-track{height:auto;min-height:34px}
     .announce-track span{white-space:normal;line-height:1.35;font-size:9.5px;letter-spacing:.16em;padding:4px 12px}
     .offer-bar{font-size:9px;gap:8px;padding:8px 10px;flex-wrap:wrap}
@@ -629,6 +623,9 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
   }
+
+  /* ===== WCAG AA on the cream background ===== */
+  .color-row .cl,.rev-head h2 span,.rev-summary .total{color:#5F4F3B}
   /* trusted by our customers */
   .trust-reviews{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
@@ -638,6 +635,7 @@
   .tr-verified{display:inline-flex;align-items:center;gap:6px;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#1E7A34}
   .tr-verified svg{width:13px;height:13px;stroke:#1E7A34;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
   @media (max-width:820px){.tr-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -898,7 +896,7 @@
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="overline" style="color:var(--gold)">Watch &amp; Buy</span>
+        <span class="overline" style="color:var(--gold-text)">Watch &amp; Buy</span>
         <h2>Pehle dekho,<br>phir pehno.</h2>
       </div>
       <p>Video mein fabric ka texture, fit ka flow — sab dekho, phir bag mein add karo. Kyunki Sohraaz mein jo dikhta hain, wahi milta hain.</p>

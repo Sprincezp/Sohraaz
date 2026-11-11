@@ -54,10 +54,10 @@
 -->
 <style>
   :root{
-    --cream:#F4F1E8; --cream-2:#F1EBDE; --tan:#DCCEB6; --ink:#2C2117; --muted:#77664F;
+    --cream:#eddaa4; --cream-2:#e7c57c; --cream-solid:#F4F1E8; --tan:#DCCEB6; --ink:#2C2117; --muted:#5A4B38;
     --brown-950:#33241A; --brown-900:#3D2C20; --brown-850:#4A3828;
-    --gold:#B2916B; --line:#E2DCCE; --line-dark:rgba(240,231,213,.22);
-    --green:#2E7D4F; --green-bg:#EAF2EC; --red:#B33A3A;
+    --gold:#B2916B; --gold-text:#6B4F2C; --line:#E2DCCE; --line-dark:rgba(240,231,213,.22);
+    --green:#176034; --green-bg:#EAF2EC; --red:#B33A3A;
     --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --caps:'Marcellus','Cormorant Garamond',Georgia,serif;
   }
@@ -293,7 +293,7 @@
   }
   .thumbs button{width:72px;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);opacity:.75;transition:opacity .25s;cursor:pointer}
   /* PDP premium extras */
-  .pdp-sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--gold);margin:6px 0 2px}
+  .pdp-sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--gold-text);margin:6px 0 2px}
   .pdp-wishlist{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:transparent;border:1px solid var(--ink);border-radius:12px;padding:14px;margin-top:12px;font-family:var(--caps);font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
   .pdp-wishlist:hover{background:var(--ink);color:#F4E9D4}
   .pdp-wishlist svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -387,7 +387,7 @@
   /* cart drawer + cart page */
   .overlay{position:fixed;inset:0;background:rgba(20,13,8,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:90}
   .overlay.on{opacity:1;pointer-events:auto}
-  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,92vw);background:var(--cream);z-index:100;transform:translateX(102%);transition:transform .35s ease;display:flex;flex-direction:column}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,92vw);background:var(--cream-solid);z-index:100;transform:translateX(102%);transition:transform .35s ease;display:flex;flex-direction:column}
   .drawer.on{transform:none}
   .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
   .drawer-head h3{font-family:var(--caps);font-weight:400;font-size:14px;letter-spacing:.2em;text-transform:uppercase}
@@ -411,7 +411,7 @@
   /* Price details inside body */
   .drawer-price{padding:4px 18px 0;border-top:1px solid var(--line);margin-top:0}
   .drawer-price .paytoggle{margin-bottom:10px}
-  .drawer-foot{position:sticky;bottom:0;background:var(--cream);border-top:1px solid var(--line);padding:14px 18px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -8px 22px rgba(43,28,16,.1)}
+  .drawer-foot{position:sticky;bottom:0;background:var(--cream-solid);border-top:1px solid var(--line);padding:14px 18px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -8px 22px rgba(43,28,16,.1)}
   .drawer-foot-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .drawer-total small{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#8A7A63;margin-bottom:2px}
   .drawer-total b{font-size:22px;color:#241812}
@@ -508,7 +508,7 @@
   .toast b{color:#D9BE93}
   .popup{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;background:rgba(20,13,8,.55)}
   .popup.on{display:flex}
-  .popup-card{background:var(--cream);max-width:440px;width:92%;padding:40px 36px;text-align:center;position:relative;border:1px solid var(--gold)}
+  .popup-card{background:var(--cream-solid);max-width:440px;width:92%;padding:40px 36px;text-align:center;position:relative;border:1px solid var(--gold)}
   .popup-card .kicker{font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
   .popup-card h3{font-family:var(--serif);font-size:30px;font-weight:500;margin:12px 0 6px;color:#33271B}
   .popup-card p{font-style:italic;color:var(--muted);font-size:15.5px}
@@ -937,7 +937,7 @@
   .ic-solid{fill:currentColor;stroke:none}
   /* ==== shared chrome (build-injected) ==== */
 /* ============================================================================
-   SOHRAAZ — SHARED CHROME (build-injected into every page)
+   SOHRAAZ â€” SHARED CHROME (build-injected into every page)
    Canonical header + footer styles. Injected LAST in <style>, so these rules
    win over per-page leftovers. Single source of truth for the site chrome.
    ========================================================================= */
@@ -1064,7 +1064,7 @@
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
-  /* Sohraaz Assistant — chat */
+  /* Sohraaz Assistant â€” chat */
   .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -1097,7 +1097,7 @@
     .float-btn{width:52px;height:52px}
     .float-handle{bottom:96px}
     .chat-panel{left:8px;bottom:88px}
-    /* announcement message must wrap on phones — it was clipped mid-word */
+    /* announcement message must wrap on phones â€” it was clipped mid-word */
     .announce-track{height:auto;min-height:34px}
     .announce-track span{white-space:normal;line-height:1.35;font-size:9.5px;letter-spacing:.16em;padding:4px 12px}
     .offer-bar{font-size:9px;gap:8px;padding:8px 10px;flex-wrap:wrap}
@@ -1152,6 +1152,10 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
   }
+
+  /* ===== WCAG AA on the cream background ===== */
+  .color-row .cl,.rev-head h2 span,.rev-summary .total{color:#5F4F3B}
+
 </style>
 </head>
 <body>
@@ -2547,7 +2551,7 @@ function renderCart(){
   if(!store.cart.length){
     const feats=["p6","p9","p8"].map(id=>prodCardHTML(P(id))).join("");
     return `<section class="cart-page-active"><div class="container"><div class="emptycart">
-      <span class="overline" style="color:var(--gold)">Your Bag</span>
+      <span class="overline" style="color:var(--gold-text)">Your Bag</span>
       <div class="sec-head"><h2>Your bag is empty</h2></div>
       <p>Honest prices, in-house stitched, delivered across India. The good stuff is one tap away.</p>
       <button class="btn btn-dark" data-nav="#/shop" style="margin-top:6px">Shop the collection</button>
@@ -2558,7 +2562,7 @@ function renderCart(){
   const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
   const qty=bagQty();
   return `<section class="cart-page-active"><div class="container">
-    <div class="sec-head"><h2>Your Bag <span style="color:var(--gold)">· ${qty} item${qty>1?"s":""}</span></h2><a data-nav="#/shop" style="font-size:13px;color:var(--brown-900);border-bottom:1px solid var(--gold);cursor:pointer">Continue shopping →</a></div>
+    <div class="sec-head"><h2>Your Bag <span style="color:var(--gold-text)">· ${qty} item${qty>1?"s":""}</span></h2><a data-nav="#/shop" style="font-size:13px;color:var(--brown-900);border-bottom:1px solid var(--gold);cursor:pointer">Continue shopping →</a></div>
     <div class="cart-layout">
       <div id="cartLeft">${cartLeftHTML(t)}</div>
       <aside class="summary-card" id="cartRight">${summaryCardHTML(t)}</aside>
