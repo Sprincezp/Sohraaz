@@ -431,6 +431,10 @@ a{color:inherit;text-decoration:none}
   }
 
   /* ---------- shared base reset (all pages) ---------- */
+  /* safety net: never let a wide child create a horizontal page scroll */
+  html,body{overflow-x:clip}
+  *,*::before,*::after{max-width:100%}
+  p,li,h1,h2,h3,h4,span,div{overflow-wrap:anywhere}
   *,*::before,*::after{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{margin:0}
@@ -444,6 +448,20 @@ a{color:inherit;text-decoration:none}
   .burger svg{width:24px;height:24px;stroke:#E4D5BB;fill:none;stroke-width:1.6;stroke-linecap:round}
   .burger:hover svg{stroke:var(--gold)}
   .burger.open svg{stroke:#B2916B}
+
+
+  /* ---------- interaction & motion quality (Web Interface Guidelines) ---------- */
+  a,button,input,select,textarea,label,[role="button"]{touch-action:manipulation}
+  a,button,input,select,textarea{ -webkit-tap-highlight-color:rgba(178,145,107,.18);tap-highlight-color:rgba(178,145,107,.18) }
+  h1,h2,h3,h4,h5,h6{text-wrap:balance;scroll-margin-top:96px}
+  p,li{text-wrap:pretty}
+  .price,.mrp,.count,.js-cd,.ordno,.ob-timer,.acct-id,td,th{font-variant-numeric:tabular-nums}
+  .drawer,.chat-panel,.rev-modal,.popup-card,.wb-stage,.mnav{overscroll-behavior:contain}
+  .float-dock{bottom:calc(20px + env(safe-area-inset-bottom))}
+  .float-left{bottom:calc(20px + env(safe-area-inset-bottom))}
+  .float-handle{bottom:calc(120px + env(safe-area-inset-bottom))}
+  .chat-panel{bottom:calc(92px + env(safe-area-inset-bottom))}
+  @media (max-width:1320px){.float-dock,.float-left{bottom:calc(12px + env(safe-area-inset-bottom))}}
 
   /* ---------- production polish: tokens, focus, motion ---------- */
   :root{
@@ -1021,7 +1039,7 @@ filmVideo.addEventListener("ended",function(){ filmOverlay.classList.remove("hid
     <div><b>Sohraaz Assistant</b><small>Instant answers · 24×7</small></div>
     <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
   </div>
-  <div class="chat-body" id="chatBody">
+  <div class="chat-body" id="chatBody" aria-live="polite">
     <div class="chat-msg bot">Namaste! I'm the Sohraaz Assistant. Ask me anything — orders, sizing, wedding styling, returns, offers — or tap a topic below.</div>
   </div>
   <div class="chat-chips" id="chatChips"></div>
