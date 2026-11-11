@@ -74,9 +74,10 @@
   @media (max-width:520px){
     .foot-grid{grid-template-columns:1fr}
     .header-in{gap:8px;height:58px}
-    .logo img{height:28px;max-width:96px}
-    .actions{gap:8px}
-    .actions svg{width:20px;height:20px}
+    .logo img{height:26px;max-width:84px}
+    .actions{gap:9px}
+    .actions svg{width:19px;height:19px}
+    .act{padding:2px}
   }
 
 
@@ -165,7 +166,7 @@
   button,input,select,textarea{font:inherit;color:inherit}
   button{background:none;border:none;cursor:pointer;-webkit-appearance:none;appearance:none}
   input,textarea,select{-webkit-appearance:none;appearance:none}
-  .burger{background:none !important;border:none !important;padding:6px;line-height:0;display:inline-flex;align-items:center;justify-content:center}
+  .burger{background:none !important;border:none !important;padding:6px;line-height:0;display:none;align-items:center;justify-content:center}
   .burger svg{width:24px;height:24px;stroke:#E4D5BB;fill:none;stroke-width:1.6;stroke-linecap:round}
   .burger:hover svg{stroke:var(--gold)}
   .burger.open svg{stroke:#B2916B}
