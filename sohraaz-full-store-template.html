@@ -486,32 +486,6 @@
   .popup-x{position:absolute;top:10px;right:14px;font-size:22px;color:var(--muted)}
 
   /* floating helpers — matched pair */
-  .float-dock{position:fixed;z-index:900;display:flex;flex-direction:column;gap:8px}
-  .float-wrap{position:relative}
-  .float-right{right:20px;bottom:20px;align-items:flex-end}
-  .float-left{left:20px;bottom:20px;align-items:flex-start}
-  .float-btn{position:relative;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(20,13,8,.35);transition:transform .25s,box-shadow .25s;text-decoration:none;cursor:pointer}
-  .float-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(20,13,8,.45)}
-  .float-btn:focus-visible{outline:3px solid #D9BE93;outline-offset:3px}
-  .float-btn svg{display:block}
-  .whatsapp-float{background:linear-gradient(155deg,#25D366 0%,#128C4B 100%)}
-  .whatsapp-float svg{width:30px;height:30px;fill:#fff}
-  .chat-fab{background:linear-gradient(155deg,#3D2C20 0%,#241812 100%)}
-  .chat-fab svg.bubble{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .chat-dot{position:absolute;bottom:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
-  .float-tip{position:absolute;bottom:50%;transform:translateY(50%) translateX(8px);opacity:0;pointer-events:none;white-space:nowrap;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:9px 13px;border-radius:9px;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(20,13,8,.35)}
-  .float-right .float-tip{right:calc(100% + 14px);left:auto;transform:translateY(50%) translateX(-8px)}
-  .float-left .float-tip{left:calc(100% + 14px)}
-  .float-btn:hover .float-tip,.float-btn:focus-visible .float-tip{opacity:1;transform:translateY(50%) translateX(0)}
-  .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #D9BE93;color:#241812;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
-  .float-min:hover{transform:scale(1.15)}
-  .float-left .float-min{right:auto;left:-7px}
-  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#241812;color:#D9BE93;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
-  .float-handle.show{display:flex}
-  .float-handle:hover{background:#3D2C20}
-  .float-handle-left{left:0;border-radius:0 14px 14px 0}
-  .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
-  .float-handle-right:hover{background:#25D366;color:#083A1E}
   body:has(.pdp) .float-dock,body:has(.cart-page-active) .float-dock{bottom:88px}
   body:has(.pdp) .float-handle,body:has(.cart-page-active) .float-handle{bottom:150px}
 
@@ -546,10 +520,6 @@
     .paycards{grid-template-columns:1fr}
     section{padding:48px 0}
     .foot-bottom{flex-direction:column;gap:12px}
-    .float-dock{right:12px;bottom:12px}
-    .float-left{left:12px;bottom:12px}
-    .float-btn{width:52px;height:52px}
-    .float-handle{bottom:96px}
   }
   @media (max-width:520px){
     .container{padding:0 14px}
@@ -831,32 +801,8 @@
   .restock-btn{display:inline-flex;align-items:center;gap:8px;background:#241812;color:#F4E9D4;padding:11px 18px;border-radius:24px;font-family:var(--caps);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;flex:none}
   .restock-btn svg{width:15px;height:15px;stroke:#D9BE93;stroke-width:1.8}
   /* ============ SOHRAAZ ASSISTANT (CHAT) ============ */
-  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
-  .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .chat-head{background:#241812;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
-  .chat-head-av{width:42px;height:42px;border-radius:50%;background:#B2916B;color:#241812;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;flex:none}
-  .chat-head b{font-size:15.5px;display:block;letter-spacing:.02em}
-  .chat-head small{font-size:10.5px;color:#D9BE93;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
-  .chat-close{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,231,213,.25);color:#F4E9D4;font-size:19px;display:flex;align-items:center;justify-content:center}
-  .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#F5F2E9}
-  .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere}
-  .chat-link{color:#8A6A3F;font-weight:700;text-decoration:underline;text-underline-offset:2px}
-  .chat-msg.user .chat-link{color:#E8C87A}
-  .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#3A2E22}
-  .chat-msg.user{background:#241812;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
-  .chat-typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #E9E4D4;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px}
-  .chat-typing i{width:7px;height:7px;border-radius:50%;background:#B2916B;animation:chatBlink 1.2s infinite}
-  .chat-typing i:nth-child(2){animation-delay:.18s}.chat-typing i:nth-child(3){animation-delay:.36s}
   @keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
-  .chat-chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 12px;background:#F5F2E9}
-  .chat-chip{border:1.5px solid #DCCEB6;background:#fff;color:#4A3828;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--serif)}
-  .chat-chip:hover{border-color:#B2916B;color:#241812}
-  .chat-inputrow{display:flex;border-top:1px solid #E3DCCB;background:#fff}
-  .chat-inputrow input{flex:1;border:none;outline:none;padding:15px 16px;font-family:var(--serif);font-size:14px;background:transparent}
-  .chat-inputrow button{background:#241812;color:#D9BE93;padding:0 20px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
-  .chat-wa{display:block;text-align:center;font-size:11px;color:#8A7A63;padding:8px;background:#fff;border-top:1px solid #EDE7D5}
-  .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
   /* ============ ACCOUNT + LOYALTY ============ */
   .acct-wrap{max-width:1180px;margin:0 auto;padding:44px 0 64px;display:grid;grid-template-columns:360px 1fr;gap:26px;align-items:start}
   .acct-card{background:#FDFBF7;border:1px solid #E3DCCB;border-radius:18px;padding:24px}
@@ -937,7 +883,6 @@
     .occ-row .occ-tile:nth-child(n+4){display:none}
     .lbk-kit{grid-template-columns:1fr}
     .lbk-hero{padding:64px 20px 60px}
-    .chat-panel{left:8px;bottom:88px}
   }
   .coin-earn{display:inline-flex;align-items:center;gap:10px;background:#241812;color:#D9BE93;border-radius:28px;padding:12px 22px;margin:18px auto 0;font-family:var(--caps);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
   .coin-earn b{color:#fff;font-size:15px}
@@ -1050,6 +995,69 @@
   .mnav-scrim.open{opacity:1;pointer-events:auto}
   .burger.open{transform:rotate(90deg)}
   .burger.open svg{stroke:#B2916B}
+
+
+  /* ---------- floating helpers + chat (shared by all pages) ---------- */
+  .float-dock{position:fixed;z-index:900;display:flex;flex-direction:column;gap:8px}
+  .float-wrap{position:relative}
+  .float-right{right:20px;bottom:20px;align-items:flex-end}
+  .float-left{left:20px;bottom:20px;align-items:flex-start}
+  .float-btn{position:relative;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(20,13,8,.35);transition:transform .25s,box-shadow .25s;text-decoration:none;cursor:pointer}
+  .float-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(20,13,8,.45)}
+  .float-btn:focus-visible{outline:3px solid #D9BE93;outline-offset:3px}
+  .float-btn svg{display:block}
+  .whatsapp-float{background:linear-gradient(155deg,#25D366 0%,#128C4B 100%)}
+  .whatsapp-float svg{width:30px;height:30px;fill:#fff}
+  .chat-fab{background:linear-gradient(155deg,#3D2C20 0%,#241812 100%)}
+  .chat-fab svg.bubble{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .chat-dot{position:absolute;bottom:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
+  .float-tip{position:absolute;bottom:50%;transform:translateY(50%) translateX(8px);opacity:0;pointer-events:none;white-space:nowrap;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:9px 13px;border-radius:9px;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(20,13,8,.35)}
+  .float-right .float-tip{right:calc(100% + 14px);left:auto;transform:translateY(50%) translateX(-8px)}
+  .float-left .float-tip{left:calc(100% + 14px)}
+  .float-btn:hover .float-tip,.float-btn:focus-visible .float-tip{opacity:1;transform:translateY(50%) translateX(0)}
+  .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #D9BE93;color:#241812;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
+  .float-min:hover{transform:scale(1.15)}
+  .float-left .float-min{right:auto;left:-7px}
+  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#241812;color:#D9BE93;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
+  .float-handle.show{display:flex}
+  .float-handle:hover{background:#3D2C20}
+  .float-handle-left{left:0;border-radius:0 14px 14px 0}
+  .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
+  .float-handle-right:hover{background:#25D366;color:#083A1E}
+  /* Sohraaz Assistant — chat */
+  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel.open{display:flex;animation:chatIn .28s ease}
+  @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .chat-head{background:#241812;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
+  .chat-head-av{width:42px;height:42px;border-radius:50%;background:#B2916B;color:#241812;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;flex:none}
+  .chat-head b{font-size:15.5px;display:block;letter-spacing:.02em}
+  .chat-head small{font-size:10.5px;color:#D9BE93;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
+  .chat-close{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,231,213,.25);color:#F4E9D4;font-size:19px;display:flex;align-items:center;justify-content:center}
+  .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#F5F2E9}
+  .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere}
+  .chat-link{color:#8A6A3F;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+  .chat-msg.user .chat-link{color:#E8C87A}
+  .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#3A2E22}
+  .chat-msg.user{background:#241812;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
+  .chat-typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #E9E4D4;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px}
+  .chat-typing i{width:7px;height:7px;border-radius:50%;background:#B2916B;animation:chatBlink 1.2s infinite}
+  .chat-typing i:nth-child(2){animation-delay:.18s}.chat-typing i:nth-child(3){animation-delay:.36s}
+  @keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+  .chat-chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 12px;background:#F5F2E9}
+  .chat-chip{border:1.5px solid #DCCEB6;background:#fff;color:#4A3828;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--serif)}
+  .chat-chip:hover{border-color:#B2916B;color:#241812}
+  .chat-inputrow{display:flex;border-top:1px solid #E3DCCB;background:#fff}
+  .chat-inputrow input{flex:1;border:none;outline:none;padding:15px 16px;font-family:var(--serif);font-size:14px;background:transparent}
+  .chat-inputrow button{background:#241812;color:#D9BE93;padding:0 20px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .chat-wa{display:block;text-align:center;font-size:11px;color:#8A7A63;padding:8px;background:#fff;border-top:1px solid #EDE7D5}
+  .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
+  @media (max-width:640px){
+    .float-dock{right:12px;bottom:12px}
+    .float-left{left:12px;bottom:12px}
+    .float-btn{width:52px;height:52px}
+    .float-handle{bottom:96px}
+    .chat-panel{left:8px;bottom:88px}
+  }
 
   /* ---------- shared base reset (all pages) ---------- */
   *,*::before,*::after{box-sizing:border-box}
