@@ -2766,8 +2766,8 @@ function router(){
   const app=document.getElementById("app");
   const pathChanged = store.lastPath !== path;
   store.lastPath = path;
-  closeDrawer(); if(pathChanged) window.scrollTo(0,0);
-  if(path.startsWith("#/product/")) app.innerHTML=renderProduct(path.split("/")[2]);
+  if(typeof closeDrawer==="function") closeDrawer(); if(pathChanged) window.scrollTo(0,0);
+  if(path.startsWith("#/product/")){ try{ app.innerHTML=renderProduct(path.split("/")[2]); }catch(e){ app.innerHTML=`<div class="container"><h2>Product not found</h2><p>Product not found.</p><a data-nav="#/shop" class="btn btn-dark">Back to shop</a></div>`; console.error("renderProduct error:",e); }
   else if(path==="#/shop") app.innerHTML=renderShop(q);
   else if(path==="#/wishlist") app.innerHTML=renderWishlist();
   else if(path==="#/account") app.innerHTML=renderAccount();
