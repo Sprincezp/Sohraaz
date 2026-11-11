@@ -1,0 +1,99 @@
+<!-- ============================================================================
+     SOHRAAZ — CANONICAL HEADER (single source of truth)
+     Injected into every page by build.mjs. Never edit a page's header directly —
+     edit this file, then run:  node site-template/build.mjs
+     Nav structure mirrors the live sohraaz.com menu (extracted 11 Nov 2026).
+     href  -> works on every page (plain navigation)
+     data-nav -> intercepted by the store SPA for instant in-app routing
+============================================================================ -->
+<header class="header" id="header">
+  <div class="container header-in">
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" data-nav="#/">Home</a></li>
+        <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">New Arrivals</a></li>
+        <li class="has-mega">
+          <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Men's Wear</a>
+          <div class="mega" role="group" aria-label="Men's Wear categories">
+            <div class="mega-col">
+              <span class="mega-h">Shop by Category</span>
+              <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Kurtas</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop">Sherwani &amp; Festive</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Wedding" data-nav="#/shop">Wedding Edit</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Signature</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Accessories" data-nav="#/shop">Bottoms &amp; Accessories</a>
+              <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">All Men's Wear</a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-h">Curated</span>
+              <a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook">The Wedding Edit</a>
+              <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Trending Now</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Best Sellers</a>
+              <a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account &amp; Coins</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Trending</a></li>
+        <li><a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Best Seller</a></li>
+        <li><a href="https://sohraaz.com/pages/buy-in-bulk">Buy In Bulk</a></li>
+        <li><a href="https://sohraaz.com/pages/contact">Contact Us</a></li>
+        <li><a href="https://sohraaz.shiprocket.co/tracking">Track Order</a></li>
+      </ul>
+    </nav>
+
+    <a class="logo" href="index.html" data-nav="#/" aria-label="Sohraaz Collections — home">
+      <img src="assets/extracted/Sohraaz-logo-transparent.png" alt="Sohraaz Collections">
+    </a>
+
+    <div class="actions">
+      <a class="act" href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" aria-label="Search and shop">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </a>
+      <a class="act" href="sohraaz-full-store-template.html#/account" data-nav="#/account" aria-label="My account">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-6 8-6s6.5 2.2 8 6"/></svg>
+      </a>
+      <a class="act badge-wrap" href="sohraaz-full-store-template.html#/wishlist" data-nav="#/wishlist" aria-label="Wishlist">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
+        <span class="count" id="wishCount">0</span>
+      </a>
+      <a class="act badge-wrap" href="sohraaz-full-store-template.html#/cart" data-nav="#/cart" aria-label="Bag">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.8H8a1.8 1.8 0 0 1-1.8-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
+        <span class="count" id="bagCount">0</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>New Arrivals<small>Just landed</small>
+    </a>
+    <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Men's Wear<small>Kurta · Sherwani</small>
+    </a>
+    <a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 4.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wedding Edit<small>Groom &amp; crew</small>
+    </a>
+    <a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5" rx="1"/><line x1="12" y1="22" x2="12" y2="7"/></svg>Festive Collection<small>Diwali · Puja</small>
+    </a>
+    <a href="https://sohraaz.com/pages/buy-in-bulk" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18M8 4v16M16 4v16"/></svg>Buy In Bulk<small>Weddings &amp; events</small>
+    </a>
+    <a href="sohraaz-full-store-template.html#/account" data-nav="#/account" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-6 8-6s6.5 2.2 8 6"/></svg>My Account<small>Coins &amp; orders</small>
+    </a>
+    <a href="https://sohraaz.shiprocket.co/tracking" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Track Order<small>Live status</small>
+    </a>
+    <a href="https://sohraaz.com/pages/contact" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Contact Us<small>We reply fast</small>
+    </a>
+    <a href="sohraaz-full-store-template.html#/cart" data-nav="#/cart" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Bag<span class="count" id="bagCountM">0</span>
+    </a>
+  </nav>
+</header>
