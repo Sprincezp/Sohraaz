@@ -929,5 +929,244 @@ filmOverlay.addEventListener("click",function(){
 });
 filmVideo.addEventListener("ended",function(){ filmOverlay.classList.remove("hidden"); });
 </script>
+<!-- floating helpers: WhatsApp + Sohraaz Assistant (minimized by default) -->
+<div class="float-dock float-left" id="chatDock">
+  <div class="float-wrap">
+    <button class="float-btn chat-fab" id="chatFab" aria-label="Open Sohraaz Assistant chat">
+      <svg class="bubble" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg>
+      <span class="chat-dot" aria-hidden="true"></span>
+      <span class="float-tip">Ask Sohraaz</span>
+    </button>
+    <button class="float-min" id="chatMin" aria-label="Hide assistant button">−</button>
+  </div>
+</div>
+<button class="float-handle float-handle-left" id="chatHandle" aria-label="Show Sohraaz Assistant">Ask Sohraaz</button>
+
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Sohraaz Assistant">
+  <div class="chat-head">
+    <div class="chat-head-av">S</div>
+    <div><b>Sohraaz Assistant</b><small>Instant answers · 24×7</small></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">Namaste! I'm the Sohraaz Assistant. Ask me anything — orders, sizing, wedding styling, returns, offers — or tap a topic below.</div>
+  </div>
+  <div class="chat-chips" id="chatChips"></div>
+  <div class="chat-inputrow">
+    <input id="chatInput" type="text" placeholder="Type your question…" autocomplete="off" aria-label="Type your question">
+    <button id="chatSend">Send</button>
+  </div>
+  <div class="chat-wa">Need help from our experts? <a href="https://wa.me/919123947668?text=Namaste! I need help with my Sohraaz order." target="_blank" rel="noopener">WhatsApp +91 91239 47668</a></div>
+</div>
+
+<!-- floating WhatsApp — disabled by owner (keep markup for future re-enable)
+<div class="float-dock float-right" id="waDock">
+  <div class="float-wrap">
+    <a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="float-btn whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.148-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.49 1.694.627.712.226 1.36.194 1.871.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41-.074-.122-.272-.198-.57-.347m-5.421 5.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a8.19 8.19 0 0 1-1.26-4.827 8.287 8.287 0 0 1 8.287-8.287c2.21 0 4.288.86 5.858 2.42a8.28 8.28 0 0 1 2.423 5.861c-.001 4.581-3.73 8.293-8.29 8.293m7.119-18.41A10.36 10.36 0 0 0 12.046 0C5.495 0 .16 5.334.157 11.892c0 2.087.547 4.14 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.68 1.448h.006c6.55 0 11.89-5.335 11.89-11.893a11.82 11.82 0 0 0-3.48-8.413z"/></svg>
+      <span class="float-tip">Chat on WhatsApp</span>
+    </a>
+    <button class="float-min" id="waMin" aria-label="Hide WhatsApp button">−</button>
+  </div>
+</div>
+<button class="float-handle float-handle-right" id="waHandle" aria-label="Show WhatsApp button">WhatsApp</button>
+-->
+<script>
+  /* ============ SOHRAAZ ASSISTANT — chat (shared KB with store) ============ */
+  const STORE_BASE = "https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html";
+  function plink(p){
+    return "["+p.name+" — ₹"+p.price.toLocaleString("en-IN")+"]("+STORE_BASE+"#/product/"+p.id+")";
+  }
+  function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+  function kwMatch(s, k){ var esc = k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); if (k.length <= 3) return new RegExp("\\b" + esc + "\\b", "i").test(s); return s.indexOf(k) !== -1; }
+function toneOf(s){
+    const t = (s||"").toLowerCase();
+    if (/(bhai|bro|yaar|yr|arey|arrey|haha|lol|mast|wessing|chill|party|le beta|maza|zabardast|hell yeah|beazy|bhaisaab|bhaiya)/.test(t)) return "warm";
+    if (/(please|kindly|regards|esteemed|sir\b|ma'?am|thank you|carefully|dear|respected)/.test(t)) return "pro";
+    return "neutral";
+  }
+  const PRODUCT_MINI = [
+    {id:"p1", name:"White Cotton Plain Kurta", price:799, k:["white","plain","cotton plain","everyday kurta","casual kurta","best seller","popular"]},
+    {id:"p2", name:"Onion Pink Cotton Self Work Kurta", price:1099, k:["pink","onion"]},
+    {id:"p3", name:"Cream Paper Cotton Kurta", price:1099, k:["cream","paper"]},
+    {id:"p4", name:"Beige Breeze Printed Kurta", price:1499, k:["beige","breeze","printed kurta","best seller","popular"]},
+    {id:"p5", name:"Grey Poly Cotton Self Work Kurta", price:1699, k:["grey","gray"]},
+    {id:"p6", name:"Embroidered Black Giza Cotton Kurta", price:2299, k:["black","embroidered"]},
+    {id:"p7", name:"Festive Black Giza Cotton Kurta", price:2599, k:["black","festive black","best seller","popular","diwali","puja"]},
+    {id:"p8", name:"Off White Giza Cotton Moti Work Festive Kurta", price:2999, k:["off white","off-white","moti","wedding kurta","shaadi","shadi","festive"]},
+    {id:"p9", name:"Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, k:["blue","ice blue","jacket","jacket set","shaadi","shadi"]},
+    {id:"p10", name:"Armani Black — Black Armani Embroidered Kurta", price:2549, k:["armani black","armani","black armani"]},
+    {id:"p11", name:"Armani Glow — White Armani Mirror Work Kurta", price:2649, k:["glow","mirror","white mirror","armani glow","mirror work"]},
+    {id:"p12", name:"Armani Spark — White Armani Mirror Work Kurta", price:2549, k:["spark","mirror","white mirror","armani spark","white kurta","mirror work","wedding","best seller","popular","diwali","puja"]},
+    {id:"p13", name:"Men's Elastic Waistband Pyjama with Pockets", price:449, k:["pyjama","pajama","bottom","pyjama set","trouser"]},
+    {id:"p14", name:"Men's White Cotton Blend Churidar", price:400, k:["churidar","churi","pyjama"]},
+  ];
+  const CURATED_TOP = ["p12","p7","p4"];
+  const WED_PICKS = ["p8","p12","p9"];
+  function plinks(list){
+    return list.map(id => plink(PRODUCT_MINI.find(p=>p.id===id))).join("\n");
+  }
+  const shownIds = [];
+  const FOLLOWUP_RE = /(nahi|nope|none|bakal|or dikhao|something else|other|different|ek or dikhao|aur dikhao|aur kuch|kuch or|alternate|another|prefer|dislike|don't like|chutiya|haha|ha nahi|haan baki|kuch theek nahi|kuhu bakot|nai pasand)/;
+  function isFollowup(s){
+    const t = (s||"").toLowerCase().trim();
+    return FOLLOWUP_RE.test(t);
+  }
+  function nextPicks(){
+    const remaining = PRODUCT_MINI.filter(p => !shownIds.includes(p.id));
+    if (!remaining.length) return null;
+    const order = ["p12","p6","p7","p10","p11","p9","p8","p5","p1","p4","p2","p13","p14"];
+    const sorted = [...remaining].sort((a,b) => order.indexOf(a.id) - order.indexOf(b.id));
+    return sorted.slice(0, 3);
+  }
+  function findProducts(q){
+    const s = (q||"").toLowerCase();
+    const hits = [];
+    for (const p of PRODUCT_MINI) { if (p.k.some(k=>s.includes(k))) hits.push(p); }
+    // budget like "2000 tak", "₹5000 me", "3k ke andar"
+    const priceMatch = s.match(/(\d{1,5})\s*(?:k|rs|₹|rupee|rupee me|tak|under|andar|only)?/);
+    if (priceMatch){
+      let cap = parseInt(priceMatch[1], 10);
+      if (/k\b/.test(s) || cap < 20) cap = cap * 1000;
+      if (cap >= 500){
+        const asked = /(tak|under|andar|se kam|budget|within|upto|up to|me sirf|sasta|only)/.test(s);
+        const capHits = PRODUCT_MINI.filter(p=>p.price <= cap);
+        if (capHits.length && (asked || hits.length === 0)) { hits.length = 0; hits.push(...capHits.slice(0,3)); }
+      }
+    }
+    return [...new Set(hits)].slice(0,3);
+  }
+  const CHAT_KB = [
+    {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:(q) => toneOf(q)==="warm"
+      ? pick(["Arre namaste! Sohraaz mein aapka swagat hai. Batao, aaj kya dekhna hai — wedding, festive, ya casual?"])
+      : toneOf(q)==="pro"
+        ? "Namaste, welcome to Sohraaz Collections. How may I assist you today — wedding, festive or casual wear?"
+        : "Namaste! Sohraaz Collections mein aapka swagat hai. Bataiye, kya dekh rahe hain aaj?"},
+    {k:["track","order status","where is my order","delivery status","parcel","shipped","tracking"], a:"Order confirm hone ke 24 ghante baad tracking link WhatsApp/SMS pe aayega. Can't find it? Call +91 91239 47668 with your order number."},
+    {k:["size","fit","chest","length","measure","chart","fitting"], a:"Sohraaz kurtas regular fit chalte hain — usual size hi best hai (relaxed prefer karte ho to size up). Size chart har product page pe: 'Size & Fit Guide' button. Unsure? WhatsApp your chest + height: +91 91239 47668."},
+    {k:["return","exchange","refund","replace"], a:"7 days from delivery. Items unused, tags intact. Size exchange FREE once per order. Full policy: #/policies"},
+    {k:["code","discount","offer","coupon","welcome","promo","sale","off"], a:"WELCOME10 — 10% off your first order (max ₹200). Prepaid orders always get 5% off + free shipping above ₹999. Complete honest list — koi hidden codes nahi."},
+    {k:["cod","cash","cash on delivery"], a:"Yes, COD available on serviceable PIN codes. Below ₹999, ₹49 shipping + ₹49 COD handling fee (shown at checkout). Prepaid saves the fee and earns 5% off."},
+    {k:["delivery","shipping","how long","dispatch","when will"], a:"Dispatch within 1-3 business days from our Kolkata workshop. Metro 3-5 days, other cities 5-7, remote 7-10. Tracking link on WhatsApp once dispatched."},
+    {k:["fabric","cotton","giza","care","wash","paper cotton","poly"], a:"Our kurtas stitch in-house from Giza cotton, paper cotton & soft poly-blends. Wash separately, cold water, shade dry. Full care notes on every product page."},
+    {k:["store","showroom","visit","address","location","open"], a:"Sohraaz Collections, 12/1 Picnic Garden, 3rd Lane, Ground Floor, near 42 Bus Stand, Kolkata 700039. Open most days — call ahead on +91 91239 47668."},
+    {k:["coin","loyalty","reward","points","sohraaz coin"], a:"Every ₹100 you spend earns 1 Sohraaz Coin. Coins unlock Silver, Gold and Signature tiers — you can see yours: #/account"},
+    {k:["wishlist","favourite","favorite","save","saved"], a:"Tap the heart icon on any product — everything you save waits for you at #/wishlist. No account, no password."},
+    {k:["checkout","buy","place order","how to order","payment","pay","upi","card"], a:"Browse → add to bag → checkout (UPI, card, netbanking, COD). Total with all charges shown before you pay. Or WhatsApp order: +91 91239 47668."},
+    {k:["contact","call","help","support","expert","human","agent","care"], a:"Our experts are always one tap away: WhatsApp or call +91 91239 47668. Showroom at 12/1, Picnic Garden, 3rd Lane, Kolkata."},
+  ];
+  const CHAT_CHIPS = ["Track my order","Size & fit","Wedding styling","Return policy","Offers & codes"];
+  /* SOHRAAZ AI — Cloudflare Worker endpoint (live, key stays server-side). */
+  const AI_ENDPOINT = "https://muddy-wood-754b.sprincezp7.workers.dev";
+  const chatHistory = [];
+  async function askSohraazAI(text){
+    const res = await fetch(AI_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message: text, history: chatHistory }) });
+    if(!res.ok) throw new Error("ai http " + res.status);
+    const data = await res.json();
+    if(!data.reply) throw new Error("ai empty or truncated reply");
+    return String(data.reply);
+  }
+  function rememberTurn(text, reply){
+    chatHistory.push({ role:"user", text });
+    chatHistory.push({ role:"model", text: reply });
+    if(chatHistory.length > 16) chatHistory.splice(0, chatHistory.length - 16);
+  }
+  function curatedPicks(s){
+    const top = PRODUCT_MINI.filter(p=>["p12","p7","p4"].includes(p.id));
+    top.forEach(p => shownIds.push(p.id));
+    const t = toneOf(s);
+    const head = t==="warm" ? pick(["Arey bhai, hamare super-hits — Spark wala toh show-stealer hai:","Thik hain, yeh rahe hamare 3 best — log dekhta reh jaenge:"])
+               : t==="pro"  ? "Let me recommend our most-loved pieces:"
+               :               "Zaroor! Hamare top-selling pieces:";
+    const tail = t==="warm" ? "In teeno mein aap crisp aur well-turned-out lagenge — trust me."
+               : t==="pro"  ? "Each of these fits beautifully — you will look noticeably put-together."
+               :               "In teeno mein aap sharp dikhenge — classic waale cuts.";
+    return head + "\n" + top.map(plink).join("\n") + "\n" + tail;
+  }
+  function productFallback(q){
+    const s = q.toLowerCase();
+    const t = toneOf(s);
+    const found = findProducts(s);
+    if(found.length){
+      const head = t==="warm" ? pick(["Arre bhaisaab, dekhiye yeh:","Pata hai yeh pieces best rahegi:","Arey, seedha exact pieces:"])
+                 : t==="pro"  ? "Certainly — here are the most relevant pieces:"
+                 :               "Zaroor! Ye dekhiye:";
+      const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me.","Is drape mein aap gorgeous dikhenge — pakka."])
+                 : t==="pro"  ? "Each sits impeccably — you will look notably refined."
+                 :               "Is fit me aap sharp dikhenge.";
+      found.forEach(p => shownIds.push(p.id));
+      return head + "\n" + found.map(plink).join("\n") + "\n" + tail;
+    }
+    return curatedPicks(q);
+  }
+  function chatAnswer(q){
+    const s = q.toLowerCase();
+    const t = toneOf(s);
+    if(isFollowup(s)){
+      const picks = nextPicks();
+      if(!picks) return "Aapne hamare saare best pieces dekh liye! Naya collection jald hi — WhatsApp pe bata dunga: +91 91239 47668.";
+      picks.forEach(p => shownIds.push(p.id));
+      const head = t==="warm" ? pick(["Ha, kuch or dekhiye yeh wala:","Arre bhai, yeh options bhi solid hain:"])
+                 : t==="pro"  ? "Of course — here are more options:"
+                 :               "Haan theek hai — yeh kuch or options dekhiye:";
+      const tail = t==="warm" ? "Inme se koi best rahega — aapko pasand aayega."
+                 : t==="pro"  ? "Any of these would work well — please review."
+                 :               "Innmein se kuch pasand aayega.";
+      return head + "\n" + picks.map(plink).join("\n") + "\n" + tail;
+    }
+    for(const item of CHAT_KB){ if(item.k.some(k=>kwMatch(s,k))) return typeof item.a === "function" ? item.a(s) : item.a; }
+    return null;  // -> AI conversational path
+  }
+  function chatRenderHTML(text){
+    let s = String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    s = s.replace(/\[([^\]]{1,90})\]\((https?:\/\/[^\s)]+)\)/g, '<a class="chat-link" href="$2" target="_blank" rel="noopener">$1</a>');
+    s = s.replace(/(^|[\s(])(https?:\/\/[^\s)<]+)/g, '$1<a class="chat-link" href="$2" target="_blank" rel="noopener">$2</a>');
+    return s.replace(/\n/g,"<br>");
+  }
+  function chatAddMsg(text, who){
+    const body = document.getElementById("chatBody");
+    if(!body) return;
+    const div = document.createElement("div");
+    div.className = "chat-msg " + who;
+    div.innerHTML = chatRenderHTML(text);
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function chatBotReply(text){
+    const body = document.getElementById("chatBody");
+    if(!body) return;
+    const typing = document.createElement("div");
+    typing.className = "chat-typing";
+    typing.innerHTML = "<i></i><i></i><i></i>";
+    body.appendChild(typing);
+    body.scrollTop = body.scrollHeight;
+    const finish = (reply) => { rememberTurn(text, reply); typing.remove(); chatAddMsg(reply, "bot"); };
+    const quick = chatAnswer(text);
+    if(quick){ setTimeout(()=>finish(quick), 380); return; }
+    if(AI_ENDPOINT){
+      askSohraazAI(text).then(finish).catch(()=>finish(productFallback(text)));
+      return;
+    }
+    finish(productFallback(text));
+  }
+
+  (function initChat(){
+    const fab   = document.getElementById('chatFab');
+    const panel = document.getElementById('chatPanel');
+    const close = document.getElementById('chatClose');
+    const input = document.getElementById('chatInput');
+    const send  = document.getElementById('chatSend');
+    const chips = document.getElementById('chatChips');
+    if(chips) chips.innerHTML = CHAT_CHIPS.map(c=>'<button type="button" class="chat-chip">'+c+'</button>').join('');
+    /* FAB click is handled by initFloatDocks — this avoids double-toggle */
+    if(close && panel) close.addEventListener('click', ()=>panel.classList.remove('open'));
+    const fire = () => { if(!input) return; const v=input.value.trim(); if(!v) return; chatAddMsg(v,'user'); input.value=''; chatBotReply(v); };
+    if(send) send.addEventListener('click', fire);
+    if(input) input.addEventListener('keydown', e=>{ if(e.key==='Enter') fire(); });
+    if(chips) chips.addEventListener('click', e=>{ const b=e.target.closest('.chat-chip'); if(!b) return; const v=b.textContent.trim(); chatAddMsg(v,'user'); chatBotReply(v); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel) panel.classList.remove('open'); });
+  })();
+</script>
 </body>
 </html>
