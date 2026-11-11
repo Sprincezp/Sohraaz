@@ -115,4 +115,24 @@
   window.addEventListener('storage', sync);
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) sync(); });
 })();
+
+  /* shared nav behaviour — one implementation for every page */
+  (function(){
+    var burger=document.getElementById('burger');
+    var mnav=document.getElementById('mnav');
+    var scrim=document.getElementById('mnavScrim');
+    if(!burger || !mnav) return;
+    if(window.__sohraazNavBound) return;
+    window.__sohraazNavBound = true;
+    function close(){ mnav.classList.remove('open'); burger.classList.remove('open'); if(scrim) scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+    burger.addEventListener('click', function(){
+      var open = mnav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      if(scrim) scrim.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    if(scrim) scrim.addEventListener('click', close);
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
 </script>

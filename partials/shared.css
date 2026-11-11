@@ -79,6 +79,19 @@
     .actions svg{width:20px;height:20px}
   }
 
+
+  /* ---------- canonical mobile menu (shared by all pages) ---------- */
+  .mnav{position:absolute;top:100%;left:0;right:0;z-index:49;background:#241812;border-bottom:1px solid rgba(255,255,255,.12);max-height:78vh;overflow-y:auto;transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;box-shadow:0 26px 44px rgba(0,0,0,.45);border-radius:0 0 20px 20px;-webkit-overflow-scrolling:touch}
+  .mnav.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .mnav a{display:flex;align-items:center;gap:14px;padding:13px 22px;font-family:var(--caps);font-size:12px;letter-spacing:.18em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.07);color:#E4D5BB;text-decoration:none;transition:background .25s,padding-left .25s}
+  .mnav a svg{width:21px;height:21px;stroke:#D9BE93;flex:none}
+  .mnav a small{margin-left:auto;color:#8A7A63;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-family:var(--serif);font-style:italic}
+  .mnav a:hover{background:rgba(217,190,147,.09);color:#fff;padding-left:30px}
+  .mnav-scrim{position:fixed;inset:0;z-index:48;background:rgba(20,13,8,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+  .mnav-scrim.open{opacity:1;pointer-events:auto}
+  .burger.open{transform:rotate(90deg)}
+  .burger.open svg{stroke:#B2916B}
+
   /* ---------- production polish: tokens, focus, motion ---------- */
   :root{
     --radius-sm:8px; --radius:14px; --radius-lg:20px;

@@ -16,7 +16,7 @@
 <title>SOHRAAZ — The Art of Modern Indian Elegance</title>
 <meta name="description" content="Sohraaz — Kolkata-born house of modern Indian menswear. Kurtas, sherwanis and festive wear crafted for every celebration.">
 <meta name="robots" content="index, follow">
-<link rel="icon" href="assets/extracted/newlogo.png">
+<link rel="icon" href="assets/extracted/favicon-newlogo-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
@@ -530,6 +530,19 @@
     .actions svg{width:20px;height:20px}
   }
 
+
+  /* ---------- canonical mobile menu (shared by all pages) ---------- */
+  .mnav{position:absolute;top:100%;left:0;right:0;z-index:49;background:#241812;border-bottom:1px solid rgba(255,255,255,.12);max-height:78vh;overflow-y:auto;transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;box-shadow:0 26px 44px rgba(0,0,0,.45);border-radius:0 0 20px 20px;-webkit-overflow-scrolling:touch}
+  .mnav.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .mnav a{display:flex;align-items:center;gap:14px;padding:13px 22px;font-family:var(--caps);font-size:12px;letter-spacing:.18em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.07);color:#E4D5BB;text-decoration:none;transition:background .25s,padding-left .25s}
+  .mnav a svg{width:21px;height:21px;stroke:#D9BE93;flex:none}
+  .mnav a small{margin-left:auto;color:#8A7A63;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-family:var(--serif);font-style:italic}
+  .mnav a:hover{background:rgba(217,190,147,.09);color:#fff;padding-left:30px}
+  .mnav-scrim{position:fixed;inset:0;z-index:48;background:rgba(20,13,8,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+  .mnav-scrim.open{opacity:1;pointer-events:auto}
+  .burger.open{transform:rotate(90deg)}
+  .burger.open svg{stroke:#B2916B}
+
   /* ---------- production polish: tokens, focus, motion ---------- */
   :root{
     --radius-sm:8px; --radius:14px; --radius-lg:20px;
@@ -638,7 +651,7 @@
     </nav>
 
     <a class="logo" href="index.html" data-nav="#/" aria-label="Sohraaz Collections — home">
-      <img src="assets/extracted/Sohraaz-logo-transparent.png" alt="Sohraaz Collections">
+      <img src="assets/extracted/sohraaz-logo-2026.png" alt="Sohraaz Collections">
     </a>
 
     <div class="actions">
@@ -688,6 +701,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Bag<span class="count" id="bagCountM">0</span>
     </a>
   </nav>
+  <div class="mnav-scrim" id="mnavScrim" aria-hidden="true"></div>
 </header>
 <!--#endregion header-->
 
@@ -1102,6 +1116,26 @@
   window.addEventListener('storage', sync);
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) sync(); });
 })();
+
+  /* shared nav behaviour — one implementation for every page */
+  (function(){
+    var burger=document.getElementById('burger');
+    var mnav=document.getElementById('mnav');
+    var scrim=document.getElementById('mnavScrim');
+    if(!burger || !mnav) return;
+    if(window.__sohraazNavBound) return;
+    window.__sohraazNavBound = true;
+    function close(){ mnav.classList.remove('open'); burger.classList.remove('open'); if(scrim) scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+    burger.addEventListener('click', function(){
+      var open = mnav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      if(scrim) scrim.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    if(scrim) scrim.addEventListener('click', close);
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
 </script>
 <!--#endregion footer-->
 
@@ -1199,15 +1233,7 @@
     window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>8)},{passive:true});
   })();
 
-  /* mobile nav */
-  (function(){
-    var b=document.getElementById('burger'),m=document.getElementById('mnav');
-    b.addEventListener('click',function(){
-      var open=m.classList.toggle('open');
-      b.setAttribute('aria-expanded',open?'true':'false');
-    });
-    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open')})});
-  })();
+  /* mobile nav — handled by the shared chrome script in the footer partial */
 
   /* wishlist hearts (visual only) */
   document.querySelectorAll('.wish').forEach(function(w){
