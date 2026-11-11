@@ -393,11 +393,11 @@
   /* responsive */
   @media (max-width:1024px){
     .nav{display:none}
-    .burger{display:inline-flex;justify-self:start}
-    .header-in{position:relative;display:flex;justify-content:space-between;align-items:center;gap:14px;height:64px}
-    .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-    .actions{margin-left:auto;gap:14px;justify-self:end}
-    .logo img{height:34px}
+    .burger{display:inline-flex;justify-self:start;flex:none}
+    .header-in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;overflow:hidden}
+    .logo{position:static;transform:none;flex:0 1 auto;min-width:0;display:flex;align-items:center;cursor:pointer;overflow:hidden}
+    .logo img{height:34px;max-width:120px;width:auto;display:block;object-fit:contain}
+    .actions{margin-left:auto;gap:12px;justify-self:end;flex:none}
     .occ-grid{grid-template-columns:repeat(2,1fr);gap:12px}
     .prod-grid{grid-template-columns:repeat(2,1fr);gap:20px}
     .gal-grid{grid-template-columns:repeat(3,1fr)}
@@ -415,8 +415,11 @@
     .hero-inner{justify-content:center;text-align:center;min-height:460px}
     .hero-copy{margin:0 auto;text-align:center}
     .hero-copy .rule{margin-left:auto;margin-right:auto}
-    .header-in{height:60px}
-    .logo img{height:32px}
+    .header-in{gap:8px;height:58px}
+    .logo img{height:28px;max-width:96px}
+    .actions{gap:8px}
+    .actions a{padding:6px}
+    .actions svg{width:20px;height:20px}
     section{padding:48px 0}
     .val-grid{grid-template-columns:1fr;gap:28px}
     .val{border-left:none;padding:0}

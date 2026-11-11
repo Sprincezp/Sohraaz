@@ -523,12 +523,11 @@
   @media (max-width:820px){
     .container{padding:0 20px}
     .nav{display:none}
-    .burger{display:inline-flex}
-    .burger{display:inline-flex;justify-self:start}
-    .header-in{position:relative;display:flex;justify-content:space-between;align-items:center;gap:14px;height:64px}
-    .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-    .actions{margin-left:auto;gap:14px;justify-self:end}
-    .logo img{height:32px}
+    .burger{display:inline-flex;justify-self:start;flex:none}
+    .header-in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;overflow:hidden}
+    .logo{position:static;transform:none;flex:0 1 auto;min-width:0;display:flex;align-items:center;cursor:pointer;overflow:hidden}
+    .logo img{height:32px;max-width:120px;width:auto;display:block;object-fit:contain}
+    .actions{margin-left:auto;gap:12px;justify-self:end;flex:none}
     .hero-media{inset:0}
     .hero-media::after{background:rgba(35,24,15,.62)}
     .hero-inner{justify-content:center;text-align:center;min-height:440px}
@@ -553,6 +552,13 @@
     .float-handle{bottom:96px}
   }
   @media (max-width:520px){
+    .container{padding:0 14px}
+    .burger{flex:none}
+    .header-in{gap:8px;height:60px}
+    .logo img{height:28px;max-width:96px}
+    .actions{gap:8px}
+    .actions button{padding:6px}
+    .actions svg{width:20px;height:20px}
     .gal-grid{grid-template-columns:repeat(2,1fr)}
     .foot-grid{grid-template-columns:1fr}
     .frow{grid-template-columns:1fr}
