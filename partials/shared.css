@@ -104,7 +104,6 @@
   .btn:focus-visible,.nav a:focus-visible,.f-col a:focus-visible,.actions a:focus-visible{outline-offset:4px}
   ::selection{background:var(--gold);color:#241812}
   .header,.footer{scroll-margin-top:92px}
-  img{background:var(--cream-2)}
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
   }

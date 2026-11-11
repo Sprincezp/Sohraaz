@@ -555,7 +555,6 @@
   .btn:focus-visible,.nav a:focus-visible,.f-col a:focus-visible,.actions a:focus-visible{outline-offset:4px}
   ::selection{background:var(--gold);color:#241812}
   .header,.footer{scroll-margin-top:92px}
-  img{background:var(--cream-2)}
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
   }
@@ -665,7 +664,7 @@
         <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
         <span class="count" id="wishCount">0</span>
       </a>
-      <a class="act badge-wrap" href="sohraaz-full-store-template.html#/cart" data-nav="#/cart" aria-label="Bag">
+      <a class="act badge-wrap" id="bagBtn" href="sohraaz-full-store-template.html#/cart" data-nav="#/cart" aria-label="Bag">
         <svg class="icon" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.8H8a1.8 1.8 0 0 1-1.8-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
         <span class="count" id="bagCount">0</span>
       </a>
@@ -1019,6 +1018,16 @@
           <svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           <a href="mailto:care@sohraaz.com">care@sohraaz.com</a>
         </p>
+        <form class="news" id="newsForm" novalidate>
+          <label for="newsEmail" style="display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A7A63;margin-bottom:8px">Stay in the loop</label>
+          <div style="display:flex;gap:8px">
+            <input type="email" id="newsEmail" placeholder="Enter your email address" aria-label="Email address" style="flex:1;min-width:0;padding:11px 12px;border:1px solid rgba(240,231,213,.22);border-radius:10px;background:rgba(240,231,213,.06);color:#F1E8D7;font-family:var(--serif);font-size:14px;outline:none">
+            <button type="submit" id="newsOk" aria-label="Subscribe" style="flex:none;width:42px;height:42px;border-radius:10px;background:var(--gold);color:#241812;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg class="icon sm" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+          <p id="newsThanks" hidden style="margin-top:10px;font-size:12.5px;color:#9FBE9B">Thanks for subscribing — restock alerts will reach your inbox first.</p>
+        </form>
         <p style="margin-top:10px;font-size:13px;display:flex;align-items:center;gap:7px">
           <svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a1 1 0 0 1 1 1v17l-3-2-2 2-2-2-2 2-2-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
           GSTIN 19DIBPA3993Q12M
@@ -1135,6 +1144,22 @@
     if(scrim) scrim.addEventListener('click', close);
     mnav.addEventListener('click', function(e){ if(e.target.closest('a')) close(); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
+
+  /* shared newsletter handler */
+  (function(){
+    if(window.__sohraazNewsBound) return;
+    var f=document.getElementById('newsForm');
+    if(!f) return;
+    window.__sohraazNewsBound = true;
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var email=document.getElementById('newsEmail');
+      var thanks=document.getElementById('newsThanks');
+      if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){ email.focus(); return; }
+      f.hidden=true;
+      if(thanks) thanks.hidden=false;
+    });
   })();
 </script>
 <!--#endregion footer-->
@@ -1360,15 +1385,7 @@
     }catch(e){ window.location.href="sohraaz-full-store-template.html#/product/p8"; }
   });
 
-  /* newsletter (demo) */
-  (function(){
-    var f=document.getElementById('newsForm');
-    f.addEventListener('submit',function(e){
-      e.preventDefault();
-      f.hidden=true;
-      document.getElementById('newsOk').hidden=false;
-    });
-  })();
+  /* newsletter — handled by the shared chrome script in the footer partial */
 
   /* ============ SOHRAAZ ASSISTANT — chat (shared KB with store) ============ */
   const STORE_BASE = "https://sprincezp.github.io/Sohraaz/sohraaz-full-store-template.html";
