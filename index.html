@@ -529,6 +529,32 @@
     .actions{gap:8px}
     .actions svg{width:20px;height:20px}
   }
+
+  /* ---------- production polish: tokens, focus, motion ---------- */
+  :root{
+    --radius-sm:8px; --radius:14px; --radius-lg:20px;
+    --shadow-1:0 6px 18px rgba(36,24,18,.08);
+    --shadow-2:0 18px 50px rgba(36,24,18,.16);
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --dur:.28s;
+  }
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+  .btn:focus-visible,.nav a:focus-visible,.f-col a:focus-visible,.actions a:focus-visible{outline-offset:4px}
+  ::selection{background:var(--gold);color:#241812}
+  .header,.footer{scroll-margin-top:92px}
+  img{background:var(--cream-2)}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  }
+  /* trusted by our customers */
+  .trust-reviews{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  .tr-card{background:#FDFBF7;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px}
+  .tr-quote{font-style:italic;color:#4A3828;line-height:1.7;font-size:15px}
+  .tr-name{font-family:var(--caps);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8A7A63;margin-top:auto}
+  .tr-verified{display:inline-flex;align-items:center;gap:6px;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#1E7A34}
+  .tr-verified svg{width:13px;height:13px;stroke:#1E7A34;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  @media (max-width:820px){.tr-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -548,6 +574,19 @@
   <span class="ob-text" data-offer-text>Festive sale — extra savings valid till 27 Nov</span>
   <span class="ob-timer">Ends in <span class="js-cd">…</span></span>
 </div>
+
+<!-- trust strip (matches live sohraaz.com promise order) -->
+<section class="trust-strip" aria-label="Shop with confidence">
+  <div class="container trust-strip-in">
+    <div class="ts-item"><b>Free Shipping Pan India</b><span>On prepaid orders above ₹999</span></div>
+    <div class="ts-item"><b>COD Available</b><span>Cash on delivery across serviceable PIN codes</span></div>
+    <div class="ts-item"><b>3 Days Easy Returns</b><span>Exchange or return within 7 days of delivery</span></div>
+    <div class="ts-item"><b>10% OFF for New Buyers</b><span>Code WELCOME10 · max ₹200 off</span></div>
+    <div class="ts-item"><b>5% Extra OFF Online Payment</b><span>Applied automatically at checkout</span></div>
+    <div class="ts-item"><b>In-House Made</b><span>Stitched at our Kolkata workshop</span></div>
+  </div>
+</section>
+
 
 <!-- header -->
 <!--#region header-->
@@ -676,7 +715,8 @@
 <!-- shop by occasion -->
 <section id="occasions">
   <div class="container">
-    <div class="sec-head"><h2>Shop by Occasion</h2></div>
+    <div class="sec-head"><h2>Find What You Need</h2></div>
+    <p class="sec-sub">Every celebration, one wardrobe — shop by the occasion you are dressing for.</p>
     <div class="occ-grid">
       <a class="occ" href="#latest">
         <img src="assets/extracted/ai_occasion_everyday.png" alt="Everyday Elegance — white kurta" loading="lazy" onerror="this.src='assets/extracted/Elegant_Kurta_Portrait_in_Warm_Interiors.png'">
@@ -701,7 +741,7 @@
 <!-- latest collection -->
 <section id="latest" style="padding-top:8px">
   <div class="container">
-    <div class="sec-head"><h2>The Latest Collection</h2></div>
+    <div class="sec-head"><h2>Trending New Collection</h2></div>
     <p class="sec-sub">Honest prices — the selling price you see is what you pay. Honest pricing — no inflated MRP.</p>
     <div class="prod-grid">
       <article class="prod" onclick="location.href='sohraaz-full-store-template.html#/product/p1'">
@@ -803,6 +843,32 @@
 </section>
 
 <!-- brand story -->
+
+<!-- trusted by our customers (verified sohraaz.com reviews) -->
+<section class="trust-reviews" aria-label="Trusted by our customers">
+  <div class="container">
+    <div class="sec-head"><h2>Trusted By Our Customers</h2></div>
+    <p class="sec-sub">Real words from real Sohraaz customers — collected on sohraaz.com.</p>
+    <div class="tr-grid">
+      <figure class="tr-card">
+        <div class="tr-verified"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Verified customer</div>
+        <blockquote class="tr-quote">The collection's are too good. We visited this shop for the first time and I was too much satisfied with their behaviour, The collections and everything. The price is too reasonable, must visit this SOHRAAZ place for any festive, wedding, season shopping.</blockquote>
+        <figcaption class="tr-name">Huzaifa Salam · sohraaz.com</figcaption>
+      </figure>
+      <figure class="tr-card">
+        <div class="tr-verified"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Verified customer</div>
+        <blockquote class="tr-quote">Three piece suits and bridal dresses are so nice — even they customise also, at a very reasonable price. A must-visit shop for your wedding shopping or for any occasion.</blockquote>
+        <figcaption class="tr-name">Sazia Haque · sohraaz.com</figcaption>
+      </figure>
+      <figure class="tr-card">
+        <div class="tr-verified"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Verified customer</div>
+        <blockquote class="tr-quote">Sohraaz the name of brand — I like its product for good quality and fitting as well as better experience. And its staff behaviour good, soft and polite.</blockquote>
+        <figcaption class="tr-name">Md Akram · sohraaz.com</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section class="story">
   <div class="story-grid">
     <div class="story-media">
@@ -899,18 +965,6 @@
       <h3>The Sohraaz Experience</h3>
       <p>A refined approach to modern Indian dressing.</p>
     </div>
-  </div>
-</section>
-
-<!-- trust strip -->
-<section class="trust-strip" aria-label="Shop with confidence">
-  <div class="container trust-strip-in">
-    <div class="ts-item"><b>Free shipping</b><span>On orders above ₹999 — prepaid &amp; COD</span></div>
-    <div class="ts-item"><b>COD available</b><span>Cash on delivery, +₹49 handling fee</span></div>
-    <div class="ts-item"><b>5% extra off prepaid</b><span>Auto-applied on online payment</span></div>
-    <div class="ts-item"><b>10% off 1st order</b><span>Code WELCOME10 (max ₹200, min ₹799)</span></div>
-    <div class="ts-item"><b>Easy return / exchange</b><span>As per our published policy</span></div>
-    <div class="ts-item"><b>In-house made</b><span>Stitched at our Kolkata workshop</span></div>
   </div>
 </section>
 

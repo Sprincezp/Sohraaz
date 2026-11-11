@@ -1037,6 +1037,23 @@
     .actions{gap:8px}
     .actions svg{width:20px;height:20px}
   }
+
+  /* ---------- production polish: tokens, focus, motion ---------- */
+  :root{
+    --radius-sm:8px; --radius:14px; --radius-lg:20px;
+    --shadow-1:0 6px 18px rgba(36,24,18,.08);
+    --shadow-2:0 18px 50px rgba(36,24,18,.16);
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --dur:.28s;
+  }
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+  .btn:focus-visible,.nav a:focus-visible,.f-col a:focus-visible,.actions a:focus-visible{outline-offset:4px}
+  ::selection{background:var(--gold);color:#241812}
+  .header,.footer{scroll-margin-top:92px}
+  img{background:var(--cream-2)}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  }
 </style>
 </head>
 <body>
