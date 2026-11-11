@@ -433,6 +433,21 @@
     .float-handle{bottom:96px}
     .chat-panel{left:8px;bottom:88px}
   }
+
+  /* ============ ICON SYSTEM — inline SVG, no emoji ============ */
+  .ic{width:1em;height:1em;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.14em}
+  .ic-13{width:13px;height:13px}
+  .ic-14{width:14px;height:14px}
+  .ic-15{width:15px;height:15px}
+  .ic-16{width:16px;height:16px}
+  .ic-18{width:18px;height:18px}
+  .ic-20{width:20px;height:20px}
+  .ic-22{width:22px;height:22px}
+  .ic-24{width:24px;height:24px}
+  .ic-gold{stroke:var(--gold)}
+  .ic-green{stroke:#1E7A34}
+  .ic-ink{stroke:#241812}
+  .ic-solid{fill:currentColor;stroke:none}
 </style>
 </head>
 <body>
@@ -448,7 +463,7 @@
   </div>
 </div>
 <div class="offer-bar" role="status" aria-label="Current offer">
-  <span class="ob-name" data-offer-name>Black Friday</span>
+  <span class="ob-lead" style="display:inline-flex;align-items:center;gap:7px"><svg class="ic ic-14 ic-solid ic-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.1 12.6a1 1 0 0 0 .8 1.6H11l-1 8 8.9-10.6a1 1 0 0 0-.8-1.6H12z"/></svg><span class="ob-name" data-offer-name>Black Friday</span></span>
   <span class="ob-text" data-offer-text>Festive sale — extra savings valid till 27 Nov</span>
   <span class="ob-timer">Ends in <span class="js-cd">…</span></span>
 </div>
@@ -674,7 +689,7 @@
         <div class="product-label">Mehndi</div>
       </div>
       <div class="slider-line">
-        <div class="slider-handle">↔</div>
+        <div class="slider-handle"><svg class="ic ic-22 ic-ink" viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.8"><path d="M9 6 5 10l4 4"/><path d="M5 10h14"/><path d="m15 18 4-4-4-4"/><path d="M19 14H5"/></svg></div>
       </div>
       <div class="slider-control" id="slider" role="slider" tabindex="0" aria-label="Compare Haldi and Mehndi looks" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
     </div>
@@ -1109,7 +1124,7 @@ function toneOf(s){
   }
   const CHAT_KB = [
     {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:(q) => toneOf(q)==="warm"
-      ? pick(["Arre namaste! Sohraaz mein aapka swagat hai 🙌 Batao, aaj kya dekhna hai — wedding, festive, ya casual?"])
+      ? pick(["Arre namaste! Sohraaz mein aapka swagat hai. Batao, aaj kya dekhna hai — wedding, festive, ya casual?"])
       : toneOf(q)==="pro"
         ? "Namaste, welcome to Sohraaz Collections. How may I assist you today — wedding, festive or casual wear?"
         : "Namaste! Sohraaz Collections mein aapka swagat hai. Bataiye, kya dekh rahe hain aaj?"},
@@ -1149,7 +1164,7 @@ function toneOf(s){
     const head = t==="warm" ? pick(["Arey bhai, hamare super-hits — Spark wala toh show-stealer hai:","Thik hain, yeh rahe hamare 3 best — log dekhta reh jaenge:"])
                : t==="pro"  ? "Let me recommend our most-loved pieces:"
                :               "Zaroor! Hamare top-selling pieces:";
-    const tail = t==="warm" ? "In teeno mein aap crisp aur well-turned-out lagenge — trust me. 😎"
+    const tail = t==="warm" ? "In teeno mein aap crisp aur well-turned-out lagenge — trust me."
                : t==="pro"  ? "Each of these fits beautifully — you will look noticeably put-together."
                :               "In teeno mein aap sharp dikhenge — classic waale cuts.";
     return head + "\n" + top.map(plink).join("\n") + "\n" + tail;
@@ -1162,7 +1177,7 @@ function toneOf(s){
       const head = t==="warm" ? pick(["Arre bhaisaab, dekhiye yeh:","Pata hai yeh pieces best rahegi:","Arey, seedha exact pieces:"])
                  : t==="pro"  ? "Certainly — here are the most relevant pieces:"
                  :               "Zaroor! Ye dekhiye:";
-      const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me 😎","Is drape mein aap gorgeous dikhenge — pakka."])
+      const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me.","Is drape mein aap gorgeous dikhenge — pakka."])
                  : t==="pro"  ? "Each sits impeccably — you will look notably refined."
                  :               "Is fit me aap sharp dikhenge.";
       found.forEach(p => shownIds.push(p.id));

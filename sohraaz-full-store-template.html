@@ -941,6 +941,21 @@
   }
   .coin-earn{display:inline-flex;align-items:center;gap:10px;background:#241812;color:#D9BE93;border-radius:28px;padding:12px 22px;margin:18px auto 0;font-family:var(--caps);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
   .coin-earn b{color:#fff;font-size:15px}
+
+  /* ============ ICON SYSTEM — inline SVG, no emoji ============ */
+  .ic{width:1em;height:1em;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.14em}
+  .ic-13{width:13px;height:13px}
+  .ic-14{width:14px;height:14px}
+  .ic-15{width:15px;height:15px}
+  .ic-16{width:16px;height:16px}
+  .ic-18{width:18px;height:18px}
+  .ic-20{width:20px;height:20px}
+  .ic-22{width:22px;height:22px}
+  .ic-24{width:24px;height:24px}
+  .ic-gold{stroke:var(--gold)}
+  .ic-green{stroke:#1E7A34}
+  .ic-ink{stroke:#241812}
+  .ic-solid{fill:currentColor;stroke:none}
 </style>
 </head>
 <body>
@@ -954,7 +969,7 @@
   <span><b>7-day easy size exchange</b> · Ships from Kolkata</span>
 </div></div>
 <div class="offer-bar" role="status" aria-label="Current offer">
-  <span class="ob-name">Black Friday</span>
+  <span class="ob-lead" style="display:inline-flex;align-items:center;gap:7px"><svg class="ic ic-14 ic-solid ic-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.1 12.6a1 1 0 0 0 .8 1.6H11l-1 8 8.9-10.6a1 1 0 0 0-.8-1.6H12z"/></svg><span class="ob-name">Black Friday</span></span>
   <span class="ob-text">Festive sale — extra savings valid till 27 Nov</span>
   <span class="ob-timer">Ends in <span class="js-cd">…</span></span>
 </div>
@@ -1118,7 +1133,7 @@
       <div>
         <h4>Be part of the Sohraaz world</h4>
         <div class="news"><input type="email" placeholder="Enter your email address" id="newsEmail"><button id="newsOk" aria-label="Subscribe"><svg class="icon sm" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button></div>
-        <p style="margin-top:12px;font-size:13.5px">📞 +91 91239 47668 &nbsp;·&nbsp; ✉ care@sohraaz.com</p>
+        <p style="margin-top:12px;font-size:13.5px;display:flex;align-items:center;gap:7px;flex-wrap:wrap"><svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+919123947668" style="color:inherit">+91 91239 47668</a><span style="opacity:.4">·</span><svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><a href="mailto:care@sohraaz.com" style="color:inherit">care@sohraaz.com</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -1286,6 +1301,8 @@ function addToCart(id,size,qty){
   const t=computeTotals(cartItems(),"prepaid",store.isNew,store.coupon);
   toast(`Added to bag — prepaid total <b>${inr(t.total)}</b>`);
 }
+/* inline SVG check icon (shared) */
+const ICON_CHECK = `<svg class="ic ic-15" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.18em"><path d="M20 6 9 17l-5-5"/></svg>`;
 function toast(html){
   const el=document.getElementById("toast");
   el.innerHTML=html; el.classList.add("on");
@@ -1822,7 +1839,7 @@ function findProducts(q){
 }
 const CHAT_KB = [
   {k:["hii","hi ","hello","hey","namaste","good morning","good evening","shubh"], a:(q) => toneOf(q)==="warm"
-    ? pick(["Arre namaste! Sohraaz mein aapka swagat hai 🙌 Batao, aaj kya dekhna hai — wedding, festive, ya casual?"])
+    ? pick(["Arre namaste! Sohraaz mein aapka swagat hai. Batao, aaj kya dekhna hai — wedding, festive, ya casual?"])
     : toneOf(q)==="pro"
       ? "Namaste, welcome to Sohraaz Collections. How may I assist you today — wedding, festive or casual wear?"
       : "Namaste! Sohraaz Collections mein aapka swagat hai. Bataiye, kya dekh rahe hain aaj?"},
@@ -1857,7 +1874,7 @@ function curatedPicks(s){
   const head = t==="warm" ? pick(["Arey bhai, hamare super-hits — Spark wala toh show-stealer hai:","Thik hain, yeh rahe hamare 3 best — log dekhta reh jaenge:"])
              : t==="pro"  ? "Let me recommend our most-loved pieces:"
              :               "Zaroor! Hamare top-selling pieces:";
-  const tail = t==="warm" ? "In teeno mein aap crisp aur well-turned-out lagenge — trust me. 😎"
+  const tail = t==="warm" ? "In teeno mein aap crisp aur well-turned-out lagenge — trust me."
              : t==="pro"  ? "Each of these fits beautifully — you will look noticeably put-together."
              :               "In teeno mein aap sharp dikhenge — classic waale cuts.";
   return head + "\n" + top.map(plink).join("\n") + "\n" + tail;
@@ -1870,7 +1887,7 @@ function productFallback(q){
     const head = t==="warm" ? pick(["Arre bhaisaab, dekhiye yeh:","Pata hai yeh pieces best rahegi:","Arey, seedha exact pieces:"])
                : t==="pro"  ? "Certainly — here are the most relevant pieces:"
                :               "Zaroor! Ye dekhiye:";
-    const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me 😎","Is drape mein aap gorgeous dikhenge — pakka."])
+    const tail = t==="warm" ? pick(["Is cut mein aap crisp lagenge — trust me.","Is drape mein aap gorgeous dikhenge — pakka."])
                : t==="pro"  ? "Each sits impeccably — you will look notably refined."
                :               "Is fit me aap sharp dikhenge.";
     found.forEach(p => shownIds.push(p.id));
@@ -2052,7 +2069,7 @@ function renderProduct(id){
       </div>
       <div class="breakdown">Item ${inr(p.price)} − prepaid 5% (${inr(p.price-pre)}) = <b>${inr(pre)} prepaid</b> &nbsp;|&nbsp; COD = <b>${inr(p.price+49)}</b></div>
       <div class="pdp-offer" role="status" aria-label="Limited time offer">
-        <span>⚡ <b data-offer-name>Black Friday</b> — <span data-offer-text>Festive sale till 27 Nov</span></span>
+        <span><svg class="ic ic-14 ic-solid ic-gold" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.1 12.6a1 1 0 0 0 .8 1.6H11l-1 8 8.9-10.6a1 1 0 0 0-.8-1.6H12z"/></svg> <b data-offer-name>Black Friday</b> — <span data-offer-text>Festive sale till 27 Nov</span></span>
         <span class="pdp-cd">Ends in <span class="js-cd">…</span></span>
       </div>
       <ul class="offer-list">
@@ -2079,7 +2096,7 @@ function renderProduct(id){
       <div class="ship-note">In stock — dispatched from our in-house Kolkata workshop within 24–48 hrs</div>
       <div class="pinrow"><input id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit PIN code"><button class="btn btn-dark" data-pin>Check</button></div>
       <div class="pin-result" id="pinResult"></div>
-      <a class="wa-cta" href="https://wa.me/919123947668?text=Namaste! Size, fabric aur delivery ke baare mein poochna hai." target="_blank" rel="noopener">💬 Size ya fabric? Chat with a stylist on WhatsApp</a>
+      <a class="wa-cta" href="https://wa.me/919123947668?text=Namaste! Size, fabric aur delivery ke baare mein poochna hai." target="_blank" rel="noopener"><svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg> Size ya fabric? Chat with a stylist on WhatsApp</a>
       <div class="acc">
         <details open>
           <summary>Fabric &amp; Care <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -2483,7 +2500,7 @@ document.addEventListener("click",e=>{
     return;
   }
   if(t.dataset.remove){ const [id,size]=t.dataset.remove.split("|"); store.cart=store.cart.filter(x=>!(x.id===id&&x.size===size)); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Removed from bag"); return; }
-  if(t.dataset.quickadd){ const [id,size]=t.dataset.quickadd.split("|"); addToCart(id,size,1); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Added to your bag ✓"); return; }
+  if(t.dataset.quickadd){ const [id,size]=t.dataset.quickadd.split("|"); addToCart(id,size,1); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Added to your bag " + ICON_CHECK); return; }
   if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); refreshCartView(); return; }
   if(t.dataset.size){ const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return; }
   if(t.dataset.color){ const row=t.closest(".color-sw"); if(row) row.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); return; }
@@ -2660,7 +2677,7 @@ document.addEventListener('click', e=>{
   if(addBtn){
     const p=P(addBtn.dataset.wbadd);
     addToCart(addBtn.dataset.wbadd,'M',1);
-    toast((p?p.name.slice(0,26):'Kurta')+' added to your bag ✓');
+    toast((p?p.name.slice(0,26):'Kurta') + ' added to your bag ' + ICON_CHECK);
     location.hash="#/cart";
     return;
   }
