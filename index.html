@@ -1224,7 +1224,7 @@ function toneOf(s){
     const send  = document.getElementById('chatSend');
     const chips = document.getElementById('chatChips');
     if(chips) chips.innerHTML = CHAT_CHIPS.map(c=>'<button type="button" class="chat-chip">'+c+'</button>').join('');
-    if(fab && panel) fab.addEventListener('click', ()=>{ panel.classList.toggle('open'); if(panel.classList.contains('open') && input) input.focus(); });
+    /* FAB click is handled by initFloatDocks — this avoids double-toggle */
     if(close && panel) close.addEventListener('click', ()=>panel.classList.remove('open'));
     const fire = () => { if(!input) return; const v=input.value.trim(); if(!v) return; chatAddMsg(v,'user'); input.value=''; chatBotReply(v); };
     if(send) send.addEventListener('click', fire);
@@ -1249,10 +1249,39 @@ function toneOf(s){
       handle.addEventListener("click", () => { show(); try{ localStorage.setItem(key, "0"); }catch(e){} });
     };
     bind("waDock", "waMin", "waHandle", "sohraaz_wa_hide");
-    bind("chatDock", "chatMin", "chatHandle", "sohraaz_chat_hide", () => {
-      const p = document.getElementById("chatPanel");
-      if(p) p.classList.remove("open");
-    });
+    // Chat dock: FAB toggles panel; edge tab opens chat directly; × brings the tab back
+    (function(){
+      const dock = document.getElementById("chatDock");
+      const panel = document.getElementById("chatPanel");
+      const fab = document.getElementById("chatFab");
+      const tab = document.getElementById("chatHandle");
+      const min = document.getElementById("chatMin");
+      const close = document.getElementById("chatClose");
+      if(!dock || !panel || !fab || !tab || !min || !close) return;
+      const key = "sohraaz_chat_hide";
+      const showDock = () => { dock.style.display = "flex"; tab.classList.remove("show"); };
+      const hideDock = () => { dock.style.display = "none"; tab.classList.add("show"); };
+      let stored = null;
+      try{ stored = localStorage.getItem(key); }catch(e){}
+      if(stored === "0") showDock(); else hideDock(); /* default: minimized */
+      const openChat = () => {
+        panel.classList.add("open");
+        dock.style.display = "none";
+        tab.classList.remove("show");
+        const input = document.getElementById("chatInput");
+        if(input) setTimeout(() => input.focus(), 100);
+      };
+      const closeChat = () => {
+        panel.classList.remove("open");
+        tab.classList.add("show");
+      };
+      tab.addEventListener("click", openChat);
+      fab.addEventListener("click", () => {
+        if(panel.classList.contains("open")) closeChat(); else openChat();
+      });
+      min.addEventListener("click", () => { hideDock(); try{ localStorage.setItem(key, "1"); }catch(e){} panel.classList.remove("open"); });
+      close.addEventListener("click", closeChat);
+    })();
   })();
 </script>
 </body>
