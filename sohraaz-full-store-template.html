@@ -1124,7 +1124,7 @@
   </div>
 </footer>
 
-<!-- floating WhatsApp -->
+<!-- floating WhatsApp — disabled by owner (keep markup for future re-enable)
 <div class="float-dock float-right" id="waDock">
   <div class="float-wrap">
     <a href="https://wa.me/919123947668?text=Namaste! Main Sohraaz Collections se order karna chahta hoon. Kripya catalogue bhejein?" class="float-btn whatsapp-float" aria-label="Message us on WhatsApp" target="_blank" rel="noopener">
@@ -1135,6 +1135,7 @@
   </div>
 </div>
 <button class="float-handle float-handle-right" id="waHandle" aria-label="Show WhatsApp button">WhatsApp</button>
+-->
 
 <script>
 /* ================================================================
@@ -2859,7 +2860,7 @@ if(typeof renderRevStars === 'function') renderRevStars();
     min.addEventListener("click", () => { hide(); try{ localStorage.setItem(key, "1"); }catch(e){} if(onHide) onHide(); });
     handle.addEventListener("click", () => { show(); try{ localStorage.setItem(key, "0"); }catch(e){} });
   };
-  bind("waDock", "waMin", "waHandle", "sohraaz_wa_hide");
+  bind("waDock", "waMin", "waHandle", "sohraaz_wa_hide"); // waDock is disabled (markup commented out); bind() early-returns
   // Chat dock: FAB toggles panel; edge tab opens chat directly; × brings the tab back
   (function(){
     const dock = document.getElementById("chatDock");
