@@ -142,24 +142,41 @@
   @media (max-width:1024px){.ts-item{border-left:none;border-top:1px solid rgba(244,237,227,.1)}.ts-item:nth-child(-n+3){border-top:none}}
   @media (max-width:640px){.ts-item{padding:15px}.ts-item b{font-size:9.5px;letter-spacing:.12em}.ts-item span{font-size:10.5px}}
 
-  /* ---------- HERO (brief §5) ---------- */
+  /* ---------- HERO (brief §5) ----------
+     Split banner modelled on the reference layout:
+     LEFT 40% = a clean chocolate gradient panel (no media behind it),
+     RIGHT 60% = the film, its left edge softly dissolving into the panel.
+     A single hairline-free join — no border, no seam. */
   .hero{
     position:relative;
-    background:var(--brown-950);
+    background:linear-gradient(100deg,#241A14 0%,#302019 52%,#453026 100%);
     overflow:hidden;
-    min-height:min(92vh,860px);
+    min-height:520px;
     display:flex;
     align-items:stretch;
   }
-  .hero-media{position:absolute;inset:0}
-  .hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
-  .hero-media::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,rgba(48,32,25,.94) 0%,rgba(48,32,25,.78) 34%,rgba(48,32,25,.34) 62%,rgba(48,32,25,.55) 100%);
+  .hero-media{
+    position:absolute;inset:0 0 0 40%;
   }
-  .hero-inner{position:relative;z-index:2;display:flex;align-items:center;width:100%;padding-top:84px;padding-bottom:84px}
-  .hero-copy{max-width:620px;color:var(--cream)}
-  .hero-copy .overline{color:var(--gold);display:block;margin-bottom:22px}
+  .hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;filter:saturate(.86) contrast(1.04) brightness(.94)}
+  /* smoky haze over the film — soft warm pools of shadow, no hard edge */
+  .hero-media::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(115% 85% at 84% 16%, rgba(38,25,19,.44) 0%, rgba(38,25,19,.13) 46%, rgba(38,25,19,0) 74%),
+      radial-gradient(80% 70% at 54% 98%, rgba(38,25,19,.50) 0%, rgba(38,25,19,0) 66%),
+      radial-gradient(58% 48% at 98% 60%, rgba(38,25,19,.30) 0%, rgba(38,25,19,0) 72%);
+  }
+  .hero-media::after{
+    content:"";position:absolute;inset:0;z-index:2;
+    background:
+      linear-gradient(90deg,#302019 0%,rgba(48,32,25,.55) 22%,rgba(48,32,25,0) 55%),
+      linear-gradient(0deg,rgba(48,32,25,.30) 0%,rgba(48,32,25,0) 38%);
+  }
+  .hero-inner{position:relative;z-index:2;display:flex;align-items:center;width:100%;min-height:520px;padding-top:72px;padding-bottom:72px}
+  .hero-copy{max-width:560px;color:var(--cream)}
+  .hero-copy .overline{color:var(--gold);display:block;margin-bottom:18px}
+  .hero-rule{width:64px;height:1px;background:var(--gold);margin:0 0 22px}
   .hero-copy h1{
     font-family:var(--serif);
     font-weight:400;
@@ -187,6 +204,43 @@
   .hero-note b{color:#C7AA8B;font-weight:600}
   .hero-cta .btn-outline-light{background:transparent;color:#F4EDE3;border-color:rgba(244,237,227,.55)}
   .hero-cta .btn-outline-light:hover{background:#F4EDE3;color:#302019;border-color:#F4EDE3}
+
+  /* floating proof card over the film */
+  .hero-badge{
+    position:absolute;z-index:4;right:48px;bottom:44px;
+    display:flex;align-items:center;gap:13px;
+    padding:14px 19px;
+    background:rgba(48,32,25,.60);
+    border:1px solid rgba(173,135,101,.36);
+    border-radius:3px;
+    backdrop-filter:blur(9px);
+    -webkit-backdrop-filter:blur(9px);
+  }
+  .hero-badge-dot{
+    width:9px;height:9px;border-radius:50%;flex:none;
+    background:var(--gold);box-shadow:0 0 0 4px rgba(173,135,101,.22);
+  }
+  .hero-badge b{
+    display:block;font-family:var(--caps);font-size:10.5px;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:#F4EDE3;
+  }
+  .hero-badge small{
+    display:block;margin-top:3px;font-family:var(--caps);font-size:10.5px;
+    letter-spacing:.06em;color:#C7AA8B;
+  }
+  /* scroll cue */
+  .hero-scroll{
+    position:absolute;z-index:4;left:50%;bottom:34px;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:9px;
+    font-family:var(--caps);font-size:9px;font-weight:600;
+    letter-spacing:.26em;text-transform:uppercase;color:#A5946F;
+  }
+  .hero-scroll::after{
+    content:"";width:1px;height:46px;
+    background:linear-gradient(#AD8765,rgba(173,135,101,0));
+    animation:sohraazCue 2.4s ease-in-out infinite;
+  }
+  @keyframes sohraazCue{0%,100%{transform:scaleY(.55);transform-origin:top;opacity:.5}50%{transform:scaleY(1);opacity:1}}
 
   /* ---------- section furniture ---------- */
   section{padding:96px 0}
@@ -393,6 +447,17 @@
     .product-img{width:72%;height:78%}
     .watchbuy .sec-head{flex-direction:column;align-items:flex-start;gap:16px}
     .banner .container{justify-content:flex-start}
+    /* hero goes back to a single full-bleed panel on narrow screens */
+    .hero{min-height:min(88vh,760px)}
+    .hero-media{left:0}
+    .hero-media::after{
+      background:
+        linear-gradient(0deg,rgba(48,32,25,.93) 0%,rgba(48,32,25,.72) 42%,rgba(48,32,25,.30) 78%,rgba(48,32,25,.45) 100%),
+        linear-gradient(90deg,rgba(48,32,25,.55) 0%,rgba(48,32,25,0) 70%);
+    }
+    .hero-inner{min-height:520px;padding-top:60px;padding-bottom:60px}
+    .hero-badge{right:22px;bottom:22px;padding:11px 14px}
+    .hero-scroll{display:none}
   }
   @media (max-width:640px){
     .container{padding:0 20px}
@@ -1347,6 +1412,7 @@ p{color:var(--ink)}
   <div class="container hero-inner">
     <div class="hero-copy">
       <span class="overline">Premium Indian Ethnic Menswear</span>
+      <div class="hero-rule" aria-hidden="true"></div>
       <h1>Elegance Beyond<br>Tradition.</h1>
       <p class="tag">Discover the art of contemporary Indian menswear, crafted for moments that matter.</p>
       <div class="hero-cta">
@@ -1358,6 +1424,11 @@ p{color:var(--ink)}
       <p class="hero-note">Free shipping above <b>&#8377;999</b> &nbsp;&middot;&nbsp; Pay online &amp; save extra <b>5%</b></p>
     </div>
   </div>
+  <div class="hero-badge">
+    <span class="hero-badge-dot" aria-hidden="true"></span>
+    <span><b>In-house made</b><small>Cut &amp; stitched in Kolkata</small></span>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
 </section>
 
 <!-- shop by occasion -->
