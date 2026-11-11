@@ -1103,7 +1103,7 @@
 
     <nav class="nav" aria-label="Primary">
       <ul>
-        <li><a href="index.html" data-nav="#/">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">New Arrivals</a></li>
         <li class="has-mega">
           <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Men's Wear</a>
@@ -1134,8 +1134,8 @@
       </ul>
     </nav>
 
-    <a class="logo" href="index.html" data-nav="#/" aria-label="Sohraaz Collections — home">
-      <img src="assets/extracted/sohraaz-logo-2026.png" alt="Sohraaz Collections">
+    <a class="logo" href="index.html" aria-label="Sohraaz Collections — home">
+      <img src="assets/extracted/newlogo.png" alt="Sohraaz Collections">
     </a>
 
     <div class="actions">
@@ -1324,7 +1324,7 @@
         <h4>Discover</h4>
         <ul>
           <li><a href="https://sohraaz.com/collections/">Collections</a></li>
-          <li><a href="index.html" data-nav="#/">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="sohraaz-full-store-template.html#/about" data-nav="#/about">About Us</a></li>
           <li><a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch">Watch &amp; Buy</a></li>
           <li><a href="https://sohraaz.com/blogs/news">Blogs</a></li>
@@ -1760,75 +1760,6 @@ function openDrawer(){ renderDrawer(); document.getElementById("drawer").classLi
 function closeDrawer(){ document.getElementById("drawer").classList.remove("on"); document.getElementById("overlay").classList.remove("on"); }
 
 /* ============ views ============ */
-function renderHome(){
-  const feat=["p1","p6","p9","p8"];
-  return `
-  <section class="hero"><div class="hero-media"><video src="${IMG(CDN.video)}" autoplay muted loop playsinline preload="auto" poster="${IMG(CDN.hero)}" aria-hidden="true"></video></div>
-    <div class="container hero-inner"><div class="hero-copy">
-      <div class="kicker">Festive '26 Collection</div>
-      <div class="brand">SOHRAAZ</div>
-      <div class="rule"></div>
-      <div class="kicker">The Art of Modern Indian Elegance</div>
-      <div class="tag">Redefining the language of Indian celebration</div>
-      <div class="hero-cta"><button class="btn btn-cream" data-nav="#/shop">Explore the collection <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button></div>
-      <div class="hero-note">Free shipping <b>prepaid above ₹999</b> · Pay online &amp; save <b>an extra 5%</b></div>
-    </div></div>
-  </section>
-  <section><div class="container">
-    <div class="sec-head"><h2>Shop by Occasion</h2></div>
-    <div class="occ-grid">
-      <a class="occ" data-nav="#/shop" data-cat="Everyday"><img src="${IMG(CDN.occasionEveryday)}" alt="Everyday elegance" loading="lazy"><span>Everyday<br>Elegance</span></a>
-      <a class="occ" data-nav="#/shop" data-cat="Festive"><img src="${IMG(CDN.occasionFestive)}" alt="Festive collection" loading="lazy"><span>Festive<br>Collection</span></a>
-      <a class="occ" data-nav="#/lookbook"><img src="${IMG(CDN.occasionWedding)}" alt="Wedding edit" loading="lazy"><span>Wedding<br>Edit</span></a>
-      <a class="occ" data-nav="#/shop" data-cat="Signature"><img src="${IMG(CDN.occasionSignature)}" alt="Signature style" loading="lazy"><span>Signature<br>Style</span></a>
-    </div>
-  </div></section>
-  <section style="background:var(--cream-2)"><div class="container">
-    <div class="sec-head"><h2>The Latest Collection</h2></div>
-    <div class="sec-sub">Honest prices — the selling price you see is what you pay.</div>
-    <div class="prod-grid">${feat.map(id=>prodCardHTML(P(id))).join("")}</div>
-    <div style="text-align:center;margin-top:34px"><button class="btn btn-dark" data-nav="#/shop">View all</button></div>
-  </div></section>
-  <section style="padding:0"><div class="story">
-    <div class="story-img"><img src="${IMG(CDN.craft)}" alt="Chikankari embroidery" loading="lazy"></div>
-    <div class="story-panel"><div>
-      <h2>Rooted in heritage.<br>Designed for today.</h2>
-      <p>At Sohraaz, we are a Kolkata-born brand, celebrating the timeless spirit of Indian dressing through contemporary design and thoughtful craftsmanship.</p>
-      <button class="btn btn-dark" data-nav="#/about">Discover our story <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button>
-    </div></div>
-  </div></section>
-  <section><div class="banner">
-    <img src="${IMG(CDN.banner)}" alt="Wedding sherwani" loading="lazy">
-    <div class="container" style="display:flex"><div class="banner-in">
-      <h2>Made for moments<br>that last forever.</h2>
-      <p>Sherwanis and wedding sets crafted for the celebrations you will never forget.</p>
-      <button class="btn btn-cream" data-nav="#/lookbook">Explore wedding collection <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button>
-    </div></div>
-  </div></section>
-  <section><div class="container">
-    <div class="values">
-      <div class="value"><svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 21h16M6 21V10l6-4 6 4v11M10 21v-6h4v6"/><circle cx="12" cy="9" r="1"/></svg>
-        <h3>Craftsmanship</h3><p>Thoughtful details. Imagined in Kolkata.</p></div>
-      <div class="value"><svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3l2.5 5 5.5.7-4 3.8 1 5.5-5-2.8-5 2.8 1-5.5-4-3.8L9.5 8z"/></svg>
-        <h3>Designed for Celebrations</h3><p>Indian fashion for unforgettable occasions.</p></div>
-      <div class="value"><svg class="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20 6L9 17l-5-5"/></svg>
-        <h3>The Transparent Promise</h3><p>Prepaid &amp; COD totals shown upfront. No hidden charges, ever.</p></div>
-    </div>
-  </div></section>
-  <section style="padding-top:0"><div class="container">
-    <div class="sec-head"><h2>The World of Sohraaz</h2></div>
-    <div class="gal-grid">
-      ${[CDN.g1,CDN.g2,CDN.g3,CDN.g4,CDN.g5,CDN.g6].map(g=>`<a class="gal" data-nav="#/shop"><img src="${IMG(g)}" alt="Sohraaz lookbook" loading="lazy"></a>`).join("")}
-    </div>
-  </div></section>`;
-}
-
-/* ============ PDP REVIEWS — verified + user-submitted ============ */
-const SEED_QUOTES = [
-  {id:'sq1',name:'huzaifa Salam',quote:'The collection\'s are too good. We visited this shop for the first time and I was too much satisfied with their behaviour, The collections and everything. The price is too reasonable, must visit this SOHRAAZ place for any festive, wedding, season shopping.',verified:true,source:'Verified customer · sohraaz.com'},
-  {id:'sq2',name:'Sazia Haque',quote:'Three piece suits and bridal dresses are so nice — even they customise also, at a very reasonable price. A must-visit shop for your wedding shopping or for any occasion.',verified:true,source:'Verified customer · sohraaz.com'},
-  {id:'sq3',name:'Md Akram',quote:'Sohraaz the name of brand — I like its product for good quality and fitting as well as better experience. And its staff behaviour good, soft and polite.',verified:true,source:'Verified customer · sohraaz.com'},
-];
 function userReviews(pid){ try{ return JSON.parse(localStorage.getItem('sohraaz_rev_'+pid)||'[]'); }catch(e){ return []; } }
 function saveUserReview(pid, rev){ const list=userReviews(pid); list.unshift(rev); try{ localStorage.setItem('sohraaz_rev_'+pid, JSON.stringify(list)); }catch(e){} }
 function helpfulToggleKey(pid, id){ return 'sohraaz_help_'+pid+'_'+id; }
@@ -2320,7 +2251,7 @@ function renderProduct(id){
   const outSz=OUT[id]||[];
   const pre=Math.round(p.price*0.95), gap=Math.max(0,999-p.price);
   return `
-  <div class="container"><div class="crumb"><a data-nav="#/">Home</a> / <a data-nav="#/shop">Shop</a> / <a data-nav="#/shop?cat=${p.cat}">${p.cat}</a> / <span>${p.name}</span></div>
+  <div class="container"><div class="crumb"><a href="index.html">Home</a> / <a data-nav="#/shop">Shop</a> / <a data-nav="#/shop?cat=${p.cat}">${p.cat}</a> / <span>${p.name}</span></div>
   <div class="pdp">
     <div class="pdp-gallery">
       <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}"><img src="${IMG(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
@@ -2755,7 +2686,8 @@ function router(){
   else if(path==="#/policies") app.innerHTML=renderPolicies(q);
   else if(path==="#/about") app.innerHTML=renderAbout();
   else if(path==="#/watch"){ app.innerHTML=renderWatch(); wbInitWatch(parseInt(q.get('r'))||0); }
-  else app.innerHTML=renderHome();
+  else if(path==="#/" || path===""){ location.replace("index.html"); return; }
+  else { location.replace("index.html"); return; }
   syncBadges();
   tickOffer();
 }
