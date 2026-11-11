@@ -1226,22 +1226,143 @@ p{color:var(--ink)}
   background:var(--choco-dark);transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s;
 }
 .wb-tile:hover{transform:translateY(-5px);box-shadow:var(--shadow-3)}
-.wb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+.wb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.3,1),opacity .35s ease}
 .wb-tile:hover img{transform:scale(1.06)}
+
+/* --- inline reel player: the film plays inside the tile, the poster hides --- */
+.wb-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  background:var(--choco-dark);
+}
+.wb-tile.playing .wb-video{opacity:1}
+.wb-tile.playing .wb-thumb{opacity:0}
+.wb-tile.playing{border-color:var(--gold);box-shadow:0 16px 40px rgba(48,32,25,.45)}
+.wb-tile.playing:hover img{transform:none}
+
 .wb-play{
   position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;
   background:rgba(48,32,25,.42);border:1px solid rgba(244,237,227,.6);
   display:flex;align-items:center;justify-content:center;color:#fff;backdrop-filter:blur(4px);
+  cursor:pointer;padding:0;
+  transition:background .25s ease,transform .25s ease,opacity .25s ease;
 }
+.wb-play:hover{background:rgba(173,135,101,.9);transform:scale(1.08)}
 .wb-play svg{width:15px;height:15px;fill:#fff;margin-left:2px}
+.wb-tile.playing .wb-play{opacity:0;pointer-events:none}
+
+/* loading state while the reel streams in */
+.wb-tile.loading .wb-play svg{animation:sohraazPulse 1s ease-in-out infinite}
+@keyframes sohraazPulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* close / cut button */
+.wb-close{
+  position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:50%;
+  background:rgba(48,32,25,.62);border:1px solid rgba(244,237,227,.55);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  backdrop-filter:blur(4px);cursor:pointer;padding:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease,background .25s ease,transform .25s ease;
+}
+.wb-close svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.wb-close:hover{background:rgba(173,135,101,.92);transform:scale(1.08)}
+.wb-tile.playing .wb-close{opacity:1;pointer-events:auto}
+
 .wb-cap{
   position:absolute;left:0;right:0;bottom:0;padding:34px 14px 14px;
   background:linear-gradient(transparent,rgba(48,32,25,.86));
   color:var(--cream);font-family:var(--caps);font-size:11px;line-height:1.45;
+  text-decoration:none;display:block;
 }
 .wb-cap b{display:block;font-family:var(--serif);font-size:15px;font-weight:500;color:#F4EDE3;margin-bottom:2px}
 .wb-cap small{color:var(--gold-light);font-size:10.5px}
 .wb-strip-cta{text-align:center;margin-top:6px}
+
+/* ---------- reel popup (play / pause / add to bag / dismiss) ---------- */
+.reel-pop{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:24px}
+.reel-pop[hidden]{display:none}
+.reel-pop-backdrop{position:absolute;inset:0;background:rgba(24,15,10,.80);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);animation:sohraazFade .3s ease both}
+.reel-pop-card{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);
+  gap:36px;align-items:center;
+  width:min(900px,100%);max-height:calc(100vh - 48px);
+  padding:32px;
+  background:var(--ivory);
+  border:1px solid var(--line);
+  border-top:2px solid var(--gold);
+  box-shadow:0 44px 100px rgba(20,13,8,.55);
+  overflow:auto;
+  animation:sohraazPop .4s cubic-bezier(.2,.8,.3,1) both;
+}
+@keyframes sohraazPop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.reel-pop-x{
+  position:absolute;top:14px;right:14px;z-index:3;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--ivory);border:1px solid var(--line);
+  color:var(--choco);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:background .25s ease,color .25s ease,transform .25s ease;
+}
+.reel-pop-x svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.reel-pop-x:hover{background:var(--choco);color:var(--ivory);transform:rotate(90deg)}
+.reel-pop-frame{position:relative;aspect-ratio:9/16;background:var(--choco-dark);overflow:hidden;border-radius:2px}
+.reel-pop-video{width:100%;height:100%;object-fit:cover;display:block}
+.reel-pop-toggle{
+  position:absolute;inset:0;margin:auto;
+  width:62px;height:62px;border-radius:50%;
+  background:rgba(48,32,25,.50);border:1px solid rgba(244,237,227,.62);
+  color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  transition:background .25s ease,transform .25s ease;
+}
+.reel-pop-toggle:hover{background:rgba(173,135,101,.92);transform:scale(1.06)}
+.reel-pop-toggle svg{width:22px;height:22px;fill:#fff}
+.reel-pop-toggle .ic-play{margin-left:3px}
+.reel-pop-toggle .ic-pause{display:none}
+.reel-pop-frame.paused .reel-pop-toggle .ic-play{display:none}
+.reel-pop-frame.paused .reel-pop-toggle .ic-pause{display:block}
+.reel-pop-loading{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(48,32,25,.30)}
+.reel-pop-frame.loading .reel-pop-loading{display:flex}
+.reel-pop-loading::after{
+  content:"";width:34px;height:34px;border-radius:50%;
+  border:2px solid rgba(244,237,227,.26);border-top-color:#F4EDE3;
+  animation:sohraazSpin .85s linear infinite;
+}
+@keyframes sohraazSpin{to{transform:rotate(360deg)}}
+.reel-pop-eyebrow{
+  display:block;margin-bottom:12px;
+  font-family:var(--caps);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+}
+.reel-pop-info h3{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(21px,2.3vw,29px);line-height:1.2;
+  color:var(--choco-dark);margin-bottom:10px;
+}
+.reel-pop-price{
+  font-family:var(--caps);font-size:20px;font-weight:700;
+  color:var(--choco);font-variant-numeric:tabular-nums;
+}
+.reel-pop-note{
+  font-family:var(--caps);font-size:12.5px;line-height:1.75;
+  color:var(--ink-2s,#6E6259);
+  margin:12px 0 24px;max-width:42ch;
+}
+.reel-pop-cta{display:flex;gap:12px;flex-wrap:wrap}
+.reel-pop-cta .btn{padding:14px 24px}
+
+@media (max-width:760px){
+  .reel-pop{padding:14px}
+  .reel-pop-card{
+    grid-template-columns:1fr;gap:22px;
+    padding:24px 20px 26px;max-height:calc(100vh - 28px);
+  }
+  .reel-pop-frame{width:100%;max-width:260px;margin:0 auto}
+  .reel-pop-x{top:10px;right:10px;width:36px;height:36px}
+  .reel-pop-cta .btn{flex:1 1 auto;justify-content:center}
+}
 
 /* ---------- shared chrome re-skin (drawer / chat / floats) ---------- */
 .drawer{background:var(--ivory);border-left:1px solid var(--line)}
@@ -1441,14 +1562,62 @@ p{color:var(--ink)}
       <p>Video mein fabric ka texture, fit ka flow — sab dekho, phir bag mein add karo. Kyunki Sohraaz mein jo dikhta hain, wahi milta hain.</p>
     </div>
     <div class="wb-strip" aria-label="Watch and Buy reels">
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=2"><img src="assets/extracted/watch-buy/wbposter_354787.webp" alt="Green Serene kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Green Serene</b>Giza Cotton · <small>₹2,649</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=1"><img src="assets/extracted/watch-buy/wbposter_354785.webp" alt="Black Glory kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Black Glory</b>Giza Cotton · <small>₹2,099</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=4"><img src="assets/extracted/watch-buy/wbposter_354789.webp" alt="Sunshine Royal kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Sunshine Royal</b>Premium Cotton · <small>₹749</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=5"><img src="assets/extracted/watch-buy/wbposter_354791.webp" alt="Dupion Royal kurta reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Dupion Royal</b>Red Self Work · <small>₹499</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=6"><img src="assets/extracted/watch-buy/wbposter_354792.webp" alt="Luxury Beige reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Luxury Beige</b>Armani Embroidered · <small>₹2,549</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=0"><img src="assets/extracted/watch-buy/wbposter_354783.webp" alt="Beige Breeze reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Beige Breeze</b>Paper Cotton · <small>₹1,499</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=13"><img src="assets/extracted/watch-buy/wbposter_354800.webp" alt="Armani Stitch reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Armani Stitch</b>White Armani · <small>₹2,999</small></span></a>
-      <a class="wb-tile" href="sohraaz-full-store-template.html#/watch?r=3"><img src="assets/extracted/watch-buy/wbposter_354788.webp" alt="Maroon Majesty reel" loading="lazy"><span class="wb-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="wb-cap"><b>Maroon Majesty</b>Giza Cotton · <small>₹2,599</small></span></a>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354787.mp4" data-r="2" data-pid="wb1" data-title="Green Serene – Luxury Giza Cotton Hand Embroidered Kurta" data-price="2649">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354787.webp" alt="Green Serene kurta reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Green Serene kurta reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=2"><b>Green Serene</b>Giza Cotton · <small>₹2,649</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354785.mp4" data-r="1" data-pid="wb10" data-title="Black Glory – Luxury Giza Cotton Embroidered Kurta" data-price="2099">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354785.webp" alt="Black Glory kurta reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Black Glory kurta reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=1"><b>Black Glory</b>Giza Cotton · <small>₹2,099</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354789.mp4" data-r="4" data-pid="wb7" data-title="Sunshine Royal – Premium Cotton Embroidered Kurta" data-price="749">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354789.webp" alt="Sunshine Royal kurta reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Sunshine Royal kurta reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=4"><b>Sunshine Royal</b>Premium Cotton · <small>₹749</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354791.mp4" data-r="5" data-pid="wb2" data-title="Dupion Royal – Red Self Work Kurta" data-price="499">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354791.webp" alt="Dupion Royal kurta reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Dupion Royal kurta reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=5"><b>Dupion Royal</b>Red Self Work · <small>₹499</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354792.mp4" data-r="6" data-pid="wb3" data-title="Luxury Beige – Armani Embroidered Kurta" data-price="2549">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354792.webp" alt="Luxury Beige reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Luxury Beige reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=6"><b>Luxury Beige</b>Armani Embroidered · <small>₹2,549</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354783.mp4" data-r="0" data-pid="wb11" data-title="Beige Breeze – Luxury Paper Cotton Printed Kurta" data-price="1499">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354783.webp" alt="Beige Breeze reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Beige Breeze reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=0"><b>Beige Breeze</b>Paper Cotton · <small>₹1,499</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354800.mp4" data-r="13" data-pid="wb8" data-title="Armani Stitch – White Armani Embroidered Kurta" data-price="2999">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354800.webp" alt="Armani Stitch reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Armani Stitch reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=13"><b>Armani Stitch</b>White Armani · <small>₹2,999</small></a>
+        </article>
+      <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354788.mp4" data-r="3" data-pid="wb9" data-title="Maroon Majesty – Premium Giza Cotton Embroidered Kurta" data-price="2599">
+          <img class="wb-thumb" src="assets/extracted/watch-buy/wbposter_354788.webp" alt="Maroon Majesty reel" loading="lazy">
+          <video class="wb-video" preload="none" muted loop playsinline aria-hidden="true"></video>
+          <button class="wb-play" type="button" aria-label="Play the Maroon Majesty reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button class="wb-close" type="button" aria-label="Stop and close this reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <a class="wb-cap" href="sohraaz-full-store-template.html#/watch?r=3"><b>Maroon Majesty</b>Giza Cotton · <small>₹2,599</small></a>
+        </article>
     </div>
     <div class="wb-strip-cta"><a class="btn btn-dark" href="sohraaz-full-store-template.html#/watch">Watch all reels
       <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
@@ -1568,6 +1737,36 @@ p{color:var(--ink)}
     </div>
   </div>
 </section>
+
+<!-- Watch & Buy — reel popup (play / pause / add to bag / dismiss) -->
+<div class="reel-pop" id="reelPop" role="dialog" aria-modal="true" aria-labelledby="reelPopTitle" hidden>
+  <div class="reel-pop-backdrop" data-reel-close></div>
+  <div class="reel-pop-card" role="document">
+    <button class="reel-pop-x" type="button" data-reel-close aria-label="Dismiss reel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="reel-pop-frame">
+      <video id="reelPopVideo" class="reel-pop-video" preload="none" muted loop playsinline></video>
+      <button class="reel-pop-toggle" id="reelPopToggle" type="button" aria-label="Pause reel">
+        <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z"/></svg>
+      </button>
+      <span class="reel-pop-loading" aria-hidden="true"></span>
+    </div>
+    <div class="reel-pop-info">
+      <span class="reel-pop-eyebrow">Watch &amp; Buy</span>
+      <h3 id="reelPopTitle">—</h3>
+      <p class="reel-pop-price" id="reelPopPrice"></p>
+      <p class="reel-pop-note">Shot in-house at our Kolkata workshop. The price you see is the price you pay.</p>
+      <div class="reel-pop-cta">
+        <button class="btn btn-dark" id="reelPopAdd" type="button">Add to Bag</button>
+        <a class="btn btn-outline" id="reelPopLink" href="sohraaz-full-store-template.html#/watch">View full reel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- watch & buy reels -->
 <!-- brand story -->
@@ -2373,6 +2572,227 @@ function toneOf(s){
       close.addEventListener("click", closeChat);
     })();
   })();
+</script>
+
+<!-- ============ Watch & Buy — inline reel player + popup ============ -->
+<script>
+(function(){
+  var strip = document.querySelector('.wb-strip');
+  var pop   = document.getElementById('reelPop');
+  if(!strip) return;
+
+  var current = null;            // the one tile that is playing right now
+  var popTile = null;            // the tile the popup is bound to
+  var lastFocus = null;
+
+  /* ---------- inline tile playback ---------- */
+  function stopTile(tile){
+    if(!tile) return;
+    var v = tile.querySelector('.wb-video');
+    if(v){
+      try{ v.pause(); }catch(e){}
+      v.removeAttribute('src');
+      try{ v.load(); }catch(e){}
+    }
+    tile.classList.remove('playing','loading');
+  }
+
+  function playTile(tile){
+    var v = tile.querySelector('.wb-video');
+    if(!v) return;
+    if(current && current !== tile) stopTile(current);
+    current = tile;
+    if(!v.getAttribute('src')){
+      v.setAttribute('src', tile.getAttribute('data-video') || '');
+      try{ v.load(); }catch(e){}
+    }
+    tile.classList.add('loading');
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ tile.classList.remove('loading'); });
+  }
+
+  /* ---------- the popup ---------- */
+  var popVideo  = document.getElementById('reelPopVideo');
+  var popFrame  = document.querySelector('.reel-pop-frame');
+  var popToggle = document.getElementById('reelPopToggle');
+  var popTitle  = document.getElementById('reelPopTitle');
+  var popPrice  = document.getElementById('reelPopPrice');
+  var popAdd    = document.getElementById('reelPopAdd');
+  var popLink   = document.getElementById('reelPopLink');
+
+  function inr(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
+
+  function openPop(tile){
+    if(!pop || !tile) return;
+    popTile = tile;
+    lastFocus = document.activeElement;
+
+    var title = tile.getAttribute('data-title') || 'Sohraaz reel';
+    var price = +(tile.getAttribute('data-price') || 0);
+    var r     = tile.getAttribute('data-r');
+
+    popTitle.textContent = title;
+    popPrice.textContent = price ? inr(price) : '';
+    popLink.href = 'sohraaz-full-store-template.html#/watch' + (r !== '' ? '?r=' + r : '');
+    popAdd.setAttribute('data-pid', tile.getAttribute('data-pid') || '');
+    popAdd.setAttribute('data-title', title);
+    popAdd.setAttribute('data-price', price);
+
+    pop.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    if(popVideo){
+      var src = tile.getAttribute('data-video') || '';
+      if(popVideo.getAttribute('src') !== src){ popVideo.setAttribute('src', src); try{ popVideo.load(); }catch(e){} }
+      popFrame.classList.remove('paused');
+      popFrame.classList.add('loading');
+      popToggle.setAttribute('aria-label','Pause reel');
+      var p = popVideo.play();
+      if(p && p.catch) p.catch(function(){ popFrame.classList.remove('loading'); });
+    }
+    var x = pop.querySelector('.reel-pop-x');
+    if(x) x.focus();
+  }
+
+  function closePop(){
+    if(!pop || pop.hidden) return;
+    pop.hidden = true;
+    document.body.style.overflow = '';
+    if(popVideo){ try{ popVideo.pause(); }catch(e){} popVideo.removeAttribute('src'); try{ popVideo.load(); }catch(e){} }
+    if(popFrame) popFrame.classList.remove('paused','loading');
+    /* dismissing the popup cuts the reel completely — the tile stops too */
+    if(popTile){ if(current === popTile) current = null; stopTile(popTile); }
+    popTile = null;
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+    lastFocus = null;
+  }
+
+  function togglePop(){
+    if(!popVideo) return;
+    if(popVideo.paused){
+      popFrame.classList.remove('paused');
+      popToggle.setAttribute('aria-label','Pause reel');
+      var p = popVideo.play();
+      if(p && p.catch) p.catch(function(){ popFrame.classList.add('paused'); });
+    } else {
+      popVideo.pause();
+      popFrame.classList.add('paused');
+      popToggle.setAttribute('aria-label','Play reel');
+    }
+  }
+
+  /* ---------- add to bag (same cart the store uses) ---------- */
+  function addToBag(){
+    var pid = popAdd.getAttribute('data-pid');
+    if(!pid) return;
+    var title = popAdd.getAttribute('data-title') || 'Sohraaz reel';
+    var price = +(popAdd.getAttribute('data-price') || 0);
+    try{
+      var cart = JSON.parse(localStorage.getItem('sohraaz_cart') || '[]');
+      var ex = null;
+      for(var i=0;i<cart.length;i++){ if(cart[i].id===pid && cart[i].size==='M'){ ex=cart[i]; break; } }
+      if(ex) ex.qty += 1; else cart.push({id:pid, size:'M', qty:1});
+      localStorage.setItem('sohraaz_cart', JSON.stringify(cart));
+
+      var qty = cart.reduce(function(s,l){ return s + (+l.qty||0); }, 0);
+      ['bagCount','bagCountM'].forEach(function(id){
+        var el = document.getElementById(id); if(el) el.textContent = qty ? qty : '';
+      });
+      try{ window.dispatchEvent(new CustomEvent('sohraaz:cart')); }catch(e){}
+
+      var t = document.getElementById('toast');
+      if(t){ t.innerHTML = 'Added to your bag — ' + title + ' (M) · prepaid ' + inr(Math.round(price*0.95)); t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(function(){ t.classList.remove('show'); }, 2800); }
+    }catch(e){}
+
+    popAdd.innerHTML = 'Added to Bag';
+    setTimeout(function(){ popAdd.innerHTML = 'Add to Bag'; }, 1800);
+  }
+
+  /* ---------- wiring ---------- */
+  strip.addEventListener('click', function(e){
+    var play = e.target.closest && e.target.closest('.wb-play');
+    if(play){
+      e.preventDefault(); e.stopPropagation();
+      var tile = play.closest('.wb-tile');
+      if(!tile) return;
+      if(current === tile && current.classList.contains('playing')){
+        /* second tap on a playing reel = dismiss it */
+        stopTile(tile); current = null; closePop(); return;
+      }
+      playTile(tile);
+      openPop(tile);
+      return;
+    }
+    var close = e.target.closest && e.target.closest('.wb-close');
+    if(close){
+      e.preventDefault(); e.stopPropagation();
+      var t = close.closest('.wb-tile');
+      if(current === t) current = null;
+      stopTile(t);
+      if(popTile === t) closePop();
+    }
+  });
+
+  /* the poster only swaps out once the browser is actually decoding */
+  strip.addEventListener('playing', function(e){
+    var tile = e.target.closest && e.target.closest('.wb-tile');
+    if(!tile) return;
+    tile.classList.remove('loading');
+    tile.classList.add('playing');
+  }, true);
+
+  /* a failed load must never leave a tile stuck in a loading state */
+  strip.addEventListener('error', function(e){
+    var tile = e.target.closest && e.target.closest('.wb-tile');
+    if(!tile) return;
+    tile.classList.remove('loading','playing');
+    if(current === tile) current = null;
+  }, true);
+
+  if(pop){
+    pop.addEventListener('click', function(e){
+      if(e.target.closest && e.target.closest('[data-reel-close]')){ closePop(); return; }
+    });
+    popToggle.addEventListener('click', function(e){ e.stopPropagation(); togglePop(); });
+    popAdd.addEventListener('click', function(e){ e.stopPropagation(); addToBag(); });
+    popVideo.addEventListener('playing', function(){ popFrame.classList.remove('loading'); });
+    popVideo.addEventListener('pause', function(){ if(!pop.hidden) popFrame.classList.add('paused'); });
+    popVideo.addEventListener('play', function(){ popFrame.classList.remove('paused'); });
+    popVideo.addEventListener('error', function(){ popFrame.classList.remove('loading'); });
+  }
+
+  /* reel scrolled out of view -> cut it (saves data, keeps the page quiet) */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting){
+          if(current === en.target) current = null;
+          stopTile(en.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    strip.querySelectorAll('.wb-tile').forEach(function(t){ io.observe(t); });
+  }
+
+  /* Escape cuts the reel and closes the popup */
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Escape') return;
+    if(!pop || !pop.hidden){ closePop(); return; }
+    if(current){ stopTile(current); current = null; }
+  });
+
+  /* leaving the page (SPA route change or tab close) stops the film */
+  window.addEventListener('hashchange', function(){
+    if(current){ stopTile(current); current = null; }
+    closePop();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){
+      if(current){ stopTile(current); current = null; }
+      if(popVideo){ try{ popVideo.pause(); }catch(e){} }
+    }
+  });
+})();
 </script>
 </body>
 </html>
