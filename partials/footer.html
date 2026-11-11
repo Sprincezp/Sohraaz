@@ -1,9 +1,11 @@
 <!-- ============================================================================
      SOHRAAZ — CANONICAL FOOTER (single source of truth)
-     Column structure mirrors the live sohraaz.com footer (extracted 11 Nov 2026):
-     TOP CATEGORIES · DISCOVER · POLICIES · SUPPORT · Follow Us
-     Edit this file, then run:  node site-template/build.mjs
-============================================================================ -->
+     Injected into every page by build.mjs. Never edit a page's footer directly —
+     edit this file, then run:  node site-template/build.mjs
+
+     Luxury dark-chocolate footer: #302019 ground, cream type, champagne accents.
+     Contact details and social links are the real, published ones.
+     ============================================================================ -->
 <footer class="footer">
   <div class="container">
     <div class="foot-grid">
@@ -19,67 +21,60 @@
           <a href="mailto:care@sohraaz.com">care@sohraaz.com</a>
         </p>
         <form class="news" id="newsForm" novalidate>
-          <label for="newsEmail" style="display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A7A63;margin-bottom:8px">Stay in the loop</label>
+          <label for="newsEmail" style="display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#AD8765;margin-bottom:8px">Newsletter</label>
           <div style="display:flex;gap:8px">
-            <input type="email" id="newsEmail" placeholder="Enter your email address" aria-label="Email address" style="flex:1;min-width:0;padding:11px 12px;border:1px solid rgba(240,231,213,.22);border-radius:10px;background:rgba(240,231,213,.06);color:#F1E8D7;font-family:var(--serif);font-size:14px;outline:none">
-            <button type="submit" id="newsOk" aria-label="Subscribe" style="flex:none;width:42px;height:42px;border-radius:10px;background:var(--gold);color:#241812;display:flex;align-items:center;justify-content:center;cursor:pointer">
+            <input type="email" id="newsEmail" placeholder="Enter your email address" aria-label="Email address" style="flex:1;min-width:0;padding:12px 13px;border:1px solid rgba(173,135,101,.38);border-radius:3px;background:rgba(244,237,227,.05);color:#F4EDE3;font-family:var(--caps);font-size:13.5px;outline:none">
+            <button type="submit" id="newsOk" aria-label="Subscribe" style="flex:none;width:44px;height:44px;border-radius:3px;background:#AD8765;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0">
               <svg class="icon sm" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
             </button>
           </div>
-          <p id="newsThanks" hidden style="margin-top:10px;font-size:12.5px;color:#9FBE9B">Thanks for subscribing — restock alerts will reach your inbox first.</p>
+          <p id="newsThanks" hidden style="margin-top:10px;font-size:12.5px;color:#C7AA8B">Thanks for subscribing — restock alerts will reach your inbox first.</p>
         </form>
-        <p style="margin-top:10px;font-size:13px;display:flex;align-items:center;gap:7px">
+        <p style="margin-top:10px;font-size:12.5px;display:flex;align-items:center;gap:7px;color:#C6B7A3">
           <svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a1 1 0 0 1 1 1v17l-3-2-2 2-2-2-2 2-2-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
           GSTIN 19DIBPA3993Q12M
         </p>
       </div>
 
       <div class="f-col">
-        <h4>Top Categories</h4>
+        <h4>Shop</h4>
         <ul>
           <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">New Arrivals</a></li>
-          <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Men's Wear</a></li>
-          <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Trending</a></li>
-          <li><a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Best Seller</a></li>
+          <li><a href="sohraaz-full-store-template.html#/shop?cat=Everyday" data-nav="#/shop?cat=Everyday">Kurtas</a></li>
+          <li><a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop?cat=Festive">Sherwani &amp; Festive</a></li>
+          <li><a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook">Wedding Edit</a></li>
+          <li><a href="sohraaz-full-store-template.html#/shop?cat=Accessories" data-nav="#/shop?cat=Accessories">Bottoms &amp; Accessories</a></li>
         </ul>
       </div>
 
       <div class="f-col">
-        <h4>Discover</h4>
+        <h4>Client Care</h4>
         <ul>
-          <li><a href="https://sohraaz.com/collections/">Collections</a></li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sohraaz-full-store-template.html#/about" data-nav="#/about">About Us</a></li>
-          <li><a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch">Watch &amp; Buy</a></li>
-          <li><a href="https://sohraaz.com/blogs/news">Blogs</a></li>
-          <li><a href="sohraaz-story.html">Our Story</a></li>
-        </ul>
-      </div>
-
-      <div class="f-col">
-        <h4>Policies</h4>
-        <ul>
+          <li><a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account</a></li>
+          <li><a href="sohraaz-full-store-template.html#/wishlist" data-nav="#/wishlist">Wishlist</a></li>
           <li><a href="sohraaz-full-store-template.html#/policies?t=shipping" data-nav="#/policies">Shipping Policy</a></li>
-          <li><a href="https://sohraaz.com/pages/privacy-policy">Privacy Policy</a></li>
-          <li><a href="sohraaz-full-store-template.html#/policies?t=cancel" data-nav="#/policies">Cancellation Policy</a></li>
-          <li><a href="https://sohraaz.com/pages/terms-conditions">Terms &amp; Conditions</a></li>
           <li><a href="sohraaz-full-store-template.html#/policies?t=returns" data-nav="#/policies">Exchange / Return Policy</a></li>
           <li><a href="sohraaz-full-store-template.html#/policies?t=promise" data-nav="#/policies">Transparent Pricing</a></li>
         </ul>
       </div>
 
       <div class="f-col">
-        <h4>Support</h4>
+        <h4>Discover</h4>
         <ul>
-          <li><a href="https://sohraaz.com/pages/contact">Contact Us</a></li>
-          <li><a href="https://sohraaz.shiprocket.co/tracking">Track Order</a></li>
-          <li><a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account</a></li>
-          <li><a href="sohraaz-full-store-template.html#/wishlist" data-nav="#/wishlist">Wishlist</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sohraaz-story.html">Our Story</a></li>
+          <li><a href="sohraaz-full-store-template.html#/about" data-nav="#/about">About Us</a></li>
+          <li><a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch">Watch &amp; Buy</a></li>
+          <li><a href="https://sohraaz.com/collections/">Collections</a></li>
+          <li><a href="https://sohraaz.com/blogs/news">Journal</a></li>
         </ul>
       </div>
 
       <div class="f-col f-social">
-        <h4>Follow Us</h4>
+        <h4>Visit &amp; Follow</h4>
+        <p style="font-size:13px;line-height:1.7;color:#C6B7A3">
+          Showroom: 12/1, Picnic Garden, 3rd Lane, Ground Floor,<br>near 42 Bus Stand, Kolkata 700039
+        </p>
         <div class="socials">
           <a href="https://www.facebook.com/sohraazcollections" target="_blank" rel="noopener" aria-label="Facebook">
             <svg class="icon sm" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v9h4v-9h3l1-4h-4V8z"/></svg>
@@ -91,8 +86,10 @@
             <svg class="icon sm" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>
           </a>
         </div>
-        <p style="margin-top:14px;font-size:13px;line-height:1.6;color:#A5946F">
-          Showroom: 12/1, Picnic Garden, 3rd Lane, Ground Floor,<br>near 42 Bus Stand, Kolkata 700039
+        <p style="margin-top:16px;font-size:12.5px;color:#A5946F">
+          <a href="https://sohraaz.com/pages/contact">Contact Us</a> &nbsp;·&nbsp;
+          <a href="https://sohraaz.shiprocket.co/tracking">Track Order</a> &nbsp;·&nbsp;
+          <a href="https://sohraaz.com/pages/buy-in-bulk">Buy In Bulk</a>
         </p>
       </div>
 

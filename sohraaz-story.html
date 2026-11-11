@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/extracted/favicon-newlogo-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,21 +42,21 @@
 </script>
 <style>
 :root{
-  --cream:#eddaa4;
-  --cream-2:#e7c57c;
-  --paper:#FDFBF7;
-  --ink:#2C2117;
-  --brown-900:#3D2C20;
-  --brown-850:#4A3828;
-  --brown-700:#55402D;
-  --gold:#B2916B; --gold-text:#6B4F2C;
-  --gold-light:#D9BE93;
-  --line:#E2DCCE;
+  --cream:#F4EDE3;
+  --cream-2:#EAE0D4;
+  --paper:#FAF8F4;
+  --ink:#30251F;
+  --brown-900:#302019;
+  --brown-850:#493126;
+  --brown-700:#70513E;
+  --gold:#AD8765; --gold-text:#70513E;
+  --gold-light:#C7AA8B;
+  --line:#E4D8CA;
   --line-dark:rgba(240,231,213,.22);
-  --muted:#5A4B38;
+  --muted:#6E6259;
   --radius:14px;
   --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --caps:'Marcellus','Cormorant Garamond',Georgia,serif;
+  --caps:'Manrope','Helvetica Neue',Arial,sans-serif;
   --shadow:0 18px 44px rgba(43,28,16,.28);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -74,18 +74,19 @@ a{color:inherit;text-decoration:none}
 .btn-dark:hover{background:var(--brown-700)}
 .btn-outline{border-color:rgba(244,233,212,.6);color:#F4E9D4}
 .btn-outline:hover{background:#F4E9D4;color:var(--ink)}
-.btn-gold{background:var(--gold);color:#2C2117}
-.btn-gold:hover{background:#C6A578}
+.btn-gold{background:var(--gold);color:#30251F}
+.btn-gold:hover{background:#C7AA8B}
 .overline{font-family:var(--caps);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-text)}
+  .hero .overline,.film .overline{color:var(--gold-light)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px}
 .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.15}
-.sec-head p{max-width:420px;color:#5A4632;font-size:16px}
+.sec-head p{max-width:420px;color:#70513E;font-size:16px}
 
 /* ============ header ============ */
-.header{position:sticky;top:0;z-index:50;background:#241812;border-bottom:1px solid var(--line-dark)}
+.header{position:sticky;top:0;z-index:50;background:#302019;border-bottom:1px solid var(--line-dark)}
 .header-in{position:relative;display:flex;align-items:center;justify-content:space-between;height:72px}
 .nav ul{display:flex;gap:26px;list-style:none}
-.nav a{font-family:var(--caps);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#E4D5BB;padding:6px 2px;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.nav a{font-family:var(--caps);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C7AA8B;padding:6px 2px;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
 .nav a:hover{color:#fff;border-color:var(--gold)}
 .nav a.active{color:#F4E9D4;border-color:var(--gold)}
 .logo{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;cursor:pointer}
@@ -93,25 +94,25 @@ a{color:inherit;text-decoration:none}
 .header-actions{display:flex;align-items:center;gap:16px}
 .wa-icon{display:inline-flex;color:#25D366;transition:transform .25s}
 .wa-icon:hover{transform:scale(1.12)}
-.burger{display:none;color:#E4D5BB;padding:6px}
-.mnav{display:none;background:#241812;border-bottom:1px solid var(--line-dark)}
+.burger{display:none;color:#C7AA8B;padding:6px}
+.mnav{display:none;background:#302019;border-bottom:1px solid var(--line-dark)}
 .mnav.open{display:block}
-.mnav a{display:block;padding:14px 24px;font-family:var(--caps);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-top:1px solid var(--line-dark);color:#E4D5BB}
+.mnav a{display:block;padding:14px 24px;font-family:var(--caps);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-top:1px solid var(--line-dark);color:#C7AA8B}
 
 /* ============ hero ============ */
 .hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--brown-900)}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:saturate(.92) brightness(.72)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(75deg,rgba(30,20,13,.88) 0%,rgba(30,20,13,.62) 38%,rgba(30,20,13,.18) 75%,rgba(30,20,13,.35) 100%)}
 .hero-inner{position:relative;z-index:2;padding:120px 0 72px;max-width:820px}
-.hero h1{font-weight:500;font-size:clamp(44px,6.4vw,76px);line-height:1.04;color:#F6EEDD;letter-spacing:.01em;margin:18px 0 22px}
+.hero h1{font-weight:500;font-size:clamp(44px,6.4vw,76px);line-height:1.04;color:#FAF8F4;letter-spacing:.01em;margin:18px 0 22px}
 .hero h1 em{font-style:italic;color:var(--gold-light)}
-.hero p{font-size:clamp(17px,1.6vw,21px);color:#E4D5BB;max-width:520px}
+.hero p{font-size:clamp(17px,1.6vw,21px);color:#C7AA8B;max-width:520px}
 .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
-.hero-facts{margin-top:40px;display:flex;gap:28px;flex-wrap:wrap;font-family:var(--caps);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#CBB18F}
+.hero-facts{margin-top:40px;display:flex;gap:28px;flex-wrap:wrap;font-family:var(--caps);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#C7AA8B}
 .hero-facts span{display:flex;align-items:center;gap:10px}
 .hero-facts i{width:5px;height:5px;background:var(--gold);border-radius:50%;display:inline-block}
-.scroll-cue{position:absolute;z-index:2;bottom:26px;right:36px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#D8C7A9;font-family:var(--caps);font-size:9px;letter-spacing:.34em;text-transform:uppercase;writing-mode:vertical-rl}
-.scroll-cue::after{content:"";width:1px;height:56px;background:linear-gradient(#E4D5BB,transparent);animation:cue 2.2s ease-in-out infinite}
+.scroll-cue{position:absolute;z-index:2;bottom:26px;right:36px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#C7AA8B;font-family:var(--caps);font-size:9px;letter-spacing:.34em;text-transform:uppercase;writing-mode:vertical-rl}
+.scroll-cue::after{content:"";width:1px;height:56px;background:linear-gradient(#C7AA8B,transparent);animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleY(.6);opacity:.5}50%{transform:scaleY(1);opacity:1}}
 
 /* ============ trust strip ============ */
@@ -119,14 +120,14 @@ a{color:inherit;text-decoration:none}
 .trust-strip-in{display:grid;grid-template-columns:repeat(5,1fr)}
 .ts-item{padding:16px 16px;border-left:1px solid rgba(255,255,255,.09);display:flex;flex-direction:column;gap:3px;align-items:center;text-align:center}
 .ts-item:first-child{border-left:none}
-.ts-item b{font-family:var(--caps);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#E4D5BB;white-space:nowrap}
-.ts-item span{font-size:10.5px;color:#A5946F}
+.ts-item b{font-family:var(--caps);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#C7AA8B;white-space:nowrap}
+.ts-item span{font-size:10.5px;color:#C7AA8B}
 
 /* ============ film ============ */
-.film{background:#211510;padding:96px 0}
+.film{background:#302019;padding:96px 0}
 .film .overline{display:block;text-align:center}
-.film h2{color:#F6EEDD;text-align:center;font-weight:500;font-size:clamp(30px,4vw,46px);margin:16px 0 8px}
-.film .film-sub{text-align:center;color:#A5946F;font-style:italic;margin-bottom:44px}
+.film h2{color:#FAF8F4;text-align:center;font-weight:500;font-size:clamp(30px,4vw,46px);margin:16px 0 8px}
+.film .film-sub{text-align:center;color:#C7AA8B;font-style:italic;margin-bottom:44px}
 .film-frame{position:relative;max-width:940px;margin:0 auto;border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#000}
 .film-frame video{width:100%;aspect-ratio:16/9;display:block}
 .film-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(rgba(20,12,7,.45),rgba(20,12,7,.55));cursor:pointer;transition:opacity .35s}
@@ -135,9 +136,9 @@ a{color:inherit;text-decoration:none}
 .play-ring{width:96px;height:96px;border:1.5px solid var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(20,12,7,.4);transition:transform .3s}
 .film-overlay:hover .play-ring{transform:scale(1.08)}
 .play-ring svg{width:34px;height:34px;fill:var(--gold-light);margin-left:6px}
-.film-overlay span{font-family:var(--caps);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E4D5BB}
-.film-note{max-width:940px;margin:22px auto 0;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#8B7B63;font-size:13px}
-.film-note b{color:#E4D5BB;font-family:var(--caps);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.film-overlay span{font-family:var(--caps);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#C7AA8B}
+.film-note{max-width:940px;margin:22px auto 0;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#C7AA8B;font-size:13px}
+.film-note b{color:#C7AA8B;font-family:var(--caps);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
 
 /* ============ chapters ============ */
 .chapters{padding:96px 0 40px}
@@ -147,7 +148,7 @@ a{color:inherit;text-decoration:none}
 .chapter:nth-child(even) .chapter-media{order:2}
 .chapter-num{font-family:var(--caps);font-size:11px;letter-spacing:.34em;color:var(--gold-text);text-transform:uppercase;margin-bottom:12px}
 .chapter h3{font-weight:500;font-size:clamp(26px,2.6vw,38px);line-height:1.15;margin-bottom:14px}
-.chapter p{color:#4C3B29;font-size:17px}
+.chapter p{color:#493126;font-size:17px}
 .chapter p em{font-style:italic;color:var(--brown-700)}
 .chapter-media{border-radius:var(--radius);overflow:hidden;box-shadow:0 16px 40px rgba(43,28,16,.22);border:1px solid var(--line)}
 .chapter-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/4.6;object-position:center}
@@ -155,7 +156,7 @@ a{color:inherit;text-decoration:none}
 /* ============ pull quotes ============ */
 .pullquote{padding:64px 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper)}
 .pullquote blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,40px);line-height:1.3;color:var(--brown-900);max-width:900px;margin:0 auto}
-.pullquote blockquote span{color:var(--gold)}
+.pullquote blockquote span{color:var(--gold-text)}
 
 /* ============ pillars ============ */
 .pillars{padding:96px 0}
@@ -164,12 +165,12 @@ a{color:inherit;text-decoration:none}
 .pillar:first-child{border-left:none}
 .pillar-icon{width:52px;height:52px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--brown-900);margin-bottom:16px}
 .pillar h3{font-family:var(--caps);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;color:var(--brown-900)}
-.pillar p{font-size:14.5px;color:#5A4632;line-height:1.55}
+.pillar p{font-size:14.5px;color:#70513E;line-height:1.55}
 
 /* ============ reviews ============ */
 .love{background:var(--brown-900);padding:96px 0;color:#F4E9D4}
 .love .sec-head h2{color:#F4E9D4}
-.love .sec-head p{color:#CBB18F}
+.love .sec-head p{color:#C7AA8B}
 .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .review{background:rgba(255,255,255,.035);border:1px solid var(--line-dark);border-radius:var(--radius);padding:28px 26px;display:flex;flex-direction:column;gap:16px}
 .review p{font-style:italic;font-size:16px;color:#EDE1CB;line-height:1.6}
@@ -178,13 +179,13 @@ a{color:inherit;text-decoration:none}
 .review-foot b{display:block;font-size:15px;font-weight:600}
 .verified{display:flex;align-items:center;gap:6px;font-family:var(--caps);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#9FBE9B}
 .verified svg{width:12px;height:12px;stroke:#9FBE9B}
-.love-note{margin-top:26px;text-align:center;font-size:12.5px;color:#8B7B63;font-style:italic}
+.love-note{margin-top:26px;text-align:center;font-size:12.5px;color:#C7AA8B;font-style:italic}
 
 /* ============ visit ============ */
 .visit{padding:96px 0}
 .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
 .visit h2{font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.12;margin:16px 0 18px}
-.visit-address{font-size:19px;color:#4C3B29}
+.visit-address{font-size:19px;color:#493126}
 .visit-address b{color:var(--ink)}
 .visit-meta{margin:22px 0 30px;display:flex;flex-direction:column;gap:10px;font-size:15px}
 .visit-meta a{color:var(--brown-900);border-bottom:1px solid var(--gold)}
@@ -193,23 +194,23 @@ a{color:inherit;text-decoration:none}
 .map-wrap iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
 
 /* ============ cta band ============ */
-.cta-band{background:linear-gradient(120deg,#2A1D12,#3D2C20);padding:88px 0;text-align:center}
-.cta-band h2{color:#F6EEDD;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.15;max-width:820px;margin:0 auto 28px}
+.cta-band{background:linear-gradient(120deg,#302019,#302019);padding:88px 0;text-align:center}
+.cta-band h2{color:#FAF8F4;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.15;max-width:820px;margin:0 auto 28px}
 .cta-band h2 em{font-style:italic;color:var(--gold-light)}
 .cta-band .hero-ctas{justify-content:center}
 
 /* ============ footer ============ */
-.footer{background:#241812;color:#CBB18F;padding:56px 0 28px}
+.footer{background:#302019;color:#C7AA8B;padding:56px 0 28px}
 .footer-in{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:44px;align-items:start}
 .f-logo img{height:46px;width:auto}
-.f-tag{font-size:13px;color:#8B7B63;margin-top:10px;font-style:italic}
-.f-h{font-family:var(--caps);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#E4D5BB;margin-bottom:12px}
-.f-col a{display:block;font-size:14px;padding:4px 0;color:#A5946F;transition:color .25s}
+.f-tag{font-size:13px;color:#6E6259;margin-top:10px;font-style:italic}
+.f-h{font-family:var(--caps);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7AA8B;margin-bottom:12px}
+.f-col a{display:block;font-size:14px;padding:4px 0;color:#6E6259;transition:color .25s}
 .f-col a:hover{color:#F4E9D4}
 .socials{display:flex;gap:12px}
-.socials a{display:inline-flex;color:#CBB18F;border:1px solid var(--line-dark);border-radius:50%;width:40px;height:40px;align-items:center;justify-content:center;transition:color .25s,border-color .25s}
+.socials a{display:inline-flex;color:#C7AA8B;border:1px solid var(--line-dark);border-radius:50%;width:40px;height:40px;align-items:center;justify-content:center;transition:color .25s,border-color .25s}
 .socials a:hover{color:#F4E9D4;border-color:var(--gold)}
-.f-bottom{border-top:1px solid var(--line-dark);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#8B7B63}
+.f-bottom{border-top:1px solid var(--line-dark);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#6E6259}
 
 /* ============ responsive ============ */
 @media (max-width:1024px){
@@ -265,7 +266,7 @@ a{color:inherit;text-decoration:none}
   .ic-24{width:24px;height:24px}
   .ic-gold{stroke:var(--gold)}
   .ic-green{stroke:#1E7A34}
-  .ic-ink{stroke:#241812}
+  .ic-ink{stroke:#302019}
   .ic-solid{fill:currentColor;stroke:none}
   /* ==== shared chrome (build-injected) ==== */
 /* ============================================================================
@@ -275,53 +276,53 @@ a{color:inherit;text-decoration:none}
    ========================================================================= */
 
   /* ---------- header ---------- */
-  .header{position:sticky;top:0;z-index:50;background:#241812;border-bottom:1px solid var(--line-dark)}
+  .header{position:sticky;top:0;z-index:50;background:#302019;border-bottom:1px solid var(--line-dark)}
   .header-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:18px;height:72px}
   .nav{justify-self:start}
   .nav ul{display:flex;gap:18px}
   .nav li{position:relative}
-  .nav a{white-space:nowrap;font-family:var(--caps);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#E4D5BB;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .25s,color .25s;cursor:pointer;text-decoration:none}
+  .nav a{white-space:nowrap;font-family:var(--caps);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#C7AA8B;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .25s,color .25s;cursor:pointer;text-decoration:none}
   .nav a:hover{color:#fff;border-color:var(--gold)}
   .logo{position:static;transform:none;display:flex;align-items:center;justify-self:center;cursor:pointer}
   .logo img{height:44px;width:auto;display:block}
   .actions{justify-self:end;display:flex;align-items:center;gap:20px}
-  .actions button,.actions a{color:#E4D5BB;display:inline-flex;position:relative;transition:color .25s;text-decoration:none}
+  .actions button,.actions a{color:#C7AA8B;display:inline-flex;position:relative;transition:color .25s;text-decoration:none}
   .actions button:hover,.actions a:hover{color:var(--gold)}
   .badge-wrap{position:relative;display:inline-flex}
-  .count{position:absolute;top:-6px;right:-1px;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#241812;font-family:var(--caps);font-weight:700;font-size:9.5px;display:flex;align-items:center;justify-content:center;padding:0 4px;box-sizing:border-box;line-height:1}
+  .count{position:absolute;top:-6px;right:-1px;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#302019;font-family:var(--caps);font-weight:700;font-size:9.5px;display:flex;align-items:center;justify-content:center;padding:0 4px;box-sizing:border-box;line-height:1}
   .count:empty{display:none}
-  .burger{display:none;color:#E4D5BB}
+  .burger{display:none;color:#C7AA8B}
   .burger:hover{color:var(--gold)}
 
   /* mega menu */
-  .nav .mega{position:absolute;top:calc(100% + 10px);left:-24px;min-width:540px;background:#241812;border:1px solid rgba(240,231,213,.14);border-radius:16px;padding:24px 28px;display:none;grid-template-columns:1fr 1fr;gap:30px;box-shadow:0 26px 64px rgba(20,13,8,.55);z-index:60}
+  .nav .mega{position:absolute;top:calc(100% + 10px);left:-24px;min-width:540px;background:#302019;border:1px solid rgba(240,231,213,.14);border-radius:16px;padding:24px 28px;display:none;grid-template-columns:1fr 1fr;gap:30px;box-shadow:0 26px 64px rgba(20,13,8,.55);z-index:60}
   .nav li.has-mega:hover .mega,.nav li.has-mega:focus-within .mega{display:grid}
-  .mega-h{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#8A7A63;margin-bottom:14px}
+  .mega-h{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#6E6259;margin-bottom:14px}
   .mega-col{display:flex;flex-direction:column;gap:10px}
-  .mega-col a{font-size:12.5px;letter-spacing:.1em;color:#E4D5BB;padding:0;border:none}
+  .mega-col a{font-size:12.5px;letter-spacing:.1em;color:#C7AA8B;padding:0;border:none}
   .mega-col a:hover{color:var(--gold);border:none}
 
   /* ---------- footer ---------- */
   .foot-grid{display:grid;grid-template-columns:1.55fr repeat(4,minmax(0,1fr)) 1fr;gap:26px;padding-bottom:44px}
-  .flogo{font-family:var(--caps);font-size:22px;letter-spacing:.3em;color:#EFE6D4;margin-bottom:12px}
-  .foot-brand p{font-size:13.5px;color:#A5946F;line-height:1.6}
+  .flogo{font-family:var(--caps);font-size:22px;letter-spacing:.3em;color:#F4EDE3;margin-bottom:12px}
+  .foot-brand p{font-size:13.5px;color:#6E6259;line-height:1.6}
   .foot-contact{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:12px;font-size:13.5px;color:#B4A385}
   .foot-contact a{color:#B4A385;transition:color .25s}
   .foot-contact a:hover{color:var(--gold)}
-  .f-col h4{font-family:var(--caps);font-weight:400;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A7A63;margin-bottom:16px}
+  .f-col h4{font-family:var(--caps);font-weight:400;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#6E6259;margin-bottom:16px}
   .f-col ul li{margin-bottom:9px}
   .f-col a{font-size:13.5px;color:#B4A385;transition:color .25s;text-decoration:none}
-  .f-col a:hover{color:#E2CEA6}
+  .f-col a:hover{color:#C7AA8B}
   .f-social .socials{display:flex;gap:12px;margin-bottom:4px}
   .f-social .socials a{color:#B4A385;transition:color .25s}
   .f-social .socials a:hover{color:var(--gold)}
-  .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0 34px;border-top:1px solid rgba(240,231,213,.1);font-size:13px;color:#8A7A63}
+  .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0 34px;border-top:1px solid rgba(240,231,213,.1);font-size:13px;color:#6E6259}
   .foot-bottom .socials{display:flex;gap:14px}
   .foot-bottom .socials a{color:#B4A385;transition:color .25s}
   .foot-bottom .socials a:hover{color:var(--gold)}
 
   /* mobile menu badge (story page parity) */
-  .mnav .count{display:inline-flex;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#241812;font-family:var(--caps);font-size:9px;font-weight:700;align-items:center;justify-content:center;padding:0 5px;margin-left:auto;line-height:1}
+  .mnav .count{display:inline-flex;min-width:17px;height:17px;border-radius:9px;background:var(--gold);color:#302019;font-family:var(--caps);font-size:9px;font-weight:700;align-items:center;justify-content:center;padding:0 5px;margin-left:auto;line-height:1}
   .mnav .count:empty{display:none}
 
   @media (max-width:1180px){
@@ -357,16 +358,16 @@ a{color:inherit;text-decoration:none}
 
 
   /* ---------- canonical mobile menu (shared by all pages) ---------- */
-  .mnav{position:absolute;top:100%;left:0;right:0;z-index:49;background:#241812;border-bottom:1px solid rgba(255,255,255,.12);max-height:78vh;overflow-y:auto;transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;box-shadow:0 26px 44px rgba(0,0,0,.45);border-radius:0 0 20px 20px;-webkit-overflow-scrolling:touch}
+  .mnav{position:absolute;top:100%;left:0;right:0;z-index:49;background:#302019;border-bottom:1px solid rgba(255,255,255,.12);max-height:78vh;overflow-y:auto;transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;box-shadow:0 26px 44px rgba(0,0,0,.45);border-radius:0 0 20px 20px;-webkit-overflow-scrolling:touch}
   .mnav.open{transform:translateY(0);opacity:1;pointer-events:auto}
-  .mnav a{display:flex;align-items:center;gap:14px;padding:13px 22px;font-family:var(--caps);font-size:12px;letter-spacing:.18em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.07);color:#E4D5BB;text-decoration:none;transition:background .25s,padding-left .25s}
-  .mnav a svg{width:21px;height:21px;stroke:#D9BE93;flex:none}
-  .mnav a small{margin-left:auto;color:#8A7A63;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-family:var(--serif);font-style:italic}
+  .mnav a{display:flex;align-items:center;gap:14px;padding:13px 22px;font-family:var(--caps);font-size:12px;letter-spacing:.18em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.07);color:#C7AA8B;text-decoration:none;transition:background .25s,padding-left .25s}
+  .mnav a svg{width:21px;height:21px;stroke:#C7AA8B;flex:none}
+  .mnav a small{margin-left:auto;color:#6E6259;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-family:var(--serif);font-style:italic}
   .mnav a:hover{background:rgba(217,190,147,.09);color:#fff;padding-left:30px}
   .mnav-scrim{position:fixed;inset:0;z-index:48;background:rgba(20,13,8,.55);opacity:0;pointer-events:none;transition:opacity .3s}
   .mnav-scrim.open{opacity:1;pointer-events:auto}
   .burger.open{transform:rotate(90deg)}
-  .burger.open svg{stroke:#B2916B}
+  .burger.open svg{stroke:#AD8765}
 
 
   /* ---------- floating helpers + chat (shared by all pages) ---------- */
@@ -376,52 +377,52 @@ a{color:inherit;text-decoration:none}
   .float-left{left:20px;bottom:20px;align-items:flex-start}
   .float-btn{position:relative;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 28px rgba(20,13,8,.35);transition:transform .25s,box-shadow .25s;text-decoration:none;cursor:pointer}
   .float-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(20,13,8,.45)}
-  .float-btn:focus-visible{outline:3px solid #D9BE93;outline-offset:3px}
+  .float-btn:focus-visible{outline:3px solid #C7AA8B;outline-offset:3px}
   .float-btn svg{display:block}
   .whatsapp-float{background:linear-gradient(155deg,#25D366 0%,#128C4B 100%)}
   .whatsapp-float svg{width:30px;height:30px;fill:#fff}
-  .chat-fab{background:linear-gradient(155deg,#3D2C20 0%,#241812 100%)}
-  .chat-fab svg.bubble{width:26px;height:26px;stroke:#D9BE93;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .chat-dot{position:absolute;bottom:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #F4F1E8}
-  .float-tip{position:absolute;bottom:50%;transform:translateY(50%) translateX(8px);opacity:0;pointer-events:none;white-space:nowrap;background:#241812;color:#F4E9D4;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:9px 13px;border-radius:9px;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(20,13,8,.35)}
+  .chat-fab{background:linear-gradient(155deg,#302019 0%,#302019 100%)}
+  .chat-fab svg.bubble{width:26px;height:26px;stroke:#C7AA8B;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .chat-dot{position:absolute;bottom:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2E7D4F;border:2px solid #FAF8F4}
+  .float-tip{position:absolute;bottom:50%;transform:translateY(50%) translateX(8px);opacity:0;pointer-events:none;white-space:nowrap;background:#302019;color:#F4E9D4;font-family:var(--caps);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:9px 13px;border-radius:9px;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(20,13,8,.35)}
   .float-right .float-tip{right:calc(100% + 14px);left:auto;transform:translateY(50%) translateX(-8px)}
   .float-left .float-tip{left:calc(100% + 14px)}
   .float-btn:hover .float-tip,.float-btn:focus-visible .float-tip{opacity:1;transform:translateY(50%) translateX(0)}
-  .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #D9BE93;color:#241812;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
+  .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #C7AA8B;color:#302019;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
   .float-min:hover{transform:scale(1.15)}
   .float-left .float-min{right:auto;left:-7px}
-  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#241812;color:#D9BE93;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
+  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#302019;color:#C7AA8B;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
   .float-handle.show{display:flex}
-  .float-handle:hover{background:#3D2C20}
+  .float-handle:hover{background:#302019}
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
   /* Sohraaz Assistant â€” chat */
-  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FDFBF7;border:1px solid #E3DCCB;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .chat-head{background:#241812;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
-  .chat-head-av{width:42px;height:42px;border-radius:50%;background:#B2916B;color:#241812;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;flex:none}
+  .chat-head{background:#302019;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
+  .chat-head-av{width:42px;height:42px;border-radius:50%;background:#AD8765;color:#302019;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;flex:none}
   .chat-head b{font-size:15.5px;display:block;letter-spacing:.02em}
-  .chat-head small{font-size:10.5px;color:#D9BE93;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
+  .chat-head small{font-size:10.5px;color:#C7AA8B;letter-spacing:.12em;text-transform:uppercase;font-family:var(--caps)}
   .chat-close{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid rgba(240,231,213,.25);color:#F4E9D4;font-size:19px;display:flex;align-items:center;justify-content:center}
-  .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#F5F2E9}
+  .chat-body{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:#EAE0D4}
   .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere}
-  .chat-link{color:#8A6A3F;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+  .chat-link{color:#70513E;font-weight:700;text-decoration:underline;text-underline-offset:2px}
   .chat-msg.user .chat-link{color:#E8C87A}
-  .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#3A2E22}
-  .chat-msg.user{background:#241812;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
+  .chat-msg.bot{background:#fff;border:1px solid #E9E4D4;border-bottom-left-radius:4px;align-self:flex-start;color:#493126}
+  .chat-msg.user{background:#302019;color:#F4E9D4;border-bottom-right-radius:4px;align-self:flex-end}
   .chat-typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid #E9E4D4;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px}
-  .chat-typing i{width:7px;height:7px;border-radius:50%;background:#B2916B;animation:chatBlink 1.2s infinite}
+  .chat-typing i{width:7px;height:7px;border-radius:50%;background:#AD8765;animation:chatBlink 1.2s infinite}
   .chat-typing i:nth-child(2){animation-delay:.18s}.chat-typing i:nth-child(3){animation-delay:.36s}
   @keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
-  .chat-chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 12px;background:#F5F2E9}
-  .chat-chip{border:1.5px solid #DCCEB6;background:#fff;color:#4A3828;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--serif)}
-  .chat-chip:hover{border-color:#B2916B;color:#241812}
-  .chat-inputrow{display:flex;border-top:1px solid #E3DCCB;background:#fff}
+  .chat-chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 12px;background:#EAE0D4}
+  .chat-chip{border:1.5px solid #DCCEB6;background:#fff;color:#493126;border-radius:20px;padding:8px 14px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--serif)}
+  .chat-chip:hover{border-color:#AD8765;color:#302019}
+  .chat-inputrow{display:flex;border-top:1px solid #E4D8CA;background:#fff}
   .chat-inputrow input{flex:1;border:none;outline:none;padding:15px 16px;font-family:var(--serif);font-size:14px;background:transparent}
-  .chat-inputrow button{background:#241812;color:#D9BE93;padding:0 20px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
-  .chat-wa{display:block;text-align:center;font-size:11px;color:#8A7A63;padding:8px;background:#fff;border-top:1px solid #EDE7D5}
+  .chat-inputrow button{background:#302019;color:#C7AA8B;padding:0 20px;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .chat-wa{display:block;text-align:center;font-size:11px;color:#6E6259;padding:8px;background:#fff;border-top:1px solid #EAE0D4}
   .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
   @media (max-width:640px){
     .float-dock{right:12px;bottom:12px}
@@ -451,9 +452,9 @@ a{color:inherit;text-decoration:none}
   button{background:none;border:none;cursor:pointer;-webkit-appearance:none;appearance:none}
   input,textarea,select{-webkit-appearance:none;appearance:none}
   .burger{background:none !important;border:none !important;padding:6px;line-height:0;display:none;align-items:center;justify-content:center}
-  .burger svg{width:24px;height:24px;stroke:#E4D5BB;fill:none;stroke-width:1.6;stroke-linecap:round}
+  .burger svg{width:24px;height:24px;stroke:#C7AA8B;fill:none;stroke-width:1.6;stroke-linecap:round}
   .burger:hover svg{stroke:var(--gold)}
-  .burger.open svg{stroke:#B2916B}
+  .burger.open svg{stroke:#AD8765}
 
 
   /* ---------- interaction & motion quality (Web Interface Guidelines) ---------- */
@@ -479,14 +480,500 @@ a{color:inherit;text-decoration:none}
   }
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
   .btn:focus-visible,.nav a:focus-visible,.f-col a:focus-visible,.actions a:focus-visible{outline-offset:4px}
-  ::selection{background:var(--gold);color:#241812}
+  ::selection{background:var(--gold);color:#302019}
   .header,.footer{scroll-margin-top:92px}
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
   }
 
   /* ===== WCAG AA on the cream background ===== */
-  .color-row .cl,.rev-head h2 span,.rev-summary .total{color:#5F4F3B}
+  .color-row .cl,.rev-head h2 span,.rev-summary .total{color:#6E6259}
+/* ==== luxury design system (build-injected) ==== */
+/* ============================================================================
+   SOHRAAZ — LUXURY DESIGN SYSTEM
+   ----------------------------------------------------------------------------
+   Chocolate Brown × Cream × Champagne Gold
+   Injected into every page by build.mjs, AFTER shared.css, so these rules
+   win over the per-page legacy styles (equal specificity, later in the cascade).
+
+   Palette (owner brief, 11 Nov 2026) — 55% cream/ivory · 25% chocolate ·
+   10% white · 10% champagne gold. No gradients on brand surfaces.
+   ============================================================================ */
+
+:root{
+  /* ---- brand palette ---- */
+  --choco:#493126;        /* primary chocolate brown  */
+  --choco-dark:#302019;   /* dark chocolate           */
+  --mocha:#70513E;        /* secondary mocha          */
+  --gold:#AD8765;         /* champagne gold           */
+  --gold-light:#C7AA8B;   /* light champagne          */
+  --cream:#F4EDE3;        /* cream background         */
+  --ivory:#FAF8F4;        /* soft ivory               */
+  --white:#FFFFFF;
+  --ink:#30251F;          /* primary text             */
+  --ink-2:#796D62;        /* secondary text (brand)   */
+  --ink-2s:#6E6259;       /* secondary text, small sizes (AA on cream) */
+  --line:#E4D8CA;         /* border colour            */
+  --muted-bg:#EAE0D4;     /* muted background         */
+
+  /* ---- legacy aliases remapped onto the new palette (so legacy rules follow) ---- */
+  --cream-2:#FAF8F4;
+  --cream-solid:#FAF8F4;
+  --paper:#FAF8F4;
+  --tan:#E4D8CA;
+  --brown-950:#302019;
+  --brown-900:#302019;
+  --brown-850:#493126;
+  --brown-700:#70513E;
+  --gold-text:#70513E;
+  --line-dark:rgba(48,32,25,.16);
+  --green:#2F6B4F;
+  --green-bg:#EAF2EC;
+  --red:#B33A3A;
+
+  /* ---- type ---- */
+  --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --caps:'Manrope', 'Helvetica Neue', Arial, sans-serif;
+
+  --shell:1280px;
+  --gutter:28px;
+  --r-sm:3px;
+  --r-md:3px;
+  --r-lg:3px;
+  --shadow-1:0 2px 10px rgba(48,32,25,.05);
+  --shadow-2:0 18px 44px rgba(48,32,25,.10);
+  --shadow-3:0 30px 70px rgba(48,32,25,.14);
+}
+
+/* ---------- base typography ---------- */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--caps);
+  font-size:15px;
+  line-height:1.7;
+  color:var(--ink);
+  background:var(--cream);
+  font-weight:400;
+  letter-spacing:.005em;
+}
+h1,h2,h3,h4,h5{
+  font-family:var(--serif);
+  font-weight:400;
+  color:var(--choco-dark);
+  letter-spacing:.005em;
+  line-height:1.08;
+}
+h1{font-size:clamp(40px,5.4vw,64px)}
+h2{font-size:clamp(30px,3.6vw,44px)}
+h3{font-size:18px}
+p{color:var(--ink)}
+::selection{background:var(--gold);color:#fff}
+
+/* eyebrow / overline — the one place small caps gold is allowed */
+.overline{
+  font-family:var(--caps);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--mocha);
+}
+
+/* ---------- buttons (brief §12) ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  font-family:var(--caps);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:15px 30px;
+  border-radius:var(--r-md);
+  border:1px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+  line-height:1;
+}
+.btn svg{width:16px;height:16px;stroke-width:1.7;fill:none;stroke:currentColor;flex:none}
+
+.btn-dark{                       /* primary: chocolate bg, ivory text */
+  background:var(--choco);
+  color:var(--ivory);
+  border-color:var(--choco);
+}
+.btn-dark:hover{background:var(--mocha);border-color:var(--mocha);color:var(--white)}
+
+.btn-solid{                      /* primary on light surfaces */
+  background:var(--choco);
+  color:var(--ivory);
+  border-color:var(--choco);
+}
+.btn-solid:hover{background:var(--mocha);border-color:var(--mocha);color:var(--white)}
+
+.btn-cream{                      /* on photography */
+  background:var(--ivory);
+  color:var(--choco-dark);
+  border-color:var(--ivory);
+}
+.btn-cream:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+
+.btn-ghost,.btn-outline{         /* secondary: transparent + chocolate */
+  background:transparent;
+  color:var(--choco);
+  border-color:var(--choco);
+}
+.btn-ghost:hover,.btn-outline:hover{background:var(--choco);color:var(--ivory)}
+
+.btn-gold{
+  background:var(--gold);
+  color:#fff;
+  border-color:var(--gold);
+}
+.btn-gold:hover{background:var(--mocha);border-color:var(--mocha);color:#fff}
+
+/* ---------- header (brief §4) ---------- */
+.header{
+  position:sticky;top:0;z-index:50;
+  background:var(--cream);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(173,135,101,.18);
+  transition:box-shadow .3s ease;
+}
+.header.scrolled{box-shadow:0 6px 26px rgba(48,32,25,.10)}
+.header-in{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:22px;
+  height:76px;
+}
+.nav{grid-column:1;justify-self:start}
+.nav ul{display:flex;gap:30px}
+.nav a{
+  font-family:var(--caps);
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--choco);
+  padding:8px 0;
+  border-bottom:1px solid transparent;
+  transition:color .25s ease,border-color .25s ease;
+  white-space:nowrap;
+  text-decoration:none;
+}
+.nav a:hover{color:var(--mocha);border-bottom-color:var(--gold)}
+
+.logo{grid-column:2;justify-self:center;display:flex;align-items:center}
+.logo img{height:50px;width:auto;display:block}
+
+.actions{grid-column:3;justify-self:end;display:flex;align-items:center;gap:22px}
+.actions .act{
+  color:var(--choco);
+  display:inline-flex;
+  position:relative;
+  transition:color .25s ease;
+}
+.actions .act:hover{color:var(--mocha)}
+.actions .icon{width:20px;height:20px;stroke-width:1.5;fill:none;stroke:currentColor}
+.actions .count{
+  position:absolute;top:-7px;right:-3px;
+  min-width:16px;height:16px;border-radius:8px;
+  background:var(--gold);color:#fff;
+  font-family:var(--caps);font-weight:700;font-size:9px;
+  display:flex;align-items:center;justify-content:center;padding:0 4px;
+  line-height:1;box-sizing:border-box;
+}
+.actions .count:empty{display:none}
+
+.burger{display:none;color:var(--choco);background:none;border:0;padding:6px;cursor:pointer}
+.burger .icon{width:22px;height:22px;stroke-width:1.5;fill:none;stroke:currentColor}
+
+/* mega menu — luxury panel */
+.mega{
+  position:absolute;top:100%;left:0;
+  display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:34px;
+  padding:34px 38px;
+  min-width:660px;
+  background:var(--ivory);
+  border:1px solid var(--line);
+  border-top:2px solid var(--gold);
+  box-shadow:var(--shadow-3);
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .28s ease,transform .28s ease,visibility .28s;
+  z-index:60;
+}
+.has-mega:hover .mega,
+.has-mega:focus-within .mega{opacity:1;visibility:visible;transform:translateY(0)}
+.mega-h{
+  display:block;
+  font-family:var(--caps);font-size:9.5px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--mocha);
+  margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--line);
+}
+.mega-col a{
+  display:block;padding:7px 0;
+  font-family:var(--caps);font-size:12.5px;font-weight:400;
+  letter-spacing:.06em;text-transform:none;color:var(--ink);
+  transition:color .22s ease,transform .22s ease;
+}
+.mega-col a:hover{color:var(--mocha);transform:translateX(4px)}
+
+/* mobile panel */
+.mnav{
+  position:absolute;top:100%;left:0;right:0;z-index:49;
+  background:var(--choco-dark);
+  border-bottom:1px solid rgba(244,237,227,.14);
+  max-height:78vh;overflow-y:auto;
+  transform:translateY(-12px);opacity:0;pointer-events:none;
+  transition:transform .3s ease,opacity .3s ease;
+  box-shadow:0 26px 44px rgba(48,32,25,.4);
+}
+.mnav.open{transform:translateY(0);opacity:1;pointer-events:auto}
+.mnav a{
+  display:flex;align-items:center;gap:14px;
+  padding:15px 24px;
+  font-family:var(--caps);font-size:12px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  border-top:1px solid rgba(244,237,227,.08);
+  color:var(--cream);text-decoration:none;
+  transition:background .25s,padding-left .25s;
+}
+.mnav a svg{width:20px;height:20px;stroke:var(--gold-light);flex:none;fill:none}
+.mnav a small{margin-left:auto;color:#B4A28C;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.mnav a:hover{background:rgba(173,135,101,.12);color:#fff;padding-left:30px}
+.mnav-scrim{position:fixed;inset:0;z-index:48;background:rgba(48,32,25,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+.mnav-scrim.open{opacity:1;pointer-events:auto}
+.burger.open{transform:rotate(90deg)}
+
+@media (max-width:1320px){
+  .nav{display:none}
+  .burger{display:inline-flex;flex:none}
+  .header-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px;overflow:hidden}
+  .logo{position:static;transform:none;display:flex;align-items:center;flex:0 1 auto;min-width:0;overflow:hidden}
+  .logo img{height:30px;max-width:116px;width:auto;object-fit:contain}
+  .actions{margin-left:auto;gap:16px;justify-self:end;flex:none}
+}
+
+/* ---------- footer (brief §11) ---------- */
+.footer{
+  background:var(--choco-dark);
+  color:var(--cream);
+  padding:76px 0 0;
+  border-top:2px solid var(--gold);
+}
+.foot-grid{
+  display:grid;
+  grid-template-columns:1.55fr 1fr 1fr 1fr 1.2fr;
+  gap:44px;
+  padding-bottom:54px;
+}
+.flogo{
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:500;
+  letter-spacing:.30em;
+  color:var(--cream);
+  margin-bottom:16px;
+}
+.foot-brand p{color:#C6B7A3;font-size:13.5px;line-height:1.75;max-width:330px}
+.foot-contact{color:#C6B7A3!important;gap:8px!important}
+.foot-contact a{color:var(--gold-light)!important;text-decoration:none;border-bottom:1px solid rgba(173,135,101,.4)}
+.f-col h4{
+  font-family:var(--caps);
+  font-size:10.5px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 18px;
+}
+.f-col ul{list-style:none;margin:0;padding:0}
+.f-col li{margin-bottom:9px}
+.f-col a{
+  font-family:var(--caps);font-size:13px;font-weight:400;
+  color:#C6B7A3;text-decoration:none;
+  transition:color .25s ease;
+}
+.f-col a:hover{color:var(--gold-light)}
+.socials{display:flex;gap:10px;margin-top:14px}
+.socials a{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(173,135,101,.45);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold-light);
+  transition:background .25s ease,border-color .25s ease,color .25s ease;
+}
+.socials a:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.socials .icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+.foot-bottom{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:22px 0 30px;
+  border-top:1px solid rgba(244,237,227,.12);
+  font-size:12.5px;color:#A5946F;
+}
+.foot-bottom .socials{margin-top:0}
+
+@media (max-width:1000px){
+  .foot-grid{grid-template-columns:repeat(2,1fr);gap:34px}
+}
+@media (max-width:620px){
+  .footer{padding-top:52px}
+  .foot-grid{grid-template-columns:1fr;gap:30px}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .foot-bottom .socials{justify-content:center}
+}
+
+/* ---------- generic section furniture ---------- */
+.sec-head{margin-bottom:6px}
+.sec-head h2{color:var(--choco-dark)}
+.sec-sub{
+  font-family:var(--caps);
+  font-size:13.5px;
+  line-height:1.8;
+  color:var(--ink-2s);
+  max-width:640px;
+  margin:0 auto 34px;
+  text-align:center;
+  font-style:normal;
+  letter-spacing:.02em;
+}
+.overline.gold{color:var(--gold)}
+
+/* ---------- product cards (brief §7) ---------- */
+.prod{
+  background:var(--ivory);
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;
+}
+.prod:hover{border-color:var(--gold);box-shadow:var(--shadow-2);transform:translateY(-3px)}
+.prod-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--muted-bg)}
+.prod-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s cubic-bezier(.2,.7,.3,1);
+}
+.prod:hover .prod-img img{transform:scale(1.05)}
+.prod-meta{padding:18px 18px 20px}
+.prod-name{
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.3;
+  color:var(--choco-dark);
+  margin:0 0 8px;
+  font-weight:500;
+}
+.prod-prices{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.prod-prices .price{
+  font-family:var(--caps);font-size:15px;font-weight:700;color:var(--choco);
+  font-variant-numeric:tabular-nums;
+}
+.prod-prices .mrp{
+  font-family:var(--caps);font-size:12.5px;color:var(--ink-2s);
+  text-decoration:line-through;opacity:.75;
+}
+.prod-prices .pct-off{
+  font-family:var(--caps);font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mocha);
+  border:1px solid var(--line);border-radius:2px;padding:2px 6px;background:var(--ivory);
+}
+.prepaid-tag{font-family:var(--caps);font-size:10px;letter-spacing:.08em;color:var(--ink-2s)}
+.swatches{display:flex;gap:6px;margin-top:12px}
+.swatches i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(48,32,25,.14);display:block}
+.prod .wish{
+  position:absolute;top:12px;right:12px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(250,248,244,.92);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--choco);cursor:pointer;
+  transition:background .25s ease,color .25s ease,border-color .25s ease;
+}
+.prod .wish:hover{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.prod .wish .icon{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5}
+
+/* ---------- animations (brief §15) ---------- */
+@keyframes sohraazFadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes sohraazFade{from{opacity:0}to{opacity:1}}
+@keyframes sohraazZoom{from{transform:scale(1.04)}to{transform:scale(1)}}
+
+.fade-up{animation:sohraazFadeUp .9s cubic-bezier(.2,.7,.3,1) both}
+.fade-in{animation:sohraazFade .8s ease both}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+
+/* ---------- icon utilities ---------- */
+.icon{width:20px;height:20px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ic{width:1em;height:1em;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.14em}
+.ic-13{width:13px;height:13px}
+.ic-14{width:14px;height:14px}
+.ic-15{width:15px;height:15px}
+.ic-16{width:16px;height:16px}
+.ic-18{width:18px;height:18px}
+.ic-20{width:20px;height:20px}
+.ic-22{width:22px;height:22px}
+.ic-24{width:24px;height:24px}
+.ic-gold{stroke:var(--gold)}
+.ic-green{stroke:var(--green)}
+.ic-ink{stroke:var(--choco-dark)}
+.ic-solid{fill:currentColor;stroke:none}
+
+/* ---------- newsletter form (footer) ---------- */
+.news{margin-top:22px;max-width:360px}
+.news label{display:block;font-family:var(--caps);font-size:9.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.news input{width:100%;padding:12px 13px;border:1px solid rgba(173,135,101,.38);border-radius:3px;background:rgba(244,237,227,.05);color:var(--cream);font-family:var(--caps);font-size:13.5px;outline:none;transition:border-color .25s}
+.news input:focus{border-color:var(--gold)}
+.news input::placeholder{color:#A5946F}
+.news button{background:var(--gold);color:#fff;border:0;border-radius:3px;cursor:pointer;transition:background .25s}
+.news button:hover{background:var(--mocha)}
+
+/* ---------- Watch & Buy reel strip ---------- */
+.wb-strip{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 18px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.wb-strip::-webkit-scrollbar{display:none}
+.wb-tile{
+  position:relative;flex:0 0 172px;aspect-ratio:9/16;
+  border-radius:3px;overflow:hidden;scroll-snap-align:start;
+  border:1px solid var(--line);box-shadow:var(--shadow-2);display:block;
+  background:var(--choco-dark);transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s;
+}
+.wb-tile:hover{transform:translateY(-5px);box-shadow:var(--shadow-3)}
+.wb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+.wb-tile:hover img{transform:scale(1.06)}
+.wb-play{
+  position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;
+  background:rgba(48,32,25,.42);border:1px solid rgba(244,237,227,.6);
+  display:flex;align-items:center;justify-content:center;color:#fff;backdrop-filter:blur(4px);
+}
+.wb-play svg{width:15px;height:15px;fill:#fff;margin-left:2px}
+.wb-cap{
+  position:absolute;left:0;right:0;bottom:0;padding:34px 14px 14px;
+  background:linear-gradient(transparent,rgba(48,32,25,.86));
+  color:var(--cream);font-family:var(--caps);font-size:11px;line-height:1.45;
+}
+.wb-cap b{display:block;font-family:var(--serif);font-size:15px;font-weight:500;color:#F4EDE3;margin-bottom:2px}
+.wb-cap small{color:var(--gold-light);font-size:10.5px}
+.wb-strip-cta{text-align:center;margin-top:6px}
+
+/* ---------- shared chrome re-skin (drawer / chat / floats) ---------- */
+.drawer{background:var(--ivory);border-left:1px solid var(--line)}
+.drawer-foot{background:var(--ivory);border-top:1px solid var(--line)}
+.popup-card{background:var(--ivory);border:1px solid var(--line)}
+.float-handle{background:var(--choco);color:var(--gold-light)}
+.float-tip{background:var(--choco-dark)}
+.chat-head{background:var(--choco-dark);color:var(--cream)}
+.chat-chip{border-color:var(--line);color:var(--ink)}
+.chat-chip:hover{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.chat-inputrow button{background:var(--choco);color:var(--cream)}
 
 </style>
 </head>
@@ -500,13 +987,14 @@ a{color:inherit;text-decoration:none}
      SOHRAAZ — CANONICAL HEADER (single source of truth)
      Injected into every page by build.mjs. Never edit a page's header directly —
      edit this file, then run:  node site-template/build.mjs
-     Nav structure mirrors the live sohraaz.com menu (extracted 11 Nov 2026).
+
+     Luxury fashion header — cream ground, champagne hairline, serif wordmark.
      href  -> works on every page (plain navigation)
      data-nav -> intercepted by the store SPA for instant in-app routing
-============================================================================ -->
+     ============================================================================ -->
 <header class="header" id="header">
   <div class="container header-in">
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
       <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
 
@@ -514,36 +1002,37 @@ a{color:inherit;text-decoration:none}
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">New Arrivals</a></li>
+        <li><a href="sohraaz-full-store-template.html#/shop?cat=Everyday" data-nav="#/shop?cat=Everyday">Kurtas</a></li>
+        <li><a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop?cat=Festive">Sherwani</a></li>
+        <li><a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook">Wedding</a></li>
         <li class="has-mega">
-          <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Men's Wear</a>
-          <div class="mega" role="group" aria-label="Men's Wear categories">
+          <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Collections</a>
+          <div class="mega" role="group" aria-label="Collections">
             <div class="mega-col">
               <span class="mega-h">Shop by Category</span>
-              <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Kurtas</a>
-              <a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop">Sherwani &amp; Festive</a>
-              <a href="sohraaz-full-store-template.html#/shop?cat=Wedding" data-nav="#/shop">Wedding Edit</a>
-              <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Signature</a>
-              <a href="sohraaz-full-store-template.html#/shop?cat=Accessories" data-nav="#/shop">Bottoms &amp; Accessories</a>
-              <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">All Men's Wear</a>
+              <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">All Collections</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Everyday" data-nav="#/shop?cat=Everyday">Kurtas</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop?cat=Festive">Sherwani &amp; Festive</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Wedding" data-nav="#/shop?cat=Wedding">Wedding Edit</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop?cat=Signature">Signature</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Accessories" data-nav="#/shop?cat=Accessories">Bottoms &amp; Accessories</a>
             </div>
             <div class="mega-col">
               <span class="mega-h">Curated</span>
               <a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook">The Wedding Edit</a>
               <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Trending Now</a>
-              <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Best Sellers</a>
-              <a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account &amp; Coins</a>
+              <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop?cat=Signature">Best Sellers</a>
+              <a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch">Watch &amp; Buy</a>
             </div>
             <div class="mega-col">
-              <span class="mega-h">Services</span>
+              <span class="mega-h">Client Services</span>
+              <a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account &amp; Coins</a>
               <a href="https://sohraaz.com/pages/buy-in-bulk">Buy In Bulk</a>
               <a href="https://sohraaz.com/pages/contact">Contact Us</a>
               <a href="https://sohraaz.shiprocket.co/tracking">Track Order</a>
             </div>
           </div>
         </li>
-        <li><a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook">Wedding</a></li>
-        <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Trending</a></li>
-        <li><a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Best Seller</a></li>
       </ul>
     </nav>
 
@@ -562,7 +1051,7 @@ a{color:inherit;text-decoration:none}
         <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
         <span class="count" id="wishCount">0</span>
       </a>
-      <a class="act badge-wrap" id="bagBtn" href="sohraaz-full-store-template.html#/cart" data-nav="#/cart" aria-label="Bag">
+      <a class="act badge-wrap" id="bagBtn" href="sohraaz-full-store-template.html#/cart" data-nav="#/cart" aria-label="Shopping bag">
         <svg class="icon" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.8H8a1.8 1.8 0 0 1-1.8-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
         <span class="count" id="bagCount">0</span>
       </a>
@@ -570,23 +1059,32 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="index.html" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Home<small>Welcome</small>
+    </a>
     <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" role="menuitem">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>New Arrivals<small>Just landed</small>
     </a>
-    <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" role="menuitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Men's Wear<small>Kurta · Sherwani</small>
+    <a href="sohraaz-full-store-template.html#/shop?cat=Everyday" data-nav="#/shop?cat=Everyday" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Kurtas<small>Everyday · Cotton</small>
+    </a>
+    <a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop?cat=Festive" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6z"/></svg>Sherwani<small>Festive · Embroidered</small>
     </a>
     <a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook" role="menuitem">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 4.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wedding Edit<small>Groom &amp; crew</small>
     </a>
-    <a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop" role="menuitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5" rx="1"/><line x1="12" y1="22" x2="12" y2="7"/></svg>Festive Collection<small>Diwali · Puja</small>
+    <a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop?cat=Signature" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V7z"/></svg>Signature<small>House favourites</small>
     </a>
-    <a href="https://sohraaz.com/pages/buy-in-bulk" role="menuitem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18M8 4v16M16 4v16"/></svg>Buy In Bulk<small>Weddings &amp; events</small>
+    <a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>Watch &amp; Buy<small>Reels</small>
     </a>
     <a href="sohraaz-full-store-template.html#/account" data-nav="#/account" role="menuitem">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-6 8-6s6.5 2.2 8 6"/></svg>My Account<small>Coins &amp; orders</small>
+    </a>
+    <a href="https://sohraaz.com/pages/buy-in-bulk" role="menuitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18M8 4v16M16 4v16"/></svg>Buy In Bulk<small>Weddings &amp; events</small>
     </a>
     <a href="https://sohraaz.shiprocket.co/tracking" role="menuitem">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Track Order<small>Live status</small>
@@ -846,10 +1344,12 @@ a{color:inherit;text-decoration:none}
 <!--#region footer-->
 <!-- ============================================================================
      SOHRAAZ — CANONICAL FOOTER (single source of truth)
-     Column structure mirrors the live sohraaz.com footer (extracted 11 Nov 2026):
-     TOP CATEGORIES · DISCOVER · POLICIES · SUPPORT · Follow Us
-     Edit this file, then run:  node site-template/build.mjs
-============================================================================ -->
+     Injected into every page by build.mjs. Never edit a page's footer directly —
+     edit this file, then run:  node site-template/build.mjs
+
+     Luxury dark-chocolate footer: #302019 ground, cream type, champagne accents.
+     Contact details and social links are the real, published ones.
+     ============================================================================ -->
 <footer class="footer">
   <div class="container">
     <div class="foot-grid">
@@ -865,67 +1365,60 @@ a{color:inherit;text-decoration:none}
           <a href="mailto:care@sohraaz.com">care@sohraaz.com</a>
         </p>
         <form class="news" id="newsForm" novalidate>
-          <label for="newsEmail" style="display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A7A63;margin-bottom:8px">Stay in the loop</label>
+          <label for="newsEmail" style="display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#AD8765;margin-bottom:8px">Newsletter</label>
           <div style="display:flex;gap:8px">
-            <input type="email" id="newsEmail" placeholder="Enter your email address" aria-label="Email address" style="flex:1;min-width:0;padding:11px 12px;border:1px solid rgba(240,231,213,.22);border-radius:10px;background:rgba(240,231,213,.06);color:#F1E8D7;font-family:var(--serif);font-size:14px;outline:none">
-            <button type="submit" id="newsOk" aria-label="Subscribe" style="flex:none;width:42px;height:42px;border-radius:10px;background:var(--gold);color:#241812;display:flex;align-items:center;justify-content:center;cursor:pointer">
+            <input type="email" id="newsEmail" placeholder="Enter your email address" aria-label="Email address" style="flex:1;min-width:0;padding:12px 13px;border:1px solid rgba(173,135,101,.38);border-radius:3px;background:rgba(244,237,227,.05);color:#F4EDE3;font-family:var(--caps);font-size:13.5px;outline:none">
+            <button type="submit" id="newsOk" aria-label="Subscribe" style="flex:none;width:44px;height:44px;border-radius:3px;background:#AD8765;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0">
               <svg class="icon sm" viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
             </button>
           </div>
-          <p id="newsThanks" hidden style="margin-top:10px;font-size:12.5px;color:#9FBE9B">Thanks for subscribing — restock alerts will reach your inbox first.</p>
+          <p id="newsThanks" hidden style="margin-top:10px;font-size:12.5px;color:#C7AA8B">Thanks for subscribing — restock alerts will reach your inbox first.</p>
         </form>
-        <p style="margin-top:10px;font-size:13px;display:flex;align-items:center;gap:7px">
+        <p style="margin-top:10px;font-size:12.5px;display:flex;align-items:center;gap:7px;color:#C6B7A3">
           <svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a1 1 0 0 1 1 1v17l-3-2-2 2-2-2-2 2-2-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
           GSTIN 19DIBPA3993Q12M
         </p>
       </div>
 
       <div class="f-col">
-        <h4>Top Categories</h4>
+        <h4>Shop</h4>
         <ul>
           <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">New Arrivals</a></li>
-          <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Men's Wear</a></li>
-          <li><a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop">Trending</a></li>
-          <li><a href="sohraaz-full-store-template.html#/shop?cat=Signature" data-nav="#/shop">Best Seller</a></li>
+          <li><a href="sohraaz-full-store-template.html#/shop?cat=Everyday" data-nav="#/shop?cat=Everyday">Kurtas</a></li>
+          <li><a href="sohraaz-full-store-template.html#/shop?cat=Festive" data-nav="#/shop?cat=Festive">Sherwani &amp; Festive</a></li>
+          <li><a href="sohraaz-full-store-template.html#/lookbook" data-nav="#/lookbook">Wedding Edit</a></li>
+          <li><a href="sohraaz-full-store-template.html#/shop?cat=Accessories" data-nav="#/shop?cat=Accessories">Bottoms &amp; Accessories</a></li>
         </ul>
       </div>
 
       <div class="f-col">
-        <h4>Discover</h4>
+        <h4>Client Care</h4>
         <ul>
-          <li><a href="https://sohraaz.com/collections/">Collections</a></li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sohraaz-full-store-template.html#/about" data-nav="#/about">About Us</a></li>
-          <li><a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch">Watch &amp; Buy</a></li>
-          <li><a href="https://sohraaz.com/blogs/news">Blogs</a></li>
-          <li><a href="sohraaz-story.html">Our Story</a></li>
-        </ul>
-      </div>
-
-      <div class="f-col">
-        <h4>Policies</h4>
-        <ul>
+          <li><a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account</a></li>
+          <li><a href="sohraaz-full-store-template.html#/wishlist" data-nav="#/wishlist">Wishlist</a></li>
           <li><a href="sohraaz-full-store-template.html#/policies?t=shipping" data-nav="#/policies">Shipping Policy</a></li>
-          <li><a href="https://sohraaz.com/pages/privacy-policy">Privacy Policy</a></li>
-          <li><a href="sohraaz-full-store-template.html#/policies?t=cancel" data-nav="#/policies">Cancellation Policy</a></li>
-          <li><a href="https://sohraaz.com/pages/terms-conditions">Terms &amp; Conditions</a></li>
           <li><a href="sohraaz-full-store-template.html#/policies?t=returns" data-nav="#/policies">Exchange / Return Policy</a></li>
           <li><a href="sohraaz-full-store-template.html#/policies?t=promise" data-nav="#/policies">Transparent Pricing</a></li>
         </ul>
       </div>
 
       <div class="f-col">
-        <h4>Support</h4>
+        <h4>Discover</h4>
         <ul>
-          <li><a href="https://sohraaz.com/pages/contact">Contact Us</a></li>
-          <li><a href="https://sohraaz.shiprocket.co/tracking">Track Order</a></li>
-          <li><a href="sohraaz-full-store-template.html#/account" data-nav="#/account">My Account</a></li>
-          <li><a href="sohraaz-full-store-template.html#/wishlist" data-nav="#/wishlist">Wishlist</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sohraaz-story.html">Our Story</a></li>
+          <li><a href="sohraaz-full-store-template.html#/about" data-nav="#/about">About Us</a></li>
+          <li><a href="sohraaz-full-store-template.html#/watch" data-nav="#/watch">Watch &amp; Buy</a></li>
+          <li><a href="https://sohraaz.com/collections/">Collections</a></li>
+          <li><a href="https://sohraaz.com/blogs/news">Journal</a></li>
         </ul>
       </div>
 
       <div class="f-col f-social">
-        <h4>Follow Us</h4>
+        <h4>Visit &amp; Follow</h4>
+        <p style="font-size:13px;line-height:1.7;color:#C6B7A3">
+          Showroom: 12/1, Picnic Garden, 3rd Lane, Ground Floor,<br>near 42 Bus Stand, Kolkata 700039
+        </p>
         <div class="socials">
           <a href="https://www.facebook.com/sohraazcollections" target="_blank" rel="noopener" aria-label="Facebook">
             <svg class="icon sm" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v9h4v-9h3l1-4h-4V8z"/></svg>
@@ -937,8 +1430,10 @@ a{color:inherit;text-decoration:none}
             <svg class="icon sm" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>
           </a>
         </div>
-        <p style="margin-top:14px;font-size:13px;line-height:1.6;color:#A5946F">
-          Showroom: 12/1, Picnic Garden, 3rd Lane, Ground Floor,<br>near 42 Bus Stand, Kolkata 700039
+        <p style="margin-top:16px;font-size:12.5px;color:#A5946F">
+          <a href="https://sohraaz.com/pages/contact">Contact Us</a> &nbsp;·&nbsp;
+          <a href="https://sohraaz.shiprocket.co/tracking">Track Order</a> &nbsp;·&nbsp;
+          <a href="https://sohraaz.com/pages/buy-in-bulk">Buy In Bulk</a>
         </p>
       </div>
 
