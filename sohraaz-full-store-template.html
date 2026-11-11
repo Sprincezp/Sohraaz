@@ -2254,8 +2254,8 @@ function chatBotReply(text){
 
 /* ============ WEDDING LOOKBOOK ============ */
 const WED_OCCASIONS = [
-  {n:"Haldi", d:"Yellows & creams", q:"cat=Festive"},
-  {n:"Mehndi", d:"Greens & festive", q:"cat=Festive"},
+  {n:"Haldi", d:"Yellows & creams", q:"cat=Festive", img:"assets/extracted/haldi.png"},
+  {n:"Mehndi", d:"Greens & festive", q:"cat=Festive", img:"assets/extracted/mehndi_new.jpg"},
   {n:"Sangeet", d:"Standout sets", q:"cat=Wedding"},
   {n:"Phere", d:"Sherwanis", q:"cat=Wedding"},
   {n:"Reception", d:"The grand look", q:"cat=Wedding"},
@@ -2273,7 +2273,7 @@ function renderLookbook(){
         <a class="lbk-btn-ghost" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! I'm planning my/wedding-groom shopping. Help me pick the look.")}" target="_blank" rel="noopener">Talk to our stylist</a>
       </div>
     </div>
-    <div class="occ-row">${WED_OCCASIONS.map(o=>`<a class="occ-tile" data-nav="#/shop?${o.q}"><span>${o.n}</span><small>${o.d}</small></a>`).join("")}</div>
+    <div class="occ-row">${WED_OCCASIONS.map(o=>`<a class="occ-tile" data-nav="#/shop?${o.q}">${o.img?`<img src="${IMG(o.img)}" alt="${o.n}" loading="lazy">`:""}<span>${o.n}</span><small>${o.d}</small></a>`).join("")}</div>
     <div class="prod-grid">${curated.map(prodCardHTML).join("")}</div>
     <div class="lbk-kit">
       <div class="lbk-kit-txt">
