@@ -334,14 +334,18 @@ a{color:inherit;text-decoration:none}
   @media (max-width:1320px){
     .nav{display:none !important}
     .burger{display:inline-flex !important;flex:none}
-    .header-in{position:relative;display:flex !important;align-items:center;justify-content:flex-start;gap:10px;height:64px;overflow:hidden}
-    .logo{position:static !important;left:auto;top:auto;transform:none !important;flex:0 1 auto;min-width:0;display:flex;align-items:center;overflow:hidden}
-    .logo img{height:32px !important;max-width:min(132px,38vw);width:auto;object-fit:contain}
-    .actions{margin-left:auto !important;gap:12px;justify-self:end;flex:none}
+    /* 3-column grid keeps the logo dead-centre on phones and tablets:
+       1fr auto 1fr — the mark sizes the middle track, the two side tracks
+       share the rest evenly, so the logo never drifts off-centre. */
+    .header-in{position:relative;display:grid !important;grid-template-columns:1fr auto 1fr;align-items:center;justify-content:stretch;gap:12px;height:64px;overflow:hidden}
+    .burger{grid-column:1;justify-self:start}
+    .logo{position:static !important;left:auto;top:auto;transform:none !important;grid-column:2;justify-self:center;min-width:0;max-width:min(34vw,124px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .logo img{max-width:100% !important;width:auto !important;object-fit:contain}
+    .actions{margin-left:auto !important;grid-column:3;justify-self:end;gap:14px;flex:none}
   }
   @media (max-width:820px){
     .header-in{gap:9px}
-    .actions{gap:11px}
+    .actions{gap:12px}
   }
   @media (max-width:640px){
     .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
@@ -349,11 +353,13 @@ a{color:inherit;text-decoration:none}
   }
   @media (max-width:520px){
     .foot-grid{grid-template-columns:1fr}
-    .header-in{gap:8px;height:58px}
-    .logo img{height:28px !important;max-width:min(108px,34vw)}
-    .actions{gap:9px}
+    .header-in{gap:8px;height:60px}
+    .actions{gap:11px}
     .actions svg{width:19px;height:19px}
     .act{padding:2px}
+  }
+  @media (max-width:360px){
+    .actions .act[aria-label="My account"]{display:none}
   }
 
 
@@ -635,74 +641,109 @@ p{color:var(--ink)}
 }
 .btn-gold:hover{background:var(--mocha);border-color:var(--mocha);color:#fff}
 
+/* ---------- top bands (announce + offer) ----------
+   Same rhythm on every page: dark chocolate → chocolate → dark chocolate header.
+   All flat — no gradients on brand surfaces. */
+.announce{background:var(--choco-dark);color:var(--cream);border-bottom:1px solid rgba(173,135,101,.22)}
+.announce-track span{color:#C7AA8B}
+.announce-track b{color:var(--gold)}
+.offer-bar{background:var(--choco);color:var(--cream);border-top:0}
+.offer-bar .ob-text{color:#D8C7B0}
+.offer-bar .ob-name{background:var(--gold);color:var(--choco-dark)}
+.offer-bar .ob-timer{color:#fff}
+
 /* ---------- header (brief §4) ---------- */
+/* The header is the one dark band that frames the page: dark chocolate ground,
+   cream type, champagne hairline. The gold mark reads far better on chocolate
+   than it did on cream. */
 .header{
   position:sticky;top:0;z-index:50;
-  background:var(--cream);
-  border-bottom:1px solid var(--line);
-  box-shadow:0 1px 0 rgba(173,135,101,.18);
+  background:var(--choco-dark);
+  border-bottom:1px solid rgba(173,135,101,.38);
+  box-shadow:0 1px 0 rgba(173,135,101,.14);
   transition:box-shadow .3s ease;
 }
-.header.scrolled{box-shadow:0 6px 26px rgba(48,32,25,.10)}
+.header.scrolled{box-shadow:0 10px 32px rgba(48,32,25,.32)}
 .header-in{
   display:grid;
   grid-template-columns:1fr auto 1fr;
   align-items:center;
-  gap:22px;
+  gap:18px;
   height:76px;
 }
-.nav{grid-column:1;justify-self:start}
-.nav ul{display:flex;gap:30px}
+.nav{grid-column:1;justify-self:start;min-width:0}
+/* 6 items ≈ 450px of type + 5 gaps = 530px, which fits inside the 1fr side
+   track (≈554px at the 1320px container cap). Keeping the nav narrower than
+   its track is what stops the grid from pushing the logo off-centre. */
+.nav ul{display:flex;gap:16px}
 .nav a{
   font-family:var(--caps);
   font-size:13px;
   font-weight:500;
   letter-spacing:.1em;
   text-transform:uppercase;
-  color:var(--choco);
+  color:var(--cream);
   padding:8px 0;
   border-bottom:1px solid transparent;
   transition:color .25s ease,border-color .25s ease;
   white-space:nowrap;
   text-decoration:none;
 }
-.nav a:hover{color:var(--mocha);border-bottom-color:var(--gold)}
+.nav a:hover{color:var(--gold-light);border-bottom-color:var(--gold)}
 
-.logo{grid-column:2;justify-self:center;display:flex;align-items:center}
-.logo img{height:50px;width:auto;display:block}
+/* The logo is the anchor of the header: it must sit dead-centre at EVERY width.
+   A 3-column grid (1fr auto 1fr) guarantees that — the logo column is sized by
+   the mark itself, the two side tracks share the remaining space evenly, so the
+   wordmark stays centred no matter how wide the nav or the action icons get.
+   This block owns the logo's appearance for every page (the !important beats
+   the legacy per-page rules that predate the design system). */
+.logo{
+  grid-column:2 !important;justify-self:center !important;
+  position:static !important;transform:none !important;left:auto;top:auto;
+  display:flex;align-items:center;justify-content:center;
+  min-width:0;max-width:min(38vw,180px);overflow:hidden;
+}
+.logo img{
+  height:52px !important;width:auto !important;max-width:100% !important;
+  object-fit:contain !important;display:block;
+}
 
 .actions{grid-column:3;justify-self:end;display:flex;align-items:center;gap:22px}
 .actions .act{
-  color:var(--choco);
+  color:var(--cream);
   display:inline-flex;
   position:relative;
   transition:color .25s ease;
 }
-.actions .act:hover{color:var(--mocha)}
+.actions .act:hover{color:var(--gold-light)}
 .actions .icon{width:20px;height:20px;stroke-width:1.5;fill:none;stroke:currentColor}
 .actions .count{
   position:absolute;top:-7px;right:-3px;
   min-width:16px;height:16px;border-radius:8px;
-  background:var(--gold);color:#fff;
+  background:var(--gold);color:var(--choco-dark);
   font-family:var(--caps);font-weight:700;font-size:9px;
   display:flex;align-items:center;justify-content:center;padding:0 4px;
   line-height:1;box-sizing:border-box;
 }
 .actions .count:empty{display:none}
 
-.burger{display:none;color:var(--choco);background:none;border:0;padding:6px;cursor:pointer}
+.burger{display:none;color:var(--cream);background:none;border:0;padding:6px;cursor:pointer}
 .burger .icon{width:22px;height:22px;stroke-width:1.5;fill:none;stroke:currentColor}
+.burger.open svg{stroke:var(--gold)}
 
-/* mega menu — luxury panel */
-.mega{
+/* ---------- mega menu — dark chocolate panel, cream type ---------- */
+/* `.nav .mega` (0,2,0) is the rule that actually paints the panel, so the
+   panel colour must be set with the same specificity — otherwise the legacy
+   dark rule and the new light text rules meet and the links vanish. */
+.nav .mega{
   position:absolute;top:100%;left:0;
   display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:34px;
   padding:34px 38px;
   min-width:660px;
-  background:var(--ivory);
-  border:1px solid var(--line);
+  background:var(--choco-dark);
+  border:1px solid rgba(173,135,101,.30);
   border-top:2px solid var(--gold);
-  box-shadow:var(--shadow-3);
+  box-shadow:0 30px 70px rgba(20,13,8,.55);
   opacity:0;visibility:hidden;transform:translateY(8px);
   transition:opacity .28s ease,transform .28s ease,visibility .28s;
   z-index:60;
@@ -712,16 +753,16 @@ p{color:var(--ink)}
 .mega-h{
   display:block;
   font-family:var(--caps);font-size:9.5px;font-weight:600;
-  letter-spacing:.28em;text-transform:uppercase;color:var(--mocha);
-  margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--line);
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid rgba(173,135,101,.28);
 }
 .mega-col a{
   display:block;padding:7px 0;
   font-family:var(--caps);font-size:12.5px;font-weight:400;
-  letter-spacing:.06em;text-transform:none;color:var(--ink);
+  letter-spacing:.06em;text-transform:none;color:#D8C7B0;
   transition:color .22s ease,transform .22s ease;
 }
-.mega-col a:hover{color:var(--mocha);transform:translateX(4px)}
+.mega-col a:hover{color:var(--gold-light);transform:translateX(4px)}
 
 /* mobile panel */
 .mnav{
@@ -753,10 +794,27 @@ p{color:var(--ink)}
 @media (max-width:1320px){
   .nav{display:none}
   .burger{display:inline-flex;flex:none}
-  .header-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px;overflow:hidden}
-  .logo{position:static;transform:none;display:flex;align-items:center;flex:0 1 auto;min-width:0;overflow:hidden}
-  .logo img{height:30px;max-width:116px;width:auto;object-fit:contain}
-  .actions{margin-left:auto;gap:16px;justify-self:end;flex:none}
+  /* same 3-column grid as desktop — only the nav is swapped for the burger,
+     so the logo stays exactly centred on phones and tablets too */
+  .header-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;height:64px}
+  .burger{grid-column:1;justify-self:start}
+  .logo{grid-column:2 !important;justify-self:center !important;max-width:min(34vw,124px)}
+  .logo img{height:36px !important}
+  .actions{grid-column:3;justify-self:end;gap:14px}
+}
+
+/* narrow phones: keep the mark clear of the icons */
+@media (max-width:520px){
+  .logo img{height:31px !important}
+  .actions{gap:11px}
+  .actions .icon{width:19px;height:19px}
+}
+@media (max-width:430px){
+  .actions{gap:12px}
+}
+@media (max-width:360px){
+  .actions .act[aria-label="My account"]{display:none}
+  .logo img{height:29px !important}
 }
 
 /* ---------- footer (brief §11) ---------- */

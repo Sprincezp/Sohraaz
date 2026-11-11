@@ -63,14 +63,18 @@
   @media (max-width:1320px){
     .nav{display:none !important}
     .burger{display:inline-flex !important;flex:none}
-    .header-in{position:relative;display:flex !important;align-items:center;justify-content:flex-start;gap:10px;height:64px;overflow:hidden}
-    .logo{position:static !important;left:auto;top:auto;transform:none !important;flex:0 1 auto;min-width:0;display:flex;align-items:center;overflow:hidden}
-    .logo img{height:32px !important;max-width:min(132px,38vw);width:auto;object-fit:contain}
-    .actions{margin-left:auto !important;gap:12px;justify-self:end;flex:none}
+    /* 3-column grid keeps the logo dead-centre on phones and tablets:
+       1fr auto 1fr — the mark sizes the middle track, the two side tracks
+       share the rest evenly, so the logo never drifts off-centre. */
+    .header-in{position:relative;display:grid !important;grid-template-columns:1fr auto 1fr;align-items:center;justify-content:stretch;gap:12px;height:64px;overflow:hidden}
+    .burger{grid-column:1;justify-self:start}
+    .logo{position:static !important;left:auto;top:auto;transform:none !important;grid-column:2;justify-self:center;min-width:0;max-width:min(34vw,124px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .logo img{max-width:100% !important;width:auto !important;object-fit:contain}
+    .actions{margin-left:auto !important;grid-column:3;justify-self:end;gap:14px;flex:none}
   }
   @media (max-width:820px){
     .header-in{gap:9px}
-    .actions{gap:11px}
+    .actions{gap:12px}
   }
   @media (max-width:640px){
     .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
@@ -78,11 +82,13 @@
   }
   @media (max-width:520px){
     .foot-grid{grid-template-columns:1fr}
-    .header-in{gap:8px;height:58px}
-    .logo img{height:28px !important;max-width:min(108px,34vw)}
-    .actions{gap:9px}
+    .header-in{gap:8px;height:60px}
+    .actions{gap:11px}
     .actions svg{width:19px;height:19px}
     .act{padding:2px}
+  }
+  @media (max-width:360px){
+    .actions .act[aria-label="My account"]{display:none}
   }
 
 
