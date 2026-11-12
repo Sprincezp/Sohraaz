@@ -271,6 +271,83 @@
   .chip.on,.chip:hover{background:var(--brown-900);border-color:var(--brown-900);color:#F4EDE3}
   .sortsel{border:1px solid var(--line);background:transparent;padding:9px 14px;font-family:var(--caps);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#493126;cursor:pointer}
 
+  /* ---------- shop filters (size / colour / price + counts) ---------- */
+  /* ---------- shop facets (dropdowns) ---------- */
+  .shop-filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 30px;padding:12px 14px;border:1px solid var(--line);background:#FAF8F4;border-radius:3px}
+  .fdrop{position:relative;flex:0 0 auto}
+  .fdrop-btn{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:2px;padding:9px 13px;cursor:pointer;font-family:var(--caps);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#493126;transition:border-color .2s,background .2s,color .2s;white-space:nowrap}
+  .fdrop-btn:hover{border-color:#AD8765}
+  .fdrop-btn:focus-visible{outline:2px solid #AD8765;outline-offset:2px}
+  .fdrop-btn[aria-expanded="true"]{border-color:#493126;background:#493126;color:#F4EDE3}
+  .fdrop-lbl{color:#70513E;opacity:.85}
+  .fdrop-btn[aria-expanded="true"] .fdrop-lbl{color:#C7AA8B}
+  .fdrop-val{font-weight:600;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+  .fdrop-chev{width:13px;height:13px;flex:none;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.65;transition:transform .2s}
+  .fdrop-btn[aria-expanded="true"] .fdrop-chev{transform:rotate(180deg);opacity:.9}
+  .fdrop-panel{position:absolute;z-index:70;top:calc(100% + 7px);left:0;min-width:236px;max-height:min(520px,58vh);overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--line);border-radius:3px;box-shadow:0 20px 44px rgba(48,32,25,.17);padding:6px;display:none;
+    background:
+      linear-gradient(#fff 40%,rgba(255,255,255,0)) top/100% 30px no-repeat local,
+      linear-gradient(rgba(255,255,255,0),#fff 75%) bottom/100% 30px no-repeat local,
+      radial-gradient(farthest-side at 50% 0,rgba(48,32,25,.15),rgba(48,32,25,0)) top/100% 9px no-repeat scroll,
+      radial-gradient(farthest-side at 50% 100%,rgba(48,32,25,.15),rgba(48,32,25,0)) bottom/100% 9px no-repeat scroll,
+      #fff;
+  }
+  .fdrop-panel.open{display:block}
+  .fdrop-panel .fopt{width:100%;justify-content:flex-start;border-color:transparent;background:transparent;text-align:left}
+  .fdrop-panel .fopt:hover:not(:disabled){background:#EAE0D4;border-color:transparent}
+  .fdrop-panel .fopt.on{background:#493126;border-color:#493126;color:#F4EDE3}
+  .fdrop-panel .fopt.on .cdot{border-color:rgba(244,237,227,.55)}
+  .fdrop-act{display:flex;align-items:center;gap:8px;margin-left:auto;flex-wrap:wrap}
+  .fdrop-count{font-family:var(--caps);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#70513E}
+  .fopt{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:transparent;padding:7px 12px;border-radius:2px;font-family:var(--caps);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#493126;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+  .fopt i{font-style:normal;font-size:9.5px;opacity:.6}
+  .fopt.on{background:#493126;border-color:#493126;color:#F4EDE3}
+  .fopt.on i{opacity:.75}
+  .fopt:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+  .cdot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid rgba(48,32,25,.25);flex:none}
+  .ftag{display:inline-flex;align-items:center;gap:6px;background:#EAE0D4;border:1px solid var(--line);border-radius:2px;padding:6px 11px;font-family:var(--caps);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#493126}
+  .fclear{border:1px solid #AD8765;background:transparent;color:#70513E;padding:7px 13px;border-radius:2px;font-family:var(--caps);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+  .fclear:hover{background:#AD8765;color:#fff}
+  .empty-filter{text-align:center;padding:56px 20px;border:1px dashed var(--line);border-radius:3px;background:#FAF8F4}
+  .empty-filter h3{font-family:var(--serif);font-size:24px;color:#493126;margin-bottom:8px}
+  .empty-filter p{color:#70513E;margin-bottom:18px}
+  @media (max-width:860px){
+    .shop-filters{gap:8px;padding:11px 12px}
+    .fdrop{flex:1 1 150px}
+    .fdrop-btn{width:100%;justify-content:space-between}
+    .fdrop-val{max-width:100%;text-align:right}
+    .fdrop-panel{left:0;right:0;min-width:0;max-height:min(400px,42vh)}
+    .fdrop-act{margin-left:0;width:100%;justify-content:flex-start}
+  }
+
+  /* ---------- calculate your size ---------- */
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .calc-f{display:block}
+  .calc-f span{display:block;font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#70513E;margin-bottom:7px}
+  .calc-f input{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:3px;background:#fff;font-family:var(--serif);font-size:16px;color:#302019;outline:none}
+  .calc-f input:focus{border-color:#AD8765}
+  .calc-result{margin-top:18px;padding:16px 18px;background:#FAF8F4;border:1px solid var(--line);border-left:3px solid #AD8765;border-radius:3px;font-family:var(--serif);font-size:17px;line-height:1.55;color:#302019}
+  .calc-result b{font-weight:600;color:#493126}
+  .calc-pick{margin-top:10px;border:1px solid #AD8765;background:#AD8765;color:#fff;padding:8px 15px;border-radius:2px;font-family:var(--caps);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+  .calc-wa{color:#70513E;border-bottom:1px solid #AD8765}
+  @media (max-width:520px){.calc-grid{grid-template-columns:1fr}}
+
+  /* ---------- per-size notify me ---------- */
+  .wait-sizes{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+  .wait-size{border:1px solid var(--line);background:#fff;min-width:38px;padding:7px 9px;border-radius:2px;font-family:var(--caps);font-size:11px;letter-spacing:.08em;color:#493126;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+  .wait-size:hover{background:#AD8765;border-color:#AD8765;color:#fff}
+  .wait-size.out{border-color:#AD8765;color:#70513E}
+  .size[data-notify]{cursor:pointer}
+  .size[data-notify]:hover{border-color:#AD8765;color:#70513E}
+
+  /* ---------- atelier service line ---------- */
+  .pdp-services{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .pdp-svc{border:1px solid var(--line);background:#FAF8F4;border-radius:3px;padding:14px 15px;display:grid;grid-template-columns:22px 1fr;gap:4px 11px;align-items:start}
+  .pdp-svc svg{width:22px;height:22px;grid-row:1/3;color:#AD8765;margin-top:2px}
+  .pdp-svc b{font-family:var(--caps);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#493126}
+  .pdp-svc small{font-size:12.5px;line-height:1.55;color:#70513E}
+  @media (max-width:720px){.pdp-services{grid-template-columns:1fr}.wait-sizes{margin-left:0;margin-top:10px}}
+
   /* product page */
   .crumb{font-family:var(--caps);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:26px 0 0}
   .crumb a{cursor:pointer}
@@ -937,7 +1014,7 @@
   .ic-solid{fill:currentColor;stroke:none}
   /* ==== shared chrome (build-injected) ==== */
 /* ============================================================================
-   SOHRAAZ â€” SHARED CHROME (build-injected into every page)
+   SOHRAAZ — SHARED CHROME (build-injected into every page)
    Canonical header + footer styles. Injected LAST in <style>, so these rules
    win over per-page leftovers. Single source of truth for the site chrome.
    ========================================================================= */
@@ -1070,7 +1147,7 @@
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
-  /* Sohraaz Assistant â€” chat */
+  /* Sohraaz Assistant — chat */
   .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -1103,7 +1180,7 @@
     .float-btn{width:52px;height:52px}
     .float-handle{bottom:96px}
     .chat-panel{left:8px;bottom:88px}
-    /* announcement message must wrap on phones â€” it was clipped mid-word */
+    /* announcement message must wrap on phones — it was clipped mid-word */
     .announce-track{height:auto;min-height:34px}
     .announce-track span{white-space:normal;line-height:1.35;font-size:9.5px;letter-spacing:.16em;padding:4px 12px}
     .offer-bar{font-size:9px;gap:8px;padding:8px 10px;flex-wrap:wrap}
@@ -1672,18 +1749,77 @@ p{color:var(--ink)}
   background:var(--choco-dark);transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s;
 }
 .wb-tile:hover{transform:translateY(-5px);box-shadow:var(--shadow-3)}
-.wb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+.wb-tile{cursor:pointer}
+.wb-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.3,1),opacity .35s ease}
 .wb-tile:hover img{transform:scale(1.06)}
-.wb-play{
-  position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;
-  background:rgba(48,32,25,.42);border:1px solid rgba(244,237,227,.6);
-  display:flex;align-items:center;justify-content:center;color:#fff;backdrop-filter:blur(4px);
+
+/* full-bleed hit area: a click anywhere on the thumbnail plays the reel */
+.wb-hit{
+  position:absolute;inset:0;z-index:2;
+  background:transparent;border:0;padding:0;margin:0;
+  cursor:pointer;-webkit-appearance:none;appearance:none;
 }
-.wb-play svg{width:15px;height:15px;fill:#fff;margin-left:2px}
+.wb-hit:focus-visible{outline:2px solid var(--gold);outline-offset:-3px}
+
+/* --- inline reel player: the film plays inside the tile, the poster hides --- */
+.wb-video{
+  position:absolute;inset:0;width:100%;height:100%;z-index:1;
+  object-fit:cover;display:block;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  background:var(--choco-dark);
+}
+.wb-tile.playing .wb-video{opacity:1}
+.wb-tile.playing .wb-thumb{opacity:0}
+.wb-tile.playing{border-color:var(--gold);box-shadow:0 16px 40px rgba(48,32,25,.45)}
+.wb-tile.playing:hover img{transform:none}
+
+.wb-play{
+  position:absolute;top:12px;right:12px;z-index:4;width:40px;height:40px;border-radius:50%;
+  background:rgba(173,135,101,.92);border:1px solid rgba(244,237,227,.75);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 6px 18px rgba(20,13,8,.45);
+  cursor:pointer;padding:0;
+  transition:background .25s ease,transform .25s ease,opacity .25s ease;
+}
+/* slow pulse so the control reads as "press me" */
+.wb-play::after{
+  content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:1px solid rgba(244,237,227,.55);
+  animation:sohraazRing 2.6s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes sohraazRing{
+  0%{transform:scale(.88);opacity:.75}
+  65%{transform:scale(1.3);opacity:0}
+  100%{transform:scale(1.3);opacity:0}
+}
+.wb-play:hover{background:var(--gold);transform:scale(1.1)}
+.wb-play svg{width:16px;height:16px;fill:#fff;margin-left:2px}
+.wb-tile.playing .wb-play{opacity:0;pointer-events:none}
+
+/* loading state while the reel streams in */
+.wb-tile.loading .wb-play svg{animation:sohraazPulse 1s ease-in-out infinite}
+@keyframes sohraazPulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* close / cut button */
+.wb-close{
+  position:absolute;top:12px;left:12px;z-index:5;width:32px;height:32px;border-radius:50%;
+  background:rgba(48,32,25,.62);border:1px solid rgba(244,237,227,.55);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  backdrop-filter:blur(4px);cursor:pointer;padding:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease,background .25s ease,transform .25s ease;
+}
+.wb-close svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.wb-close:hover{background:rgba(173,135,101,.92);transform:scale(1.08)}
+.wb-tile.playing .wb-close{opacity:1;pointer-events:auto}
+
 .wb-cap{
-  position:absolute;left:0;right:0;bottom:0;padding:34px 14px 14px;
+  position:absolute;left:0;right:0;bottom:0;z-index:6;padding:34px 14px 14px;
   background:linear-gradient(transparent,rgba(48,32,25,.86));
   color:var(--cream);font-family:var(--caps);font-size:11px;line-height:1.45;
+  text-decoration:none;display:block;
 }
 .wb-cap b{display:block;font-family:var(--serif);font-size:15px;font-weight:500;color:#F4EDE3;margin-bottom:2px}
 .wb-cap small{color:var(--gold-light);font-size:10.5px}
@@ -2165,20 +2301,42 @@ const PRODUCTS = [
   {id:"wb2", name:"Dupion Royal – Red Self Work Kurta", price:499, mrp:0, cat:"Everyday", stock:8, swatches:["#8E3B3B","#E9E4D4"], img:"watch-buy/wbprod_354791.jpg", alt:"watch-buy/wbprod_354791.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Dupion silk with self-work texture — stitched in-house at our Kolkata workshop. ₹499 — honest price."},
   {id:"wb3", name:"Luxury Beige – Armani Embroidered Kurta", price:2549, mrp:0, cat:"Festive", stock:6, swatches:["#C7AA8B","#493126"], img:"watch-buy/wbprod_354792.jpg", alt:"watch-buy/wbprod_354792.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Armani-blend with embroidered detailing — stitched in-house at our Kolkata workshop. ₹2,549 — honest price."},
   {id:"wb4", name:"Shwet – White Cotton Embroidered Kurta", price:1199, mrp:0, cat:"Everyday", stock:7, swatches:["#FAF8F4","#C7AA8B"], img:"watch-buy/wbprod_354801.jpg", alt:"watch-buy/wbprod_354801.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. White cotton with hand embroidery — stitched in-house at our Kolkata workshop. ₹1,199 — honest price."},
-  {id:"wb5", name:"Vibrant Purple – Giza Cotton Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#70513E","#E9E4D4"], img:"watch-buy/wbprod_354795.jpg", alt:"watch-buy/wbprod_354795.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Giza cotton Pathani set with rich purple tone — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
+  {id:"wb5", name:"Vibrant Purple – Giza Cotton Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#593958","#E9E4D4"], img:"watch-buy/wbprod_354795.jpg", alt:"watch-buy/wbprod_354795.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Giza cotton Pathani set with rich purple tone — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
   {id:"wb6", name:"Mehendi Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#2F6B4F","#E9E4D4"], img:"watch-buy/wbprod_354796.jpg", alt:"watch-buy/wbprod_354796.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Mehendi-green Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
   {id:"wb7", name:"Sunshine Royal – Premium Cotton Embroidered Kurta", price:749, mrp:0, cat:"Everyday", stock:8, swatches:["#AD8765","#493126"], img:"watch-buy/wbprod_354789.jpg", alt:"watch-buy/wbprod_354789.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Sunshine gold cotton with embroidered work — stitched in-house at our Kolkata workshop. ₹749 — honest price."},
   {id:"wb8", name:"Armani Stitch – White Armani Embroidered Kurta", price:2999, mrp:0, cat:"Wedding", stock:5, swatches:["#FAF8F4","#AD8765"], img:"watch-buy/wbprod_354800.jpg", alt:"watch-buy/wbprod_354800.jpg", pair:["p13","p14"], desc:"Featured in Sohraaz Watch & Buy. White Armani with embroidery work — stitched in-house at our Kolkata workshop. ₹2,999 — honest price."},
-  {id:"wb9", name:"Maroon Majesty – Premium Giza Cotton Embroidered Kurta", price:2599, mrp:0, cat:"Wedding", stock:5, swatches:["#493126","#E9E4D4"], img:"watch-buy/wbprod_354788.jpg", alt:"watch-buy/wbprod_354788.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Deep maroon Giza cotton with embroidery — stitched in-house at our Kolkata workshop. ₹2,599 — honest price."},
+  {id:"wb9", name:"Maroon Majesty – Premium Giza Cotton Embroidered Kurta", price:2599, mrp:0, cat:"Wedding", stock:5, swatches:["#65181F","#E9E4D4"], img:"watch-buy/wbprod_354788.jpg", alt:"watch-buy/wbprod_354788.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Deep maroon Giza cotton with embroidery — stitched in-house at our Kolkata workshop. ₹2,599 — honest price."},
   {id:"wb10", name:"Black Glory – Luxury Giza Cotton Embroidered Kurta", price:2099, mrp:0, cat:"Festive", stock:5, swatches:["#1C1C1C","#AD8765"], img:"watch-buy/wbprod_354785.jpg", alt:"watch-buy/wbprod_354785.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Luxury Giza cotton in black with embroidery — stitched in-house at our Kolkata workshop. ₹2,099 — honest price."},
   {id:"wb11", name:"Beige Breeze – Luxury Paper Cotton Printed Kurta", price:1499, mrp:0, cat:"Everyday", stock:8, swatches:["#C7AA8B","#493126"], img:"watch-buy/wbprod_354783.jpg", alt:"watch-buy/wbprod_354783.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Signature print on luxury paper cotton — stitched in-house at our Kolkata workshop. ₹1,499 — honest price."},
   {id:"wb12", name:"Armani Spark – White Armani Mirror Work Kurta", price:2549, mrp:0, cat:"Wedding", stock:5, swatches:["#F4EDE3","#AD8765"], img:"watch-buy/wbprod_354798.jpg", alt:"watch-buy/wbprod_354798.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. White Armani with mirror-work embroidery — stitched in-house at our Kolkata workshop. ₹2,549 — honest price."},
-  {id:"wb13", name:"Maroon Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#493126","#E9E4D4"], img:"watch-buy/wbprod_354797.jpg", alt:"watch-buy/wbprod_354797.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Maroon Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
+  {id:"wb13", name:"Maroon Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#5F161C","#E9E4D4"], img:"watch-buy/wbprod_354797.jpg", alt:"watch-buy/wbprod_354797.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Maroon Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
   {id:"wb14", name:"Armani Black – Black Armani Embroidered Kurta", price:3549, mrp:0, cat:"Wedding", stock:5, swatches:["#101010","#E9E4D4"], img:"watch-buy/wbprod_354794.jpg", alt:"watch-buy/wbprod_354794.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Black Armani blend with embroidery work — stitched in-house at our Kolkata workshop. ₹3,549 — honest price."},
   {id:"wb15", name:"Black Royal – Premium Giza Cotton Hand Embroidered Kurta", price:2399, mrp:0, cat:"Wedding", stock:5, swatches:["#1C1C1C","#E9E4D4"], img:"watch-buy/wbprod_354793.jpg", alt:"watch-buy/wbprod_354793.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Premium Giza cotton with hand embroidery — stitched in-house at our Kolkata workshop. ₹2,399 — honest price."},
 ];
 const SIZES = ["XS","S","M","L","XL","XXL"];
 const OUT = { p7:["XS"], p9:["XXL"], p11:["XS","S"] };
+
+/* colour names for the shop filters — mapped from the catalogue's own swatch hexes,
+   so every filter label is a real colour of a real product, never invented. */
+const COLOUR_NAMES = {
+  "#101010":"Black","#141414":"Black","#1C1C1C":"Black","#262626":"Charcoal","#2E2E2E":"Charcoal",
+  "#33302B":"Charcoal","#6F6F6F":"Grey","#8B8B8B":"Grey",
+  "#493126":"Chocolate Brown","#70513E":"Mocha Brown",
+  "#AD8765":"Tan","#C7AA8B":"Beige","#C4AE87":"Beige",
+  "#E9E4D4":"Cream & Ivory","#F4EDE3":"Cream & Ivory","#F1E9D8":"Cream & Ivory",
+  "#E5DCC8":"Cream & Ivory","#E4D8CA":"Cream & Ivory","#FAF8F4":"White",
+  "#2F6B4F":"Green","#8E3B3B":"Maroon","#65181F":"Maroon","#5F161C":"Maroon",
+  "#593958":"Purple","#C87676":"Pink","#D98E8E":"Pink",
+  "#A6BFC2":"Powder Blue","#BFD3D6":"Powder Blue"
+};
+const colourName = hex => COLOUR_NAMES[(hex||"").toUpperCase()] || "Other";
+const PRICE_BANDS = [
+  {k:"all", label:"All prices",       min:0,    max:Infinity},
+  {k:"u1",  label:"Under ₹1,000",    min:0,    max:999},
+  {k:"b12", label:"₹1,000 – ₹2,000", min:1000, max:1999},
+  {k:"b23", label:"₹2,000 – ₹3,000", min:2000, max:2999},
+  {k:"o3",  label:"₹3,000 and above", min:3000, max:Infinity}
+];
 
 /* ============ PRICING ENGINE ============ */
 const RULES = {
@@ -2537,6 +2695,41 @@ const SIZE_CHART = [
   {s:"XL", chest:"42", waist:"36", shoulder:"17.5", len:"44"},
   {s:"XXL",chest:"44", waist:"38", shoulder:"18",   len:"45"},
 ];
+/* ===== CALCULATE YOUR SIZE ===== */
+function calcSizeFor(chest, waist){
+  /* pick the first chart row that comfortably fits both measurements;
+     if we run past the chart, the atelier makes it to measure */
+  let best = null;
+  for(const row of SIZE_CHART){
+    if(chest <= +row.chest && waist <= +row.waist){ best = row; break; }
+  }
+  if(best) return { size:best.s, custom:false };
+  return { size:SIZE_CHART[SIZE_CHART.length-1].s, custom:true };
+}
+function calcSizeHTML(){
+  return `<div class="rev-modal" id="calcModal" role="dialog" aria-modal="true" aria-labelledby="calcTitle">
+    <div class="rev-form" style="max-width:560px">
+      <div class="rev-form-head">
+        <h3 id="calcTitle" style="font-size:24px">Calculate Your Size</h3>
+        <button type="button" class="rev-form-close" data-calc-close aria-label="Close">&times;</button>
+      </div>
+      <p class="rev-form-sub">Two measurements, about a minute. We match your chest and waist to the chart and tell you which size to order. Measurements in inches.</p>
+      <div class="calc-grid">
+        <label class="calc-f"><span>Chest</span><input type="number" id="calcChest" min="20" max="70" step="0.5" placeholder="e.g. 38" inputmode="decimal"></label>
+        <label class="calc-f"><span>Waist</span><input type="number" id="calcWaist" min="20" max="70" step="0.5" placeholder="e.g. 32" inputmode="decimal"></label>
+      </div>
+      <button class="btn btn-dark" data-calc-run style="width:100%;margin-top:18px">Recommend my size</button>
+      <div class="calc-result" id="calcResult" hidden></div>
+      <div class="sfg-how" style="margin-top:22px"><b>How to measure (2 minutes)</b>
+        <ol>
+          <li><b>Chest:</b> tape under the arms, across the fullest part — breathe normally.</li>
+          <li><b>Waist:</b> tape at the narrowest point, just above the navel.</li>
+          <li><b>Height:</b> taller frame? Send it on WhatsApp and we lengthen the kurta to you — free on your first alteration.</li>
+        </ol>
+      </div>
+    </div>
+  </div>`;
+}
 function sizeGuideHTML(){
   return `<div class="rev-modal" id="sizeModal" role="dialog" aria-modal="true" aria-labelledby="sfgTitle">
     <div class="rev-form" style="max-width:560px">
@@ -2564,6 +2757,37 @@ function sizeGuideHTML(){
   </div>`;
 }
 
+/* ===== PER-SIZE NOTIFY ME (waitlist) ===== */
+function notifyModalHTML(){
+  return `<div class="rev-modal" id="notifyModal" role="dialog" aria-modal="true" aria-labelledby="notifyTitle">
+    <div class="rev-form" style="max-width:480px">
+      <div class="rev-form-head">
+        <h3 id="notifyTitle" style="font-size:22px">Get notified</h3>
+        <button type="button" class="rev-form-close" data-notify-close aria-label="Close">&times;</button>
+      </div>
+      <p class="rev-form-sub">Tell us your size and number — the moment it is restitched in-house at our Kolkata workshop, we WhatsApp you. No spam, and we only use it for this.</p>
+      <div class="calc-grid">
+        <label class="calc-f"><span>Size</span><input type="text" id="notifySize" readonly></label>
+        <label class="calc-f"><span>WhatsApp number</span><input type="tel" id="notifyPhone" inputmode="tel" maxlength="15" placeholder="10-digit mobile"></label>
+      </div>
+      <button class="btn btn-dark" data-notify-save style="width:100%;margin-top:18px">Notify me</button>
+      <p class="sfg-note" id="notifyNote" hidden></p>
+    </div>
+  </div>`;
+}
+
+/* open the per-size waitlist for a given size */
+function openNotifyModal(size){
+  const h=document.getElementById('sizeModalHost');
+  if(h && !document.getElementById('notifyModal')) h.innerHTML=notifyModalHTML();
+  const m=document.getElementById('notifyModal');
+  if(!m) return;
+  const sz=document.getElementById('notifySize'); if(sz) sz.value=size||'';
+  const note=document.getElementById('notifyNote'); if(note){ note.hidden=true; note.innerHTML=''; }
+  m.classList.add('open');
+  document.body.style.overflow='hidden';
+  const inp=document.getElementById("notifyPhone"); if(inp) setTimeout(()=>inp.focus(),60);
+}
 /* ============ REFERRAL ============ */
 function myReferralCode(){
   let c = null;
@@ -2912,13 +3136,100 @@ function renderLookbook(){
   </div></section>`;
 }
 
+function shopHash(patch){
+  const cur = new URLSearchParams((location.hash.split("?")[1]||""));
+  const next = new URLSearchParams();
+  ["cat","size","colour","price","sort"].forEach(k=>{
+    const v = cur.get(k);
+    if(v && !(k in patch)) next.set(k,v);
+  });
+  Object.keys(patch).forEach(k=>{ if(patch[k]) next.set(k,patch[k]); });
+  const qs = next.toString();
+  location.hash = "#/shop" + (qs ? ("?"+qs) : "");
+}
+
+function shopHash(patch){
+  const cur = new URLSearchParams((location.hash.split("?")[1]||""));
+  const next = new URLSearchParams();
+  ["cat","size","colour","price","sort"].forEach(k=>{
+    const v = cur.get(k);
+    if(v && !(k in patch)) next.set(k,v);
+  });
+  Object.keys(patch).forEach(k=>{ if(patch[k]) next.set(k,patch[k]); });
+  const qs = next.toString();
+  location.hash = "#/shop" + (qs ? ("?"+qs) : "");
+}
+
+/* dropdown helpers — one panel open at a time, click-outside and Escape close it */
+function closeDropdowns(except){
+  document.querySelectorAll(".fdrop-panel.open").forEach(p=>{
+    if(except && p.dataset.fdropPanel===except) return;
+    p.classList.remove("open");
+    const b=document.querySelector('[data-fdrop-btn="'+p.dataset.fdropPanel+'"]');
+    if(b) b.setAttribute("aria-expanded","false");
+  });
+}
+function toggleDropdown(name){
+  const panel=document.querySelector('[data-fdrop-panel="'+name+'"]');
+  if(!panel) return;
+  const btn=document.querySelector('[data-fdrop-btn="'+name+'"]');
+  const wasOpen=panel.classList.contains("open");
+  closeDropdowns();
+  if(!wasOpen){
+    panel.classList.add("open");
+    if(btn) btn.setAttribute("aria-expanded","true");
+  }
+}
+
 function renderShop(q){
   const cat=q.get("cat")||"All";
   const sort=q.get("sort")||"featured";
-  let list=PRODUCTS.filter(p=>cat==="All"||p.cat===cat||(cat==="Everyday"&&p.cat==="Accessories")||(cat==="Signature"&&["p10","p11","p12"].includes(p.id)));
+  const sizeF=q.get("size")||"All";
+  const colF=q.get("colour")||"All";
+  const priceF=q.get("price")||"all";
+  const band = PRICE_BANDS.find(b=>b.k===priceF) || PRICE_BANDS[0];
+
+  let pool = PRODUCTS.filter(p=>cat==="All"||p.cat===cat||(cat==="Everyday"&&p.cat==="Accessories")||(cat==="Signature"&&["p10","p11","p12"].includes(p.id)));
+
+  /* facet counts come from the category pool, before the other filters apply */
+  const sizeCount = {};
+  SIZES.forEach(sz=>{ sizeCount[sz] = pool.filter(p=>!(OUT[p.id]||[]).includes(sz)).length; });
+
+  /* one option per colour NAME; the count is how many products come in it */
+  const colourMap = {};
+  pool.forEach(p=>{
+    (p.swatches||[]).forEach(hx=>{
+      const nm=colourName(hx); if(!nm) return;
+      if(!colourMap[nm]) colourMap[nm]={n:0,hex:{}};
+      colourMap[nm].hex[hx]=(colourMap[nm].hex[hx]||0)+1;
+    });
+    const names=new Set((p.swatches||[]).map(hx=>colourName(hx)).filter(Boolean));
+    names.forEach(nm=>{ if(colourMap[nm]) colourMap[nm].n++; });
+  });
+  const colours = Object.keys(colourMap).map(nm=>{
+    const tally=colourMap[nm].hex;
+    const hex=Object.keys(tally).sort((a,b)=>tally[b]-tally[a])[0];
+    return {name:nm,hex:hex,n:colourMap[nm].n};
+  }).sort((a,b)=> b.n-a.n || a.name.localeCompare(b.name));
+
+  let list = pool.filter(p=>{
+    if(sizeF!=="All" && (OUT[p.id]||[]).includes(sizeF)) return false;
+    if(colF!=="All" && !(p.swatches||[]).some(hx=>colourName(hx)===colF)) return false;
+    if(p.price < band.min || p.price > band.max) return false;
+    return true;
+  });
   if(sort==="low") list=[...list].sort((a,b)=>a.price-b.price);
   if(sort==="high") list=[...list].sort((a,b)=>b.price-a.price);
+  if(sort==="new") list=[...list].slice().reverse();
+
   const chips=["All","Everyday","Festive","Wedding","Signature","Accessories"];
+  const active = [];
+  if(sizeF!=="All") active.push("Size: "+sizeF);
+  if(colF!=="All") active.push("Colour: "+colF);
+  if(priceF!=="all") active.push(band.label);
+
+  const colSel = colours.find(c=>c.name===colF);
+
   return `
   <section><div class="container">
     <div class="sec-head"><h2>Shop Collections</h2></div>
@@ -2926,11 +3237,59 @@ function renderShop(q){
       <div class="chips">${chips.map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${c}">${c}</button>`).join("")}</div>
       <select class="sortsel" id="sortSel">
         <option value="featured" ${sort==="featured"?"selected":""}>Featured</option>
+        <option value="new" ${sort==="new"?"selected":""}>Newest first</option>
         <option value="low" ${sort==="low"?"selected":""}>Price: low to high</option>
         <option value="high" ${sort==="high"?"selected":""}>Price: high to low</option>
       </select>
     </div>
-    <div class="prod-grid">${list.map(prodCardHTML).join("")}</div>
+
+    <div class="shop-filters">
+
+      <div class="fdrop" data-fdrop="size">
+        <button type="button" class="fdrop-btn" data-fdrop-btn="size" aria-haspopup="listbox" aria-expanded="false">
+          <span class="fdrop-lbl">Size</span>
+          <span class="fdrop-val">${sizeF==="All"?"All sizes":sizeF}</span>
+          <svg class="fdrop-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="fdrop-panel" data-fdrop-panel="size" role="listbox" aria-label="Filter by size">
+          <button type="button" class="fopt ${sizeF==="All"?"on":""}" data-fsize="All" role="option" aria-selected="${sizeF==="All"}">All sizes <i>${pool.length}</i></button>
+          ${SIZES.map(sz=>`<button type="button" class="fopt ${sizeF===sz?"on":""}" data-fsize="${sz}" role="option" aria-selected="${sizeF===sz}" ${sizeCount[sz]?"":"disabled"}>${sz} <i>${sizeCount[sz]}</i></button>`).join("")}
+        </div>
+      </div>
+
+      <div class="fdrop" data-fdrop="colour">
+        <button type="button" class="fdrop-btn" data-fdrop-btn="colour" aria-haspopup="listbox" aria-expanded="false">
+          <span class="fdrop-lbl">Colour</span>
+          <span class="fdrop-val">${colF==="All"?"All colours":colF}</span>
+          ${colSel?`<b class="cdot" style="background:${colSel.hex}"></b>`:""}
+          <svg class="fdrop-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="fdrop-panel" data-fdrop-panel="colour" role="listbox" aria-label="Filter by colour">
+          <button type="button" class="fopt ${colF==="All"?"on":""}" data-fcolour="All" role="option" aria-selected="${colF==="All"}">All colours <i>${pool.length}</i></button>
+          ${colours.map(c=>`<button type="button" class="fopt ${colF===c.name?"on":""}" data-fcolour="${c.name}" role="option" aria-selected="${colF===c.name}"><b class="cdot" style="background:${c.hex}"></b>${c.name} <i>${c.n}</i></button>`).join("")}
+        </div>
+      </div>
+
+      <div class="fdrop" data-fdrop="price">
+        <button type="button" class="fdrop-btn" data-fdrop-btn="price" aria-haspopup="listbox" aria-expanded="false">
+          <span class="fdrop-lbl">Price</span>
+          <span class="fdrop-val">${priceF==="all"?"All prices":band.label}</span>
+          <svg class="fdrop-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="fdrop-panel" data-fdrop-panel="price" role="listbox" aria-label="Filter by price">
+          ${PRICE_BANDS.map(b=>`<button type="button" class="fopt ${priceF===b.k?"on":""}" data-fprice="${b.k}" role="option" aria-selected="${priceF===b.k}">${b.label}</button>`).join("")}
+        </div>
+      </div>
+
+      <div class="fdrop-act">
+        <span class="fdrop-count">${list.length} of ${pool.length} pieces</span>
+        ${active.map(a=>`<span class="ftag">${a}</span>`).join("")}
+        ${active.length?`<button class="fclear" data-fclear>Clear all</button>`:""}
+      </div>
+    </div>
+
+    ${list.length? `<div class="prod-grid">${list.map(prodCardHTML).join("")}</div>`
+      : `<div class="empty-filter"><h3>Nothing matches those filters</h3><p>Try a different size, colour or price band — or clear them all.</p><button class="btn btn-dark" data-fclear>Clear filters</button></div>`}
   </div></section>`;
 }
 
@@ -2979,8 +3338,10 @@ function renderProduct(id){
         <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> Coupon code: <input type="text" id="pdpCoupon" placeholder="Enter code" style="width:140px;padding:4px 8px;border:1px solid var(--line);font-family:var(--serif);font-size:13px"> <button class="btn btn-dark" style="padding:6px 12px;font-size:11px" data-pdcoupon>Apply</button></li>
         <li><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8z"/></svg> ${gap>0?`Add ${inr(gap)} more to your bag for FREE shipping`:`FREE shipping on this order (prepaid)`}</li>
       </ul>
-      <div class="opt-row"><span class="opt-label">Size</span><button class="size-link" data-size-guide><svg viewBox="0 0 24 24"><path d="M3 8V4h18v4M3 20h18M6 4v16M12 4v16M18 4v16"/></svg>Size &amp; Fit Guide</button></div>
-      <div class="sizes">${SIZES.map(s=>`<button class="size ${s===st.size?"on":""} ${outSz.includes(s)?"out":""}" data-size="${s}" ${outSz.includes(s)?"disabled":""}>${s}</button>`).join("")}</div>
+      <div class="opt-row"><span class="opt-label">Size</span>
+      <button class="size-link" data-calc-size><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>Calculate Your Size</button>
+      <button class="size-link" data-size-guide><svg viewBox="0 0 24 24"><path d="M3 8V4h18v4M3 20h18M6 4v16M12 4v16M18 4v16"/></svg>Size &amp; Fit Guide</button></div>
+      <div class="sizes">${SIZES.map(s=>`<button class="size ${s===st.size?"on":""} ${outSz.includes(s)?"out":""}" data-size="${s}" ${outSz.includes(s)?`data-notify="${s}" aria-label="${s} is out of stock — tap to be notified when it is restitched"`:""}>${s}</button>`).join("")}</div>
       <div class="color-row"><span class="cl">Select Color</span><div class="color-sw">${p.swatches.map((s,i)=>`<button style="background:${s}" class="${i===0?"on":""}" data-color="${s}" aria-label="Color ${s}"></button>`).join("")}</div></div>
       <div class="opt-row"><span class="opt-label">Quantity</span></div>
       <span class="qty"><button data-pqty="-1">−</button><span id="pdpQty">1</span><button data-pqty="1">+</button></span>
@@ -2991,10 +3352,22 @@ function renderProduct(id){
       <button class="pdp-wishlist ${store.wish.includes(p.id)?"on":""}" data-wish="${p.id}"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg><span>${store.wish.includes(p.id)?"Saved to wishlist":"Add to Wishlist"}</span></button>
       <div class="restock-row">
         <svg viewBox="0 0 24 24"><path d="M12 8v4l2.5 2.5M20.5 12a8.5 8.5 0 1 1-2.3-5.7M20.5 3v4.3h-4.3"/></svg>
-        <div><b>Size out of stock?</b><small>Tell us your size — we'll WhatsApp you the moment this is restitched in-house.</small></div>
-        <a class="restock-btn" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! Please restock \u201C" + p.name + "\u201D — my size is ___. Ping me on WhatsApp.")}" target="_blank" rel="noopener">Notify me<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div><b>Size out of stock?</b><small>Pick your size — we WhatsApp you the moment it is restitched in-house.</small></div>
+        <div class="wait-sizes">${SIZES.map(sz=>`<button class="wait-size ${outSz.includes(sz)?"out":""}" data-notify="${sz}">${sz}</button>`).join("")}</div>
       </div>
       <div class="ship-note">In stock — dispatched from our in-house Kolkata workshop within 24–48 hrs</div>
+      <div class="pdp-services">
+        <div class="pdp-svc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 8l5-5 5 5"/><path d="M5 21h14"/></svg>
+          <b>One free first alteration</b>
+          <small>Sleeve, length or waist adjusted by our own Kolkata workshop — on us, once.</small>
+        </div>
+        <div class="pdp-svc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <b>48-hour alteration</b>
+          <small>Drop it at our Picnic Garden showroom, collect it two days later.</small>
+        </div>
+      </div>
       <div class="pinrow"><input id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit PIN code"><button class="btn btn-dark" data-pin>Check</button></div>
       <div class="pin-result" id="pinResult"></div>
       <a class="wa-cta" href="https://wa.me/919123947668?text=Namaste! Size, fabric aur delivery ke baare mein poochna hai." target="_blank" rel="noopener"><svg class="ic ic-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.7 3.2 8.5 8.5 0 0 1-3.8 4.4 8.4 8.4 0 0 1-4 1.4 8.4 8.4 0 0 1-3.2-.7L3 21l1.2-6.3a8.4 8.4 0 0 1-.7-3.2 8.5 8.5 0 0 1 4.4-3.8 8.5 8.5 0 0 1 4.3-1h.9a8.5 8.5 0 0 1 8 8z"/></svg> Size ya fabric? Chat with a stylist on WhatsApp</a>
@@ -3387,9 +3760,14 @@ window.addEventListener("hashchange",router);
 
 /* ============ events (delegation) ============ */
 document.addEventListener("click",e=>{
+  if(!e.target.closest(".fdrop")) closeDropdowns();
   const sm=e.target.closest('#sizeModal');
   if(sm && e.target===sm){ sm.classList.remove('open'); document.body.style.overflow=''; return; }
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy]");
+  const cm=e.target.closest('#calcModal');
+  if(cm && e.target===cm){ cm.classList.remove('open'); document.body.style.overflow=''; return; }
+  const nm=e.target.closest('#notifyModal');
+  if(nm && e.target===nm){ nm.classList.remove('open'); document.body.style.overflow=''; return; }
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
   if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); if(location.hash==="#/wishlist"){ const app=document.getElementById("app"); if(app) app.innerHTML=renderWishlist(); } return; }
@@ -3404,7 +3782,10 @@ document.addEventListener("click",e=>{
   if(t.dataset.remove){ const [id,size]=t.dataset.remove.split("|"); store.cart=store.cart.filter(x=>!(x.id===id&&x.size===size)); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Removed from bag"); return; }
   if(t.dataset.quickadd){ const [id,size]=t.dataset.quickadd.split("|"); addToCart(id,size,1); save(); syncBadges(); renderDrawer(); refreshCartView(); toast("Added to your bag " + ICON_CHECK); return; }
   if(t.dataset.mode){ store.mode=t.dataset.mode; save(); renderDrawer(); refreshCartView(); return; }
-  if(t.dataset.size){ const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return; }
+  if(t.dataset.size){
+    if(t.dataset.notify!==undefined){ openNotifyModal(t.dataset.notify); return; }
+    const st=store.lastProduct; if(st){ st.size=t.dataset.size; } document.querySelectorAll(".size").forEach(s=>s.classList.toggle("on",s.dataset.size===t.dataset.size)); return;
+  }
   if(t.dataset.color){ const row=t.closest(".color-sw"); if(row) row.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b===t)); return; }
   if(t.dataset.revOpen){ currentRevPid = t.dataset.revOpen; revState.rating = 0; revState.photos = []; revFormReset(); const m=document.getElementById('revModal'); m.classList.add('open'); document.body.style.overflow='hidden'; t.setAttribute('aria-expanded','true'); return; }
   if(t.dataset.revFilter){ const chipWrap=t.closest('.rev-chips'); const pid=chipWrap?chipWrap.getAttribute('data-rev-chips'):''; if(chipWrap) chipWrap.querySelectorAll('.rev-chip').forEach(c=>c.classList.toggle('on',c===t)); const list=document.querySelector('.rev-list[data-rev-list="'+pid+'"]'); if(list) list.innerHTML=revListHTML(pid, t.dataset.revFilter); return; }
@@ -3413,12 +3794,58 @@ document.addEventListener("click",e=>{
   if(t.dataset.revRm){ revState.photos.splice(+t.dataset.revRm,1); renderRevPhotoPrev(); return; }
   if(t.dataset.revClose){ closeRevModal(); return; }
   if(t.dataset.sizeGuide!==undefined){ const h=document.getElementById('sizeModalHost'); if(h && !document.getElementById('sizeModal')) h.innerHTML=sizeGuideHTML(); const m=document.getElementById('sizeModal'); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; } return; }
+  if(t.dataset.calcSize!==undefined){ const h=document.getElementById('sizeModalHost'); if(h && !document.getElementById('calcModal')) h.innerHTML=calcSizeHTML(); const m=document.getElementById('calcModal'); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; } return; }
+  if(t.dataset.calcClose!==undefined || (t.id==='calcModal' && e.target===t)){ const m=document.getElementById('calcModal'); if(m){ m.classList.remove('open'); document.body.style.overflow=''; } return; }
+  if(t.dataset.calcRun!==undefined){
+    const c=parseFloat((document.getElementById("calcChest")||{}).value);
+    const w=parseFloat((document.getElementById("calcWaist")||{}).value);
+    const box=document.getElementById("calcResult");
+    if(!(c>0) || !(w>0)){ if(box){ box.hidden=false; box.innerHTML='<span style="color:#B33A3A">Enter both chest and waist in inches.</span>'; } return; }
+    const r=calcSizeFor(c,w);
+    if(box){
+      box.hidden=false;
+      box.innerHTML = r.custom
+        ? `<b>Your chest is beyond our ready chart.</b> We make it to your measurements — <a class="calc-wa" href="https://wa.me/919123947668?text=${encodeURIComponent("Namaste! My chest is "+c+"\" and waist "+w+"\" — I need a custom fit. Please tell me the price and time.")}" target="_blank" rel="noopener">ask us for a custom fit on WhatsApp</a>.`
+        : `<b>Your size is ${r.size}.</b> Between two sizes? Our in-house stitching sits comfortably, so ${r.size} is the safe pick. <button class="calc-pick" data-calc-pick="${r.size}">Select ${r.size}</button>`;
+    }
+    return;
+  }
+  if(t.dataset.calcPick!==undefined){
+    const st=store.lastProduct; if(st){ st.size=t.dataset.calcPick; }
+    document.querySelectorAll(".size").forEach(x=>x.classList.toggle("on",x.dataset.size===t.dataset.calcPick));
+    const m=document.getElementById('calcModal'); if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+    toast("Size "+t.dataset.calcPick+" selected");
+    return;
+  }
+  if(t.dataset.notify!==undefined){ openNotifyModal(t.dataset.notify); return; }
+  if(t.dataset.notifyClose!==undefined || (t.id==='notifyModal' && e.target===t)){ const m=document.getElementById('notifyModal'); if(m){ m.classList.remove('open'); document.body.style.overflow=''; } return; }
+  if(t.dataset.notifySave!==undefined){
+    const ph=((document.getElementById("notifyPhone")||{}).value||"").replace(/\D/g,"");
+    const sz=(document.getElementById("notifySize")||{}).value||"";
+    const note=document.getElementById("notifyNote");
+    if(ph.length<10){ if(note){ note.hidden=false; note.innerHTML='<span style="color:#B33A3A">Enter a valid 10-digit WhatsApp number.</span>'; } return; }
+    try{
+      const key="sohraaz_waitlist";
+      const list=JSON.parse(localStorage.getItem(key)||"[]");
+      const pid=(store.lastProduct&&store.lastProduct.id)||"";
+      list.push({id:pid,size:sz,phone:ph,at:Date.now()});
+      localStorage.setItem(key,JSON.stringify(list));
+    }catch(e){}
+    const m=document.getElementById('notifyModal'); if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+    toast("Noted — we will WhatsApp you when size "+sz+" is back");
+    return;
+  }
   if(t.dataset.sfgClose!==undefined || (t.id==='sizeModal' && e.target===t)){ const m=document.getElementById('sizeModal'); if(m){ m.classList.remove('open'); document.body.style.overflow=''; } return; }
   if(t.dataset.acctSave!==undefined){ const input=document.getElementById('acctName'); if(input){ const v=input.value.trim(); const prof=getProfile(); prof.name=v; try{ localStorage.setItem("sohraaz_profile", JSON.stringify(prof)); }catch(e2){} if(location.hash==="#/account"){ document.getElementById("app").innerHTML=renderAccount(); } toast(v?("Welcome, "+v.split(" ")[0]+" — name saved"):"Name cleared"); } return; }
   if(t.dataset.refCopy!==undefined){ const code=myReferralCode(); const done=()=>{ t.textContent="Copied!"; setTimeout(()=>{ t.textContent="Copy"; },1600); }; if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(code).then(done).catch(done); } else { done(); } return; }
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
-  if(t.dataset.cat){ if(t.classList.contains("chip")){ location.hash="#/shop?cat="+encodeURIComponent(t.dataset.cat); } return; }
+  if(t.dataset.cat){ if(t.classList.contains("chip")){ shopHash({cat:t.dataset.cat}); } return; }
+  if(t.dataset.fdropBtn!==undefined){ toggleDropdown(t.dataset.fdropBtn); return; }
+  if(t.dataset.fsize!==undefined){ shopHash({size:t.dataset.fsize}); return; }
+  if(t.dataset.fcolour!==undefined){ shopHash({colour:t.dataset.fcolour}); return; }
+  if(t.dataset.fprice!==undefined){ shopHash({price:t.dataset.fprice}); return; }
+  if(t.dataset.fclear!==undefined){ shopHash({size:"",colour:"",price:""}); return; }
   if(t.dataset.pol){ location.hash="#/policies?t="+t.dataset.pol; return; }
   if(t.dataset.pay){ store.mode=t.dataset.pay; save(); router(); return; }
   if(t.dataset.pdcoupon!==undefined){
@@ -3465,8 +3892,15 @@ document.addEventListener("click",e=>{
     store.cart=[]; save(); syncBadges(); renderDrawer(); location.hash="#/success"; return;
   }
   if(t.dataset.pin!==undefined){
-    const v=document.getElementById("pinInput").value.trim();
-    document.getElementById("pinResult").textContent=/^\d{6}$/.test(v)?`Delivers in 3–5 business days to ${v} · COD serviceable`:"Please enter a valid 6-digit PIN code";
+    const v=(document.getElementById("pinInput")||{}).value.trim();
+    const out=document.getElementById("pinResult");
+    if(!out) return;
+    if(!/^\d{6}$/.test(v)){ out.innerHTML='<span style="color:#B33A3A">Please enter a valid 6-digit PIN code</span>'; return; }
+    const fmt=d=>d.toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
+    /* working days = Mon-Sat, the Indian courier delivery week; Sunday is skipped */
+    const addDays=(n)=>{ const d=new Date(); let c=0; while(c<n){ d.setDate(d.getDate()+1); if(d.getDay()!==0) c++; } return d; };
+    const a=addDays(3), b=addDays(5);
+    out.innerHTML=`<b>Delivery ${fmt(a)} \u2013 ${fmt(b)}</b><br><small>Dispatched from our in-house Kolkata workshop in 3\u20135 working days (Sundays excluded). Free shipping on orders above \u20B9999. COD available on serviceable PIN codes.</small><small style="display:block;margin-top:4px;opacity:.85">Order before 4 pm for the earliest slot.</small>`;
     return;
   }
 });
@@ -3484,10 +3918,20 @@ if(!window.__sohraazNavBound){
   if(mnavScrim) mnavScrim.addEventListener("click",closeMnav);
   mnavEl.addEventListener("click",e=>{ if(e.target.closest("a")) closeMnav(); });
 }
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeMnav(); closeDrawer(); } });
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Escape") return;
+  closeMnav(); closeDrawer();
+  if(typeof closeDropdowns==="function") closeDropdowns();
+  /* every open dialog gets a keyboard exit */
+  ["sizeModal","calcModal","notifyModal"].forEach(id=>{
+    const m=document.getElementById(id);
+    if(m && m.classList.contains("open")){ m.classList.remove("open"); document.body.style.overflow=""; }
+  });
+  if(typeof closeRevModal==="function") closeRevModal();
+});
 document.addEventListener("change",e=>{
   if(e.target.id==="newCust"){ store.isNew=e.target.checked; save(); renderDrawer(); refreshCartView(); }
-  if(e.target.id==="sortSel"){ location.hash="#/shop?sort="+e.target.value+(new URLSearchParams(location.hash.split("?")[1]||"").get("cat")?"&cat="+new URLSearchParams(location.hash.split("?")[1]).get("cat"):""); }
+  if(e.target.id==="sortSel"){ shopHash({sort:e.target.value}); }
 });
 /* announcement rotation */
 (function(){ let i=0; const spans=document.querySelectorAll("#announceTrack span");

@@ -1,5 +1,5 @@
-﻿/* ============================================================================
-   SOHRAAZ â€” SHARED CHROME (build-injected into every page)
+/* ============================================================================
+   SOHRAAZ — SHARED CHROME (build-injected into every page)
    Canonical header + footer styles. Injected LAST in <style>, so these rules
    win over per-page leftovers. Single source of truth for the site chrome.
    ========================================================================= */
@@ -132,7 +132,7 @@
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
-  /* Sohraaz Assistant â€” chat */
+  /* Sohraaz Assistant — chat */
   .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -165,7 +165,7 @@
     .float-btn{width:52px;height:52px}
     .float-handle{bottom:96px}
     .chat-panel{left:8px;bottom:88px}
-    /* announcement message must wrap on phones â€” it was clipped mid-word */
+    /* announcement message must wrap on phones — it was clipped mid-word */
     .announce-track{height:auto;min-height:34px}
     .announce-track span{white-space:normal;line-height:1.35;font-size:9.5px;letter-spacing:.16em;padding:4px 12px}
     .offer-bar{font-size:9px;gap:8px;padding:8px 10px;flex-wrap:wrap}
