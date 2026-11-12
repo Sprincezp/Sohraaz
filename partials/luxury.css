@@ -625,10 +625,11 @@ p{color:var(--ink)}
 }
 .reel-pop-toggle:hover{background:rgba(173,135,101,.92);transform:scale(1.06)}
 .reel-pop-toggle svg{width:26px;height:26px;fill:#fff}
-.reel-pop-toggle .ic-play{margin-left:4px}
-.reel-pop-toggle .ic-pause{display:none}
-.reel-pop-frame.paused .reel-pop-toggle .ic-play{display:none}
-.reel-pop-frame.paused .reel-pop-toggle .ic-pause{display:block}
+/* the toggle shows PAUSE while the reel runs, PLAY while it is paused — like a reel */
+.reel-pop-toggle .ic-play{display:none;margin-left:4px}
+.reel-pop-toggle .ic-pause{display:block}
+.reel-pop-frame.paused .reel-pop-toggle .ic-play{display:block}
+.reel-pop-frame.paused .reel-pop-toggle .ic-pause{display:none}
 .reel-pop-frame.paused .reel-pop-toggle{opacity:1}
 .reel-pop-loading{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(14,9,6,.28)}
 .reel-pop-frame.loading .reel-pop-loading{display:flex}

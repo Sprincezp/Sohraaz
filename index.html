@@ -1343,10 +1343,11 @@ p{color:var(--ink)}
 }
 .reel-pop-toggle:hover{background:rgba(173,135,101,.92);transform:scale(1.06)}
 .reel-pop-toggle svg{width:26px;height:26px;fill:#fff}
-.reel-pop-toggle .ic-play{margin-left:4px}
-.reel-pop-toggle .ic-pause{display:none}
-.reel-pop-frame.paused .reel-pop-toggle .ic-play{display:none}
-.reel-pop-frame.paused .reel-pop-toggle .ic-pause{display:block}
+/* the toggle shows PAUSE while the reel runs, PLAY while it is paused — like a reel */
+.reel-pop-toggle .ic-play{display:none;margin-left:4px}
+.reel-pop-toggle .ic-pause{display:block}
+.reel-pop-frame.paused .reel-pop-toggle .ic-play{display:block}
+.reel-pop-frame.paused .reel-pop-toggle .ic-pause{display:none}
 .reel-pop-frame.paused .reel-pop-toggle{opacity:1}
 .reel-pop-loading{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(14,9,6,.28)}
 .reel-pop-frame.loading .reel-pop-loading{display:flex}
@@ -2609,44 +2610,16 @@ function toneOf(s){
   })();
 </script>
 
-<!-- ============ Watch & Buy — inline reel player + popup ============ -->
+<!-- ============ Watch & Buy — reel feed: scroll preview + full-screen player ============ -->
 <script>
 (function(){
   var strip = document.querySelector('.wb-strip');
   var pop   = document.getElementById('reelPop');
   if(!strip) return;
 
-  var current = null;            // the one tile that is playing right now
-  var popTile = null;            // the tile the popup is bound to
-  var lastFocus = null;
+  var previewTile = null;   // the tile auto-previewing because it is on screen
+  var popTile     = null;   // the tile the full-screen player is bound to
 
-  /* ---------- inline tile playback ---------- */
-  function stopTile(tile){
-    if(!tile) return;
-    var v = tile.querySelector('.wb-video');
-    if(v){
-      try{ v.pause(); }catch(e){}
-      v.removeAttribute('src');
-      try{ v.load(); }catch(e){}
-    }
-    tile.classList.remove('playing','loading');
-  }
-
-  function playTile(tile){
-    var v = tile.querySelector('.wb-video');
-    if(!v) return;
-    if(current && current !== tile) stopTile(current);
-    current = tile;
-    if(!v.getAttribute('src')){
-      v.setAttribute('src', tile.getAttribute('data-video') || '');
-      try{ v.load(); }catch(e){}
-    }
-    tile.classList.add('loading');
-    var p = v.play();
-    if(p && p.catch) p.catch(function(){ tile.classList.remove('loading'); });
-  }
-
-  /* ---------- the popup ---------- */
   var popVideo  = document.getElementById('reelPopVideo');
   var popFrame  = document.querySelector('.reel-pop-frame');
   var popToggle = document.getElementById('reelPopToggle');
@@ -2654,9 +2627,36 @@ function toneOf(s){
   var popPrice  = document.getElementById('reelPopPrice');
   var popAdd    = document.getElementById('reelPopAdd');
   var popLink   = document.getElementById('reelPopLink');
+  var lastFocus = null;
 
   function inr(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
+  function videoOf(t){ return t ? t.querySelector('.wb-video') : null; }
 
+  /* ---------- the inline (scroll) preview ---------- */
+  function startPreview(tile){
+    if(!tile) return;
+    if(previewTile && previewTile !== tile) pausePreview(previewTile);
+    previewTile = tile;
+    var v = videoOf(tile);
+    if(!v) return;
+    if(!v.getAttribute('src')){
+      v.setAttribute('src', tile.getAttribute('data-video') || '');
+      try{ v.load(); }catch(e){}
+    }
+    tile.classList.add('playing');
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ tile.classList.remove('playing'); });
+  }
+
+  function pausePreview(tile){
+    if(!tile) return;
+    var v = videoOf(tile);
+    if(v){ try{ v.pause(); }catch(e){} }
+    tile.classList.remove('playing');
+    if(previewTile === tile) previewTile = null;
+  }
+
+  /* ---------- the full-screen player ---------- */
   function openPop(tile){
     if(!pop || !tile) return;
     popTile = tile;
@@ -2668,7 +2668,7 @@ function toneOf(s){
 
     popTitle.textContent = title;
     popPrice.textContent = price ? inr(price) : '';
-    popLink.href = 'sohraaz-full-store-template.html#/watch' + (r !== '' ? '?r=' + r : '');
+    popLink.href = 'sohraaz-full-store-template.html#/watch' + (r !== '' && r != null ? '?r=' + r : '');
     popAdd.setAttribute('data-pid', tile.getAttribute('data-pid') || '');
     popAdd.setAttribute('data-title', title);
     popAdd.setAttribute('data-price', price);
@@ -2676,14 +2676,17 @@ function toneOf(s){
     pop.hidden = false;
     document.body.style.overflow = 'hidden';
 
+    /* one stream only — the big player takes over from the small preview */
+    pausePreview(tile);
+
     if(popVideo){
       var src = tile.getAttribute('data-video') || '';
       if(popVideo.getAttribute('src') !== src){ popVideo.setAttribute('src', src); try{ popVideo.load(); }catch(e){} }
       popFrame.classList.remove('paused');
       popFrame.classList.add('loading');
       popToggle.setAttribute('aria-label','Pause reel');
-      var p = popVideo.play();
-      if(p && p.catch) p.catch(function(){ popFrame.classList.remove('loading'); });
+      var pl = popVideo.play();
+      if(pl && pl.catch) pl.catch(function(){ popFrame.classList.remove('loading'); });
     }
     var x = pop.querySelector('.reel-pop-x');
     if(x) x.focus();
@@ -2695,11 +2698,16 @@ function toneOf(s){
     document.body.style.overflow = '';
     if(popVideo){ try{ popVideo.pause(); }catch(e){} popVideo.removeAttribute('src'); try{ popVideo.load(); }catch(e){} }
     if(popFrame) popFrame.classList.remove('paused','loading');
-    /* dismissing the popup cuts the reel completely — the tile stops too */
-    if(popTile){ if(current === popTile) current = null; stopTile(popTile); }
     popTile = null;
     if(lastFocus && lastFocus.focus) lastFocus.focus();
     lastFocus = null;
+    /* back to the feed — whatever is on screen keeps previewing */
+    var visible = null, best = 0;
+    strip.querySelectorAll('.wb-tile').forEach(function(t){
+      var r = (t._r || 0);
+      if(r > best){ best = r; visible = t; }
+    });
+    if(visible && best >= 0.5) startPreview(visible);
   }
 
   function togglePop(){
@@ -2716,7 +2724,7 @@ function toneOf(s){
     }
   }
 
-  /* ---------- add to bag (same cart the store uses) ---------- */
+  /* ---------- add to bag (the store's own cart shape) ---------- */
   function addToBag(){
     var pid = popAdd.getAttribute('data-pid');
     if(!pid) return;
@@ -2738,16 +2746,13 @@ function toneOf(s){
       var t = document.getElementById('toast');
       if(t){ t.innerHTML = 'Added to your bag — ' + title + ' (M) · prepaid ' + inr(Math.round(price*0.95)); t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(function(){ t.classList.remove('show'); }, 2800); }
     }catch(e){}
-
     popAdd.innerHTML = 'Added to Bag';
     setTimeout(function(){ popAdd.innerHTML = 'Add to Bag'; }, 1800);
   }
 
   /* ---------- wiring ---------- */
   /* Every tile gets a full-bleed hit area so a click ANYWHERE on the
-     thumbnail starts the reel — not just the little play icon. The visible
-     play button and the caption link stay above it and keep their own
-     behaviour. */
+     thumbnail opens the player — not just the little play icon. */
   strip.querySelectorAll('.wb-tile').forEach(function(t){
     var hit = document.createElement('button');
     hit.type = 'button';
@@ -2756,40 +2761,48 @@ function toneOf(s){
     t.insertBefore(hit, t.querySelector('.wb-play'));
   });
 
-  function startReel(tile){
-    if(!tile) return;
-    if(current === tile && tile.classList.contains('playing')){
-      /* already playing this one -> just bring the popup up again */
-      openPop(tile);
-      return;
-    }
-    playTile(tile);
-    openPop(tile);
-  }
-
   strip.addEventListener('click', function(e){
     var play = e.target.closest && e.target.closest('.wb-play');
     if(play){
       e.preventDefault(); e.stopPropagation();
-      startReel(play.closest('.wb-tile'));
+      openPop(play.closest('.wb-tile'));
       return;
     }
     var hit = e.target.closest && e.target.closest('.wb-hit');
     if(hit){
       e.preventDefault(); e.stopPropagation();
-      startReel(hit.closest('.wb-tile'));
+      openPop(hit.closest('.wb-tile'));
       return;
     }
     var close = e.target.closest && e.target.closest('.wb-close');
     if(close){
       e.preventDefault(); e.stopPropagation();
-      var t = close.closest('.wb-tile');
-      if(current === t) current = null;
-      stopTile(t);
-      if(popTile === t) closePop();
+      pausePreview(close.closest('.wb-tile'));
+      if(popTile) closePop();
     }
     /* the caption link falls through and navigates to the full reel */
   });
+
+  /* ---------- scroll-driven preview (the feed behaves like reels) ---------- */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        en.target._r = en.intersectionRatio;
+      });
+      /* the most visible tile wins the preview */
+      var best = null, bestR = 0;
+      strip.querySelectorAll('.wb-tile').forEach(function(t){
+        var r = t._r || 0;
+        if(r > bestR){ bestR = r; best = t; }
+      });
+      if(best && bestR >= 0.5){
+        if(previewTile !== best) startPreview(best);
+      } else if(previewTile && (previewTile._r || 0) < 0.2){
+        pausePreview(previewTile);
+      }
+    }, { threshold: [0, 0.2, 0.35, 0.5, 0.65, 0.8, 1] });
+    strip.querySelectorAll('.wb-tile').forEach(function(t){ io.observe(t); });
+  }
 
   /* the poster only swaps out once the browser is actually decoding */
   strip.addEventListener('playing', function(e){
@@ -2804,7 +2817,7 @@ function toneOf(s){
     var tile = e.target.closest && e.target.closest('.wb-tile');
     if(!tile) return;
     tile.classList.remove('loading','playing');
-    if(current === tile) current = null;
+    if(previewTile === tile) previewTile = null;
   }, true);
 
   if(pop){
@@ -2819,34 +2832,21 @@ function toneOf(s){
     popVideo.addEventListener('error', function(){ popFrame.classList.remove('loading'); });
   }
 
-  /* reel scrolled out of view -> cut it (saves data, keeps the page quiet) */
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(!en.isIntersecting){
-          if(current === en.target) current = null;
-          stopTile(en.target);
-        }
-      });
-    }, { threshold: 0.25 });
-    strip.querySelectorAll('.wb-tile').forEach(function(t){ io.observe(t); });
-  }
-
-  /* Escape cuts the reel and closes the popup */
+  /* Escape cuts the reel and closes the player */
   document.addEventListener('keydown', function(e){
     if(e.key !== 'Escape') return;
     if(!pop || !pop.hidden){ closePop(); return; }
-    if(current){ stopTile(current); current = null; }
+    if(previewTile){ pausePreview(previewTile); }
   });
 
-  /* leaving the page (SPA route change or tab close) stops the film */
+  /* leaving the page stops the film */
   window.addEventListener('hashchange', function(){
-    if(current){ stopTile(current); current = null; }
+    if(previewTile){ pausePreview(previewTile); }
     closePop();
   });
   document.addEventListener('visibilitychange', function(){
     if(document.hidden){
-      if(current){ stopTile(current); current = null; }
+      if(previewTile){ pausePreview(previewTile); }
       if(popVideo){ try{ popVideo.pause(); }catch(e){} }
     }
   });
