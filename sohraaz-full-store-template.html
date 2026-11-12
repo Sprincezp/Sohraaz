@@ -278,6 +278,15 @@
   .coll-kicker{font-family:var(--caps);font-size:9.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#70513E}
   .coll-clear{border:1px solid var(--line);background:transparent;color:#70513E;padding:6px 13px;border-radius:2px;font-family:var(--caps);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
   .coll-clear:hover{border-color:#AD8765;background:#AD8765;color:#fff}
+  /* ---------- search page ---------- */
+  .sbox{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:#fff;border-radius:3px;padding:4px 14px;margin-bottom:26px}
+  .sbox svg{width:20px;height:20px;stroke:#70513E;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .sbox input{flex:1;border:none;outline:none;background:transparent;padding:14px 0;font-family:var(--serif);font-size:18px;color:#302019;min-width:0}
+  .sbox:focus-within{border-color:#AD8765}
+  .search-count{font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#70513E;margin-bottom:14px}
+  .search-browse{margin-bottom:26px}
+  .search-browse .chips{gap:10px}
+  .search-browse .chip{cursor:pointer}
   .shop-filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 30px;padding:12px 14px;border:1px solid var(--line);background:#FAF8F4;border-radius:3px}
   .fdrop{position:relative;flex:0 0 auto}
   .fdrop-btn{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:2px;padding:9px 13px;cursor:pointer;font-family:var(--caps);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#493126;transition:border-color .2s,background .2s,color .2s;white-space:nowrap}
@@ -1120,6 +1129,32 @@
   .burger.open svg{stroke:#AD8765}
 
 
+  /* the mobile bottom bar takes the bottom of the screen on phones; every
+     fixed element that lives down there is lifted by this one number */
+  :root{--mbar-h:0px}
+  @media (max-width:1024px){:root{--mbar-h:64px}}
+
+  /* ---------- mobile bottom bar (mobile only) ---------- */
+  .mbar{display:none}
+  @media (max-width:1024px){
+    .mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:92;
+      background:var(--ivory,#FAF8F4);border-top:1px solid var(--line);
+      box-shadow:0 -3px 16px rgba(48,32,25,.10);
+      padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+    .mbar-list{list-style:none;margin:0;padding:0;display:flex;align-items:center}
+    .mbar-list li{flex:1 1 0;min-width:0}
+    .mbar-list a{display:block;text-align:center;text-decoration:none;padding:4px 2px;border-radius:3px;
+      -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    .mbar-list a:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+    .mbar-ico{display:block;line-height:0}
+    .mbar-ico svg{width:21px;height:21px;stroke:var(--mocha);stroke-width:1.5;fill:none;
+      stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+    .mbar-tx{display:block;margin-top:5px;font-family:var(--caps);font-size:9.5px;font-weight:500;
+      letter-spacing:.09em;text-transform:uppercase;color:var(--mocha);line-height:1;white-space:nowrap}
+    .mbar-list a:active .mbar-ico svg,.mbar-list a[aria-current="page"] .mbar-ico svg{stroke:var(--gold-text)}
+    .mbar-list a[aria-current="page"] .mbar-tx{color:var(--gold-text)}
+  }
+
   /* ---------- floating helpers + chat (shared by all pages) ---------- */
   .float-dock{position:fixed;z-index:900;display:flex;flex-direction:column;gap:8px}
   .float-wrap{position:relative}
@@ -1141,14 +1176,14 @@
   .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #C7AA8B;color:#302019;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
   .float-min:hover{transform:scale(1.15)}
   .float-left .float-min{right:auto;left:-7px}
-  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#302019;color:#C7AA8B;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
+  .float-handle{position:fixed;z-index:900;bottom:calc(120px + var(--mbar-h));border:none;background:#302019;color:#C7AA8B;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
   .float-handle.show{display:flex}
   .float-handle:hover{background:#302019}
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
   /* Sohraaz Assistant — chat */
-  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel{position:fixed;left:20px;bottom:calc(92px + var(--mbar-h));z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .chat-head{background:#302019;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
@@ -1175,11 +1210,11 @@
   .chat-wa{display:block;text-align:center;font-size:11px;color:#6E6259;padding:8px;background:#fff;border-top:1px solid #EAE0D4}
   .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
   @media (max-width:640px){
-    .float-dock{right:12px;bottom:12px}
-    .float-left{left:12px;bottom:12px}
+    .float-dock{right:12px;bottom:calc(12px + var(--mbar-h))}
+    .float-left{left:12px;bottom:calc(12px + var(--mbar-h))}
     .float-btn{width:52px;height:52px}
     .float-handle{bottom:96px}
-    .chat-panel{left:8px;bottom:88px}
+    .chat-panel{left:8px;bottom:calc(88px + var(--mbar-h))}
     /* announcement message must wrap on phones — it was clipped mid-word */
     .announce-track{height:auto;min-height:34px}
     .announce-track span{white-space:normal;line-height:1.35;font-size:9.5px;letter-spacing:.16em;padding:4px 12px}
@@ -1214,11 +1249,12 @@
   p,li{text-wrap:pretty}
   .price,.mrp,.count,.js-cd,.ordno,.ob-timer,.acct-id,td,th{font-variant-numeric:tabular-nums}
   .drawer,.chat-panel,.rev-modal,.popup-card,.wb-stage,.mnav{overscroll-behavior:contain}
-  .float-dock{bottom:calc(20px + env(safe-area-inset-bottom))}
-  .float-left{bottom:calc(20px + env(safe-area-inset-bottom))}
-  .float-handle{bottom:calc(120px + env(safe-area-inset-bottom))}
-  .chat-panel{bottom:calc(92px + env(safe-area-inset-bottom))}
-  @media (max-width:1320px){.float-dock,.float-left{bottom:calc(12px + env(safe-area-inset-bottom))}}
+  @media (max-width:1024px){body{padding-bottom:calc(var(--mbar-h) + env(safe-area-inset-bottom))}}
+  .float-dock{bottom:calc(20px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  .float-left{bottom:calc(20px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  .float-handle{bottom:calc(120px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  .chat-panel{bottom:calc(92px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  @media (max-width:1320px){.float-dock,.float-left{bottom:calc(12px + var(--mbar-h) + env(safe-area-inset-bottom))}}
 
   /* ---------- production polish: tokens, focus, motion ---------- */
   :root{
@@ -1914,7 +1950,7 @@ p{color:var(--ink)}
     </a>
 
     <div class="actions">
-      <a class="act" href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" aria-label="Search and shop">
+      <a class="act" href="sohraaz-full-store-template.html#/search" data-nav="#/search" aria-label="Search the collection">
         <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       </a>
       <a class="act" href="sohraaz-full-store-template.html#/account" data-nav="#/account" aria-label="My account">
@@ -1972,6 +2008,88 @@ p{color:var(--ink)}
   <div class="mnav-scrim" id="mnavScrim" aria-hidden="true"></div>
 </header>
 <!--#endregion header-->
+
+<!--#region mobilebar-->
+<!-- ============================================================================
+     SOHRAAZ — MOBILE BOTTOM BAR (single source of truth)
+     Injected into every page by build.mjs.
+
+     The live sohraaz.com has a sticky mobile toolbar (the Halo theme's
+     `#shopify-section-halo-toolbar-mobile` / `ul.bottom-bar--list`) with five
+     items: Home, Search, Collection, Account, Watch & Buy. This is our
+     version of it - same five jobs, our own icons and palette, and every
+     item wired to a real destination in THIS template.
+
+     Mobile only: hidden from 1025px up, exactly like the live one.
+
+     The icons are the same 24x24 stroked set the header and the mobile menu
+     already use, so the bar looks like part of the same design system.
+     ============================================================================ -->
+<nav class="mbar" id="mbar" aria-label="Quick navigation">
+  <ul class="mbar-list">
+    <li>
+      <a href="index.html" data-mbar="home">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg></span>
+        <span class="mbar-tx">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="sohraaz-full-store-template.html#/search" data-nav="#/search" data-mbar="search">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+        <span class="mbar-tx">Search</span>
+      </a>
+    </li>
+    <li>
+      <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" data-mbar="collection">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg></span>
+        <span class="mbar-tx">Collection</span>
+      </a>
+    </li>
+    <li>
+      <a href="sohraaz-full-store-template.html#/account" data-nav="#/account" data-mbar="account">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-6 8-6s6.5 2.2 8 6"/></svg></span>
+        <span class="mbar-tx">Account</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.html#watch-buy" data-mbar="watchbuy">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></span>
+        <span class="mbar-tx">Watch &amp; Buy</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<script>
+/* the bar's own behaviour: "Home" scrolls to the top when you are already on
+   the homepage, and the item for the page you are on is marked. */
+(function(){
+  function mark(){
+    var path=(location.hash||"").split("?")[0];
+    var onHome=/index\.html$/i.test(location.pathname)||/\/$/.test(location.pathname);
+    document.querySelectorAll(".mbar-list a[data-mbar]").forEach(function(a){
+      var k=a.getAttribute("data-mbar");
+      var on =
+        (k==="home"     && onHome && !path) ||
+        (k==="search"   && path==="#/search") ||
+        (k==="collection" && (path==="#/shop" || path==="#/lookbook" || path.indexOf("#/product/")===0 || path==="#/cart" || path==="#/checkout" || path==="#/wishlist")) ||
+        (k==="account"  && path==="#/account") ||
+        (k==="watchbuy" && (path==="#/watch" || location.hash==="#watch-buy"));
+      if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest && e.target.closest('[data-mbar="home"]');
+    if(!a) return;
+    if(/index\.html$/i.test(location.pathname)||/\/$/.test(location.pathname)){
+      e.preventDefault();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+  });
+  window.addEventListener("hashchange",mark);
+  mark();
+})();
+</script>
+<!--#endregion mobilebar-->
 
 <main id="app" id="main"></main>
 
@@ -3194,6 +3312,51 @@ function toggleDropdown(name){
   }
 }
 
+/* ================= SEARCH ================= */
+/* Searches the real catalogue - name, fabric, category and colour. The
+   live site opens a search overlay from its mobile bar; this is ours. */
+function searchHay(p){
+  return [p.name,(p.desc||""),p.cat||"",(p.swatches||[]).map(h=>colourName(h)).join(" ")]
+    .join(" ").toLowerCase();
+}
+function searchProducts(term){
+  const words=(term||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if(!words.length) return [];
+  return PRODUCTS.filter(p=>{
+    const hay=searchHay(p);
+    return words.every(w=>hay.indexOf(w)>=0);
+  });
+}
+function searchResultsHTML(term){
+  const list=searchProducts(term);
+  if(!list.length){
+    return `<div class="empty-filter"><h3>Kuch nahi mila</h3><p>"${String(term).replace(/[<>&"]/g,"")}" se koi product nahi mila. Dusre shabd try karo — jaise kurta, sherwani, pathani, giza, black.</p><button class="btn btn-dark" data-search-clear>Clear search</button></div>`;
+  }
+  return `<p class="search-count">${list.length} product${list.length===1?"":"s"} found</p><div class="prod-grid">${list.map(prodCardHTML).join("")}</div>`;
+}
+function renderSearch(q){
+  const term=q.get("q")||"";
+  const chips=["All","Everyday","Festive","Wedding","Signature","Accessories"];
+  return `
+  <section><div class="container">
+    <div class="sec-head"><h2>Search</h2></div>
+    <div class="sbox">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Kurta, sherwani, pathani, Giza cotton, black…" value="${String(term).replace(/"/g,"&quot;")}">
+    </div>
+    <div id="searchResults">${term?searchResultsHTML(term):`
+      <div class="search-browse">
+        <span class="fgroup-h">Browse by category</span>
+        <div class="chips">${chips.map(c=>`<button class="chip" data-nav="#/shop?cat=${encodeURIComponent(c)}">${c}</button>`).join("")}</div>
+      </div>
+      <div class="search-browse">
+        <span class="fgroup-h">Popular searches</span>
+        <div class="chips">${["Giza cotton","Pathani","Mirror work","Sherwani","Black kurta","Festive","Wedding","Churidar"].map(w=>`<button class="chip" data-search-term="${w}">${w}</button>`).join("")}</div>
+      </div>
+    `}</div>
+  </div></section>`;
+}
+
 function renderShop(q){
   const cat=q.get("cat")||"All";
   const sort=q.get("sort")||"featured";
@@ -3751,6 +3914,7 @@ function router(){
   if(typeof closeDrawer==="function") closeDrawer(); if(pathChanged) window.scrollTo(0,0);
   if(path.startsWith("#/product/")){ try{ app.innerHTML=renderProduct(path.split("/")[2]); }catch(e){ app.innerHTML=`<div class="container" style="padding:60px 0;text-align:center"><h2 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 8px">Product not found</h2><p style="color:#796D62;margin:0 0 22px">Is product ka page abhi available nahi hai. Shop se dobara dekhein.</p><a data-nav="#/shop" class="btn btn-dark">Back to shop</a></div>`; console.error("renderProduct error:",e); } }
   else if(path==="#/shop") app.innerHTML=renderShop(q);
+  else if(path==="#/search") app.innerHTML=renderSearch(q);
   else if(path==="#/wishlist") app.innerHTML=renderWishlist();
   else if(path==="#/account") app.innerHTML=renderAccount();
   else if(path==="#/lookbook") app.innerHTML=renderLookbook();
@@ -3776,7 +3940,7 @@ document.addEventListener("click",e=>{
   if(cm && e.target===cm){ cm.classList.remove('open'); document.body.style.overflow=''; return; }
   const nm=e.target.closest('#notifyModal');
   if(nm && e.target===nm){ nm.classList.remove('open'); document.body.style.overflow=''; return; }
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-collclear],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save]");
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-collclear],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save],[data-search-term],[data-search-clear]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
   if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); if(location.hash==="#/wishlist"){ const app=document.getElementById("app"); if(app) app.innerHTML=renderWishlist(); } return; }
@@ -3851,6 +4015,16 @@ document.addEventListener("click",e=>{
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
   if(t.dataset.cat){ if(t.classList.contains("chip")){ shopHash({cat:t.dataset.cat, col:""}); } return; }
   if(t.dataset.collclear!==undefined){ shopHash({col:"", cat:"All", size:"", colour:"", price:"", sort:""}); return; }
+  if(t.dataset.searchTerm!==undefined){
+    const inp=document.getElementById("searchInput");
+    if(inp){ inp.value=t.dataset.searchTerm; inp.focus(); const box=document.getElementById("searchResults"); if(box) box.innerHTML=searchResultsHTML(t.dataset.searchTerm); try{ history.replaceState(null,"","#/search?q="+encodeURIComponent(t.dataset.searchTerm)); }catch(e2){} }
+    return;
+  }
+  if(t.dataset.searchClear!==undefined){
+    const inp=document.getElementById("searchInput");
+    if(inp){ inp.value=""; inp.focus(); const box=document.getElementById("searchResults"); if(box) box.innerHTML=searchResultsHTML(""); try{ history.replaceState(null,"","#/search"); }catch(e2){} }
+    return;
+  }
   if(t.dataset.fdropBtn!==undefined){ toggleDropdown(t.dataset.fdropBtn); return; }
   if(t.dataset.fsize!==undefined){ shopHash({size:t.dataset.fsize}); return; }
   if(t.dataset.fcolour!==undefined){ shopHash({colour:t.dataset.fcolour}); return; }
@@ -3938,6 +4112,15 @@ document.addEventListener("keydown",e=>{
     if(m && m.classList.contains("open")){ m.classList.remove("open"); document.body.style.overflow=""; }
   });
   if(typeof closeRevModal==="function") closeRevModal();
+});
+document.addEventListener("input",e=>{
+  if(e.target && e.target.id==="searchInput"){
+    const box=document.getElementById("searchResults");
+    if(!box) return;
+    const v=e.target.value;
+    box.innerHTML=searchResultsHTML(v);
+    try{ history.replaceState(null,"","#/search?q="+encodeURIComponent(v)); }catch(e2){}
+  }
 });
 document.addEventListener("change",e=>{
   if(e.target.id==="newCust"){ store.isNew=e.target.checked; save(); renderDrawer(); refreshCartView(); }

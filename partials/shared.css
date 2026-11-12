@@ -105,6 +105,32 @@
   .burger.open svg{stroke:#AD8765}
 
 
+  /* the mobile bottom bar takes the bottom of the screen on phones; every
+     fixed element that lives down there is lifted by this one number */
+  :root{--mbar-h:0px}
+  @media (max-width:1024px){:root{--mbar-h:64px}}
+
+  /* ---------- mobile bottom bar (mobile only) ---------- */
+  .mbar{display:none}
+  @media (max-width:1024px){
+    .mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:92;
+      background:var(--ivory,#FAF8F4);border-top:1px solid var(--line);
+      box-shadow:0 -3px 16px rgba(48,32,25,.10);
+      padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+    .mbar-list{list-style:none;margin:0;padding:0;display:flex;align-items:center}
+    .mbar-list li{flex:1 1 0;min-width:0}
+    .mbar-list a{display:block;text-align:center;text-decoration:none;padding:4px 2px;border-radius:3px;
+      -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    .mbar-list a:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+    .mbar-ico{display:block;line-height:0}
+    .mbar-ico svg{width:21px;height:21px;stroke:var(--mocha);stroke-width:1.5;fill:none;
+      stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+    .mbar-tx{display:block;margin-top:5px;font-family:var(--caps);font-size:9.5px;font-weight:500;
+      letter-spacing:.09em;text-transform:uppercase;color:var(--mocha);line-height:1;white-space:nowrap}
+    .mbar-list a:active .mbar-ico svg,.mbar-list a[aria-current="page"] .mbar-ico svg{stroke:var(--gold-text)}
+    .mbar-list a[aria-current="page"] .mbar-tx{color:var(--gold-text)}
+  }
+
   /* ---------- floating helpers + chat (shared by all pages) ---------- */
   .float-dock{position:fixed;z-index:900;display:flex;flex-direction:column;gap:8px}
   .float-wrap{position:relative}
@@ -126,14 +152,14 @@
   .float-min{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:#F4E9D4;border:1px solid #C7AA8B;color:#302019;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(20,13,8,.3);transition:transform .2s}
   .float-min:hover{transform:scale(1.15)}
   .float-left .float-min{right:auto;left:-7px}
-  .float-handle{position:fixed;z-index:900;bottom:120px;border:none;background:#302019;color:#C7AA8B;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
+  .float-handle{position:fixed;z-index:900;bottom:calc(120px + var(--mbar-h));border:none;background:#302019;color:#C7AA8B;font-family:var(--caps);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;padding:14px 7px;writing-mode:vertical-rl;box-shadow:0 8px 24px rgba(20,13,8,.35);cursor:pointer;display:none;align-items:center;gap:6px}
   .float-handle.show{display:flex}
   .float-handle:hover{background:#302019}
   .float-handle-left{left:0;border-radius:0 14px 14px 0}
   .float-handle-right{right:0;border-radius:14px 0 0 14px;background:#128C4B;color:#fff}
   .float-handle-right:hover{background:#25D366;color:#083A1E}
   /* Sohraaz Assistant — chat */
-  .chat-panel{position:fixed;left:20px;bottom:92px;z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel{position:fixed;left:20px;bottom:calc(92px + var(--mbar-h));z-index:880;width:372px;max-width:calc(100vw - 32px);height:544px;max-height:72vh;background:#FAF8F4;border:1px solid #E4D8CA;border-radius:20px;box-shadow:0 24px 80px rgba(20,13,8,.4);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.open{display:flex;animation:chatIn .28s ease}
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .chat-head{background:#302019;color:#F4E9D4;padding:16px 18px;display:flex;align-items:center;gap:12px}
@@ -160,11 +186,11 @@
   .chat-wa{display:block;text-align:center;font-size:11px;color:#6E6259;padding:8px;background:#fff;border-top:1px solid #EAE0D4}
   .chat-wa a{color:#1E7A34;font-weight:700;border-bottom:1px solid #1E7A34}
   @media (max-width:640px){
-    .float-dock{right:12px;bottom:12px}
-    .float-left{left:12px;bottom:12px}
+    .float-dock{right:12px;bottom:calc(12px + var(--mbar-h))}
+    .float-left{left:12px;bottom:calc(12px + var(--mbar-h))}
     .float-btn{width:52px;height:52px}
     .float-handle{bottom:96px}
-    .chat-panel{left:8px;bottom:88px}
+    .chat-panel{left:8px;bottom:calc(88px + var(--mbar-h))}
     /* announcement message must wrap on phones — it was clipped mid-word */
     .announce-track{height:auto;min-height:34px}
     .announce-track span{white-space:normal;line-height:1.35;font-size:9.5px;letter-spacing:.16em;padding:4px 12px}
@@ -199,11 +225,12 @@
   p,li{text-wrap:pretty}
   .price,.mrp,.count,.js-cd,.ordno,.ob-timer,.acct-id,td,th{font-variant-numeric:tabular-nums}
   .drawer,.chat-panel,.rev-modal,.popup-card,.wb-stage,.mnav{overscroll-behavior:contain}
-  .float-dock{bottom:calc(20px + env(safe-area-inset-bottom))}
-  .float-left{bottom:calc(20px + env(safe-area-inset-bottom))}
-  .float-handle{bottom:calc(120px + env(safe-area-inset-bottom))}
-  .chat-panel{bottom:calc(92px + env(safe-area-inset-bottom))}
-  @media (max-width:1320px){.float-dock,.float-left{bottom:calc(12px + env(safe-area-inset-bottom))}}
+  @media (max-width:1024px){body{padding-bottom:calc(var(--mbar-h) + env(safe-area-inset-bottom))}}
+  .float-dock{bottom:calc(20px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  .float-left{bottom:calc(20px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  .float-handle{bottom:calc(120px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  .chat-panel{bottom:calc(92px + var(--mbar-h) + env(safe-area-inset-bottom))}
+  @media (max-width:1320px){.float-dock,.float-left{bottom:calc(12px + var(--mbar-h) + env(safe-area-inset-bottom))}}
 
   /* ---------- production polish: tokens, focus, motion ---------- */
   :root{

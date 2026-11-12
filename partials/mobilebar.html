@@ -1,0 +1,79 @@
+<!-- ============================================================================
+     SOHRAAZ — MOBILE BOTTOM BAR (single source of truth)
+     Injected into every page by build.mjs.
+
+     The live sohraaz.com has a sticky mobile toolbar (the Halo theme's
+     `#shopify-section-halo-toolbar-mobile` / `ul.bottom-bar--list`) with five
+     items: Home, Search, Collection, Account, Watch & Buy. This is our
+     version of it - same five jobs, our own icons and palette, and every
+     item wired to a real destination in THIS template.
+
+     Mobile only: hidden from 1025px up, exactly like the live one.
+
+     The icons are the same 24x24 stroked set the header and the mobile menu
+     already use, so the bar looks like part of the same design system.
+     ============================================================================ -->
+<nav class="mbar" id="mbar" aria-label="Quick navigation">
+  <ul class="mbar-list">
+    <li>
+      <a href="index.html" data-mbar="home">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg></span>
+        <span class="mbar-tx">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="sohraaz-full-store-template.html#/search" data-nav="#/search" data-mbar="search">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+        <span class="mbar-tx">Search</span>
+      </a>
+    </li>
+    <li>
+      <a href="sohraaz-full-store-template.html#/shop" data-nav="#/shop" data-mbar="collection">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg></span>
+        <span class="mbar-tx">Collection</span>
+      </a>
+    </li>
+    <li>
+      <a href="sohraaz-full-store-template.html#/account" data-nav="#/account" data-mbar="account">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-6 8-6s6.5 2.2 8 6"/></svg></span>
+        <span class="mbar-tx">Account</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.html#watch-buy" data-mbar="watchbuy">
+        <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></span>
+        <span class="mbar-tx">Watch &amp; Buy</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<script>
+/* the bar's own behaviour: "Home" scrolls to the top when you are already on
+   the homepage, and the item for the page you are on is marked. */
+(function(){
+  function mark(){
+    var path=(location.hash||"").split("?")[0];
+    var onHome=/index\.html$/i.test(location.pathname)||/\/$/.test(location.pathname);
+    document.querySelectorAll(".mbar-list a[data-mbar]").forEach(function(a){
+      var k=a.getAttribute("data-mbar");
+      var on =
+        (k==="home"     && onHome && !path) ||
+        (k==="search"   && path==="#/search") ||
+        (k==="collection" && (path==="#/shop" || path==="#/lookbook" || path.indexOf("#/product/")===0 || path==="#/cart" || path==="#/checkout" || path==="#/wishlist")) ||
+        (k==="account"  && path==="#/account") ||
+        (k==="watchbuy" && (path==="#/watch" || location.hash==="#watch-buy"));
+      if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest && e.target.closest('[data-mbar="home"]');
+    if(!a) return;
+    if(/index\.html$/i.test(location.pathname)||/\/$/.test(location.pathname)){
+      e.preventDefault();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+  });
+  window.addEventListener("hashchange",mark);
+  mark();
+})();
+</script>
