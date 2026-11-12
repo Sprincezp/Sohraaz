@@ -594,3 +594,203 @@ p{color:var(--ink)}
 .chat-chip{border-color:var(--line);color:var(--ink)}
 .chat-chip:hover{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
 .chat-inputrow button{background:var(--choco);color:var(--cream)}
+
+/* ============================================================================
+   CANONICAL PAGE FURNITURE — injected into EVERY page
+   ----------------------------------------------------------------------------
+   The homepage is the reference for the site's voice. These rules used to
+   live only in homepage.css (homepage) or in each page's own legacy block
+   (store, story), which is why the three pages drifted apart: the store
+   rendered every section title as uppercase Manrope while the homepage
+   rendered the same component as a Cormorant Garamond serif heading.
+
+   This file is injected LAST by build.mjs, so these rules also settle every
+   legacy conflict that used to survive the cascade.
+   ========================================================================== */
+
+/* ---------- layout shell ---------- */
+.container{max-width:1320px;margin:0 auto;padding:0 48px}
+
+/* ---------- section title system (one voice for every page) ---------- */
+.sec-head{display:block;text-align:center;margin-bottom:16px}
+/* the legacy rules drew a hairline either side of the title — the homepage
+   never had them, so they are switched off rather than re-declared */
+.sec-head::before,.sec-head::after{content:none}
+.sec-head .overline{display:block;margin-bottom:16px}
+.sec-head h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(30px,3.6vw,44px);
+  line-height:1.12;
+  letter-spacing:.005em;
+  text-transform:none;
+  text-indent:0;
+  text-align:center;
+  color:var(--choco-dark);
+}
+.sec-head .rule{width:54px;height:1px;background:var(--gold);margin:20px auto 0}
+.sec-sub{
+  text-align:center;
+  font-family:var(--caps);
+  font-style:normal;
+  font-size:13.5px;
+  line-height:1.85;
+  letter-spacing:.02em;
+  color:var(--ink-2s);
+  max-width:660px;
+  margin:18px auto 44px;
+}
+/* the product page's "you may also like" block keeps its tighter scale */
+.like-section .sec-head::before,.like-section .sec-head::after{content:none}
+.like-section .sec-head h2{font-size:22px}
+.like-section .sec-head p{
+  font-family:var(--caps);font-style:normal;font-size:13.5px;
+  letter-spacing:.02em;color:var(--ink-2s);margin-top:8px;
+}
+
+/* ---------- page head (the H1 block every page opens with) ---------- */
+.page-head{
+  text-align:center;
+  padding:56px 0 34px;
+  margin-bottom:4px;
+}
+.page-head .overline{display:block;margin-bottom:14px}
+.page-head h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(34px,4.4vw,52px);
+  line-height:1.08;
+  letter-spacing:.005em;
+  color:var(--choco-dark);
+  margin:0;
+}
+.page-head .rule{width:54px;height:1px;background:var(--gold);margin:20px auto 0}
+.page-head .page-sub a,
+.page-link{
+  font-family:var(--caps);
+  font-size:13px;
+  letter-spacing:.06em;
+  color:var(--choco);
+  border-bottom:1px solid var(--gold);
+  text-decoration:none;
+  cursor:pointer;
+  transition:color .25s ease,border-color .25s ease;
+}
+.page-head .page-sub a:hover,.page-link:hover{color:var(--mocha);border-bottom-color:var(--mocha)}
+.page-head .page-sub{
+  font-family:var(--caps);
+  font-size:13.5px;
+  line-height:1.8;
+  letter-spacing:.02em;
+  color:var(--ink-2s);
+  max-width:620px;
+  margin:18px auto 0;
+}
+
+/* ---------- product grid (homepage + store read the same way) ---------- */
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod-grid .prod-meta{padding:18px 18px 20px;text-align:left}
+.prod-grid .prod-prices{justify-content:flex-start}
+
+/* ---------- gallery ---------- */
+.gal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:8px}
+.gal{position:relative;aspect-ratio:3/3.7;overflow:hidden;background:var(--muted-bg);display:block}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.gal:hover img{transform:scale(1.07)}
+
+/* ---------- occasion cards ---------- */
+.occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.occ{position:relative;aspect-ratio:3/4.1;overflow:hidden;background:var(--muted-bg);display:block}
+.occ span{
+  position:absolute;z-index:2;left:0;right:0;bottom:26px;text-align:center;
+  color:#F4EDE3;font-family:var(--serif);font-size:22px;line-height:1.2;letter-spacing:.02em;
+  padding:0 12px;
+}
+.occ span small{
+  display:block;margin-top:8px;
+  font-family:var(--caps);font-size:9.5px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;color:#C7AA8B;
+}
+.occ img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.occ:hover img{transform:scale(1.07)}
+.occ::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(48,32,25,0) 42%,rgba(48,32,25,.86) 100%)}
+
+/* ---------- announcement bar (identical rhythm everywhere) ---------- */
+.announce-track{height:36px}
+.announce-track span{
+  font-family:var(--caps);
+  font-size:10px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:#C7AA8B;
+  padding:0 16px;
+  white-space:nowrap;
+}
+.announce-track b{color:var(--gold);font-weight:600}
+
+/* ---------- legacy chrome corrections -------------------------------------
+   These three blocks used to be re-declared per page with different values.
+   The design system is the single source now. */
+.nav a{font-size:13px;letter-spacing:.1em;color:var(--cream);padding:8px 0}
+.nav a:hover{color:var(--gold-light);border-bottom-color:var(--gold)}
+.nav ul{gap:16px}
+.mnav a{color:var(--cream);letter-spacing:.18em;border-top:1px solid rgba(244,237,227,.08)}
+.mnav a:hover{background:rgba(173,135,101,.12);color:#fff}
+.mnav a small{color:#B4A28C}
+.mnav a svg{stroke:var(--gold-light);width:20px;height:20px}
+.mnav-scrim{background:rgba(48,32,25,.55)}
+.btn{border:1px solid transparent;font-size:12px;letter-spacing:.18em;gap:11px}
+.btn-dark{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.btn-dark:hover{background:var(--mocha);border-color:var(--mocha);color:var(--white)}
+.btn-solid{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.btn-solid:hover{background:var(--mocha);border-color:var(--mocha);color:var(--white)}
+.btn-cream{background:var(--ivory);color:var(--choco-dark);border-color:var(--ivory)}
+.btn-cream:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-gold:hover{background:var(--mocha);border-color:var(--mocha);color:#fff}
+.btn-ghost,.btn-outline{background:transparent;color:var(--choco);border-color:var(--choco)}
+.btn-ghost:hover,.btn-outline:hover{background:var(--choco);color:var(--ivory)}
+.flogo{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:.30em;color:var(--cream)}
+.f-col h4{font-family:var(--caps);font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.f-col a{font-family:var(--caps);font-size:13px;color:#C6B7A3}
+.f-col a:hover{color:var(--gold-light)}
+.foot-brand p{color:#C6B7A3;font-size:13.5px;line-height:1.75}
+.foot-contact{color:#C6B7A3!important}
+.foot-contact a{color:var(--gold-light)!important}
+.foot-bottom{font-size:12.5px;color:#A5946F;border-top:1px solid rgba(244,237,227,.12)}
+/* the wishlist keeps its own layout, but speaks with the same voice */
+.wl-head h1{font-family:var(--serif);font-weight:400;color:var(--choco-dark)}
+.acct-hero h2{font-family:var(--serif);font-weight:400;color:var(--choco-dark)}
+.news input{background:rgba(244,237,227,.05);border:1px solid rgba(173,135,101,.38);color:var(--cream);font-family:var(--caps)}
+.news input::placeholder{color:#A5946F}
+.chat-head{background:var(--choco-dark);color:var(--cream)}
+.chat-chip{border-color:var(--line);color:var(--ink)}
+.chat-chip:hover{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.chat-inputrow button{background:var(--choco);color:var(--cream)}
+.float-handle{background:var(--choco);color:var(--gold-light)}
+.float-tip{background:var(--choco-dark)}
+.drawer{background:var(--ivory)}
+.drawer-foot{background:var(--ivory)}
+
+/* ---------- responsive furniture (same breakpoints on every page) ---------- */
+@media (max-width:1100px){
+  .occ-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:900px){
+  .container{padding:0 26px}
+}
+@media (max-width:640px){
+  .container{padding:0 20px}
+  .page-head{padding:36px 0 24px}
+  .page-head h1{font-size:clamp(28px,8vw,38px)}
+  .occ-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .occ{aspect-ratio:3/4}
+  .occ span{font-size:17px;bottom:18px}
+  .occ span small{font-size:8.5px;letter-spacing:.18em;margin-top:6px}
+  .prod-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .prod-grid .prod-meta{padding:14px 14px 16px}
+  .gal-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+}
+@media (max-width:400px){
+  .prod-grid{grid-template-columns:1fr}
+}

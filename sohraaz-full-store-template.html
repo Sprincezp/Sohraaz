@@ -54,7 +54,7 @@
 -->
 <style>
   :root{
-    --cream:#F4EDE3; --cream-2:#EAE0D4; --cream-solid:#FAF8F4; --tan:#DCCEB6; --ink:#30251F; --muted:#6E6259;
+    --cream:#F4EDE3; --cream-2:#EAE0D4; --cream-solid:#FAF8F4; --tan:#E4D8CA; --ink:#30251F; --muted:#6E6259;
     --brown-950:#302019; --brown-900:#302019; --brown-850:#493126;
     --gold:#AD8765; --gold-text:#70513E; --line:#E4D8CA; --line-dark:rgba(240,231,213,.22);
     --green:#176034; --green-bg:#EAF2EC; --red:#B33A3A;
@@ -619,8 +619,8 @@
   .promise{margin-top:14px;font-size:13px;font-style:italic;color:var(--green);display:flex;gap:8px;align-items:center}
 
   /* success */
-  .success{max-width:640px;margin:0 auto;padding:70px 20px;text-align:center}
-  .success .big{font-family:var(--caps);font-size:26px;letter-spacing:.2em;text-transform:uppercase;color:#30251F}
+  .success{max-width:720px;margin:0 auto;padding:70px 20px;text-align:center}
+  .success .big{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,46px);letter-spacing:.02em;text-transform:none;color:var(--choco-dark);margin:10px 0 4px}
   .success .ordno{font-size:18px;color:var(--green);font-weight:600;margin-top:10px}
   .success .box{border:1px solid var(--line);background:var(--cream-2);padding:24px;margin:26px 0;text-align:left}
   .success .wa{font-style:italic;color:var(--muted);font-size:15px;margin-top:16px}
@@ -866,7 +866,7 @@
   }
 
   /* ============ PDP REVIEWS — Amazon-style ============ */
-  .reviews-section{max-width:1180px;margin:0 auto;padding:56px 0 48px;border-top:1px solid var(--line);width:100%}
+  .reviews-section{max-width:1320px;margin:0 auto;padding:56px 0 48px;border-top:1px solid var(--line);width:100%}
   .rev-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}
   .rev-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,38px);color:var(--ink);line-height:1.1}
   .rev-head h2 span{display:block;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#6E6259;margin-top:8px;font-style:italic;font-weight:400}
@@ -948,7 +948,7 @@
   @media (max-width:900px){.rev-layout{grid-template-columns:1fr}.rev-summary{text-align:left;display:flex;align-items:center;gap:22px;flex-wrap:wrap}.rev-summary .big{font-size:56px}.rev-bars{flex:1;min-width:200px}}
 
   /* ============ WISHLIST PAGE ============ */
-  .wl-wrap{max-width:1280px;margin:0 auto;padding:44px 0 64px}
+  .wl-wrap{max-width:1320px;margin:0 auto;padding:44px 0 64px}
   .wl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:30px}
   .wl-kicker{font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:#6E6259;display:block;margin-bottom:10px}
   .wl-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(36px,5vw,54px);color:var(--ink);line-height:1}
@@ -970,7 +970,7 @@
   .size-link{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--brown-900);border-bottom:1.5px solid var(--gold);padding-bottom:2px;cursor:pointer;background:none;margin-top:12px}
   .size-link svg{width:14px;height:14px;stroke:var(--gold);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
   /* ============ RESTOCK WAITLIST ============ */
-  .restock-row{display:flex;align-items:center;gap:12px;margin-top:16px;padding:14px 16px;border:1px dashed #DCCEB6;border-radius:14px;background:#FAF8F4}
+  .restock-row{display:flex;align-items:center;gap:12px;margin-top:16px;padding:14px 16px;border:1px dashed var(--line);border-radius:14px;background:#FAF8F4}
   .restock-row svg{width:22px;height:22px;stroke:var(--brown-850);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
   .restock-row small{font-size:12.5px;color:#70513E;line-height:1.45;display:block}
   .restock-row b{font-size:13px;color:#302019}
@@ -980,7 +980,7 @@
   @keyframes chatIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   @keyframes chatBlink{0%,80%,100%{opacity:.3}40%{opacity:1}}
   /* ============ ACCOUNT + LOYALTY ============ */
-  .acct-wrap{max-width:1180px;margin:0 auto;padding:44px 0 64px;display:grid;grid-template-columns:360px 1fr;gap:26px;align-items:start}
+  .acct-wrap{max-width:1320px;margin:0 auto;padding:44px 0 64px;display:grid;grid-template-columns:360px 1fr;gap:26px;align-items:start}
   .acct-card{background:#FAF8F4;border:1px solid #E4D8CA;border-radius:18px;padding:24px}
   .acct-hero{text-align:center}
   .acct-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(140deg,#AD8765,#C7AA8B);color:#302019;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:36px;margin:0 auto 14px}
@@ -1018,7 +1018,7 @@
   .ref-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#083A1E;border-radius:12px;padding:13px;font-size:13px;font-weight:700}
   .ref-wa svg{width:17px;height:17px;fill:#083A1E}
   /* ============ WEDDING LOOKBOOK ============ */
-  .lbk{max-width:1280px;margin:0 auto;padding:36px 0 70px}
+  .lbk{max-width:1320px;margin:0 auto;padding:36px 0 70px}
   .lbk-hero{position:relative;overflow:hidden;border-radius:26px;padding:96px 36px 84px;text-align:center;background:radial-gradient(1200px 500px at 50% -10%,#493126 0%,#302019 60%,#302019 100%);color:#F4E9D4}
   .lbk-kicker{font-family:var(--caps);font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:#C7AA8B;display:block;margin-bottom:18px}
   .lbk-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.4vw,74px);line-height:1.02;letter-spacing:-.01em}
@@ -1928,6 +1928,206 @@ p{color:var(--ink)}
 .chat-chip:hover{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
 .chat-inputrow button{background:var(--choco);color:var(--cream)}
 
+/* ============================================================================
+   CANONICAL PAGE FURNITURE — injected into EVERY page
+   ----------------------------------------------------------------------------
+   The homepage is the reference for the site's voice. These rules used to
+   live only in homepage.css (homepage) or in each page's own legacy block
+   (store, story), which is why the three pages drifted apart: the store
+   rendered every section title as uppercase Manrope while the homepage
+   rendered the same component as a Cormorant Garamond serif heading.
+
+   This file is injected LAST by build.mjs, so these rules also settle every
+   legacy conflict that used to survive the cascade.
+   ========================================================================== */
+
+/* ---------- layout shell ---------- */
+.container{max-width:1320px;margin:0 auto;padding:0 48px}
+
+/* ---------- section title system (one voice for every page) ---------- */
+.sec-head{display:block;text-align:center;margin-bottom:16px}
+/* the legacy rules drew a hairline either side of the title — the homepage
+   never had them, so they are switched off rather than re-declared */
+.sec-head::before,.sec-head::after{content:none}
+.sec-head .overline{display:block;margin-bottom:16px}
+.sec-head h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(30px,3.6vw,44px);
+  line-height:1.12;
+  letter-spacing:.005em;
+  text-transform:none;
+  text-indent:0;
+  text-align:center;
+  color:var(--choco-dark);
+}
+.sec-head .rule{width:54px;height:1px;background:var(--gold);margin:20px auto 0}
+.sec-sub{
+  text-align:center;
+  font-family:var(--caps);
+  font-style:normal;
+  font-size:13.5px;
+  line-height:1.85;
+  letter-spacing:.02em;
+  color:var(--ink-2s);
+  max-width:660px;
+  margin:18px auto 44px;
+}
+/* the product page's "you may also like" block keeps its tighter scale */
+.like-section .sec-head::before,.like-section .sec-head::after{content:none}
+.like-section .sec-head h2{font-size:22px}
+.like-section .sec-head p{
+  font-family:var(--caps);font-style:normal;font-size:13.5px;
+  letter-spacing:.02em;color:var(--ink-2s);margin-top:8px;
+}
+
+/* ---------- page head (the H1 block every page opens with) ---------- */
+.page-head{
+  text-align:center;
+  padding:56px 0 34px;
+  margin-bottom:4px;
+}
+.page-head .overline{display:block;margin-bottom:14px}
+.page-head h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(34px,4.4vw,52px);
+  line-height:1.08;
+  letter-spacing:.005em;
+  color:var(--choco-dark);
+  margin:0;
+}
+.page-head .rule{width:54px;height:1px;background:var(--gold);margin:20px auto 0}
+.page-head .page-sub a,
+.page-link{
+  font-family:var(--caps);
+  font-size:13px;
+  letter-spacing:.06em;
+  color:var(--choco);
+  border-bottom:1px solid var(--gold);
+  text-decoration:none;
+  cursor:pointer;
+  transition:color .25s ease,border-color .25s ease;
+}
+.page-head .page-sub a:hover,.page-link:hover{color:var(--mocha);border-bottom-color:var(--mocha)}
+.page-head .page-sub{
+  font-family:var(--caps);
+  font-size:13.5px;
+  line-height:1.8;
+  letter-spacing:.02em;
+  color:var(--ink-2s);
+  max-width:620px;
+  margin:18px auto 0;
+}
+
+/* ---------- product grid (homepage + store read the same way) ---------- */
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod-grid .prod-meta{padding:18px 18px 20px;text-align:left}
+.prod-grid .prod-prices{justify-content:flex-start}
+
+/* ---------- gallery ---------- */
+.gal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:8px}
+.gal{position:relative;aspect-ratio:3/3.7;overflow:hidden;background:var(--muted-bg);display:block}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.gal:hover img{transform:scale(1.07)}
+
+/* ---------- occasion cards ---------- */
+.occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.occ{position:relative;aspect-ratio:3/4.1;overflow:hidden;background:var(--muted-bg);display:block}
+.occ span{
+  position:absolute;z-index:2;left:0;right:0;bottom:26px;text-align:center;
+  color:#F4EDE3;font-family:var(--serif);font-size:22px;line-height:1.2;letter-spacing:.02em;
+  padding:0 12px;
+}
+.occ span small{
+  display:block;margin-top:8px;
+  font-family:var(--caps);font-size:9.5px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;color:#C7AA8B;
+}
+.occ img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.occ:hover img{transform:scale(1.07)}
+.occ::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(48,32,25,0) 42%,rgba(48,32,25,.86) 100%)}
+
+/* ---------- announcement bar (identical rhythm everywhere) ---------- */
+.announce-track{height:36px}
+.announce-track span{
+  font-family:var(--caps);
+  font-size:10px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:#C7AA8B;
+  padding:0 16px;
+  white-space:nowrap;
+}
+.announce-track b{color:var(--gold);font-weight:600}
+
+/* ---------- legacy chrome corrections -------------------------------------
+   These three blocks used to be re-declared per page with different values.
+   The design system is the single source now. */
+.nav a{font-size:13px;letter-spacing:.1em;color:var(--cream);padding:8px 0}
+.nav a:hover{color:var(--gold-light);border-bottom-color:var(--gold)}
+.nav ul{gap:16px}
+.mnav a{color:var(--cream);letter-spacing:.18em;border-top:1px solid rgba(244,237,227,.08)}
+.mnav a:hover{background:rgba(173,135,101,.12);color:#fff}
+.mnav a small{color:#B4A28C}
+.mnav a svg{stroke:var(--gold-light);width:20px;height:20px}
+.mnav-scrim{background:rgba(48,32,25,.55)}
+.btn{border:1px solid transparent;font-size:12px;letter-spacing:.18em;gap:11px}
+.btn-dark{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.btn-dark:hover{background:var(--mocha);border-color:var(--mocha);color:var(--white)}
+.btn-solid{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.btn-solid:hover{background:var(--mocha);border-color:var(--mocha);color:var(--white)}
+.btn-cream{background:var(--ivory);color:var(--choco-dark);border-color:var(--ivory)}
+.btn-cream:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-gold:hover{background:var(--mocha);border-color:var(--mocha);color:#fff}
+.btn-ghost,.btn-outline{background:transparent;color:var(--choco);border-color:var(--choco)}
+.btn-ghost:hover,.btn-outline:hover{background:var(--choco);color:var(--ivory)}
+.flogo{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:.30em;color:var(--cream)}
+.f-col h4{font-family:var(--caps);font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.f-col a{font-family:var(--caps);font-size:13px;color:#C6B7A3}
+.f-col a:hover{color:var(--gold-light)}
+.foot-brand p{color:#C6B7A3;font-size:13.5px;line-height:1.75}
+.foot-contact{color:#C6B7A3!important}
+.foot-contact a{color:var(--gold-light)!important}
+.foot-bottom{font-size:12.5px;color:#A5946F;border-top:1px solid rgba(244,237,227,.12)}
+/* the wishlist keeps its own layout, but speaks with the same voice */
+.wl-head h1{font-family:var(--serif);font-weight:400;color:var(--choco-dark)}
+.acct-hero h2{font-family:var(--serif);font-weight:400;color:var(--choco-dark)}
+.news input{background:rgba(244,237,227,.05);border:1px solid rgba(173,135,101,.38);color:var(--cream);font-family:var(--caps)}
+.news input::placeholder{color:#A5946F}
+.chat-head{background:var(--choco-dark);color:var(--cream)}
+.chat-chip{border-color:var(--line);color:var(--ink)}
+.chat-chip:hover{background:var(--choco);color:var(--ivory);border-color:var(--choco)}
+.chat-inputrow button{background:var(--choco);color:var(--cream)}
+.float-handle{background:var(--choco);color:var(--gold-light)}
+.float-tip{background:var(--choco-dark)}
+.drawer{background:var(--ivory)}
+.drawer-foot{background:var(--ivory)}
+
+/* ---------- responsive furniture (same breakpoints on every page) ---------- */
+@media (max-width:1100px){
+  .occ-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:900px){
+  .container{padding:0 26px}
+}
+@media (max-width:640px){
+  .container{padding:0 20px}
+  .page-head{padding:36px 0 24px}
+  .page-head h1{font-size:clamp(28px,8vw,38px)}
+  .occ-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .occ{aspect-ratio:3/4}
+  .occ span{font-size:17px;bottom:18px}
+  .occ span small{font-size:8.5px;letter-spacing:.18em;margin-top:6px}
+  .prod-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .prod-grid .prod-meta{padding:14px 14px 16px}
+  .gal-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+}
+@media (max-width:400px){
+  .prod-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -2425,7 +2625,7 @@ p{color:var(--ink)}
 
 const ASSET = (name) => `assets/extracted/${name}`;
 const CDN = {
-  hero:"Banner_1.png", video:"WhatsApp_Video_2026-11-08.mp4", occasionEveryday:"New_Arrival.png", occasionFestive:"Trending_Item.png",
+  hero:"Banner_1.png", video:"hero-1080p.mp4", occasionEveryday:"New_Arrival.png", occasionFestive:"Trending_Item.png",
   occasionWedding:"Wedding_Series_Resized_Banner_2000x500_px.png", occasionSignature:"Best_Seller.png",
   craft:"DSC_6025.jpg", banner:"Banner_3.png",
   g1:"Banner_1.png", g2:"Banner_2.png", g3:"Banner_3.png", g4:"Banner_4.png",
@@ -2456,37 +2656,72 @@ function tickOffer(){
 /* PRODUCTS — real sohraaz.com prices (scraped 2026-11-09).
    mrp: genuine MRP shown crossed out above selling price. */
 const PRODUCTS = [
-  {id:"p1", name:"White Cotton Plain Kurta – Essential Wear", price:799, mrp:999, cat:"Everyday", stock:9, swatches:["#C7AA8B","#C7AA8B"], img:"DSC_5755.jpg", alt:"Elegant_Kurta_Portrait_in_Warm_Light.png", pair:["p13"], desc:"Breathable pure cotton kurta with a soft mandarin collar. Stitched in-house at our Kolkata workshop. ₹799 is the honest selling price."},
-  {id:"p2", name:"Onion Pink Cotton Self Work Kurta", price:1099, mrp:1500, cat:"Everyday", stock:6, swatches:["#D98E8E","#C87676"], img:"DSC_5757.jpg", alt:"Warm_Beige_Kurta_Portrait.png", pair:["p13"], desc:"Self-textured cotton kurta in a warm onion pink. Subtle sheen, straight cut. Stitched in-house at our Kolkata workshop. ₹1,099 is the honest selling price. Pairs beautifully with white pyjama."},
-  {id:"p3", name:"Men's Cream Paper Cotton Plain Kurta", price:1099, mrp:1499, cat:"Everyday", stock:8, swatches:["#C7AA8B","#C7AA8B"], img:"DSC_6020.jpg", alt:"Elegant_Plum_Kurta_Courtyard_Portrait.png", pair:["p13"], desc:"Crisp paper-cotton kurta in cream with a fluid drape. Stitched in-house at our Kolkata workshop. ₹1,099 is the honest selling price. Lightweight enough for long days, smart enough for evenings."},
-  {id:"p4", name:"Beige Breeze – Luxury Paper Cotton Printed Kurta", price:1499, mrp:1999, cat:"Everyday", stock:5, swatches:["#C7AA8B","#C4AE87"], img:"DSC_6025.jpg", alt:"Elegant_Plum_Kurta_Courtyard_Portrait_1.png", pair:["p13"], desc:"Signature print on luxury paper cotton. Stitched in-house at our Kolkata workshop. ₹1,499 is the honest selling price. A statement piece that stays understated — the Beige Breeze is a best-seller."},
-  {id:"p5", name:"Men's Grey Poly Cotton Self Work Kurta", price:1699, mrp:2299, cat:"Festive", stock:7, swatches:["#8B8B8B","#6F6F6F"], img:"DSC_5755.jpg", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors.png", pair:["p13"], desc:"Self-work texture in a cool grey. Stitched in-house at our Kolkata workshop. ₹1,699 is the honest selling price. Designed for festive evenings where the occasion is real but the mood is relaxed."},
-  {id:"p6", name:"Embroidered Black Giza Cotton Kurta", price:2299, mrp:2999, cat:"Festive", stock:4, swatches:["#1C1C1C","#2E2E2E"], img:"DSC_5757.jpg", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors_1.png", pair:["p13"], desc:"Premium Giza cotton with tonal embroidery. Stitched in-house at our Kolkata workshop. ₹2,299 is the honest selling price. Black done the Sohraaz way — deep, matte, and quietly powerful."},
-  {id:"p7", name:"Festive Black Giza Cotton Embroidered Kurta", price:2599, mrp:3499, cat:"Festive", stock:3, swatches:["#141414","#33302B"], img:"DSC_6020.jpg", alt:"Men_s_Kurta.png", pair:["p13"], desc:"Festive-weight Giza cotton with dense embroidery work. Stitched in-house at our Kolkata workshop. ₹2,599 is the honest selling price. Made for nights that end after midnight."},
-  {id:"p8", name:"Men's Off White Giza Cotton Moti Work Festive Kurta", price:2999, mrp:3999, cat:"Wedding", stock:5, swatches:["#F1E9D8","#E4D8CA"], img:"DSC_6025.jpg", alt:"Warm_Beige_Kurta_Portrait.png", pair:["p14"], desc:"Moti (pearl) hand-work on off-white Giza cotton. Stitched in-house at our Kolkata workshop — every kurta is checked for fabric, stitching and embroidery before it leaves. ₹2,999 is the honest selling price. A wedding-season hero piece for haldi, sangeet and receptions."},
-  {id:"p9", name:"Men's Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, mrp:4299, cat:"Wedding", stock:4, swatches:["#BFD3D6","#A6BFc2"], img:"Men_s_Kurta.png", alt:"Elegant_Kurta_Portrait_in_Warm_Light.png", pair:["p14"], desc:"Two-piece set: ice-blue self-work kurta with a matching jacket. Stitched in-house at our Kolkata workshop. ₹3,299 is the honest selling price. Full wedding-ready look in one box."},
-  {id:"p10", name:"Armani Black – Black Armani Embroidered Kurta", price:2549, mrp:3499, cat:"Wedding", stock:3, swatches:["#101010","#262626"], img:"Warm_Beige_Kurta_Portrait.png", alt:"Elegant_Plum_Kurta_Courtyard_Portrait.png", pair:["p13"], desc:"The Armani series — imported blend with signature embroidery. Stitched in-house at our Kolkata workshop. ₹2,549 is the honest selling price. Black, for the man who dresses first and talks later."},
-  {id:"p11", name:"Armani Glow – White Armani Mirror Work Kurta", price:2649, mrp:3599, cat:"Wedding", stock:3, swatches:["#FAF8F4","#C7AA8B"], img:"Elegant_Kurta_Portrait_in_Warm_Light.png", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors.png", pair:["p14"], desc:"Mirror-work Armani kurta in white. Stitched in-house at our Kolkata workshop. ₹2,649 is the honest selling price. Catches every light in the room — reception-ready out of the box."},
-  {id:"p12", name:"Armani Spark – White Armani Mirror Work Kurta", price:2549, mrp:3499, cat:"Wedding", stock:6, swatches:["#F4EDE3","#C7AA8B"], img:"Elegant_Plum_Kurta_Courtyard_Portrait.png", alt:"Elegant_Plum_Kurta_Courtyard_Portrait_1.png", pair:["p14"], desc:"A lighter take on the Armani mirror work. Stitched in-house at our Kolkata workshop. ₹2,549 is the honest selling price. Spark without the weight — great for back-to-back functions."},
-  {id:"p13", name:"Men's Elastic Waistband Pyjama With Pockets", price:449, mrp:599, cat:"Accessories", stock:12, swatches:["#FAF8F4","#E5DCC8"], img:"DSC_5755.jpg", alt:"DSC_5757.jpg", pair:["p1","p2","p3"], desc:"The everyday pyjama — elastic waist, side pockets, cotton-blend comfort. Stitched in-house at our Kolkata workshop. ₹449 is the honest selling price. Pairs with every kurta in the store."},
-  {id:"p14", name:"Men's White Cotton Blend Churidar", price:400, mrp:550, cat:"Accessories", stock:10, swatches:["#FAF8F4"], img:"DSC_5757.jpg", alt:"DSC_6020.jpg", pair:["p8","p9","p11"], desc:"Classic churidar fit with gentle gather at the ankle. Stitched in-house at our Kolkata workshop. ₹400 is the honest selling price. The traditional partner for festive and wedding kurtas."},
+  {id:"p1", name:"White Cotton Plain Kurta – Essential Wear", price:799, mrp:999, cat:"Everyday", stock:9, swatches:["#C7AA8B","#C7AA8B"], img:"DSC_6025.jpg", alt:"DSC_6020.jpg", pair:["p13"], desc:"Breathable pure cotton kurta with a soft mandarin collar. Stitched in-house at our Kolkata workshop. ₹799 is the honest selling price."},
+  {id:"p2", name:"Onion Pink Cotton Self Work Kurta", price:1099, mrp:1500, cat:"Everyday", stock:6, swatches:["#D98E8E","#C87676"], img:"DSC_5755.jpg", alt:"DSC_5757.jpg", pair:["p13"], desc:"Self-textured cotton kurta in a warm onion pink. Subtle sheen, straight cut. Stitched in-house at our Kolkata workshop. ₹1,099 is the honest selling price. Pairs beautifully with white pyjama."},
+  {id:"p3", name:"Men's Cream Paper Cotton Plain Kurta", price:1099, mrp:1499, cat:"Everyday", stock:8, swatches:["#C7AA8B","#C7AA8B"], img:"prod/p3.png", alt:"prod/p3_1.png", pair:["p13"], desc:"Crisp paper-cotton kurta in cream with a fluid drape. Stitched in-house at our Kolkata workshop. ₹1,099 is the honest selling price. Lightweight enough for long days, smart enough for evenings."},
+  {id:"p4", name:"Beige Breeze – Luxury Paper Cotton Printed Kurta", price:1499, mrp:1999, cat:"Everyday", stock:5, swatches:["#C7AA8B","#C4AE87"], img:"watch-buy/wbprod_354783.jpg", alt:"prod/p4_1.jpg", pair:["p13"], desc:"Signature print on luxury paper cotton. Stitched in-house at our Kolkata workshop. ₹1,499 is the honest selling price. A statement piece that stays understated — the Beige Breeze is a best-seller."},
+  {id:"p5", name:"Men's Grey Poly Cotton Self Work Kurta", price:1699, mrp:2299, cat:"Festive", stock:7, swatches:["#8B8B8B","#6F6F6F"], img:"ChatGPTImageSep24_2026_09_14_50AM.png", alt:"ChatGPTImageSep24_2026_08_55_56AM.png", pair:["p13"], desc:"Self-work texture in a cool grey. Stitched in-house at our Kolkata workshop. ₹1,699 is the honest selling price. Designed for festive evenings where the occasion is real but the mood is relaxed."},
+  {id:"p6", name:"Embroidered Black Giza Cotton Kurta", price:2299, mrp:2999, cat:"Festive", stock:4, swatches:["#1C1C1C","#2E2E2E"], img:"Elegant_Kurta_Portrait_in_Warm_Light.png", alt:"Warm_Beige_Kurta_Portrait.png", pair:["p13"], desc:"Premium Giza cotton with tonal embroidery. Stitched in-house at our Kolkata workshop. ₹2,299 is the honest selling price. Black done the Sohraaz way — deep, matte, and quietly powerful."},
+  {id:"p7", name:"Festive Black Giza Cotton Embroidered Kurta", price:2599, mrp:3499, cat:"Festive", stock:3, swatches:["#141414","#33302B"], img:"Elegant_Kurta_Portrait_in_Warm_Interiors_1.png", alt:"Elegant_Kurta_Portrait_in_Warm_Interiors.png", pair:["p13"], desc:"Festive-weight Giza cotton with dense embroidery work. Stitched in-house at our Kolkata workshop. ₹2,599 is the honest selling price. Made for nights that end after midnight."},
+  {id:"p8", name:"Men's Off White Giza Cotton Moti Work Festive Kurta", price:2999, mrp:3999, cat:"Wedding", stock:5, swatches:["#F1E9D8","#E4D8CA"], img:"ChatGPT_Image_Sep_24_2026_06_24_57_AM.png", alt:"ChatGPT_Image_Sep_24_2026_06_27_43_AM.png", pair:["p14"], desc:"Moti (pearl) hand-work on off-white Giza cotton. Stitched in-house at our Kolkata workshop — every kurta is checked for fabric, stitching and embroidery before it leaves. ₹2,999 is the honest selling price. A wedding-season hero piece for haldi, sangeet and receptions."},
+  {id:"p9", name:"Men's Ice Blue Cotton Self Work Kurta with Jacket Set", price:3299, mrp:4299, cat:"Wedding", stock:4, swatches:["#BFD3D6","#A6BFc2"], img:"prod/p9.png", alt:"prod/p9_1.png", pair:["p14"], desc:"Two-piece set: ice-blue self-work kurta with a matching jacket. Stitched in-house at our Kolkata workshop. ₹3,299 is the honest selling price. Full wedding-ready look in one box."},
+  {id:"p10", name:"Armani Black – Black Armani Embroidered Kurta", price:2549, mrp:3499, cat:"Wedding", stock:3, swatches:["#101010","#262626"], img:"watch-buy/wbprod_354794.jpg", alt:"prod/p10_1.jpg", pair:["p13"], desc:"The Armani series — imported blend with signature embroidery. Stitched in-house at our Kolkata workshop. ₹2,549 is the honest selling price. Black, for the man who dresses first and talks later."},
+  {id:"p11", name:"Armani Glow – White Armani Mirror Work Kurta", price:2649, mrp:3599, cat:"Wedding", stock:3, swatches:["#FAF8F4","#C7AA8B"], img:"prod/p11.jpg", alt:"prod/p11_1.jpg", pair:["p14"], desc:"Mirror-work Armani kurta in white. Stitched in-house at our Kolkata workshop. ₹2,649 is the honest selling price. Catches every light in the room — reception-ready out of the box."},
+  {id:"p12", name:"Armani Spark – White Armani Mirror Work Kurta", price:2549, mrp:3499, cat:"Wedding", stock:6, swatches:["#F4EDE3","#C7AA8B"], img:"watch-buy/wbprod_354798.jpg", alt:"prod/p12_1.jpg", pair:["p14"], desc:"A lighter take on the Armani mirror work. Stitched in-house at our Kolkata workshop. ₹2,549 is the honest selling price. Spark without the weight — great for back-to-back functions."},
+  {id:"p13", name:"Men's Elastic Waistband Pyjama With Pockets", price:449, mrp:599, cat:"Accessories", stock:12, swatches:["#FAF8F4","#E5DCC8"], img:"prod/p13.png", alt:"prod/p13_1.png", pair:["p1","p2","p3"], desc:"The everyday pyjama — elastic waist, side pockets, cotton-blend comfort. Stitched in-house at our Kolkata workshop. ₹449 is the honest selling price. Pairs with every kurta in the store."},
+  {id:"p14", name:"Men's White Cotton Blend Churidar", price:400, mrp:550, cat:"Accessories", stock:10, swatches:["#FAF8F4"], img:"prod/p14.png", alt:"prod/p14_1.png", pair:["p8","p9","p11"], desc:"Classic churidar fit with gentle gather at the ankle. Stitched in-house at our Kolkata workshop. ₹400 is the honest selling price. The traditional partner for festive and wedding kurtas."},
   /* ---- WATCH & BUY products (real sohraaz.com data, Nov 2026) ---- */
-  {id:"wb1", name:"Green Serene – Luxury Giza Cotton Hand Embroidered Kurta", price:2649, mrp:3959, cat:"Wedding", stock:6, swatches:["#2F6B4F","#E9E4D4"], img:"watch-buy/wbprod_354787.jpg", alt:"watch-buy/wbprod_354787.jpg", pair:["p13","p14"], desc:"Featured in Sohraaz Watch & Buy. Hand embroidery on luxury Giza cotton — stitched in-house at our Kolkata workshop. ₹2,649 is the selling price you pay — no inflated MRP games."},
-  {id:"wb2", name:"Dupion Royal – Red Self Work Kurta", price:499, mrp:0, cat:"Everyday", stock:8, swatches:["#8E3B3B","#E9E4D4"], img:"watch-buy/wbprod_354791.jpg", alt:"watch-buy/wbprod_354791.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Dupion silk with self-work texture — stitched in-house at our Kolkata workshop. ₹499 — honest price."},
-  {id:"wb3", name:"Luxury Beige – Armani Embroidered Kurta", price:2549, mrp:0, cat:"Festive", stock:6, swatches:["#C7AA8B","#493126"], img:"watch-buy/wbprod_354792.jpg", alt:"watch-buy/wbprod_354792.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Armani-blend with embroidered detailing — stitched in-house at our Kolkata workshop. ₹2,549 — honest price."},
-  {id:"wb4", name:"Shwet – White Cotton Embroidered Kurta", price:1199, mrp:0, cat:"Everyday", stock:7, swatches:["#FAF8F4","#C7AA8B"], img:"watch-buy/wbprod_354801.jpg", alt:"watch-buy/wbprod_354801.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. White cotton with hand embroidery — stitched in-house at our Kolkata workshop. ₹1,199 — honest price."},
-  {id:"wb5", name:"Vibrant Purple – Giza Cotton Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#593958","#E9E4D4"], img:"watch-buy/wbprod_354795.jpg", alt:"watch-buy/wbprod_354795.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Giza cotton Pathani set with rich purple tone — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
-  {id:"wb6", name:"Mehendi Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#2F6B4F","#E9E4D4"], img:"watch-buy/wbprod_354796.jpg", alt:"watch-buy/wbprod_354796.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Mehendi-green Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
-  {id:"wb7", name:"Sunshine Royal – Premium Cotton Embroidered Kurta", price:749, mrp:0, cat:"Everyday", stock:8, swatches:["#AD8765","#493126"], img:"watch-buy/wbprod_354789.jpg", alt:"watch-buy/wbprod_354789.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Sunshine gold cotton with embroidered work — stitched in-house at our Kolkata workshop. ₹749 — honest price."},
-  {id:"wb8", name:"Armani Stitch – White Armani Embroidered Kurta", price:2999, mrp:0, cat:"Wedding", stock:5, swatches:["#FAF8F4","#AD8765"], img:"watch-buy/wbprod_354800.jpg", alt:"watch-buy/wbprod_354800.jpg", pair:["p13","p14"], desc:"Featured in Sohraaz Watch & Buy. White Armani with embroidery work — stitched in-house at our Kolkata workshop. ₹2,999 — honest price."},
-  {id:"wb9", name:"Maroon Majesty – Premium Giza Cotton Embroidered Kurta", price:2599, mrp:0, cat:"Wedding", stock:5, swatches:["#65181F","#E9E4D4"], img:"watch-buy/wbprod_354788.jpg", alt:"watch-buy/wbprod_354788.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Deep maroon Giza cotton with embroidery — stitched in-house at our Kolkata workshop. ₹2,599 — honest price."},
-  {id:"wb10", name:"Black Glory – Luxury Giza Cotton Embroidered Kurta", price:2099, mrp:0, cat:"Festive", stock:5, swatches:["#1C1C1C","#AD8765"], img:"watch-buy/wbprod_354785.jpg", alt:"watch-buy/wbprod_354785.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Luxury Giza cotton in black with embroidery — stitched in-house at our Kolkata workshop. ₹2,099 — honest price."},
-  {id:"wb11", name:"Beige Breeze – Luxury Paper Cotton Printed Kurta", price:1499, mrp:0, cat:"Everyday", stock:8, swatches:["#C7AA8B","#493126"], img:"watch-buy/wbprod_354783.jpg", alt:"watch-buy/wbprod_354783.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Signature print on luxury paper cotton — stitched in-house at our Kolkata workshop. ₹1,499 — honest price."},
-  {id:"wb12", name:"Armani Spark – White Armani Mirror Work Kurta", price:2549, mrp:0, cat:"Wedding", stock:5, swatches:["#F4EDE3","#AD8765"], img:"watch-buy/wbprod_354798.jpg", alt:"watch-buy/wbprod_354798.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. White Armani with mirror-work embroidery — stitched in-house at our Kolkata workshop. ₹2,549 — honest price."},
-  {id:"wb13", name:"Maroon Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#5F161C","#E9E4D4"], img:"watch-buy/wbprod_354797.jpg", alt:"watch-buy/wbprod_354797.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Maroon Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
-  {id:"wb14", name:"Armani Black – Black Armani Embroidered Kurta", price:3549, mrp:0, cat:"Wedding", stock:5, swatches:["#101010","#E9E4D4"], img:"watch-buy/wbprod_354794.jpg", alt:"watch-buy/wbprod_354794.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Black Armani blend with embroidery work — stitched in-house at our Kolkata workshop. ₹3,549 — honest price."},
-  {id:"wb15", name:"Black Royal – Premium Giza Cotton Hand Embroidered Kurta", price:2399, mrp:0, cat:"Wedding", stock:5, swatches:["#1C1C1C","#E9E4D4"], img:"watch-buy/wbprod_354793.jpg", alt:"watch-buy/wbprod_354793.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Premium Giza cotton with hand embroidery — stitched in-house at our Kolkata workshop. ₹2,399 — honest price."},
+  {id:"wb1", name:"Green Serene – Luxury Giza Cotton Hand Embroidered Kurta", price:2649, mrp:3959, cat:"Wedding", stock:6, swatches:["#2F6B4F","#E9E4D4"], img:"watch-buy/wbprod_354787.jpg", alt:"prod/wb1_1.jpg", pair:["p13","p14"], desc:"Featured in Sohraaz Watch & Buy. Hand embroidery on luxury Giza cotton — stitched in-house at our Kolkata workshop. ₹2,649 is the selling price you pay — no inflated MRP games."},
+  {id:"wb2", name:"Dupion Royal – Red Self Work Kurta", price:499, mrp:0, cat:"Everyday", stock:8, swatches:["#8E3B3B","#E9E4D4"], img:"watch-buy/wbprod_354791.jpg", alt:"prod/wb2_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Dupion silk with self-work texture — stitched in-house at our Kolkata workshop. ₹499 — honest price."},
+  {id:"wb3", name:"Luxury Beige – Armani Embroidered Kurta", price:2549, mrp:0, cat:"Festive", stock:6, swatches:["#C7AA8B","#493126"], img:"watch-buy/wbprod_354792.jpg", alt:"prod/wb3_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Armani-blend with embroidered detailing — stitched in-house at our Kolkata workshop. ₹2,549 — honest price."},
+  {id:"wb4", name:"Shwet – White Cotton Embroidered Kurta", price:1199, mrp:0, cat:"Everyday", stock:7, swatches:["#FAF8F4","#C7AA8B"], img:"watch-buy/wbprod_354801.jpg", alt:"prod/wb4_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. White cotton with hand embroidery — stitched in-house at our Kolkata workshop. ₹1,199 — honest price."},
+  {id:"wb5", name:"Vibrant Purple – Giza Cotton Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#593958","#E9E4D4"], img:"watch-buy/wbprod_354795.jpg", alt:"prod/wb5_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Giza cotton Pathani set with rich purple tone — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
+  {id:"wb6", name:"Mehendi Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#2F6B4F","#E9E4D4"], img:"watch-buy/wbprod_354796.jpg", alt:"prod/wb6_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Mehendi-green Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
+  {id:"wb7", name:"Sunshine Royal – Premium Cotton Embroidered Kurta", price:749, mrp:0, cat:"Everyday", stock:8, swatches:["#AD8765","#493126"], img:"watch-buy/wbprod_354789.jpg", alt:"prod/wb7_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Sunshine gold cotton with embroidered work — stitched in-house at our Kolkata workshop. ₹749 — honest price."},
+  {id:"wb8", name:"Armani Stitch – White Armani Embroidered Kurta", price:2999, mrp:0, cat:"Wedding", stock:5, swatches:["#FAF8F4","#AD8765"], img:"prod/wb8.jpg", alt:"prod/wb8_1.jpg", pair:["p13","p14"], desc:"Featured in Sohraaz Watch & Buy. White Armani with embroidery work — stitched in-house at our Kolkata workshop. ₹2,999 — honest price."},
+  {id:"wb9", name:"Maroon Majesty – Premium Giza Cotton Embroidered Kurta", price:2599, mrp:0, cat:"Wedding", stock:5, swatches:["#65181F","#E9E4D4"], img:"watch-buy/wbprod_354788.jpg", alt:"prod/wb9_1.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Deep maroon Giza cotton with embroidery — stitched in-house at our Kolkata workshop. ₹2,599 — honest price."},
+  {id:"wb10", name:"Black Glory – Luxury Giza Cotton Embroidered Kurta", price:2099, mrp:0, cat:"Festive", stock:5, swatches:["#1C1C1C","#AD8765"], img:"watch-buy/wbprod_354785.jpg", alt:"prod/wb10_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Luxury Giza cotton in black with embroidery — stitched in-house at our Kolkata workshop. ₹2,099 — honest price."},
+  {id:"wb11", name:"Beige Breeze – Luxury Paper Cotton Printed Kurta", price:1499, mrp:0, cat:"Everyday", stock:8, swatches:["#C7AA8B","#493126"], img:"watch-buy/wbprod_354783.jpg", alt:"prod/wb11_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Signature print on luxury paper cotton — stitched in-house at our Kolkata workshop. ₹1,499 — honest price."},
+  {id:"wb12", name:"Armani Spark – White Armani Mirror Work Kurta", price:2549, mrp:0, cat:"Wedding", stock:5, swatches:["#F4EDE3","#AD8765"], img:"watch-buy/wbprod_354798.jpg", alt:"prod/wb12_1.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. White Armani with mirror-work embroidery — stitched in-house at our Kolkata workshop. ₹2,549 — honest price."},
+  {id:"wb13", name:"Maroon Royal – Giza Cotton Plain Pathani Set", price:2899, mrp:0, cat:"Festive", stock:5, swatches:["#5F161C","#E9E4D4"], img:"watch-buy/wbprod_354797.jpg", alt:"prod/wb13_1.jpg", pair:["p13"], desc:"Featured in Sohraaz Watch & Buy. Maroon Giza cotton Pathani set — stitched in-house at our Kolkata workshop. ₹2,899 — honest price."},
+  {id:"wb14", name:"Armani Black – Black Armani Embroidered Kurta", price:3549, mrp:0, cat:"Wedding", stock:5, swatches:["#101010","#E9E4D4"], img:"watch-buy/wbprod_354794.jpg", alt:"prod/wb14_1.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Black Armani blend with embroidery work — stitched in-house at our Kolkata workshop. ₹3,549 — honest price."},
+  {id:"wb15", name:"Black Royal – Premium Giza Cotton Hand Embroidered Kurta", price:2399, mrp:0, cat:"Wedding", stock:5, swatches:["#1C1C1C","#E9E4D4"], img:"watch-buy/wbprod_354793.jpg", alt:"prod/wb15_1.jpg", pair:["p14"], desc:"Featured in Sohraaz Watch & Buy. Premium Giza cotton with hand embroidery — stitched in-house at our Kolkata workshop. ₹2,399 — honest price."},
 ];
+/* ---- real product photography: three genuine views per product, taken
+   straight from sohraaz.com (each file is the shop's own image for that
+   exact product - original resolution, nothing re-shot or re-coloured). */
+const GALLERY = {
+  p1: ["DSC_6025.jpg", "DSC_6020.jpg", "prod/p1_2.jpg"],
+  p10: ["watch-buy/wbprod_354794.jpg", "prod/p10_1.jpg", "prod/p10_2.jpg"],
+  p11: ["prod/p11.jpg", "prod/p11_1.jpg", "prod/p11_2.jpg"],
+  p12: ["watch-buy/wbprod_354798.jpg", "prod/p12_1.jpg", "prod/p12_2.jpg"],
+  p13: ["prod/p13.png", "prod/p13_1.png", "prod/p13_2.png"],
+  p14: ["prod/p14.png", "prod/p14_1.png"],
+  p2: ["DSC_5755.jpg", "DSC_5757.jpg", "prod/p2_2.jpg"],
+  p3: ["prod/p3.png", "prod/p3_1.png", "prod/p3_2.png"],
+  p4: ["watch-buy/wbprod_354783.jpg", "prod/p4_1.jpg", "prod/p4_2.jpg"],
+  p5: ["ChatGPTImageSep24_2026_09_14_50AM.png", "ChatGPTImageSep24_2026_08_55_56AM.png", "prod/p5_2.png"],
+  p6: ["Elegant_Kurta_Portrait_in_Warm_Light.png", "Warm_Beige_Kurta_Portrait.png", "prod/p6_2.png"],
+  p7: ["Elegant_Kurta_Portrait_in_Warm_Interiors_1.png", "Elegant_Kurta_Portrait_in_Warm_Interiors.png", "prod/p7_2.png"],
+  p8: ["ChatGPT_Image_Sep_24_2026_06_24_57_AM.png", "ChatGPT_Image_Sep_24_2026_06_27_43_AM.png", "prod/p8_2.png"],
+  p9: ["prod/p9.png", "prod/p9_1.png", "prod/p9_2.png"],
+  wb1: ["watch-buy/wbprod_354787.jpg", "prod/wb1_1.jpg", "prod/wb1_2.jpg"],
+  wb10: ["watch-buy/wbprod_354785.jpg", "prod/wb10_1.jpg", "prod/wb10_2.jpg"],
+  wb11: ["watch-buy/wbprod_354783.jpg", "prod/p4_1.jpg", "prod/p4_2.jpg"],
+  wb12: ["watch-buy/wbprod_354798.jpg", "prod/p12_1.jpg", "prod/p12_2.jpg"],
+  wb13: ["watch-buy/wbprod_354797.jpg", "prod/wb13_1.jpg", "prod/wb13_2.jpg"],
+  wb14: ["watch-buy/wbprod_354794.jpg", "prod/p10_1.jpg", "prod/p10_2.jpg"],
+  wb15: ["watch-buy/wbprod_354793.jpg", "prod/wb15_1.jpg", "prod/wb15_2.jpg"],
+  wb2: ["watch-buy/wbprod_354791.jpg", "prod/wb2_1.jpg", "prod/wb2_2.jpg"],
+  wb3: ["watch-buy/wbprod_354792.jpg", "prod/wb3_1.jpg", "prod/wb3_2.jpg"],
+  wb4: ["watch-buy/wbprod_354801.jpg", "prod/wb4_1.jpg", "prod/wb4_2.jpg"],
+  wb5: ["watch-buy/wbprod_354795.jpg", "prod/wb5_1.jpg", "prod/wb5_2.jpg"],
+  wb6: ["watch-buy/wbprod_354796.jpg", "prod/wb6_1.jpg", "prod/wb6_2.jpg"],
+  wb7: ["watch-buy/wbprod_354789.jpg", "prod/wb7_1.jpg", "prod/wb7_2.jpg"],
+  wb8: ["prod/wb8.jpg", "prod/wb8_1.jpg", "prod/wb8_2.jpg"],
+  wb9: ["watch-buy/wbprod_354788.jpg", "prod/wb9_1.jpg", "prod/wb9_2.jpg"],
+};
+PRODUCTS.forEach(p=>{ if(GALLERY[p.id]) p.gallery = GALLERY[p.id]; });
 const SIZES = ["XS","S","M","L","XL","XXL"];
 const OUT = { p7:["XS"], p9:["XXL"], p11:["XS","S"] };
 
@@ -3026,10 +3261,16 @@ function renderAccount(){
   const pct = nxt ? Math.min(100, Math.round((coins - tier.at) / (nxt.at - tier.at) * 100)) : 100;
   const nameShown = profile.name || "Sohraaz Member";
   const initials = (profile.name || "S").trim().split(/\s+/).map(w=>w[0]||"").slice(0,2).join("").toUpperCase() || "S";
-  return `<section><div class="acct-wrap">
+  return `<section>
+    <div class="page-head">
+      <span class="overline">Your Sohraaz</span>
+      <h1>Account</h1>
+      <div class="rule"></div>
+    </div>
+    <div class="acct-wrap">
     <div class="acct-card acct-hero">
       <div class="acct-avatar">${initials}</div>
-      <h2>${nameShown}</h2>
+      <h2 class="acct-name">${nameShown}</h2>
       <div class="acct-id">Sohraaz ID · ${profile.id || myReferralCode().replace("SOH","SOZ")}</div>
       <input class="acct-input" id="acctName" maxlength="48" placeholder="Your name" value="${profile.name||""}" aria-label="Your name">
       <button class="btn btn-dark" data-acct-save style="width:100%;justify-content:center;margin-top:12px">Save name</button>
@@ -3071,7 +3312,9 @@ function renderAccount(){
         </div>
       </div>
     </div>
-  </div></section>`;
+  </div>
+  </div>
+</section>`;
 }
 
 /* ============ SOHRAAZ ASSISTANT (CHAT) ============ */
@@ -3395,7 +3638,12 @@ function renderSearch(q){
   const chips=["All","Everyday","Festive","Wedding","Signature","Accessories"];
   return `
   <section><div class="container">
-    <div class="sec-head"><h2>Search</h2></div>
+    <div class="page-head">
+      <span class="overline">Find your piece</span>
+      <h1>Search</h1>
+      <div class="rule"></div>
+      <p class="page-sub">Search the whole catalogue — by name, fabric, colour or occasion.</p>
+    </div>
     <div class="sbox">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Kurta, sherwani, pathani, Giza cotton, black…" value="${String(term).replace(/"/g,"&quot;")}">
@@ -3472,7 +3720,14 @@ function renderShop(q){
   return `
   <section><div class="container">
     ${coll?`<div class="coll-banner"><span class="coll-kicker">Collection</span><button class="coll-clear" data-collclear>Back to all collections</button></div>`:""}
-    <div class="sec-head"><h2>${coll?coll.label:"Shop Collections"}</h2></div>
+    <div class="page-head">
+      <span class="overline">${coll?"The Collection":"The Collections"}</span>
+      <h1>${coll?coll.label:"Shop Collections"}</h1>
+      <div class="rule"></div>
+      <p class="page-sub">${coll
+        ? "Everything we carry in this collection — the pieces that are in stock, at the price we sell them at."
+        : "Kurtas, sherwanis, pathanis and the bottoms that finish the look. Filter by size, colour and price — no stock tricks."}</p>
+    </div>
     <div class="shop-tools">
       <div class="chips">${(coll?[]:chips).map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${c}">${c}</button>`).join("")}${coll?`<button class="chip on" data-collclear>${coll.label}</button>`:""}</div>
       <select class="sortsel" id="sortSel">
@@ -3537,7 +3792,7 @@ function renderProduct(id){
   const p=P(id); if(!p) return renderShop(new URLSearchParams());
   const st=store.lastProduct&&store.lastProduct.id===id?store.lastProduct:{id,imgIdx:0,size:"M"};
   if(!store.lastProduct||store.lastProduct.id!==id) store.lastProduct=st;
-  const gal=[p.img,p.alt];
+  const gal=(p.gallery&&p.gallery.length)?p.gallery:[p.img,p.alt].filter(Boolean);
   const img=gal[st.imgIdx]||p.img;
   const outSz=OUT[id]||[];
   const pre=Math.round(p.price*0.95), gap=Math.max(0,999-p.price);
@@ -3704,8 +3959,11 @@ function renderCart(){
   if(!store.cart.length){
     const feats=["p6","p9","p8"].map(id=>prodCardHTML(P(id))).join("");
     return `<section class="cart-page-active"><div class="container"><div class="emptycart">
-      <span class="overline" style="color:var(--gold-text)">Your Bag</span>
-      <div class="sec-head"><h2>Your bag is empty</h2></div>
+      <div class="page-head">
+        <span class="overline">Your Bag</span>
+        <h1>Your bag is empty</h1>
+        <div class="rule"></div>
+      </div>
       <p>Honest prices, in-house stitched, delivered across India. The good stuff is one tap away.</p>
       <button class="btn btn-dark" data-nav="#/shop" style="margin-top:6px">Shop the collection</button>
       <div class="sec-head" style="margin-top:44px"><h3 style="font-size:19px">Most loved right now</h3></div>
@@ -3715,7 +3973,12 @@ function renderCart(){
   const t=computeTotals(cartItems(),store.mode,store.isNew,store.coupon);
   const qty=bagQty();
   return `<section class="cart-page-active"><div class="container">
-    <div class="sec-head"><h2>Your Bag <span style="color:var(--gold-text)">· ${qty} item${qty>1?"s":""}</span></h2><a data-nav="#/shop" style="font-size:13px;color:var(--brown-900);border-bottom:1px solid var(--gold);cursor:pointer">Continue shopping →</a></div>
+    <div class="page-head">
+      <span class="overline">Your Bag</span>
+      <h1>Your Bag <span style="color:var(--gold-text)">· ${qty} item${qty>1?"s":""}</span></h1>
+      <div class="rule"></div>
+      <p class="page-sub"><a data-nav="#/shop" class="page-link">Continue shopping →</a></p>
+    </div>
     <div class="cart-layout">
       <div id="cartLeft">${cartLeftHTML(t)}</div>
       <aside class="summary-card" id="cartRight">${summaryCardHTML(t)}</aside>
@@ -3731,7 +3994,12 @@ function renderCheckout(){
   const tCod=computeTotals(cartItems(),"cod",store.isNew,store.coupon);
   const savePre=Math.max(0,tCod.total-tPre.total);
   return `<section><div class="container">
-    <div class="sec-head"><h2>Checkout</h2></div>
+    <div class="page-head">
+      <span class="overline">Almost yours</span>
+      <h1>Checkout</h1>
+      <div class="rule"></div>
+      <p class="page-sub">Pay online and save an extra 5%. Cash on delivery is available too — the handling fee is always shown before you pay.</p>
+    </div>
     <div class="checkout">
       <div>
         <div class="ck-card">
@@ -3790,7 +4058,7 @@ function renderSuccess(){
   try{ const lo=JSON.parse(localStorage.getItem("sohraaz_last_order")||"null"); if(lo){ ord=lo.id; earned=lo.earned||0; balance=lo.balance||balance; } }catch(e){}
   return `<div class="success">
     <div class="kicker" style="font-family:var(--caps);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-text)">Order confirmed</div>
-    <div class="big">Shukriya!</div>
+    <h1 class="big">Shukriya!</h1>
     <div class="ordno">Order ${ord}</div>
     <div class="coin-earn">Sohraaz Coins <b>+${earned}</b> · balance ${balance}</div>
     <div class="box"><table style="width:100%;border-collapse:collapse;font-size:15px">
@@ -3856,7 +4124,12 @@ function renderPolicies(q){
       </ul>`,
   };
   return `<section><div class="container">
-    <div class="sec-head"><h2>Policies</h2></div>
+    <div class="page-head">
+      <span class="overline">The fine print, in plain words</span>
+      <h1>Policies</h1>
+      <div class="rule"></div>
+      <p class="page-sub">Shipping, cash on delivery, returns and cancellation — exactly what applies to your order.</p>
+    </div>
     <div class="pol-tabs">${Object.entries(tabs).map(([k,v])=>`<button class="chip ${k===tab?"on":""}" data-pol="${k}">${v}</button>`).join("")}</div>
     <div class="pol-body">${body[tab]}</div>
   </div></section>`;
@@ -3864,7 +4137,11 @@ function renderPolicies(q){
 
 function renderAbout(){
   return `<section><div class="container"><div class="about-wrap">
-    <div class="sec-head"><h2>Our Story</h2></div>
+    <div class="page-head">
+      <span class="overline">Since day one</span>
+      <h1>Our Story</h1>
+      <div class="rule"></div>
+    </div>
     <h2>Welcome to Sohraaz Collections</h2>
     <p>Born in the heart of Kolkata, Sohraaz Collections was created with a simple vision — to make ethnic wear feel stylish, modern, and truly special for today's generation. For years we served customers offline with premium ethnic wear and handcrafted designs; after immense love and trust from our showroom customers, we brought Sohraaz online to serve the same quality across India.</p>
     <p>Traditional fashion is not just clothing — it is identity, culture and the memory of every celebration. Our promise is simple: honest prices, transparent charges, and craftsmanship you can feel.</p>
@@ -4523,7 +4800,7 @@ document.addEventListener('keydown', e=>{
 const lbx = document.createElement('div');
 lbx.className = 'lbx'; lbx.id = 'lbx';
 lbx.setAttribute('role','dialog'); lbx.setAttribute('aria-modal','true'); lbx.setAttribute('aria-label','Product image preview');
-lbx.innerHTML = '<button class="lbx-close" aria-label="Close image preview">&times;</button><button class="lbx-nav lbx-prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><img class="lbx-img" alt="Product image"><button class="lbx-nav lbx-next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><div class="lbx-counter"></div><div class="lbx-hint">ESC to close · tap backdrop</div>';
+lbx.innerHTML = '<button class="lbx-close" aria-label="Close image preview">&times;</button><button class="lbx-nav lbx-prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><img class="lbx-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Product image"><button class="lbx-nav lbx-next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><div class="lbx-counter"></div><div class="lbx-hint">ESC to close &middot; tap backdrop</div>';
 document.body.appendChild(lbx);
 let lbxImgs = [], lbxIdx = 0, lbxTouchY = null;
 function lbxOpen(elements, startIdx){
