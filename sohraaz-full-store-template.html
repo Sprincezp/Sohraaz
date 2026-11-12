@@ -273,6 +273,11 @@
 
   /* ---------- shop filters (size / colour / price + counts) ---------- */
   /* ---------- shop facets (dropdowns) ---------- */
+  /* collection banner (the collection view opened from the stories strip) */
+  .coll-banner{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:10px}
+  .coll-kicker{font-family:var(--caps);font-size:9.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#70513E}
+  .coll-clear{border:1px solid var(--line);background:transparent;color:#70513E;padding:6px 13px;border-radius:2px;font-family:var(--caps);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+  .coll-clear:hover{border-color:#AD8765;background:#AD8765;color:#fff}
   .shop-filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:2px 0 30px;padding:12px 14px;border:1px solid var(--line);background:#FAF8F4;border-radius:3px}
   .fdrop{position:relative;flex:0 0 auto}
   .fdrop-btn{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:2px;padding:9px 13px;cursor:pointer;font-family:var(--caps);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#493126;transition:border-color .2s,background .2s,color .2s;white-space:nowrap}
@@ -2311,6 +2316,19 @@ const PRODUCTS = [
 const SIZES = ["XS","S","M","L","XL","XXL"];
 const OUT = { p7:["XS"], p9:["XXL"], p11:["XS","S"] };
 
+/* The real sohraaz.com collections behind the homepage "shoppable stories" strip.
+   Every id below was matched to a member of the live collection BY NAME -
+   not guessed. Our catalogue is a subset of the live store, so a story
+   shows the part of that collection our catalogue actually carries.
+   Mapping evidence: _shots/story-collection-mapping.json */
+const COLLECTIONS = {
+  "mens-kurta":   { label:"Men's Kurta",    ids:["p10","p11","p12","p4","wb10","wb15"] },
+  "trending":     { label:"Trending Items", ids:["p1","p7","p9","wb3","p6"] },
+  "sale":         { label:"Sale",           ids:["p1","p7","p9"] },
+  "new-arrivals": { label:"New Arrivals",   ids:["p8","p1","p5","p2","p6","p7","p9","p3"] },
+  "best-seller":  { label:"Best Seller",    ids:["p1","p7","p9","wb3","p6","p3"] }
+};
+
 /* colour names for the shop filters — mapped from the catalogue's own swatch hexes,
    so every filter label is a real colour of a real product, never invented. */
 const COLOUR_NAMES = {
@@ -3134,7 +3152,7 @@ function renderLookbook(){
 function shopHash(patch){
   const cur = new URLSearchParams((location.hash.split("?")[1]||""));
   const next = new URLSearchParams();
-  ["cat","size","colour","price","sort"].forEach(k=>{
+  ["cat","col","size","colour","price","sort"].forEach(k=>{
     const v = cur.get(k);
     if(v && !(k in patch)) next.set(k,v);
   });
@@ -3146,7 +3164,7 @@ function shopHash(patch){
 function shopHash(patch){
   const cur = new URLSearchParams((location.hash.split("?")[1]||""));
   const next = new URLSearchParams();
-  ["cat","size","colour","price","sort"].forEach(k=>{
+  ["cat","col","size","colour","price","sort"].forEach(k=>{
     const v = cur.get(k);
     if(v && !(k in patch)) next.set(k,v);
   });
@@ -3184,7 +3202,14 @@ function renderShop(q){
   const priceF=q.get("price")||"all";
   const band = PRICE_BANDS.find(b=>b.k===priceF) || PRICE_BANDS[0];
 
-  let pool = PRODUCTS.filter(p=>cat==="All"||p.cat===cat||(cat==="Everyday"&&p.cat==="Accessories")||(cat==="Signature"&&["p10","p11","p12"].includes(p.id)));
+  /* a collection view (from the homepage stories strip) narrows the pool to
+     exactly the products that belong to that real collection */
+  const collKey=q.get("col")||"";
+  const coll=COLLECTIONS[collKey]||null;
+
+  let pool = coll
+    ? PRODUCTS.filter(p=>coll.ids.includes(p.id))
+    : PRODUCTS.filter(p=>cat==="All"||p.cat===cat||(cat==="Everyday"&&p.cat==="Accessories")||(cat==="Signature"&&["p10","p11","p12"].includes(p.id)));
 
   /* facet counts come from the category pool, before the other filters apply */
   const sizeCount = {};
@@ -3227,9 +3252,10 @@ function renderShop(q){
 
   return `
   <section><div class="container">
-    <div class="sec-head"><h2>Shop Collections</h2></div>
+    ${coll?`<div class="coll-banner"><span class="coll-kicker">Collection</span><button class="coll-clear" data-collclear>Back to all collections</button></div>`:""}
+    <div class="sec-head"><h2>${coll?coll.label:"Shop Collections"}</h2></div>
     <div class="shop-tools">
-      <div class="chips">${chips.map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${c}">${c}</button>`).join("")}</div>
+      <div class="chips">${(coll?[]:chips).map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${c}">${c}</button>`).join("")}${coll?`<button class="chip on" data-collclear>${coll.label}</button>`:""}</div>
       <select class="sortsel" id="sortSel">
         <option value="featured" ${sort==="featured"?"selected":""}>Featured</option>
         <option value="new" ${sort==="new"?"selected":""}>Newest first</option>
@@ -3750,7 +3776,7 @@ document.addEventListener("click",e=>{
   if(cm && e.target===cm){ cm.classList.remove('open'); document.body.style.overflow=''; return; }
   const nm=e.target.closest('#notifyModal');
   if(nm && e.target===nm){ nm.classList.remove('open'); document.body.style.overflow=''; return; }
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save]");
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-collclear],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
   if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); if(location.hash==="#/wishlist"){ const app=document.getElementById("app"); if(app) app.innerHTML=renderWishlist(); } return; }
@@ -3823,7 +3849,8 @@ document.addEventListener("click",e=>{
   if(t.dataset.refCopy!==undefined){ const code=myReferralCode(); const done=()=>{ t.textContent="Copied!"; setTimeout(()=>{ t.textContent="Copy"; },1600); }; if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(code).then(done).catch(done); } else { done(); } return; }
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
-  if(t.dataset.cat){ if(t.classList.contains("chip")){ shopHash({cat:t.dataset.cat}); } return; }
+  if(t.dataset.cat){ if(t.classList.contains("chip")){ shopHash({cat:t.dataset.cat, col:""}); } return; }
+  if(t.dataset.collclear!==undefined){ shopHash({col:"", cat:"All", size:"", colour:"", price:"", sort:""}); return; }
   if(t.dataset.fdropBtn!==undefined){ toggleDropdown(t.dataset.fdropBtn); return; }
   if(t.dataset.fsize!==undefined){ shopHash({size:t.dataset.fsize}); return; }
   if(t.dataset.fcolour!==undefined){ shopHash({colour:t.dataset.fcolour}); return; }
