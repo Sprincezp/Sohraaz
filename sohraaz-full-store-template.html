@@ -278,6 +278,62 @@
   .coll-kicker{font-family:var(--caps);font-size:9.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#70513E}
   .coll-clear{border:1px solid var(--line);background:transparent;color:#70513E;padding:6px 13px;border-radius:2px;font-family:var(--caps);font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
   .coll-clear:hover{border-color:#AD8765;background:#AD8765;color:#fff}
+  /* ---------- watch & buy page ---------- */
+  .wbpage{padding:34px 0 60px;background:var(--cream)}
+  .wbpage-head{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap;margin-bottom:32px}
+  .wbpage-head h1{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--choco);line-height:1.12;margin:6px 0 10px}
+  .wbpage-head p{max-width:56ch;color:var(--mocha);font-size:15px;line-height:1.7}
+  .wbpage-tools{display:flex;align-items:center;gap:14px}
+  .wbpage-count{font-family:var(--caps);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mocha)}
+  .wbp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:22px}
+  .wbp{display:flex;flex-direction:column}
+  .wbp-media{position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:3px;background:var(--muted-bg);border:1px solid var(--line)}
+  .wbp-video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .45s}
+  .wbp.playing .wbp-video{opacity:1}
+  .wbp-hit{position:absolute;inset:0;z-index:2;border:none;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .wbp-hit:focus-visible{outline:2px solid var(--gold);outline-offset:-3px}
+  .wbp-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;width:52px;height:52px;border-radius:50%;background:rgba(48,32,25,.55);display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity .3s}
+  .wbp-play svg{width:22px;height:22px;fill:#F4EDE3;margin-left:2px}
+  .wbp.playing .wbp-play{opacity:0}
+  .wbp-off{position:absolute;top:8px;left:8px;z-index:3;background:var(--choco);color:#F4EDE3;font-family:var(--caps);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border-radius:2px;pointer-events:none}
+  .wbp-views{position:absolute;top:8px;right:8px;z-index:3;background:rgba(48,32,25,.62);color:#F4EDE3;font-family:var(--caps);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:2px;pointer-events:none}
+  .wbp-info{display:flex;flex-direction:column;gap:5px;padding:11px 2px 0}
+  .wbp-name{font-family:var(--serif);font-size:15px;line-height:1.35;color:var(--ink)}
+  .wbp-price{font-family:var(--caps);font-size:12.5px;letter-spacing:.04em;color:var(--choco)}
+  .wbp-price s{color:#8B8177;font-size:11px;margin-left:5px}
+  .wbp-act{margin-top:4px}
+  .wbp-add{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--choco);background:transparent;color:var(--choco);padding:9px 15px;border-radius:2px;font-family:var(--caps);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s;background:transparent}
+  .wbp-add:hover{background:var(--choco);color:#F4EDE3}
+  .wbp-add-link{text-decoration:none}
+  /* the lightbox player */
+  .wblight{position:fixed;inset:0;z-index:990;background:rgba(28,20,15,.94);display:none;align-items:center;justify-content:center;padding:20px}
+  .wblight.open{display:flex}
+  .wblight-inner{display:flex;gap:26px;align-items:center;max-width:100%;max-height:100%}
+  .wblight-stage{position:relative;height:min(78vh,760px);aspect-ratio:9/16;border-radius:4px;overflow:hidden;background:#000;flex:none}
+  .wblight-video{width:100%;height:100%;object-fit:cover;display:block}
+  .wblight-panel{width:min(330px,80vw);color:#F4EDE3}
+  .wblight-count{font-family:var(--caps);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C7AA8B}
+  .wblight-title{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.25;margin:10px 0 12px;color:#F4EDE3}
+  .wblight-price{font-family:var(--caps);font-size:14px;letter-spacing:.04em;color:#F4EDE3;margin-bottom:18px}
+  .wblight-price s{color:#9C8F83;font-size:12px;margin-left:6px}
+  .wblight-price em{font-style:normal;color:#C7AA8B;font-size:11px;margin-left:8px}
+  .wblight-add{display:inline-flex;align-items:center;justify-content:center;background:#F4EDE3;color:var(--choco);padding:13px 22px;border-radius:2px;font-family:var(--caps);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none}
+  .wblight-views{margin-top:16px;font-family:var(--caps);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#9C8F83}
+  .wblight-close{position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(244,237,227,.28);color:#F4EDE3;font-size:24px;line-height:1;cursor:pointer;background:transparent}
+  .wblight-prev,.wblight-next{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,237,227,.28);background:rgba(48,32,25,.5);color:#F4EDE3;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .wblight-prev{left:14px}
+  .wblight-next{right:14px}
+  .wblight-prev svg,.wblight-next svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  @media (max-width:860px){
+    .wbpage-head h1{font-size:32px}
+    .wbp-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+    .wblight-inner{flex-direction:column;gap:14px;padding-bottom:56px}
+    .wblight-stage{height:min(56vh,520px)}
+    .wblight-panel{width:100%;text-align:center}
+    .wblight-title{font-size:21px;margin:6px 0 8px}
+    .wblight-price{margin-bottom:12px}
+  }
+
   /* ---------- search page ---------- */
   .sbox{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:#fff;border-radius:3px;padding:4px 14px;margin-bottom:26px}
   .sbox svg{width:20px;height:20px;stroke:#70513E;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -2052,7 +2108,7 @@ p{color:var(--ink)}
       </a>
     </li>
     <li>
-      <a href="index.html#watch-buy" data-mbar="watchbuy">
+      <a href="sohraaz-full-store-template.html#/watchbuy" data-nav="#/watchbuy" data-mbar="watchbuy">
         <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></span>
         <span class="mbar-tx">Watch &amp; Buy</span>
       </a>
@@ -2073,7 +2129,7 @@ p{color:var(--ink)}
         (k==="search"   && path==="#/search") ||
         (k==="collection" && (path==="#/shop" || path==="#/lookbook" || path.indexOf("#/product/")===0 || path==="#/cart" || path==="#/checkout" || path==="#/wishlist")) ||
         (k==="account"  && path==="#/account") ||
-        (k==="watchbuy" && (path==="#/watch" || location.hash==="#watch-buy"));
+        (k==="watchbuy" && (path==="#/watch" || path==="#/watchbuy" || location.hash==="#watch-buy"));
       if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
     });
   }
@@ -3825,6 +3881,24 @@ function renderAbout(){
 
 /* ============ WATCH & BUY — reels feed ============ */
 const WBVID = (name) => ASSET("watch-buy/" + name);
+/* ============================================================
+   WATCH & BUY - the shop's own Whatmore feed.
+   67 reels, each with the REAL product it shows: title, price and MRP
+   from sohraaz.com's own feed API, plus the product URL on the live
+   store for the ones our catalogue does not stock.
+   The clips are the short versions the live /pages/watch-buy page itself
+   uses (338x601, 10.8 MB for all 67) - assets/extracted/watchbuy/.
+   ============================================================ */
+/* ============================================================
+   WATCH & BUY - the shop's own Whatmore feed.
+   67 reels, each with the REAL product it shows: title, price and MRP
+   from sohraaz.com's own feed API, plus the product URL on the live
+   store for the ones our catalogue does not stock.
+   The clips are the short versions the live /pages/watch-buy page itself
+   uses (338x601, 10.8 MB for all 67) - assets/extracted/watchbuy/.
+   ============================================================ */
+const WBX_REELS = [{"k":"r01","v":"assets/extracted/watchbuy/r01.mp4","p":"assets/extracted/watchbuy/r01.webp","pi":"assets/extracted/watchbuy/r01-p.jpg","t":"Ethnic Wear Men Sherwani in Golden Colour with Maroon Touch and Churidar Pajama","pr":6999,"mr":17499,"l":"https://sohraaz.com/products/ethnic-wear-men-sherwani-in-golden-colour-with-maroon-touch-and-churidar-pajama","o":null,"w":92},{"k":"r02","v":"assets/extracted/watchbuy/r02.mp4","p":"assets/extracted/watchbuy/r02.webp","pi":"assets/extracted/watchbuy/r02.webp","t":"Ethnic Wear Navy Blue Pathani Set Solid Salwar Style","pr":1899,"mr":5699,"l":"https://sohraaz.com/products/ethnic-wear-navy-blue-pathani-set-solid-salwar-style","o":null,"w":117},{"k":"r03","v":"assets/extracted/watchbuy/r03.mp4","p":"assets/extracted/watchbuy/r03.webp","pi":"assets/extracted/watchbuy/r03.webp","t":"Beige Boutique Designer Kurta","pr":599,"mr":0,"l":"https://sohraaz.com/products/beige-boutique-designer-kurta","o":null,"w":127},{"k":"r04","v":"assets/extracted/watchbuy/r04.mp4","p":"assets/extracted/watchbuy/r04.webp","pi":"assets/extracted/watchbuy/r04.webp","t":"Pista Green Boutique Designer Kurta","pr":999,"mr":2999,"l":"https://sohraaz.com/products/pista-green-boutique-designer-kurta","o":null,"w":105},{"k":"r05","v":"assets/extracted/watchbuy/r05.mp4","p":"assets/extracted/watchbuy/r05.webp","pi":"assets/extracted/watchbuy/r05-p.jpg","t":"Ethnic Wear Men Sherwani in Cream Colour with Pink Touch and Churidar Pajama","pr":7499,"mr":18749,"l":"https://sohraaz.com/products/ethnic-wear-men-sherwani-in-cream-colour-with-pink-touch-and-churidar-pajama","o":null,"w":130},{"k":"r06","v":"assets/extracted/watchbuy/r06.mp4","p":"assets/extracted/watchbuy/r06.webp","pi":"assets/extracted/watchbuy/r06-p.jpg","t":"Ethnic Wear Black Prince Coat","pr":7499,"mr":18749,"l":"https://sohraaz.com/products/ethnic-wear-black-prince-coat","o":null,"w":412},{"k":"r07","v":"assets/extracted/watchbuy/r07.mp4","p":"assets/extracted/watchbuy/r07.webp","pi":"assets/extracted/watchbuy/r07-p.jpg","t":"Ethnic Wear Black Prince Coat","pr":7499,"mr":18749,"l":"https://sohraaz.com/products/ethnic-wear-black-prince-coat","o":null,"w":156},{"k":"r08","v":"assets/extracted/watchbuy/r08.mp4","p":"assets/extracted/watchbuy/r08.webp","pi":"assets/extracted/watchbuy/r08.webp","t":"Ethnic Wear White Pathani Set Solid Salwar Style.","pr":1899,"mr":5699,"l":"https://sohraaz.com/products/ethnic-wear-white-pathani-set-solid-salwar-style","o":null,"w":303},{"k":"r09","v":"assets/extracted/watchbuy/r09.mp4","p":"assets/extracted/watchbuy/r09.webp","pi":"assets/extracted/watchbuy/r09.webp","t":"Ethnic Wear Navy Blue Pathani Set Solid Salwar Style","pr":1899,"mr":5699,"l":"https://sohraaz.com/products/ethnic-wear-navy-blue-pathani-set-solid-salwar-style","o":null,"w":131},{"k":"r10","v":"assets/extracted/watchbuy/r10.mp4","p":"assets/extracted/watchbuy/r10.webp","pi":"assets/extracted/watchbuy/r10.webp","t":"Ethnic Wear Z Black Pathani Set Solid Salwar Style","pr":1899,"mr":5699,"l":"https://sohraaz.com/products/ethnic-wear-z-black-pathani-set-solid-salwar-style","o":null,"w":95},{"k":"r11","v":"assets/extracted/watchbuy/r11.mp4","p":"assets/extracted/watchbuy/r11.webp","pi":"assets/extracted/watchbuy/r11-p.jpg","t":"Printed Nehru Jacket With Fancy Button","pr":1149,"mr":3499,"l":"https://sohraaz.com/products/printed-nehru-jacket-with-fancy-button","o":null,"w":240},{"k":"r12","v":"assets/extracted/watchbuy/r12.mp4","p":"assets/extracted/watchbuy/r12.webp","pi":"assets/extracted/watchbuy/r12.webp","t":"Beige Boutique Designer Kurta","pr":599,"mr":0,"l":"https://sohraaz.com/products/beige-boutique-designer-kurta","o":null,"w":463},{"k":"r13","v":"assets/extracted/watchbuy/r13.mp4","p":"assets/extracted/watchbuy/r13.webp","pi":"assets/extracted/watchbuy/r13.webp","t":"Pista Green Boutique Designer Kurta","pr":999,"mr":2999,"l":"https://sohraaz.com/products/pista-green-boutique-designer-kurta","o":null,"w":205},{"k":"r14","v":"assets/extracted/watchbuy/r14.mp4","p":"assets/extracted/watchbuy/r14.webp","pi":"assets/extracted/watchbuy/r14.webp","t":"Beige Linen Cotton Kurta","pr":999,"mr":2999,"l":"https://sohraaz.com/products/beige-linen-cotton-kurta","o":null,"w":124},{"k":"r15","v":"assets/extracted/watchbuy/r15.mp4","p":"assets/extracted/watchbuy/r15.webp","pi":"assets/extracted/watchbuy/r15.webp","t":"Camel Brown Colour Cotton Kurta","pr":1399,"mr":4199,"l":"https://sohraaz.com/products/camel-brown-colour-cotton-kurta","o":null,"w":169},{"k":"r16","v":"assets/extracted/watchbuy/r16.mp4","p":"assets/extracted/watchbuy/r16.webp","pi":"assets/extracted/watchbuy/r16.webp","t":"White Addi Cotton Kurta","pr":899,"mr":2699,"l":"https://sohraaz.com/products/white-addi-cotton-kurta","o":null,"w":58},{"k":"r17","v":"assets/extracted/watchbuy/r17.mp4","p":"assets/extracted/watchbuy/r17.webp","pi":"assets/extracted/watchbuy/r17-p.jpg","t":"Brown Colour Panthani Salwar Set With Cuff Sleeves Style","pr":2399,"mr":7199,"l":"https://sohraaz.com/products/brown-colour-panthani-salwar-set-with-cuff-sleeves-style","o":null,"w":17},{"k":"r18","v":"assets/extracted/watchbuy/r18.mp4","p":"assets/extracted/watchbuy/r18.webp","pi":"assets/extracted/watchbuy/r18-p.jpg","t":"Pure White Giza Cotton Kurta – Zardosi Handwork for Festive Wear  (Only Kurta)","pr":2749,"mr":3999,"l":"https://sohraaz.com/products/pure-white-giza-kurta-zardosi-handwork-for-festive-wear","o":null,"w":10},{"k":"r19","v":"assets/extracted/watchbuy/r19.mp4","p":"assets/extracted/watchbuy/r19.webp","pi":"assets/extracted/watchbuy/r19-p.jpg","t":"Saffron Touch – Yellow Cotton Blend Kurta with Hand Embroidery  (Only Kurta)","pr":2899,"mr":4399,"l":"https://sohraaz.com/products/saffron-touch-yellow-cotton-blend-kurta-with-hand-embroidery","o":null,"w":5},{"k":"r20","v":"assets/extracted/watchbuy/r20.mp4","p":"assets/extracted/watchbuy/r20.webp","pi":"assets/extracted/watchbuy/r20-p.jpg","t":"Royal Grey Cotton Silk Kurta with Mirror & Thread Craft  (Only Kurta)","pr":2399,"mr":3599,"l":"https://sohraaz.com/products/royal-grey-cotton-silk-kurta-with-mirror-thread-craft","o":null,"w":6},{"k":"r21","v":"assets/extracted/watchbuy/r21.mp4","p":"assets/extracted/watchbuy/r21.webp","pi":"assets/extracted/watchbuy/r21-p.jpg","t":"Premium Yellow Cotton Blend Kurta with Mirror Machine Artistry  (Only Kurta)","pr":1949,"mr":2879,"l":"https://sohraaz.com/products/premium-yellow-cotton-blend-kurta-with-mirror-machine-artistry","o":null,"w":5},{"k":"r22","v":"assets/extracted/watchbuy/r22.mp4","p":"assets/extracted/watchbuy/r22.webp","pi":"assets/extracted/watchbuy/r22-p.jpg","t":"Honey Yellow Cotton Silk – Self Textured Kurta  (Only Kurta)","pr":1449,"mr":2158,"l":"https://sohraaz.com/products/honey-yellow-cotton-silk-self-textured-kurta","o":null,"w":9},{"k":"r23","v":"assets/extracted/watchbuy/r23.mp4","p":"assets/extracted/watchbuy/r23.webp","pi":"assets/extracted/watchbuy/r23-p.jpg","t":"Satin Pathani – Olive Green Giza Cotton Plain Set","pr":2899,"mr":4399,"l":"https://sohraaz.com/products/satin-pathani-olive-green-giza-cotton-plain-set","o":null,"w":3},{"k":"r24","v":"assets/extracted/watchbuy/r24.mp4","p":"assets/extracted/watchbuy/r24.webp","pi":"assets/extracted/watchbuy/r24-p.jpg","t":"Desert Royal – Brown Giza Cotton Plain Pathani Set","pr":2899,"mr":4399,"l":"https://sohraaz.com/products/desert-royal-brown-giza-cotton-plain-pathani-set","o":null,"w":5},{"k":"r25","v":"assets/extracted/watchbuy/r25.mp4","p":"assets/extracted/watchbuy/r25.webp","pi":"assets/extracted/watchbuy/r25-p.jpg","t":"The White Legacy – Giza Cotton Hand Embroidered Kurta  (Only Kurta)","pr":2899,"mr":4399,"l":"https://sohraaz.com/products/the-white-legacy-giza-cotton-hand-embroidered-kurta","o":null,"w":7},{"k":"r26","v":"assets/extracted/watchbuy/r26.mp4","p":"assets/extracted/watchbuy/r26.webp","pi":"assets/extracted/watchbuy/r26-p.jpg","t":"The Light Stitch – White Paper Cotton Embroidered Kurta  (Only Kurta)","pr":1678,"mr":2518,"l":"https://sohraaz.com/products/the-light-stitch-white-paper-cotton-embroidered-kurta","o":null,"w":2},{"k":"r27","v":"assets/extracted/watchbuy/r27.mp4","p":"assets/extracted/watchbuy/r27.webp","pi":"assets/extracted/watchbuy/r27-p.jpg","t":"Black Spark – Giza Cotton Mirror Work Kurta  (Only Kurta)","pr":1949,"mr":2879,"l":"https://sohraaz.com/products/black-spark-giza-cotton-mirror-work-kurta","o":null,"w":5},{"k":"r28","v":"assets/extracted/watchbuy/r28.mp4","p":"assets/extracted/watchbuy/r28.webp","pi":"assets/extracted/watchbuy/r28-p.jpg","t":"Emerald Stitch – Green Giza Cotton Hand Embroidered Kurta  (Only Kurta)","pr":2549,"mr":3790,"l":"https://sohraaz.com/products/emerald-stitch-green-giza-cotton-hand-embroidered-kurta","o":null,"w":4},{"k":"r29","v":"assets/extracted/watchbuy/r29.mp4","p":"assets/extracted/watchbuy/r29.webp","pi":"assets/extracted/watchbuy/r29-p.jpg","t":"Emerald Spark – Green Giza Cotton Mirror Work Kurta  (Only Kurta)","pr":1949,"mr":2879,"l":"https://sohraaz.com/products/emerald-spark-green-giza-cotton-mirror-work-kurta","o":null,"w":5},{"k":"r30","v":"assets/extracted/watchbuy/r30.mp4","p":"assets/extracted/watchbuy/r30.webp","pi":"assets/extracted/watchbuy/r30-p.jpg","t":"Printed Cotton Sequin Kurta – Multicolour Ethnic Wear  (Only Kurta)","pr":1799,"mr":2699,"l":"https://sohraaz.com/products/printed-cotton-sequin-kurta-multicolour-ethnic-wear","o":null,"w":2},{"k":"r31","v":"assets/extracted/watchbuy/r31.mp4","p":"assets/extracted/watchbuy/r31.webp","pi":"assets/extracted/watchbuy/r31-p.jpg","t":"Handcrafted Navy Blue Kurta – Giza Cotton with Embroidery  (Only Kurta)","pr":2999,"mr":4499,"l":"https://sohraaz.com/products/handcrafted-navy-blue-kurta-giza-cotton-with-embroidery","o":null,"w":3},{"k":"r32","v":"assets/extracted/watchbuy/r32.mp4","p":"assets/extracted/watchbuy/r32.webp","pi":"assets/extracted/watchbuy/r32-p.jpg","t":"Royal Mehndi – Giza Cotton Self Work Kurta  (Only Kurta)","pr":2099,"mr":3149,"l":"https://sohraaz.com/products/royal-mehndi-giza-cotton-self-work-kurta","o":null,"w":6},{"k":"r33","v":"assets/extracted/watchbuy/r33.mp4","p":"assets/extracted/watchbuy/r33.webp","pi":"assets/extracted/watchbuy/r33-p.jpg","t":"Blue Heritage – Giza Cotton Plain Pathani Set","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/blue-heritage-giza-cotton-plain-pathani-set","o":null,"w":3},{"k":"r34","v":"assets/extracted/watchbuy/r34.mp4","p":"assets/extracted/watchbuy/r34.webp","pi":"assets/extracted/watchbuy/r34-p.jpg","t":"Purple Regal – Giza Cotton Mirror Work Kurta  (Only Kurta)","pr":1949,"mr":2879,"l":"https://sohraaz.com/products/purple-regal-giza-cotton-mirror-work-kurta","o":null,"w":3},{"k":"r35","v":"assets/extracted/watchbuy/r35.mp4","p":"assets/extracted/watchbuy/r35.webp","pi":"assets/extracted/watchbuy/r35-p.jpg","t":"Royal Print – Multicolour Cotton Sequin Printed Kurta  (Only Kurta)","pr":2049,"mr":3049,"l":"https://sohraaz.com/products/royal-print-multicolour-cotton-sequin-printed-kurta","o":null,"w":4},{"k":"r36","v":"assets/extracted/watchbuy/r36.mp4","p":"assets/extracted/watchbuy/r36.webp","pi":"assets/extracted/watchbuy/r36-p.jpg","t":"Royal Stone – Purple Giza Cotton Kurta  (Only Kurta)","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/royal-stone-purple-giza-cotton-kurta","o":null,"w":3},{"k":"r37","v":"assets/extracted/watchbuy/r37.mp4","p":"assets/extracted/watchbuy/r37.webp","pi":"assets/extracted/watchbuy/r37-p.jpg","t":"Blue Craft – Navy Blue Giza Cotton Kurta  (Only Kurta)","pr":2649,"mr":3959,"l":"https://sohraaz.com/products/blue-craft-navy-blue-giza-cotton-kurta","o":null,"w":3},{"k":"r38","v":"assets/extracted/watchbuy/r38.mp4","p":"assets/extracted/watchbuy/r38.webp","pi":"assets/extracted/watchbuy/r38-p.jpg","t":"Blue Royal Thread – Premium Giza Cotton Embroidered Kurta (Only Kurta)","pr":2399,"mr":3599,"l":"https://sohraaz.com/products/blue-royal-thread-premium-giza-cotton-embroidered-kurta","o":null,"w":1},{"k":"r39","v":"assets/extracted/watchbuy/r39.mp4","p":"assets/extracted/watchbuy/r39.webp","pi":"assets/extracted/watchbuy/r39-p.jpg","t":"Dupion Blue Craft – Luxury Dupion Silk Self Work Kurta  (Only Kurta)","pr":499,"mr":799,"l":"https://sohraaz.com/products/dupion-blue-craft-luxury-dupion-silk-self-work-kurta","o":null,"w":6},{"k":"r40","v":"assets/extracted/watchbuy/r40.mp4","p":"assets/extracted/watchbuy/r40.webp","pi":"assets/extracted/watchbuy/r40-p.jpg","t":"Royal Pink Sparkle – Premium Dupion Silk Mirror Work Kurta  (Only Kurta)","pr":1799,"mr":2699,"l":"https://sohraaz.com/products/royal-pink-sparkle-premium-dupion-silk-mirror-work-kurta","o":null,"w":1},{"k":"r41","v":"assets/extracted/watchbuy/r41.mp4","p":"assets/extracted/watchbuy/r41.webp","pi":"assets/extracted/watchbuy/r41-p.jpg","t":"Pink Royal Set – Premium Giza Cotton Plain Pathani","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/pink-royal-set-premium-giza-cotton-plain-pathani","o":null,"w":4},{"k":"r42","v":"assets/extracted/watchbuy/r42.mp4","p":"assets/extracted/watchbuy/r42.webp","pi":"assets/extracted/watchbuy/r42-p.jpg","t":"Royal Peach – Luxury Giza Cotton Plain Pathani Set","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/royal-peach-luxury-giza-cotton-plain-pathani-set","o":null,"w":0},{"k":"r43","v":"assets/extracted/watchbuy/r43.mp4","p":"assets/extracted/watchbuy/r43.webp","pi":"assets/extracted/watchbuy/r43-p.jpg","t":"Aqua Royal Pathani – Premium Giza Cotton Plain Pathani Set","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/aqua-royal-pathani-premium-giza-cotton-plain-pathani-set","o":null,"w":4},{"k":"r44","v":"assets/extracted/watchbuy/r44.mp4","p":"assets/extracted/watchbuy/r44.webp","pi":"assets/extracted/watchbuy/r44-p.jpg","t":"Sky Noble Pathani – Premium Giza Cotton Plain Set","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/sky-noble-pathani-premium-giza-cotton-plain-set","o":null,"w":0},{"k":"r45","v":"assets/extracted/watchbuy/r45.mp4","p":"assets/extracted/watchbuy/r45.webp","pi":"assets/extracted/watchbuy/r45-p.jpg","t":"Lemon Drop Pathani – Luxury Giza Cotton Plain Set","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/lemon-drop-pathani-luxury-giza-cotton-plain-set","o":null,"w":5},{"k":"r46","v":"assets/extracted/watchbuy/r46.mp4","p":"assets/extracted/watchbuy/r46.webp","pi":"assets/extracted/watchbuy/r46-p.jpg","t":"Yellow Royal – Luxury Cotton Embroidered Kurta  (Only Kurta)","pr":959,"mr":1499,"l":"https://sohraaz.com/products/yellow-royal-luxury-cotton-embroidered-kurta","o":null,"w":4},{"k":"r47","v":"assets/extracted/watchbuy/r47.mp4","p":"assets/extracted/watchbuy/r47.webp","pi":"assets/extracted/watchbuy/r47-p.jpg","t":"Beige Breeze – Luxury Paper Cotton Printed Kurta  (Only Kurta)","pr":1499,"mr":1999,"l":null,"o":"p4","w":19},{"k":"r48","v":"assets/extracted/watchbuy/r48.mp4","p":"assets/extracted/watchbuy/r48.webp","pi":"assets/extracted/watchbuy/r48-p.jpg","t":"Multitone Regal – Luxury Cotton Self Work Kurta  (Only Kurta)","pr":2649,"mr":3959,"l":"https://sohraaz.com/products/multitone-regal-luxury-cotton-self-work-kurta","o":null,"w":1},{"k":"r49","v":"assets/extracted/watchbuy/r49.mp4","p":"assets/extracted/watchbuy/r49.webp","pi":"assets/extracted/watchbuy/r49-p.jpg","t":"Black Glory – Luxury Giza Cotton Embroidered Kurta  (Only Kurta)","pr":2099,"mr":0,"l":null,"o":"wb10","w":12},{"k":"r50","v":"assets/extracted/watchbuy/r50.mp4","p":"assets/extracted/watchbuy/r50.webp","pi":"assets/extracted/watchbuy/r50-p.jpg","t":"Pure White – Premium Giza Cotton Pathani set","pr":2899,"mr":4300,"l":"https://sohraaz.com/products/pure-white-premium-giza-cotton-plain-kurta","o":null,"w":4},{"k":"r51","v":"assets/extracted/watchbuy/r51.mp4","p":"assets/extracted/watchbuy/r51.webp","pi":"assets/extracted/watchbuy/r51-p.jpg","t":"Green Serene – Luxury Giza Cotton Hand Embroidered Kurta  (Only Kurta)","pr":2649,"mr":3959,"l":null,"o":"wb1","w":141},{"k":"r52","v":"assets/extracted/watchbuy/r52.mp4","p":"assets/extracted/watchbuy/r52.webp","pi":"assets/extracted/watchbuy/r52-p.jpg","t":"Maroon Majesty – Premium Giza Cotton Embroidered Kurta  (Only Kurta)","pr":2599,"mr":0,"l":null,"o":"wb9","w":14},{"k":"r53","v":"assets/extracted/watchbuy/r53.mp4","p":"assets/extracted/watchbuy/r53.webp","pi":"assets/extracted/watchbuy/r53-p.jpg","t":"Sunshine Royal – Premium Cotton Embroidered Kurta  (Only Kurta)","pr":749,"mr":0,"l":null,"o":"wb7","w":21},{"k":"r54","v":"assets/extracted/watchbuy/r54.mp4","p":"assets/extracted/watchbuy/r54.webp","pi":"assets/extracted/watchbuy/r54-p.jpg","t":"Dupion Kanak – Regal Golden Self Work Kurta  (Only Kurta)","pr":599,"mr":899,"l":"https://sohraaz.com/products/dupion-kanak-regal-golden-self-work-kurta","o":null,"w":20},{"k":"r55","v":"assets/extracted/watchbuy/r55.mp4","p":"assets/extracted/watchbuy/r55.webp","pi":"assets/extracted/watchbuy/r55-p.jpg","t":"Dupion Royal – Red Self Work Kurta  (Only Kurta)","pr":499,"mr":0,"l":null,"o":"wb2","w":51},{"k":"r56","v":"assets/extracted/watchbuy/r56.mp4","p":"assets/extracted/watchbuy/r56.webp","pi":"assets/extracted/watchbuy/r56-p.jpg","t":"Luxury Beige – Armani Embroidered Kurta  (Only Kurta)","pr":2549,"mr":0,"l":null,"o":"wb3","w":171},{"k":"r57","v":"assets/extracted/watchbuy/r57.mp4","p":"assets/extracted/watchbuy/r57.webp","pi":"assets/extracted/watchbuy/r57-p.jpg","t":"Black Royal – Premium Giza Cotton Hand Embroidered Kurta  (Only Kurta)","pr":2399,"mr":0,"l":null,"o":"wb15","w":81},{"k":"r58","v":"assets/extracted/watchbuy/r58.mp4","p":"assets/extracted/watchbuy/r58.webp","pi":"assets/extracted/watchbuy/r58-p.jpg","t":"Armani Black – Black Armani Embroidered Kurta","pr":2549,"mr":3499,"l":null,"o":"p10","w":294},{"k":"r59","v":"assets/extracted/watchbuy/r59.mp4","p":"assets/extracted/watchbuy/r59.webp","pi":"assets/extracted/watchbuy/r59-p.jpg","t":"Vibrant Purple – Giza Cotton Pathani Set","pr":2899,"mr":0,"l":null,"o":"wb5","w":131},{"k":"r60","v":"assets/extracted/watchbuy/r60.mp4","p":"assets/extracted/watchbuy/r60.webp","pi":"assets/extracted/watchbuy/r60-p.jpg","t":"Mehendi Royal – Giza Cotton Plain Pathani Set","pr":2899,"mr":0,"l":null,"o":"wb6","w":59},{"k":"r61","v":"assets/extracted/watchbuy/r61.mp4","p":"assets/extracted/watchbuy/r61.webp","pi":"assets/extracted/watchbuy/r61-p.jpg","t":"Maroon Royal – Giza Cotton Plain Pathani Set","pr":2899,"mr":0,"l":null,"o":"wb13","w":46},{"k":"r62","v":"assets/extracted/watchbuy/r62.mp4","p":"assets/extracted/watchbuy/r62.webp","pi":"assets/extracted/watchbuy/r62-p.jpg","t":"Armani Spark – White Armani Mirror Work Kurta  (Only Kurta)","pr":2549,"mr":3499,"l":null,"o":"p12","w":141},{"k":"r63","v":"assets/extracted/watchbuy/r63.mp4","p":"assets/extracted/watchbuy/r63.webp","pi":"assets/extracted/watchbuy/r63-p.jpg","t":"White Giza Cotton Kurta with Embroidery  (Only Kurta)","pr":2049,"mr":3099,"l":"https://sohraaz.com/products/white-giza-cotton-kurta-with-embroidery","o":null,"w":7},{"k":"r64","v":"assets/extracted/watchbuy/r64.mp4","p":"assets/extracted/watchbuy/r64.webp","pi":"assets/extracted/watchbuy/r64-p.jpg","t":"Armani Stitch – White Armani Embroidered Kurta  (Only Kurta)","pr":2999,"mr":0,"l":null,"o":"wb8","w":40},{"k":"r65","v":"assets/extracted/watchbuy/r65.mp4","p":"assets/extracted/watchbuy/r65.webp","pi":"assets/extracted/watchbuy/r65-p.jpg","t":"Shwet – White Cotton Embroidered Kurta  (Only Kurta)","pr":1199,"mr":0,"l":null,"o":"wb4","w":53}];;
+
 const WB_REELS = [
   {event:354783, video:WBVID("wb_354783.mp4"), poster:WBVID("wbposter_354783.webp"), set:"Men's Kurta", p:"wb11"},
   {event:354785, video:WBVID("wb_354785.mp4"), poster:WBVID("wbposter_354785.webp"), set:"Men's Kurta", p:"wb10"},
@@ -3847,6 +3921,150 @@ const WB_REELS = [
 function wbComments(event){ try{ return JSON.parse(localStorage.getItem("sohraaz_wb_comments_"+event)||"[]"); }catch(e){ return []; } }
 function wbLike(event){ try{ return localStorage.getItem("sohraaz_wb_like_"+event)==="1"; }catch(e){ return false; } }
 function wbCounts(event){ return { likes: wbLike(event)?1:0, comments: wbComments(event).length }; }
+
+/* ================= WATCH & BUY PAGE ================= */
+function wbxOff(r){
+  if(!r || !r.mr || r.mr<=r.pr) return 0;
+  return Math.round((1 - r.pr/r.mr)*100);
+}
+function wbxCard(r,i){
+  const off=wbxOff(r);
+  const action = r.o
+    ? `<button class="wbp-add" data-wbxadd="${r.o}" data-wbsize="M">Add to bag</button>`
+    : `<a class="wbp-add wbp-add-link" href="${r.l}" target="_blank" rel="noopener">View product</a>`;
+  return `
+  <article class="wbp" data-wbkey="${r.k}">
+    <div class="wbp-media">
+      <video class="wbp-video" muted loop playsinline preload="none" poster="${r.p}" data-src="${r.v}" aria-label="${r.t.replace(/"/g,"&quot;")}"></video>
+      <button class="wbp-hit" data-wbopen="${i}" aria-label="Play reel: ${r.t.replace(/"/g,"&quot;")}"></button>
+      ${off?`<span class="wbp-off">${off}% off</span>`:""}
+      ${r.w?`<span class="wbp-views">${r.w} views</span>`:""}
+      <span class="wbp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+    </div>
+    <div class="wbp-info">
+      <span class="wbp-name">${r.t}</span>
+      <span class="wbp-price">${inr(r.pr)}${r.mr?` <s>${inr(r.mr)}</s>`:""}</span>
+      <div class="wbp-act">${action}</div>
+    </div>
+  </article>`;
+}
+function renderWatchBuy(q){
+  const list=WBX_REELS;
+  return `
+  <section class="wbpage">
+    <div class="container">
+      <div class="wbpage-head">
+        <div>
+          <span class="overline">Watch &amp; Buy</span>
+          <h1>Pehle dekho, phir pehno.</h1>
+          <p>Asli product ki short reel — fabric, fit aur movement, sab dekho. Pasand aaye to seedha bag mein daalo.</p>
+        </div>
+        <div class="wbpage-tools">
+          <span class="wbpage-count">${list.length} reels</span>
+          <button class="btn btn-dark" data-wbplayall>Pause all</button>
+        </div>
+      </div>
+      <div class="wbp-grid">
+        ${list.map((r,i)=>wbxCard(r,i)).join("")}
+      </div>
+    </div>
+  </section>
+  <div class="wblight" id="wbLight" role="dialog" aria-modal="true" aria-label="Watch and Buy player" hidden>
+    <div class="wblight-inner">
+      <div class="wblight-stage" id="wbLightStage"></div>
+      <div class="wblight-panel" id="wbLightPanel"></div>
+    </div>
+    <button class="wblight-close" data-wblight-close aria-label="Close">&times;</button>
+    <button class="wblight-prev" data-wblight-prev aria-label="Previous reel"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="wblight-next" data-wblight-next aria-label="Next reel"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>`;
+}
+
+/* the lightbox player for the page */
+let wbxIdx=0, wbxVideo=null;
+function wbxShow(i){
+  const list=WBX_REELS;
+  if(!list.length) return;
+  wbxIdx=(i+list.length)%list.length;
+  const r=list[wbxIdx];
+  const off=wbxOff(r);
+  const stage=document.getElementById("wbLightStage");
+  const panel=document.getElementById("wbLightPanel");
+  if(!stage||!panel) return;
+  if(wbxVideo){ wbxVideo.pause(); wbxVideo.removeAttribute("src"); wbxVideo.load(); wbxVideo=null; }
+  stage.innerHTML=`<video class="wblight-video" src="${r.v}" poster="${r.p}" loop playsinline muted autoplay aria-label="${r.t.replace(/"/g,"&quot;")}"></video>`;
+  wbxVideo=stage.querySelector("video");
+  if(wbxVideo){ const p2=wbxVideo.play(); if(p2&&p2.catch) p2.catch(()=>{}); }
+  panel.innerHTML=
+    `<span class="wblight-count">${wbxIdx+1} / ${list.length}</span>`
+    + `<h3 class="wblight-title">${r.t}</h3>`
+    + `<p class="wblight-price">${inr(r.pr)}${r.mr?` <s>${inr(r.mr)}</s> ${off?`<em>${off}% off</em>`:""}`:""}</p>`
+    + (r.o
+      ? `<button class="wblight-add" data-wbxadd="${r.o}" data-wbsize="M">Add to bag</button>`
+      : `<a class="wblight-add" href="${r.l}" target="_blank" rel="noopener">View product</a>`)
+    + (r.w?`<p class="wblight-views">${r.w} views on this reel</p>`:"");
+}
+function wbxOpen(i){
+  const l=document.getElementById("wbLight");
+  if(!l) return;
+  l.hidden=false;
+  l.classList.add("open");
+  document.body.style.overflow="hidden";
+  wbxShow(i);
+}
+function wbxClose(){
+  const l=document.getElementById("wbLight");
+  if(!l) return;
+  if(wbxVideo){ wbxVideo.pause(); }
+  l.classList.remove("open");
+  l.hidden=true;
+  document.body.style.overflow="";
+}
+
+/* the grid plays on its own: a clip loads and plays when it is near the
+   viewport, and pauses again when it leaves */
+function wbxInit(){
+  const cards=[...document.querySelectorAll(".wbp")];
+  if(!cards.length) return;
+  const vids=cards.map(c=>c.querySelector(".wbp-video")).filter(Boolean);
+  function load(v){
+    if(!v || v.dataset.loaded) return;
+    v.dataset.loaded="1";
+    v.setAttribute("src", v.dataset.src);
+  }
+  function play(v){
+    if(!v) return;
+    load(v);
+    const p=v.play();
+    if(p && p.catch) p.catch(()=>{});
+  }
+  function pause(v){
+    if(v && !v.paused) v.pause();
+  }
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        const v=en.target.querySelector(".wbp-video");
+        if(!v) return;
+        if(en.isIntersecting){ play(v); en.target.classList.add("playing"); }
+        else { pause(v); en.target.classList.remove("playing"); }
+      });
+    },{rootMargin:"260px 0px",threshold:[0,0.2,0.6]});
+    cards.forEach(c=>io.observe(c));
+  } else {
+    vids.forEach(play);
+    cards.forEach(c=>c.classList.add("playing"));
+  }
+  /* the poster only swaps out once the browser is actually decoding */
+  document.addEventListener("playing",function(e){
+    const t=e.target.closest && e.target.closest(".wbp");
+    if(t) t.classList.add("playing");
+  },true);
+  /* a hidden tab must not keep decoding clips */
+  document.addEventListener("visibilitychange",function(){
+    if(document.hidden) vids.forEach(pause);
+  });
+}
 
 function renderWatch(){
   const reels = WB_REELS.map((r,i)=>{
@@ -3923,6 +4141,8 @@ function router(){
   else if(path==="#/success") app.innerHTML=renderSuccess();
   else if(path==="#/policies") app.innerHTML=renderPolicies(q);
   else if(path==="#/about") app.innerHTML=renderAbout();
+  else if(path==="#/watchbuy"){ app.innerHTML=renderWatchBuy(q); wbxInit(); }
+  else if(path==="#/watchbuy"){ app.innerHTML=renderWatchBuy(q); wbxInit(); }
   else if(path==="#/watch"){ app.innerHTML=renderWatch(); wbInitWatch(parseInt(q.get('r'))||0); }
   else if(path==="#/" || path===""){ location.replace("index.html"); return; }
   else { location.replace("index.html"); return; }
@@ -3940,11 +4160,12 @@ document.addEventListener("click",e=>{
   if(cm && e.target===cm){ cm.classList.remove('open'); document.body.style.overflow=''; return; }
   const nm=e.target.closest('#notifyModal');
   if(nm && e.target===nm){ nm.classList.remove('open'); document.body.style.overflow=''; return; }
-  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-collclear],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save],[data-search-term],[data-search-clear]");
+  const t=e.target.closest("[data-nav],[data-wish],[data-add],[data-buynow],[data-inc],[data-dec],[data-remove],[data-mode],[data-size],[data-thumb],[data-pqty],[data-cat],[data-pol],[data-pay],[data-placeorder],[data-pin],[data-cartcoupon],[data-quickadd],[data-color],[data-rev-open],[data-rev-filter],[data-rev-helpful],[data-rev-srate],[data-rev-rm],[data-rev-close],[data-size-guide],[data-sfg-close],[data-acct-save],[data-ref-copy],[data-fsize],[data-fcolour],[data-fprice],[data-fclear],[data-fdrop-btn],[data-fdrop-panel],[data-collclear],[data-calc-size],[data-calc-close],[data-calc-run],[data-calc-pick],[data-notify],[data-notify-close],[data-notify-save],[data-search-term],[data-search-clear],[data-wbopen],[data-wblight-close],[data-wblight-prev],[data-wblight-next],[data-wbplayall],[data-wbxadd]");
   if(!t) return;
   if(t.dataset.nav!==undefined && t.dataset.nav){ e.preventDefault(); if(t.dataset.cat) location.hash=t.dataset.nav+"?cat="+encodeURIComponent(t.dataset.cat); else location.hash=t.dataset.nav; return; }
   if(t.dataset.wish){ const id=t.dataset.wish; const i=store.wish.indexOf(id); i>=0?store.wish.splice(i,1):store.wish.push(id); const on=store.wish.includes(id); t.classList.toggle("on",on); if(t.classList.contains("pdp-wishlist")){ const label=t.querySelector("span"); if(label) label.textContent=on?"Saved to wishlist":"Add to Wishlist"; } save(); syncBadges(); toast(on?"Saved to wishlist":"Removed from wishlist"); if(location.hash==="#/wishlist"){ const app=document.getElementById("app"); if(app) app.innerHTML=renderWishlist(); } return; }
   if(t.dataset.add){ const st=store.lastProduct; addToCart(t.dataset.add, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); openDrawer(); return; }
+  if(t.dataset.wbxadd){ addToCart(t.dataset.wbxadd, t.dataset.wbsize||"M", 1); save(); syncBadges(); openDrawer(); toast("Added to your bag"); return; }
   if(t.dataset.buynow){ const st=store.lastProduct; addToCart(t.dataset.buynow, st?st.size:"M", +(document.getElementById("pdpQty")?.textContent||1)); location.hash="#/checkout"; return; }
   if(t.dataset.inc||t.dataset.dec){
     const [id,size]=(t.dataset.inc||t.dataset.dec).split("|");
@@ -4014,6 +4235,20 @@ document.addEventListener("click",e=>{
   if(t.dataset.thumb){ const st=store.lastProduct; st.imgIdx=+t.dataset.thumb; router(); return; }
   if(t.dataset.pqty){ const el=document.getElementById("pdpQty"); el.textContent=Math.max(1,+el.textContent+ +t.dataset.pqty); return; }
   if(t.dataset.cat){ if(t.classList.contains("chip")){ shopHash({cat:t.dataset.cat, col:""}); } return; }
+  if(t.dataset.wbopen!==undefined){ wbxOpen(+t.dataset.wbopen); return; }
+  if(t.dataset.wblightClose!==undefined){ wbxClose(); return; }
+  if(t.dataset.wblightPrev!==undefined){ wbxShow(wbxIdx-1); return; }
+  if(t.dataset.wblightNext!==undefined){ wbxShow(wbxIdx+1); return; }
+  if(t.dataset.wbplayall!==undefined){
+    const vids=[...document.querySelectorAll(".wbp-video")];
+    const anyPlaying=vids.some(v=>!v.paused);
+    vids.forEach(v=>{
+      if(anyPlaying){ v.pause(); }
+      else { if(!v.getAttribute("src")) v.setAttribute("src", v.dataset.src); const pp=v.play(); if(pp&&pp.catch) pp.catch(()=>{}); }
+    });
+    t.textContent=anyPlaying?"Play all":"Pause all";
+    return;
+  }
   if(t.dataset.collclear!==undefined){ shopHash({col:"", cat:"All", size:"", colour:"", price:"", sort:""}); return; }
   if(t.dataset.searchTerm!==undefined){
     const inp=document.getElementById("searchInput");
@@ -4106,6 +4341,7 @@ document.addEventListener("keydown",e=>{
   if(e.key!=="Escape") return;
   closeMnav(); closeDrawer();
   if(typeof closeDropdowns==="function") closeDropdowns();
+  if(typeof wbxClose==="function") wbxClose();
   /* every open dialog gets a keyboard exit */
   ["sizeModal","calcModal","notifyModal"].forEach(id=>{
     const m=document.getElementById(id);

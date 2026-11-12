@@ -509,6 +509,11 @@
   .stry{scroll-snap-align:start;width:84px}
   .stry-title{font-size:14px}
 }
+  .wb-seeall{display:inline-flex;align-items:center;gap:9px;margin-top:18px;border:1px solid var(--line);
+    background:transparent;color:var(--choco);padding:10px 16px;border-radius:2px;
+    font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase;transition:background .2s,color .2s,border-color .2s}
+  .wb-seeall:hover{background:var(--choco);border-color:var(--choco);color:#F4EDE3}
+  .wb-seeall svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
   /* ==== shared chrome (build-injected) ==== */
 /* ============================================================================
@@ -1554,7 +1559,7 @@ p{color:var(--ink)}
       </a>
     </li>
     <li>
-      <a href="index.html#watch-buy" data-mbar="watchbuy">
+      <a href="sohraaz-full-store-template.html#/watchbuy" data-nav="#/watchbuy" data-mbar="watchbuy">
         <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></span>
         <span class="mbar-tx">Watch &amp; Buy</span>
       </a>
@@ -1575,7 +1580,7 @@ p{color:var(--ink)}
         (k==="search"   && path==="#/search") ||
         (k==="collection" && (path==="#/shop" || path==="#/lookbook" || path.indexOf("#/product/")===0 || path==="#/cart" || path==="#/checkout" || path==="#/wishlist")) ||
         (k==="account"  && path==="#/account") ||
-        (k==="watchbuy" && (path==="#/watch" || location.hash==="#watch-buy"));
+        (k==="watchbuy" && (path==="#/watch" || path==="#/watchbuy" || location.hash==="#watch-buy"));
       if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
     });
   }
@@ -1676,6 +1681,9 @@ p{color:var(--ink)}
         <h2>Pehle dekho,<br>phir pehno.</h2>
       </div>
       <p>Video mein fabric ka texture, fit ka flow — sab dekho, phir bag mein add karo. Kyunki Sohraaz mein jo dikhta hain, wahi milta hain.</p>
+      <a class="wb-seeall" href="sohraaz-full-store-template.html#/watchbuy">See all 65 reels
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
     <div class="wb-strip" aria-label="Watch and Buy reels">
       <article class="wb-tile" data-video="assets/extracted/watch-buy/wb_354787.mp4" data-r="2" data-pid="wb1" data-title="Green Serene – Luxury Giza Cotton Hand Embroidered Kurta" data-price="2649">

@@ -450,3 +450,8 @@
   .stry{scroll-snap-align:start;width:84px}
   .stry-title{font-size:14px}
 }
+  .wb-seeall{display:inline-flex;align-items:center;gap:9px;margin-top:18px;border:1px solid var(--line);
+    background:transparent;color:var(--choco);padding:10px 16px;border-radius:2px;
+    font-family:var(--caps);font-size:10px;letter-spacing:.18em;text-transform:uppercase;transition:background .2s,color .2s,border-color .2s}
+  .wb-seeall:hover{background:var(--choco);border-color:var(--choco);color:#F4EDE3}
+  .wb-seeall svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}

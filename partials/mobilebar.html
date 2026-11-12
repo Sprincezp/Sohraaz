@@ -40,7 +40,7 @@
       </a>
     </li>
     <li>
-      <a href="index.html#watch-buy" data-mbar="watchbuy">
+      <a href="sohraaz-full-store-template.html#/watchbuy" data-nav="#/watchbuy" data-mbar="watchbuy">
         <span class="mbar-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></span>
         <span class="mbar-tx">Watch &amp; Buy</span>
       </a>
@@ -61,7 +61,7 @@
         (k==="search"   && path==="#/search") ||
         (k==="collection" && (path==="#/shop" || path==="#/lookbook" || path.indexOf("#/product/")===0 || path==="#/cart" || path==="#/checkout" || path==="#/wishlist")) ||
         (k==="account"  && path==="#/account") ||
-        (k==="watchbuy" && (path==="#/watch" || location.hash==="#watch-buy"));
+        (k==="watchbuy" && (path==="#/watch" || path==="#/watchbuy" || location.hash==="#watch-buy"));
       if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
     });
   }
