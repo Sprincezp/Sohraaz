@@ -1,0 +1,476 @@
+/* ============================================================================
+   SOHRAAZ — THEME SYSTEM (single source of truth)
+   ----------------------------------------------------------------------------
+   Five palettes: royal (default) · rose · emerald · ivory · maroon.
+   Loaded AFTER every page's inline styles, so these tokens win the cascade.
+   Nothing else in the site defines theme colours or theme fonts.
+
+   Page colour roles:
+     --bg      page ground            --ink     body text
+     --bg2     surfaces / footer      --mute    secondary text
+     --gold    main accent            --line    borders
+     --gold2   light accent/headings  --hdr     translucent header ground
+     --gold3   dark accent            --on      text placed ON gold
+     --d1/2/3  card tints, image placeholders, gradients
+     --btn     button gradient        --fd/--fb display + body fonts
+   ========================================================================== */
+
+/* ---------- 1. TOKENS ---------------------------------------------------- */
+
+:root,
+html[data-theme="royal"]{
+  color-scheme:dark;
+  --bg:#080604;--bg2:#120d07;--gold:#d4a24c;--gold2:#f3d58a;--gold3:#8a6422;
+  --ink:#efe3c6;--mute:#b3a07a;--line:rgba(212,162,76,.35);
+  --d1:#2a1c0a;--d2:#0c0805;--d3:#4a3315;--hdr:rgba(8,6,4,.94);--on:#1a1206;
+  --btn:linear-gradient(100deg,#8a6422,#f3d58a,#d4a24c);
+  --fd:"Cormorant Garamond",Georgia,serif;
+  --fb:Jost,system-ui,sans-serif;
+  --bg-rgb:8,6,4;--bg2-rgb:18,13,7;--ink-rgb:239,227,198;--mute-rgb:179,160,122;
+  --gold-rgb:212,162,76;--gold2-rgb:243,213,138;--gold3-rgb:138,100,34;--on-rgb:26,18,6;
+}
+
+html[data-theme="rose"]{
+  color-scheme:dark;
+  --bg:#120a0d;--bg2:#1b0f14;--gold:#d9a08e;--gold2:#f6d3c4;--gold3:#8f5a4c;
+  --ink:#f5e6df;--mute:#b9958b;--line:rgba(217,160,142,.35);
+  --d1:#2e1720;--d2:#0e0709;--d3:#4a2a33;--hdr:rgba(18,10,13,.94);--on:#2a1210;
+  --btn:linear-gradient(100deg,#8f5a4c,#f6d3c4,#d9a08e);
+  --fd:"Playfair Display",Georgia,serif;
+  --fb:"DM Sans",system-ui,sans-serif;
+  --bg-rgb:18,10,13;--bg2-rgb:27,15,20;--ink-rgb:245,230,223;--mute-rgb:185,149,139;
+  --gold-rgb:217,160,142;--gold2-rgb:246,211,196;--gold3-rgb:143,90,76;--on-rgb:42,18,16;
+}
+
+html[data-theme="emerald"]{
+  color-scheme:dark;
+  --bg:#04100b;--bg2:#07180f;--gold:#d9b45a;--gold2:#f5df9b;--gold3:#8a6a22;
+  --ink:#e8ecd8;--mute:#9fb59f;--line:rgba(217,180,90,.35);
+  --d1:#0f2e1d;--d2:#030c07;--d3:#1b4a30;--hdr:rgba(4,16,11,.94);--on:#14200a;
+  --btn:linear-gradient(100deg,#8a6a22,#f5df9b,#d9b45a);
+  --fd:Cinzel,Georgia,serif;
+  --fb:Raleway,system-ui,sans-serif;
+  --bg-rgb:4,16,11;--bg2-rgb:7,24,15;--ink-rgb:232,236,216;--mute-rgb:159,181,159;
+  --gold-rgb:217,180,90;--gold2-rgb:245,223,155;--gold3-rgb:138,106,34;--on-rgb:20,32,10;
+}
+
+html[data-theme="ivory"]{
+  color-scheme:light;
+  --bg:#faf4e6;--bg2:#f0e6cf;--gold:#9a6f1a;--gold2:#6b4710;--gold3:#b0832a;
+  --ink:#2b2012;--mute:#6e5e41;--line:rgba(154,111,26,.4);
+  --d1:#efe2c2;--d2:#e4d3a8;--d3:#f6ecd2;--hdr:rgba(250,244,230,.94);--on:#1b1206;
+  --btn:linear-gradient(100deg,#c9a24d,#ecd08a,#c9a24d);
+  --fd:"DM Serif Display",Georgia,serif;
+  --fb:Karla,system-ui,sans-serif;
+  --bg-rgb:250,244,230;--bg2-rgb:240,230,207;--ink-rgb:43,32,18;--mute-rgb:110,94,65;
+  --gold-rgb:154,111,26;--gold2-rgb:107,71,16;--gold3-rgb:176,131,42;--on-rgb:27,18,6;
+}
+
+html[data-theme="maroon"]{
+  color-scheme:dark;
+  --bg:#140507;--bg2:#1e090c;--gold:#e0b04e;--gold2:#f8dc94;--gold3:#96702a;
+  --ink:#f3e2d0;--mute:#bf9a86;--line:rgba(224,176,78,.38);
+  --d1:#3a0d14;--d2:#0d0304;--d3:#5a1a24;--hdr:rgba(20,5,7,.94);--on:#1d0b06;
+  --btn:linear-gradient(100deg,#96702a,#f8dc94,#e0b04e);
+  --fd:"Bodoni Moda",Georgia,serif;
+  --fb:Montserrat,system-ui,sans-serif;
+  --bg-rgb:20,5,7;--bg2-rgb:30,9,12;--ink-rgb:243,226,208;--mute-rgb:191,154,134;
+  --gold-rgb:224,176,78;--gold2-rgb:248,220,148;--gold3-rgb:150,112,42;--on-rgb:29,11,6;
+}
+
+/* ---------- 2. LEGACY ALIAS LAYER ---------------------------------------
+   The pages were written against two older palettes (cream/chocolate and
+   black/antique-gold). Both are re-pointed at the live theme tokens here, so
+   every legacy rule follows the selected theme without touching the pages.
+   ---------------------------------------------------------------------- */
+:root{
+  /* type */
+  --serif:var(--fd);
+  --caps:var(--fb);
+
+  /* surfaces */
+  --cream:var(--bg);
+  --cream-2:var(--bg2);
+  --cream-solid:var(--d1);
+  --paper:var(--bg2);
+  --ivory:var(--d1);
+  --muted-bg:var(--bg2);
+  --tan:var(--line);
+  --brown-950:var(--bg);
+  --brown-900:var(--bg2);
+  --brown-850:var(--bg2);
+  --brown-700:var(--d3);
+  --color-bg:var(--bg);
+  --color-bg-secondary:var(--bg2);
+  --color-bg-tertiary:var(--bg2);
+  --color-card:var(--d1);
+  --color-card-hover:var(--d3);
+  --color-surface:var(--d1);
+
+  /* text */
+  --ink-2:var(--mute);
+  --ink-2s:var(--mute);
+  --muted:var(--mute);
+  --white:var(--ink);
+  --choco-dark:var(--bg2);
+  --text-primary:var(--ink);
+  --text-secondary:var(--mute);
+  --text-muted:var(--mute);
+  --text-dark:var(--on);
+
+  /* accents */
+  --choco:var(--gold);
+  --mocha:var(--gold2);
+  --gold-light:var(--gold2);
+  --gold-text:var(--gold2);
+  --gold-dark:var(--gold3);
+  --gold-antique:var(--gold2);
+  --gold-primary:var(--gold);
+  --gold-champagne:var(--gold2);
+  --line-dark:var(--line);
+  --border-gold:var(--line);
+  --border-gold-light:var(--gold);
+  --border-subtle:var(--line);
+  --border-dark:var(--line);
+
+  /* semantic */
+  --ok:#8fbb92;
+  --ok-bg:rgba(143,187,146,.14);
+  --err:#e08d7f;
+  --err-bg:rgba(224,141,127,.14);
+  --green:var(--ok);
+  --green-bg:var(--ok-bg);
+  --red:var(--err);
+  --success:var(--ok);
+  --error:var(--err);
+  --warning:var(--gold);
+
+  /* gradients */
+  --gold-gradient:linear-gradient(100deg,var(--gold3),var(--gold2),var(--gold));
+  --gold-hover-gradient:linear-gradient(100deg,var(--gold2),var(--gold2),var(--gold));
+  --black-gradient:linear-gradient(180deg,var(--d1),var(--bg));
+
+  /* elevation — neutral shadows read correctly on light and dark grounds */
+  --shadow-1:0 4px 16px rgba(0,0,0,.28);
+  --shadow-2:0 18px 44px rgba(0,0,0,.38);
+  --shadow-3:0 30px 70px rgba(0,0,0,.48);
+  --shadow:0 8px 24px rgba(0,0,0,.3);
+}
+
+html[data-theme="ivory"]{
+  --ok:#185c2b;
+  --ok-bg:rgba(30,107,52,.10);
+  --err:#a8342a;
+  --err-bg:rgba(168,52,42,.10);
+  --shadow-1:0 4px 16px rgba(43,32,18,.10);
+  --shadow-2:0 18px 44px rgba(43,32,18,.16);
+  --shadow-3:0 30px 70px rgba(43,32,18,.20);
+  --shadow:0 8px 24px rgba(43,32,18,.14);
+}
+
+/* legacy shape token that used to live in the removed palette block */
+:root{--r-md:3px}
+
+/* ---------- 3. BASE ------------------------------------------------------ */
+html{background:var(--bg)}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--fb);
+}
+h1,h2,h3,h4,h5,h6,
+.sec-head h2,.compare-head h1,.product-details h2,.wl-head h1,.acct-hero h2{
+  font-family:var(--fd);
+  color:var(--ink);
+}
+p,li,td,th,label{color:inherit}
+a{color:inherit}
+::selection{background:var(--gold);color:var(--on)}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+
+/* text that used to be cream-on-chocolate */
+.announce,.offer-bar{background:var(--bg2);color:var(--ink);border-color:var(--line)}
+.announce b,.offer-bar b{color:var(--gold2)}
+.ts-item span{color:var(--mute)}
+.ts-item b{color:var(--ink)}
+
+/* ---------- 4. CHROME: header / nav / mega / mobile / footer -------------- */
+.header{background:var(--hdr);border-bottom:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.nav a,.actions button,.actions a,.burger{color:var(--mute)}
+.nav a:hover,.actions button:hover,.actions a:hover,.burger:hover{color:var(--gold2);border-color:var(--gold)}
+.nav .mega{background:var(--bg2);border:1px solid var(--line);box-shadow:var(--shadow-3)}
+.mega-h{color:var(--mute)}
+.mega-col a{color:var(--mute)}
+.mega-col a:hover{color:var(--gold2)}
+.count,.mnav .count{background:var(--gold);color:var(--on)}
+.mnav{background:var(--bg2);border-bottom:1px solid var(--line)}
+.mnav a{color:var(--mute)}
+.mnav a:hover{background:var(--d1);color:var(--gold2)}
+.mnav-scrim{background:rgba(0,0,0,.55)}
+.mbar{background:var(--hdr);border-top:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mbar a,.mbar button{color:var(--mute)}
+.mbar a.on,.mbar a:hover,.mbar button.on,.mbar button:hover{color:var(--gold2)}
+
+.footer{background:var(--bg2);border-top:1px solid var(--line);color:var(--ink)}
+.flogo{color:var(--gold2)}
+.foot-brand p,.foot-bottom{color:var(--mute)}
+.foot-contact,.foot-contact a,.f-col a,.f-social .socials a,.foot-bottom .socials a{color:var(--mute)}
+.foot-contact a:hover,.f-col a:hover,.f-social .socials a:hover,.foot-bottom .socials a:hover{color:var(--gold2)}
+.f-col h4{color:var(--gold2)!important}
+.foot-contact,.foot-contact a{color:var(--mute)!important}
+.foot-bottom{border-top:1px solid var(--line)}
+
+/* ---------- 5. BUTTONS --------------------------------------------------- */
+.btn{font-family:var(--fb)}
+.btn-dark,.btn-solid,.btn-gold,.btn-cream,.buy-button{
+  background:var(--btn);
+  color:var(--on);
+  border-color:transparent;
+  /* keep the dark end of the gradient off the glyphs so labels stay AA */
+  background-size:165% 100%;
+  background-position:50% 50%;
+}
+.btn-dark:hover,.btn-solid:hover,.btn-gold:hover,.btn-cream:hover,.buy-button:hover{
+  background:var(--btn);
+  background-size:165% 100%;
+  background-position:50% 50%;
+  color:var(--on);
+  border-color:transparent;
+  filter:brightness(1.08);
+}
+.btn-ghost,.secondary-button,.view-link,.wb-seeall{
+  background:transparent;
+  color:var(--gold2);
+  border:1px solid var(--gold);
+}
+.btn-ghost:hover,.secondary-button:hover,.view-link:hover,.wb-seeall:hover{
+  background:var(--d1);
+  color:var(--gold2);
+  border-color:var(--gold2);
+}
+.view-link{border-width:0 0 1px;border-color:var(--gold)}
+
+/* ---------- 6. SURFACES / CARDS / DRAWERS / MODALS ----------------------- */
+.drawer,.drawer-foot,.modal,.rev-modal,.popup-card,.chat-panel{
+  background:var(--bg2);color:var(--ink);border-color:var(--line);
+}
+/* the reel viewer is a lightbox: black ground, light type, in every theme */
+.wb-stage{background:#000;color:#f7f0e2}
+.overlay,.modal-overlay,.drawer-scrim,.scrim{background:rgba(0,0,0,.6)}
+.card,.product-card,.p-card,.tr-card,.order-card,.acct-card{
+  background:var(--d1);border-color:var(--line);
+}
+.product-card:hover,.p-card:hover{border-color:var(--gold)}
+
+/* forms */
+input,select,textarea{
+  background:var(--bg);
+  color:var(--ink);
+  border:1px solid var(--line);
+  font-family:var(--fb);
+}
+input::placeholder,textarea::placeholder{color:var(--mute);opacity:1}
+input:focus,select:focus,textarea:focus{border-color:var(--gold2);outline-color:var(--gold2)}
+select option{background:var(--bg);color:var(--ink)}
+
+/* toasts & chips */
+.toast{background:var(--bg2);color:var(--ink);border:1px solid var(--gold)}
+
+/* chat / assistant */
+.chat-panel{background:var(--bg2);border:1px solid var(--line)}
+.chat-head{background:var(--d1);color:var(--ink);border-bottom:1px solid var(--line)}
+.chat-head-av{background:var(--btn);color:var(--on)}
+.chat-msg.bot{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.chat-msg.user{background:var(--d1);color:var(--ink)}
+.chat-chip{border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.chat-chip:hover{border-color:var(--gold);color:var(--gold2)}
+.chat-inputrow{background:var(--bg2);border-top:1px solid var(--line)}
+.chat-inputrow input{background:var(--bg);color:var(--ink)}
+.chat-inputrow button{background:var(--btn);color:var(--on)}
+.chat-fab{background:var(--btn);color:var(--on)}
+.float-tip{background:var(--bg2);color:var(--ink);border:1px solid var(--line)}
+.float-min{background:var(--bg2);border:1px solid var(--line);color:var(--gold2)}
+
+/* gold gradient text */
+.gold-text{
+  background:linear-gradient(100deg,var(--gold3),var(--gold2),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* Photo scrims stay dark in every theme so captions stay legible.
+   Scoped with :has() to heroes that actually carry media — a plain, media-free
+   hero (the standalone demo page) still follows the selected theme. */
+.banner-copy,.banner-copy h1,.wb-cap,.wb-cap b{color:#f7f0e2}
+.hero-badge,.hero-badge *{color:#f7f0e2}
+.hero-badge{background:rgba(20,13,8,.62);border-color:rgba(212,162,76,.36)}
+.arch .badge{background:rgba(20,13,8,.82);color:#f7f0e2;border-color:rgba(212,162,76,.45)}
+
+/* The hero GROUND follows the theme, so the left-hand text panel changes
+   colour with the palette. Only the photographic half keeps its dark scrim. */
+.hero:has(.hero-media),.hero:has(video){
+  background:linear-gradient(100deg,var(--d2) 0%,var(--bg2) 52%,var(--d3) 100%);
+}
+.hero-media::after{
+  background:
+    linear-gradient(90deg,var(--bg2) 0%,rgba(var(--bg2-rgb),.55) 22%,rgba(var(--bg2-rgb),0) 55%),
+    linear-gradient(0deg,rgba(var(--bg2-rgb),.30) 0%,rgba(var(--bg2-rgb),0) 38%);
+}
+/* the copy sits on the themed panel, so it takes the theme's ink */
+.hero-copy,.hero-copy h1{color:var(--ink)}
+.hero-copy .overline,.hero-copy .kicker,.hero .overline{color:var(--gold2)}
+.hero-copy .tag,.hero-note{color:var(--mute)}
+.hero-note b{color:var(--gold2)}
+.hero-badge b,.hero-badge small,.hero-badge span{color:#f7f0e2}
+.hero-scroll,.scroll-hint,.scroll-cue{color:#e9d3a4}
+.hero:has(.hero-media) h1 em,.hero:has(video) h1 em{color:var(--gold2)}
+.hero-ctas .btn-outline,.hero .btn-outline,
+.hero-ctas .btn-outline-light,.hero-cta .btn-outline-light{
+  color:var(--gold2);border-color:var(--gold);background:transparent;
+}
+.hero-ctas .btn-outline:hover,.hero .btn-outline:hover,
+.hero-ctas .btn-outline-light:hover,.hero-cta .btn-outline-light:hover{
+  background:var(--gold);color:var(--on);border-color:var(--gold);
+}
+
+/* tiles, cards and the reel viewer keep a dark photographic ground */
+.wb-tile{background:#0b0806;border-color:var(--line)}
+.occ::after{background:linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.78) 100%)}
+.occ span,.occ b{color:#f7f0e2}
+.occ-tile span,.lbk-proof b,.tier-item.here b{color:var(--gold2)}
+.pdp-offer{color:var(--ink);border-color:var(--line)}
+.pdp-offer b{color:var(--gold2)}
+.pdp-cd,.pdp-offer .pdp-cd{color:var(--mute)}
+
+/* the reel viewer, lookbook overlays and share rows sit on photography */
+.wb-set,.wb-title,.wb-price,.wb-price b,.wb-brand b,.wb-brand em,.wb-name,.wb-actions span,.wb-action,.wb-close{color:#f7f0e2}
+.wb-reel::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:2;pointer-events:none;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.45) 45%,rgba(0,0,0,0) 100%)}
+.wb-bottom{z-index:4}
+.wb-price .prepaid{color:#f7f0e2;background:rgba(0,0,0,.38);border-color:rgba(247,240,226,.4)}
+.lbk-ov b,.lbk-ov span,.lookbook-overlay b,.lookbook-overlay span{color:#f7f0e2}
+
+/* small-caps labels always read as accents, never as a dark tint */
+.news label{color:var(--gold2)!important}
+.announce-track span{color:var(--gold2)}
+.announce-track b{color:var(--gold2)}
+.fdrop-lbl,.fdrop-count,.size-link{color:var(--gold2)}
+.float-handle,.float-tip{color:var(--gold2)}
+.skip-link{background:var(--gold);color:var(--on)}
+.hero .overline{color:var(--gold2)}
+.scroll-cue,.hero-scroll{color:#e9d3a4}
+.hero-badge b,.hero-badge small,.hero-badge span{color:#f7f0e2}
+.hero-ctas .btn-outline,.hero .btn-outline{color:#f7f0e2;border-color:rgba(247,240,226,.55);background:transparent}
+.hero-ctas .btn-outline:hover,.hero .btn-outline:hover{background:#f7f0e2;color:#1a1206}
+
+/* countdown pills + prepaid breakdown strip */
+.js-cd b,.ob-timer b,.pdp-cd b,.pdp-offer .pdp-cd b{background:var(--d3);color:var(--ink);border:1px solid var(--line)}
+.breakdown{background:var(--d1);color:var(--ink);border:1px dashed var(--line)}
+.breakdown b{color:var(--gold2)}
+.hero-note b{color:#e9d3a4}
+.hero:has(.hero-media),.hero:has(video){background:linear-gradient(100deg,var(--d2) 0%,var(--bg2) 52%,var(--d3) 100%)}
+.hero-media::after{background:linear-gradient(90deg,var(--bg2) 0%,rgba(var(--bg2-rgb),.55) 22%,rgba(var(--bg2-rgb),0) 55%),linear-gradient(0deg,rgba(var(--bg2-rgb),.30) 0%,rgba(var(--bg2-rgb),0) 38%)}
+.hero-cta .btn-outline-light{color:#f7f0e2;border-color:rgba(247,240,226,.55);background:transparent}
+.hero-cta .btn-outline-light:hover{background:#f7f0e2;color:#1a1206;border-color:#f7f0e2}
+
+/* ---------- 7. THEME TRANSITION (color fade only) ------------------------ */
+@media (prefers-reduced-motion:no-preference){
+  html.sz-anim *{
+    transition-property:background-color,color,border-color,fill,stroke,box-shadow;
+    transition-duration:.2s;
+    transition-timing-function:linear;
+  }
+}
+
+/* ---------- 8. SWITCHER UI ---------------------------------------------- */
+.tsw{
+  position:fixed;
+  left:14px;
+  bottom:calc(var(--mbar-h,0px) + 84px + env(safe-area-inset-bottom,0px));
+  z-index:890;
+  font-family:var(--fb);
+}
+.tsw{transition:opacity .18s ease,transform .18s ease}
+.tsw.is-tucked{opacity:0;transform:translateY(8px);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.tsw{transition:none}}
+.tsw .tb{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px;border-radius:30px;
+  border:1px solid var(--gold);
+  background:var(--hdr);
+  color:var(--gold2);
+  font-family:var(--fb);font-size:12px;font-weight:500;letter-spacing:.04em;
+  cursor:pointer;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  line-height:1;
+}
+.tsw .tb:hover{border-color:var(--gold2);color:var(--ink)}
+.tsw .tb:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+
+.sz-tp{
+  position:absolute;left:0;bottom:calc(100% + 10px);
+  width:262px;max-width:calc(100vw - 28px);
+  padding:8px;
+  background:var(--bg2);
+  border:1px solid var(--gold);
+  border-radius:12px;
+  box-shadow:0 18px 48px rgba(0,0,0,.5);
+}
+.sz-tp[hidden]{display:none}
+.sz-tp .sz-h{
+  display:block;padding:8px 12px 6px;
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mute);
+}
+.sz-tp button{
+  display:flex;align-items:center;gap:10px;width:100%;
+  padding:10px 12px;margin:2px 0;
+  background:none;border:1px solid transparent;border-radius:8px;
+  color:var(--ink);cursor:pointer;text-align:left;
+  font-family:var(--fb);font-size:13.5px;line-height:1.2;
+}
+.sz-tp button:hover{border-color:var(--line);background:var(--d2)}
+.sz-tp button[aria-pressed="true"]{border-color:var(--gold);background:var(--d1)}
+.sz-tp button:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.sz-tp .dots{display:flex;flex:none}
+.sz-tp .dots i{display:block;width:16px;height:16px;border-radius:50%;margin-right:-5px;border:1px solid var(--bg2)}
+.sz-tp .nm{flex:1;min-width:0}
+.sz-tp .aa{font-size:19px;line-height:1;color:var(--gold2);font-style:normal;margin-left:auto}
+
+/* ivory is the one light ground: gold chips need a deep ground behind them */
+html[data-theme="ivory"] .ob-name,
+html[data-theme="ivory"] .skip-link,
+html[data-theme="ivory"] .ref-btn,
+html[data-theme="ivory"] .lbk-btn-gold,
+html[data-theme="ivory"] .coupon-apply{background:var(--gold2);color:var(--bg)}
+
+@media (max-width:640px){
+  .tsw{left:10px;bottom:calc(var(--mbar-h,0px) + 76px + env(safe-area-inset-bottom,0px))}
+  .tsw .tb{padding:9px 13px;font-size:11px}
+}
+
+/* ---------- 9. MEASURED CONTRAST FIXES ---------------------------------- */
+/* The stock tag sits on the semantic error ground — pale in the dark themes,
+   deep red in ivory — so it never takes the body ink colour. */
+.stock{color:var(--bg)}
+
+/* Small chips that carry --on type on --gold: in the one light theme the mid
+   gold is too light for that pairing, so the deep accent backs them. */
+html[data-theme="ivory"] .count,
+html[data-theme="ivory"] .mnav .count,
+html[data-theme="ivory"] .rev-avatar,
+html[data-theme="ivory"] .lbk-kit-cta{background:var(--gold2);color:var(--bg)}
+
+/* An italic pull-quote accent that was painted with a surface tint */
+.chapter p em{color:var(--gold2)}
+
+/* Accent type that sits on a light ivory surface takes the deep accent. */
+html[data-theme="ivory"] :is(
+  .price,.pdp-price .price,.delivery-line,.cl-delivery,.restock-row small,
+  .rev-bar span,.rev-chip,.rev-helpful,.rev-choice label,.cart-upsell h3,
+  .summary-card h3,.welcomebox,.sumrow,.tier-progress,.acc-body,
+  .page-link,.search-count,.drawer-upsell h4,.pdp-offer,
+  .coll-kicker,.coll-clear,.fclear,.fdrop-count,.occ-tile span,.lbk-proof b,
+  .chat-link,.calc-f span,.calc-wa,.overline.gold,
+  .val h3,.compare-head p,.tag,.story-copy .overline,.pillar p,.pillars .sec-head p
+){color:var(--gold2)}
+html[data-theme="ivory"] .payopt .po-sub{color:var(--ink)}

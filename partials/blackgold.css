@@ -1,0 +1,440 @@
+/* ============================================================================
+   SOHRAAZ — BLACK & ANTIQUE GOLD THEME OVERRIDE
+   ----------------------------------------------------------------------------
+   Owner brief (13 Nov 2026): premium international luxury menswear —
+   black velvet × antique gold × royal Indian heritage. Visual styling ONLY;
+   no content / backend / API / product / price / functionality changes.
+
+   Loaded LAST (after luxury.css), so these rules win the cascade on every page.
+   ============================================================================ */
+
+:root{
+  /* ---- master palette (exact values from the brief) ---- */
+  --color-bg:var(--d2);
+  --color-bg-secondary:var(--bg2);
+  --color-bg-tertiary:var(--d2);
+  --color-card:var(--d3);
+  --color-card-hover:var(--d2);
+  --color-surface:var(--d3);
+
+  --gold-dark:var(--gold3);
+  --gold-antique:var(--gold3);
+  --gold-primary:var(--gold);
+  --gold-light:var(--gold2);
+  --gold-champagne:var(--gold2);
+
+  --text-primary:var(--ink);
+  --text-secondary:var(--mute);
+  --text-muted:var(--mute);
+  --text-dark:var(--d2);
+
+  --border-gold:rgba(var(--gold3-rgb),.42);
+  --border-gold-light:rgba(var(--gold2-rgb),.65);
+  --border-subtle:rgba(var(--gold3-rgb),.18);
+  --border-dark:var(--d3);
+
+  --success:var(--ok);
+  --error:var(--err);
+  --warning:var(--gold);
+
+  --gold-gradient:linear-gradient(135deg,var(--gold3) 0%,var(--gold) 35%,var(--gold2) 55%,var(--gold3) 100%);
+  --gold-hover-gradient:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold));
+  --black-gradient:linear-gradient(180deg,var(--d3) 0%,var(--d2) 100%);
+  --hero-overlay:linear-gradient(90deg,rgba(8,7,6,.96) 0%,rgba(8,7,6,.75) 42%,rgba(8,7,6,.12) 100%);
+
+  /* ---- remap legacy tokens onto the black/gold palette ---- */
+  --choco:var(--gold);              /* primary gold (buttons, price, links) */
+  --choco-dark:var(--d2);         /* near-black surfaces (header, footer, story) */
+  --mocha:var(--gold3);              /* antique gold accent */
+  --gold:var(--gold);               /* primary gold */
+  --gold-light:var(--gold2);         /* champagne gold */
+  --cream:var(--d2);              /* main background */
+  --ivory:var(--d3);              /* card background */
+  --white:var(--ink);              /* ivory text */
+  --ink:var(--ink);                /* primary text */
+  --ink-2:var(--mute);              /* secondary text */
+  --ink-2s:var(--mute);             /* secondary text, small */
+  --line:rgba(var(--gold3-rgb),.42);  /* antique gold border */
+  --muted-bg:var(--bg2);           /* section background */
+  --gold-text:var(--gold);
+  --line-dark:rgba(var(--gold3-rgb),.18);
+
+  --cream-2:var(--bg2);
+  --cream-solid:var(--d3);
+  --paper:var(--d3);
+  --tan:rgba(var(--gold3-rgb),.42);
+  --brown-950:var(--d2);
+  --brown-900:var(--bg2);
+  --brown-850:var(--d3);
+  --brown-700:var(--d3);
+  --green:var(--ok);
+  --green-bg:rgba(130,150,107,.12);
+  --red:var(--err);
+
+  --shadow-1:0 4px 16px rgba(0,0,0,.45);
+  --shadow-2:0 18px 44px rgba(0,0,0,.55);
+  --shadow-3:0 30px 70px rgba(0,0,0,.65);
+}
+
+/* ---------- base typography ---------- */
+body{background:var(--color-bg);color:var(--text-primary)}
+h1,h2,h3,h4,h5{color:var(--text-primary)}
+p{color:var(--text-primary)}
+::selection{background:var(--gold-primary);color:var(--text-dark)}
+
+/* ---------- scrollbar ---------- */
+html{scrollbar-width:thin;scrollbar-color:var(--gold3) var(--d2)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--d2)}
+::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:6px;border:2px solid var(--d2)}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* ---------- section furniture ---------- */
+.overline{color:var(--gold-antique)}
+.overline.gold{color:var(--gold-primary)}
+.sec-head h2{color:var(--text-primary)}
+.sec-sub{color:var(--text-secondary)}
+.page-head h1{color:var(--text-primary)}
+.page-head .page-sub{color:var(--text-secondary)}
+.page-link{color:var(--gold-primary)}
+.page-link:hover{color:var(--gold-champagne)}
+.wl-head h1{color:var(--text-primary)}
+.acct-hero h2{color:var(--text-primary)}
+.sec-head .rule,.page-head .rule{background:var(--gold-primary)}
+.like-section .sec-head h2{color:var(--text-primary)}
+.like-section .sec-head p{color:var(--text-secondary)}
+
+/* ---------- header / nav / bands ---------- */
+.header{background:var(--d2);border-bottom:1px solid rgba(var(--gold3-rgb),.35)}
+.header.scrolled{box-shadow:0 10px 32px rgba(0,0,0,.55)}
+.nav a{color:var(--text-primary)}
+.nav a:hover{color:var(--gold-champagne);border-bottom-color:var(--gold-primary)}
+.actions .act{color:var(--text-primary)}
+.actions .act:hover{color:var(--gold-champagne)}
+.actions .count{background:var(--gold-primary);color:var(--text-dark)}
+.burger{color:var(--text-primary)}
+.burger.open svg{stroke:var(--gold-primary)}
+
+.announce{background:var(--d2);border-bottom:1px solid rgba(var(--gold3-rgb),.18)}
+.announce-track span{color:var(--gold-primary)}
+.announce-track b{color:var(--gold-champagne)}
+.offer-bar{background:var(--bg2);border-top:1px solid rgba(var(--gold3-rgb),.18)}
+.offer-bar .ob-text{color:var(--text-secondary)}
+.offer-bar .ob-name{background:var(--gold-primary);color:var(--text-dark)}
+.offer-bar .ob-timer{color:var(--gold-champagne)}
+
+.nav .mega{background:var(--d2);border:1px solid var(--border-gold);border-top:2px solid var(--gold-primary);box-shadow:0 30px 70px rgba(0,0,0,.7)}
+.mega-h{color:var(--gold-primary);border-bottom:1px solid var(--border-subtle)}
+.mega-col a{color:var(--text-primary)}
+.mega-col a:hover{color:var(--gold-champagne)}
+.mnav{background:var(--d2);border-bottom:1px solid rgba(var(--gold3-rgb),.2)}
+.mnav a{color:var(--text-primary);border-top:1px solid rgba(var(--gold3-rgb),.08)}
+.mnav a svg{stroke:var(--gold-primary)}
+.mnav a small{color:var(--text-muted)}
+.mnav a:hover{background:rgba(var(--gold3-rgb),.12);color:var(--ink)}
+.mnav-scrim{background:rgba(0,0,0,.65)}
+
+/* ---------- footer ---------- */
+.footer{background:var(--bg2);border-top:2px solid var(--gold-primary)}
+.flogo{color:var(--text-primary)}
+.foot-brand p{color:var(--text-secondary)}
+.foot-contact{color:var(--text-secondary)!important}
+.foot-contact a{color:var(--gold-primary)!important}
+.f-col h4{color:var(--gold-primary)}
+.f-col a{color:var(--text-secondary)}
+.f-col a:hover{color:var(--gold-champagne)}
+.socials a{border:1px solid var(--border-gold);color:var(--gold-primary)}
+.socials a:hover{background:var(--gold-primary);border-color:var(--gold-primary);color:var(--text-dark)}
+.foot-bottom{color:var(--text-muted);border-top:1px solid rgba(var(--gold3-rgb),.30)}
+.news label{color:var(--gold-primary)}
+.news input{background:rgba(16,12,8,.6);border:1px solid var(--border-gold);color:var(--text-primary)}
+.news input:focus{border-color:var(--gold-primary)}
+.news input::placeholder{color:var(--text-muted)}
+.news button{background:var(--gold-primary);color:var(--text-dark)}
+.news button:hover{background:var(--gold-champagne)}
+
+/* ---------- buttons (gold system) ---------- */
+.btn-dark,.btn-solid{background:var(--gold-gradient);color:var(--text-dark);border-color:var(--gold-primary)}
+.btn-dark:hover,.btn-solid:hover{background:var(--gold-hover-gradient);border-color:var(--gold-champagne);color:var(--text-dark);box-shadow:0 4px 18px rgba(var(--gold2-rgb),.22);transform:translateY(-2px)}
+.btn-gold{background:var(--gold-gradient);color:var(--text-dark);border-color:var(--gold-primary)}
+.btn-gold:hover{background:var(--gold-hover-gradient);border-color:var(--gold-champagne);color:var(--text-dark)}
+.btn-ghost,.btn-outline{background:transparent;color:var(--gold-primary);border-color:var(--border-gold-light)}
+.btn-ghost:hover,.btn-outline:hover{background:var(--gold-primary);color:var(--text-dark);border-color:var(--gold-primary)}
+.btn-cream{background:var(--gold-gradient);color:var(--text-dark);border-color:var(--gold-primary)}
+.btn-cream:hover{background:var(--gold-hover-gradient);border-color:var(--gold-champagne);color:var(--text-dark)}
+.hero-cta .btn-outline-light{background:transparent;color:var(--gold-primary);border-color:var(--border-gold-light)}
+.hero-cta .btn-outline-light:hover{background:var(--gold-primary);color:var(--text-dark);border-color:var(--gold-primary)}
+
+/* ---------- product cards ---------- */
+.prod{background:var(--color-card);border:1px solid var(--border-gold)}
+.prod:hover{border-color:var(--gold-primary);box-shadow:0 0 18px rgba(var(--gold3-rgb),.12);transform:translateY(-3px)}
+.prod-img{background:var(--color-bg-secondary)}
+.prod-name{color:var(--text-primary)}
+.prod-prices .price{color:var(--gold-primary)}
+.prod-prices .mrp{color:var(--text-muted)}
+.prod-prices .pct-off{color:var(--gold-antique);border:1px solid var(--border-gold);background:var(--color-card)}
+.prepaid-tag{color:var(--text-muted)}
+.swatches i{border:1px solid rgba(var(--gold3-rgb),.3)}
+.prod .wish{background:rgba(21,16,11,.85);border:1px solid var(--border-gold);color:var(--gold-primary)}
+.prod .wish:hover{background:var(--gold-primary);color:var(--text-dark);border-color:var(--gold-primary)}
+
+/* ---------- category / occasion cards ---------- */
+.occ{background:var(--color-bg-secondary)}
+.occ::after{background:linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.88) 100%)}
+.occ span{color:var(--text-primary)}
+.occ span small{color:var(--gold-champagne)}
+
+/* ---------- testimonials ---------- */
+.trust-reviews{background:var(--color-bg);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
+.tr-card{background:var(--color-card);border:1px solid var(--border-gold)}
+.tr-card:hover{border-color:var(--gold-primary);box-shadow:0 0 18px rgba(var(--gold3-rgb),.12)}
+.tr-quote-mark{color:var(--gold-antique);opacity:.35}
+.tr-quote{color:var(--text-primary)}
+.tr-name{color:var(--gold-antique)}
+.tr-verified{color:var(--success)}
+.tr-verified svg{stroke:var(--success)}
+
+/* ---------- hero / story / banner / values ---------- */
+.hero{background:linear-gradient(100deg,var(--d2) 0%,var(--bg2) 52%,var(--d3) 100%)}
+.hero-media::after{background:linear-gradient(90deg,var(--bg2) 0%,rgba(13,10,7,.55) 22%,rgba(0,0,0,0) 55%),linear-gradient(0deg,rgba(0,0,0,.3) 0%,rgba(0,0,0,0) 38%)}
+.hero-copy{color:var(--text-primary)}
+.hero-copy .overline{color:var(--gold-primary)}
+.hero-copy h1{color:var(--text-primary)}
+.hero-copy .tag{color:var(--text-secondary)}
+.hero-note{color:var(--text-muted)}
+.hero-note b{color:var(--text-secondary)}
+.hero-badge{background:rgba(8,7,6,.6);border:1px solid var(--border-gold)}
+.hero-badge b{color:var(--text-primary)}
+.hero-badge small{color:var(--gold-champagne)}
+.hero-badge-dot{background:var(--gold-primary);box-shadow:0 0 0 4px rgba(var(--gold2-rgb),.22)}
+.hero-scroll{color:var(--text-muted)}
+.hero-scroll::after{background:linear-gradient(var(--gold-primary),rgba(var(--gold2-rgb),0))}
+
+.story{background:var(--color-bg)}
+.story-panel{background:var(--color-bg-secondary)}
+.story-copy h2{color:var(--text-primary)}
+.story-hindi{color:var(--gold-champagne)}
+.story-copy p{color:var(--text-secondary)}
+
+.banner{background:var(--color-bg-secondary)}
+.banner-bg{background:var(--color-bg-secondary)}
+.banner-bg::after{background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.72) 46%,rgba(0,0,0,.9) 100%)}
+.banner-copy{color:var(--text-primary)}
+.banner-copy .overline{color:var(--gold-primary)}
+.banner-copy h2{color:var(--text-primary)}
+.banner-copy .rule{background:var(--gold-primary)}
+.banner-copy p{color:var(--text-secondary)}
+
+.values{background:var(--color-bg)}
+.val{border-left:1px solid var(--border-subtle)}
+.val .icon{stroke:var(--gold-primary)}
+.val h3{color:var(--gold-primary)}
+.val p{color:var(--text-secondary)}
+
+/* ---------- Watch & Buy / reels ---------- */
+.wb-tile{background:var(--color-bg-secondary);border:1px solid var(--border-gold)}
+.wb-tile.playing{border-color:var(--gold-primary);box-shadow:0 16px 40px rgba(0,0,0,.55)}
+.wb-video{background:var(--color-bg-secondary)}
+.wb-play{background:var(--gold-primary);border:1px solid rgba(var(--gold2-rgb),.75);color:var(--text-dark)}
+.wb-play:hover{background:var(--gold-champagne)}
+.wb-play svg{fill:var(--text-dark)}
+.wb-close{background:rgba(8,7,6,.62);border:1px solid rgba(var(--gold2-rgb),.55);color:var(--ink)}
+.wb-close:hover{background:var(--gold-primary);color:var(--text-dark)}
+.wb-cap{background:linear-gradient(transparent,rgba(0,0,0,.9));color:var(--text-primary)}
+.wb-cap b{color:var(--ink)}
+.wb-cap small{color:var(--gold-champagne)}
+.wb-seeall{border:1px solid var(--border-gold);color:var(--gold-primary)}
+.wb-seeall:hover{background:var(--gold-primary);border-color:var(--gold-primary);color:var(--text-dark)}
+
+/* ---------- shoppable stories ---------- */
+.stry-ring{background:var(--color-card);border:1px solid var(--border-gold)}
+.stry:hover .stry-ring,.stry:focus-visible .stry-ring{border-color:var(--gold-primary)}
+.stry-thumb{background:var(--color-bg-secondary);border:2px solid var(--d3)}
+.stry-title{color:var(--text-primary)}
+.stry:hover .stry-title{color:var(--gold-primary)}
+
+/* ---------- forms / inputs ---------- */
+input,select,textarea{background:var(--color-bg-tertiary);color:var(--text-primary);border:1px solid var(--border-gold);border-radius:2px}
+input:focus,select:focus,textarea:focus{border-color:var(--gold-primary);outline:2px solid rgba(var(--gold2-rgb),.15)}
+input::placeholder,textarea::placeholder{color:var(--text-muted)}
+
+/* ---------- floating helpers + chat ---------- */
+.float-handle{background:var(--d2);color:var(--gold-primary);border:1px solid var(--border-gold)}
+.float-handle:hover{background:var(--bg2)}
+.float-handle-right{background:var(--wa);color:var(--ink);border:none}
+.float-handle-right:hover{background:var(--wa);color:var(--wa-ink)}
+.chat-fab{background:var(--gold-gradient);border:1px solid var(--gold-primary)}
+.chat-fab svg.bubble{stroke:var(--text-dark)}
+.float-min{background:var(--gold-primary);border:1px solid var(--gold-champagne);color:var(--text-dark)}
+.float-btn:focus-visible{outline:3px solid var(--gold-primary)}
+.float-tip{background:var(--bg2);border:1px solid var(--border-gold);color:var(--text-primary)}
+
+.chat-panel{background:var(--color-bg-tertiary);border:1px solid var(--border-gold);box-shadow:0 24px 80px rgba(0,0,0,.65)}
+.chat-head{background:var(--bg2);color:var(--text-primary);border-bottom:1px solid var(--border-subtle)}
+.chat-head-av{background:var(--gold-primary);color:var(--text-dark)}
+.chat-head small{color:var(--gold-champagne)}
+.chat-close{border:1px solid var(--border-gold);color:var(--text-primary)}
+.chat-body{background:var(--bg2)}
+.chat-msg.bot{background:var(--color-card);border:1px solid var(--border-subtle);color:var(--text-primary)}
+.chat-msg.user{background:var(--gold-primary);color:var(--text-dark)}
+.chat-link{color:var(--gold-primary)}
+.chat-msg.user .chat-link{color:var(--text-dark)}
+.chat-typing{background:var(--color-card);border:1px solid var(--border-subtle)}
+.chat-typing i{background:var(--gold-primary)}
+.chat-chips{background:var(--bg2)}
+.chat-chip{border:1.5px solid var(--border-gold);background:var(--color-card);color:var(--text-primary)}
+.chat-chip:hover{border-color:var(--gold-primary);color:var(--gold-champagne)}
+.chat-inputrow{border-top:1px solid var(--border-subtle);background:var(--color-bg-tertiary)}
+.chat-inputrow input{color:var(--text-primary)}
+.chat-inputrow input::placeholder{color:var(--text-muted)}
+.chat-inputrow button{background:var(--gold-primary);color:var(--text-dark)}
+.chat-wa{color:var(--text-muted);background:var(--color-bg-tertiary);border-top:1px solid var(--border-subtle)}
+.chat-wa a{color:var(--success)}
+
+/* ---------- drawer / cart ---------- */
+.drawer{background:var(--color-card);border-left:1px solid var(--border-gold);color:var(--text-primary)}
+.drawer-foot{background:var(--color-card);border-top:1px solid var(--border-subtle)}
+.popup-card{background:var(--color-card);border:1px solid var(--border-gold)}
+.drawer .cl-name,.drawer .cl-price,.drawer .total,.drawer h3,.drawer h4{color:var(--text-primary)}
+.drawer .cl-mrp,.drawer .sub-label,.drawer .cl-size{color:var(--text-muted)}
+.drawer .cl-img{background:var(--color-bg-secondary)}
+
+/* ---------- mobile bottom bar ---------- */
+.mbar{background:var(--color-card);border-top:1px solid var(--border-gold)}
+.mbar-ico svg{stroke:var(--gold-antique)}
+.mbar-tx{color:var(--gold-antique)}
+.mbar-list a[aria-current="page"] .mbar-ico svg{stroke:var(--gold-primary)}
+.mbar-list a[aria-current="page"] .mbar-tx{color:var(--gold-primary)}
+
+/* ---------- toast ---------- */
+.toast{background:var(--bg2);color:var(--text-primary);border:1px solid var(--border-gold)}
+
+/* ---------- comparison slider ---------- */
+.comparison-section{background:var(--color-bg)}
+.comparison-section .compare-head p{color:var(--gold-primary)}
+.comparison-section .compare-head h1{color:var(--text-primary)}
+.comparison-section .compare-head span{color:var(--gold-primary)}
+.comparison{background:var(--color-bg-secondary)}
+.image-before{background:linear-gradient(135deg,var(--d3),var(--bg2))}
+.image-after{background:linear-gradient(135deg,var(--d3),var(--d3))}
+.product-label{color:var(--text-primary)}
+.slider-line{background:var(--gold-primary)}
+.slider-handle{background:var(--gold-primary);color:var(--text-dark);box-shadow:0 3px 15px rgba(0,0,0,.4)}
+.tag{color:var(--gold-primary)}
+.product-details h2{color:var(--text-primary)}
+.description{color:var(--text-secondary)}
+.price{color:var(--gold-primary)}
+.old-price{color:var(--text-muted)}
+.colors p{color:var(--text-secondary)}
+
+/* ---------- buttons ---------- */
+.buy-button{
+  background:rgba(var(--gold2-rgb),.02);
+  color:var(--gold-primary);
+  border:1px solid var(--border-gold);
+  border-radius:0;
+  padding:clamp(12px, 1.5vh, 16px) clamp(24px, 2.5vh, 32px);
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-size:clamp(16px, 2vh, 20px);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  transition:all 0.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+.buy-button::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-60%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(var(--gold2-rgb),0),rgba(var(--gold2-rgb),.15));
+  transform:skewX(-25deg);
+  transition:0.6s;
+}
+.buy-button:hover::before{left:60%}
+.buy-button:hover{
+  background:rgba(var(--gold2-rgb),.08);
+  color:var(--gold-primary);
+  border-color:rgba(var(--gold2-rgb),.5);
+  box-shadow:0 8px 32px rgba(var(--gold2-rgb),.15);
+}
+.buy-button:active{
+  transform:translateY(1px);
+}
+.view-link{
+  color:var(--gold-primary);
+  border-bottom:1px solid var(--gold-primary);
+  padding:clamp(4px, 0.8vh, 8px) 0;
+  font-family:Montserrat, sans-serif;
+  font-size:clamp(14px, 1.8vh, 16px);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  position:relative;
+  transition:all 0.3s ease;
+}
+.view-link::after{
+  content:"↗";
+  opacity:0;
+  transform:translateX(-4px);
+  display:inline-block;
+  transition:all 0.3s ease;
+}
+.view-link:hover::after{opacity:1;transform:translateX(0)}
+.view-link:hover{background:rgba(var(--gold2-rgb),.05);color:var(--gold-light)}
+.primary-button{
+  background:var(--gold-primary);
+  color:var(--text-dark);
+  border:none;
+  padding:clamp(16px, 2vh, 20px) clamp(32px, 3vh, 40px);
+  font-family:Montserrat, sans-serif;
+  font-size:clamp(14px, 1.8vh, 16px);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  border-radius:0;
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+.primary-button::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,rgba(var(--gold2-rgb),0),rgba(var(--gold2-rgb),.3),rgba(var(--gold2-rgb),0));
+  transition:0.6s;
+  z-index:-1;
+}
+.primary-button:hover::before{left:100%}
+.secondary-button{
+  background:transparent;
+  color:var(--gold-primary);
+  border:2px solid var(--gold-primary);
+  padding:clamp(14px, 1.8vh, 18px) clamp(30px, 2.5vh, 36px);
+  font-family:Montserrat, sans-serif;
+  font-size:clamp(14px, 1.8vh, 16px);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  border-radius:0;
+  position:relative;
+  transition:all 0.3s ease;
+}
+.secondary-button:hover{
+  background:rgba(var(--gold2-rgb),.08);
+  color:var(--gold-light);
+  border-color:var(--gold-light);
+}
+.view-link{color:var(--text-secondary);border-bottom:1px solid var(--gold-primary)}
+
+/* ---------- gallery ---------- */
+.gal{background:var(--color-bg-secondary)}
+
+/* ---------- focus ring (gold) ---------- */
+:focus-visible{outline:2px solid var(--gold-primary);outline-offset:3px}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"><head><script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('sz-theme')||'royal')}catch(e){document.documentElement.setAttribute('data-theme','royal')}</script><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SOHRAAZ — The Art of Modern Indian Elegance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@500;600&family=Raleway:wght@300;400;500&family=DM+Serif+Display&family=Karla:wght@300;400;500&family=Bodoni+Moda:wght@500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 15px/1.6 Jost,system-ui,sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.1}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.g{background:linear-gradient(100deg,var(--gold3),var(--gold2) 45%,var(--gold) 70%,var(--gold3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1180px;margin:auto;padding:0 20px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.top{background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold3));color:var(--on);text-align:center;font-size:12px;padding:6px 10px;font-weight:500}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(8,6,4,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+nav{display:flex;gap:22px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+nav a:hover{color:var(--gold2)}
+.logo{font:600 28px "Cormorant Garamond",serif;letter-spacing:.14em;text-align:center}
+.logo small{display:block;font:300 9px Jost;letter-spacing:.3em;color:var(--mute)}
+.ic{display:flex;gap:16px;color:var(--gold);justify-content:flex-end}
+.btn{display:inline-block;padding:12px 24px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;font-family:inherit;transition:.25s}
+.b1{background:linear-gradient(100deg,var(--gold3),var(--gold2),var(--gold));color:var(--on);font-weight:500}
+.b1:hover{filter:brightness(1.12)}
+.b2{background:none;color:var(--gold2)}.b2:hover{background:rgba(212,162,76,.12)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;min-height:560px;background:radial-gradient(60% 80% at 80% 40%,var(--d1),transparent),var(--bg);padding:0;border:0}
+.hero h1{font-size:clamp(44px,6vw,76px);margin:12px 0 18px}
+.hero p{max-width:420px;color:var(--mute);font-style:italic;font-family:"Cormorant Garamond",serif;font-size:19px}
+.hero .cta{display:flex;gap:14px;margin:26px 0;flex-wrap:wrap}
+.perks{font-size:12px;color:var(--gold);letter-spacing:.08em}
+.eyebrow{color:var(--gold);font-size:13px;letter-spacing:.18em}
+.arch{position:relative;height:520px;margin:30px 20px 0;border:1px solid var(--line);border-radius:240px 240px 0 0;background:linear-gradient(180deg,var(--d3),var(--d2));overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.arch .badge{position:absolute;right:14px;bottom:18px;border:1px solid var(--gold);background:rgba(8,6,4,.85);padding:8px 14px;font-size:11px;letter-spacing:.1em;color:var(--gold2)}
+.sil{width:62%;max-width:300px;height:88%;opacity:.9}
+.ph{position:relative;aspect-ratio:3/4;background:radial-gradient(70% 55% at 50% 30%,var(--d3),var(--d2));border:1px solid var(--line);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.ph svg{width:72%;height:92%}
+.ph::after{content:"";position:absolute;inset:6px;border:1px solid rgba(212,162,76,.25);pointer-events:none}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.9));font-size:13px;z-index:1}
+.cap b{display:block;font-weight:400;color:var(--gold2)}
+.play{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-size:9px;color:var(--gold2);background:rgba(8,6,4,.7);z-index:1}
+.circles{display:flex;justify-content:center;gap:clamp(18px,5vw,56px);flex-wrap:wrap;padding:34px 20px}
+.circles a{text-align:center;font-family:"Cormorant Garamond",serif;font-size:18px;color:var(--gold2)}
+.circles i{display:block;width:76px;height:76px;margin:0 auto 8px;border-radius:50%;border:2px solid var(--gold);background:conic-gradient(from 40deg,var(--gold3),var(--gold2),var(--gold3),var(--d3),var(--gold3));box-shadow:0 0 0 4px var(--bg),0 0 0 5px var(--line)}
+.split{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:center}
+.row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:12px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--gold3) transparent;padding-bottom:6px}
+h2{font-size:clamp(32px,4vw,46px)}
+.sec-h{text-align:center;margin-bottom:34px}
+.sec-h p{color:var(--mute);margin:8px 0 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.price{margin:2px 0 8px;font-size:15px}.price s{color:var(--mute);margin-right:6px;font-size:13px}.price b{color:var(--gold2);font-weight:500}
+.card .acts{display:flex;gap:6px;margin-top:8px}.card .acts .btn{flex:1;padding:9px 6px;font-size:11px}.card .acts .btn:last-child{flex:0 0 40px}
+.card h3{font-size:19px;margin-top:10px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.q{border:1px solid var(--line);padding:22px;background:linear-gradient(160deg,#1a1208,var(--bg))}
+.stars{color:var(--gold);letter-spacing:4px}.q p{font-family:"Cormorant Garamond",serif;font-size:18px;margin:10px 0}
+.q span{color:var(--gold);font-size:13px}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;padding:0}
+.story .t{padding:64px 40px}.story h3{font-style:italic;color:var(--gold2);margin:10px 0}
+.pat{min-height:320px;background:repeating-linear-gradient(135deg,var(--d1) 0 10px,var(--gold3) 10px 11px,var(--d1) 11px 22px),var(--bg2);position:relative}
+.pat::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 40%,rgba(243,213,138,.3),transparent 60%)}
+.wed{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:20px;align-items:center}
+.wed .info{border-left:1px solid var(--gold);padding-left:24px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.tri div{border:1px solid var(--line);padding:22px;color:var(--gold2);font-family:"Cormorant Garamond",serif;font-size:20px;text-align:center}
+.world{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;text-align:center;font-size:13px}
+.world b{display:block;color:var(--gold2);font-weight:400;font-size:14px;margin:8px 0 2px}.world span{color:var(--mute);font-size:12px}
+.world i{font-size:28px;font-style:normal;color:var(--gold)}
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:48px 0 24px}
+.fg{display:grid;grid-template-columns:1.4fr 1.2fr repeat(3,1fr);gap:28px;font-size:13px;color:var(--mute)}
+.fg h4{margin:0 0 10px;color:var(--gold);font:500 13px Jost;letter-spacing:.12em}
+.fg a{display:block;margin:6px 0}.fg a:hover{color:var(--gold2)}
+.nl{display:flex;margin:10px 0}.nl input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);color:var(--ink);padding:10px;font:inherit}
+.nl button{border:1px solid var(--gold);background:var(--gold);color:var(--on);padding:0 14px;cursor:pointer}
+.copy{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--mute)}
+.ask{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:linear-gradient(100deg,var(--gold3),var(--gold2));color:var(--on);padding:12px 20px;border-radius:30px;font-weight:500;z-index:6;box-shadow:0 6px 24px rgba(212,162,76,.3)}
+@media(max-width:900px){nav,.hero .perks{display:none}.hero,.split,.story,.wed{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.quotes,.tri{grid-template-columns:1fr}.world{grid-template-columns:repeat(2,1fr)}.fg{grid-template-columns:1fr 1fr}.arch{height:420px}header .wrap{height:60px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="assets/theme.css">
+<script src="assets/theme.js" defer></script></head><body>
+<div class="top">Black Friday festive sale — extra savings valid till 27 Nov &nbsp;|&nbsp; Free shipping on orders above ₹999 &nbsp;|&nbsp; Pay online &amp; save an extra 5%</div>
+<header><div class="wrap">
+<nav><a href="#top">Home</a><a href="#new">New Arrivals</a><a href="#cat">Kurtas</a><a href="#cat">Sherwani</a><a href="#wed">Wedding</a><a href="#cat">Collections</a></nav>
+<div class="logo g">SOHRAAZ<small>COLLECTIONS</small></div>
+<div class="ic"><span aria-label="Search">⌕</span><span aria-label="Account">☺</span><span aria-label="Wishlist">♡</span><span aria-label="Bag">◫</span></div>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+<div class="eyebrow">Premium Indian ethnic menswear</div>
+<h1 class="g">Elegance Beyond<br>Tradition.</h1>
+<p>Discover the art of contemporary Indian menswear, crafted for moments that matter.</p>
+<div class="cta"><a class="btn b1" href="#cat">Explore Collection</a><a class="btn b2" href="#story">Discover Sohraaz</a></div>
+<div class="perks">Free shipping above ₹999 &nbsp;|&nbsp; Pay online &amp; save extra 5%</div></div>
+<div class="arch"><svg class="sil" viewBox="0 0 100 130" aria-hidden="true"><use href="#man"/></svg><div class="badge">IN-HOUSE MADE<br>Cut &amp; stitched in Kolkata</div></div></section>
+
+<div class="circles" id="circ"></div>
+
+<section><div class="wrap split">
+<div><div class="eyebrow">Watch &amp; Buy</div><h2 class="g" style="margin:8px 0 14px">Pehle dekho,<br>phir pehno.</h2><p style="color:var(--mute)">Video mein fabric ka texture, fit ka flow — sab dekho, phir bag mein add karo.</p><a class="btn b1" href="#new">See all 65 reels</a></div>
+<div class="row" id="reels"></div></div></section>
+
+<section id="cat"><div class="wrap"><div class="sec-h"><div class="eyebrow">The Collections</div><h2 class="g">Shop by Category</h2><p>Four wardrobes, one standard of make. Choose the ceremony you are dressing for.</p></div>
+<div class="grid4" id="cats"></div></div></section>
+
+<section id="new"><div class="wrap"><div class="sec-h"><div class="eyebrow">Featured Collection</div><h2 class="g">The New Collection</h2><p>Honest pricing — the selling price you see is what you pay. No inflated MRP, no staged discounts.</p></div>
+<div class="grid4" id="prods"></div></div></section>
+
+<section><div class="wrap"><div class="sec-h"><h2 class="g">Trusted By Our Customers</h2><p>Real words from real Sohraaz customers.</p></div>
+<div class="quotes">
+<div class="q"><div class="stars">★★★★★</div><p>The collection’s are too good. The price is too reasonable — must visit SOHRAAZ for any festive, wedding, season shopping.</p><span>Huzaifa Salam ✓</span></div>
+<div class="q"><div class="stars">★★★★★</div><p>Three piece suits and bridal dresses are so nice — they customise also, at a very reasonable price.</p><span>Sazia Haque ✓</span></div>
+<div class="q"><div class="stars">★★★★★</div><p>I like its product for good quality and fitting as well as better experience. Staff behaviour good, soft and polite.</p><span>Md Akram ✓</span></div>
+</div></div></section>
+
+<section class="story" id="story"><div class="t"><div class="eyebrow">The House of Sohraaz</div><h2 class="g" style="margin-top:8px">Tradition, Reimagined.</h2><h3>Har Dhage me Sohraaz</h3><p style="color:var(--mute);max-width:440px">A Kolkata-born house of menswear — celebrating the timeless spirit of Indian dressing through contemporary design, in-house craftsmanship and cloth chosen for how it wears, not how it photographs.</p><a class="btn b1" href="#">Discover Our Story</a></div><div class="pat"></div></section>
+
+<section id="wed"><div class="wrap"><div class="wed">
+<div><div class="eyebrow">The Wedding Edit</div><h2 class="g" style="margin:8px 0">Haldi to Mehndi — every occasion, one Sohraaz.</h2></div>
+<div class="row" style="grid-auto-flow:row;grid-template-columns:1fr 1fr;overflow:visible" id="wedp"></div>
+<div class="info"><h3 style="font-size:28px;color:var(--gold2)">Haldi to Mehndi, in one wardrobe</h3><p style="color:var(--mute)">Giza cotton, hand embroidery — stitched in-house at our Kolkata workshop. Honest price, no inflated MRP games.</p><div style="font:500 28px 'Cormorant Garamond',serif;color:var(--gold2);margin:8px 0 14px">₹2,549</div><a class="btn b1" href="#">Add to bag — ₹2,422</a> <a class="btn b2" href="#" style="margin-top:8px">View product details</a></div></div>
+<div class="tri"><div>Thoughtful details. Exceptional finishing.</div><div>Designed for Celebrations.</div><div>The Sohraaz Experience.</div></div></div></section>
+
+<section><div class="wrap"><div class="sec-h"><h2 class="g">The World of Sohraaz</h2></div>
+<div class="world">
+<div><i>⛟</i><b>Free Shipping Pan India</b><span>On prepaid orders above ₹999</span></div>
+<div><i>❖</i><b>COD Available</b><span>Across serviceable PIN codes</span></div>
+<div><i>↺</i><b>3 Days Easy Returns</b><span>Exchange or return within 7 days</span></div>
+<div><i>%</i><b>10% OFF for New Buyers</b><span>Code WELCOME10 · max ₹200 off</span></div>
+<div><i>▭</i><b>5% Extra OFF</b><span>Online payment, auto-applied</span></div>
+<div><i>✂</i><b>In-House Made</b><span>Kolkata workshop</span></div></div></div></section>
+
+<footer><div class="wrap"><div class="fg">
+<div><div class="logo g" style="text-align:left">SOHRAAZ</div><p>The art of modern Indian elegance — born in Kolkata, worn across India.</p></div>
+<div><a href="tel:+919123947668">+91 91239 47668</a><a href="mailto:care@sohraaz.com">care@sohraaz.com</a><div class="nl"><input placeholder="Enter your email address" aria-label="Email"><button aria-label="Subscribe">→</button></div>GSTIN 19DIBPA3993Q12M</div>
+<div><h4>SHOP</h4><a href="#new">New Arrivals</a><a href="#cat">Kurtas</a><a href="#cat">Sherwani &amp; Festive</a><a href="#wed">Wedding Edit</a></div>
+<div><h4>CLIENT CARE</h4><a href="#">My Account</a><a href="#">Shipping Policy</a><a href="#">Exchange / Return</a><a href="#">Track Order</a></div>
+<div><h4>VISIT &amp; FOLLOW</h4>12/1, Picnic Garden, 3rd Lane, near 42 Bus Stand, Kolkata 700039<a href="https://www.instagram.com/sohraazcollections">Instagram</a><a href="https://www.facebook.com/sohraazcollections">Facebook</a><a href="https://www.youtube.com/@sohraazcollections">YouTube</a></div></div>
+<div class="copy"><span>© 2026 Sohraaz Collections. The price you see is the price you pay.</span><span>Contact · Track Order · Bulk Order</span></div></div></footer>
+<a class="ask" href="https://wa.me/919123947668">Ask Sohraaz</a>
+
+<svg width="0" height="0" style="position:absolute"><defs><symbol id="man" viewBox="0 0 100 130"><circle cx="50" cy="20" r="13" fill="#c99a4a"/><path d="M40 12q10-12 22 0v-4q-11-10-22 0z" fill="var(--on)"/><path d="M30 38q20-8 40 0l10 90H20z" fill="url(#gg)" stroke="#f3d58a" stroke-width="1"/><path d="M50 36v92" stroke="#f3d58a" stroke-width="1.2"/><g fill="#f3d58a"><circle cx="50" cy="52" r="1.6"/><circle cx="50" cy="66" r="1.6"/><circle cx="50" cy="80" r="1.6"/></g></symbol><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a6422"/><stop offset=".5" stop-color="#d4a24c"/><stop offset="1" stop-color="#5a3f14"/></linearGradient></defs></svg>
+
+<script>
+var S='<svg viewBox="0 0 100 130" aria-hidden="true"><use href="#man"/></svg>';
+function ph(n,p,cap,play){return '<div class="card"><div class="ph">'+(play?'<span class="play">▶</span>':'')+S+(cap?'<div class="cap"><b>'+n+'</b>'+p+'</div>':'')+'</div>'}
+document.getElementById('circ').innerHTML=["Men’s Kurta","Trending Items","Sale","New Arrivals","Best Seller"].map(function(t){return '<a href="#new"><i></i>'+t+'</a>'}).join('');
+document.getElementById('reels').innerHTML=[["Green Serene","Giza Cotton · ₹2,649"],["Black Glory","Giza Cotton · ₹2,099"],["Sunshine Royal","Premium Cotton · ₹749"],["Dupion Royal","Red Self Work · ₹499"],["Luxury Beige","Armani Embroidered · ₹2,549"],["Beige Breeze","Paper Cotton · ₹1,499"]].map(function(r){return ph(r[0],r[1],1,1)+'</div>'}).join('');
+document.getElementById('cats').innerHTML=[["Kurtas","Everyday · Cotton"],["Sherwani","Festive · Embroidered"],["Wedding Collection","Groom &amp; crew"],["Festive Wear","Signature pieces"]].map(function(r){return ph(r[0],r[1]+'<br><u style="color:var(--gold);font-size:11px;letter-spacing:.14em">SHOP NOW</u>',1,0)+'</div>'}).join('');
+document.getElementById('prods').innerHTML=[["White Cotton Plain Kurta – Essential Wear","₹999","₹799","₹759"],["Embroidered Black Giza Cotton Kurta","₹2,999","₹2,299","₹2,184"],["Ice Blue Kurta + Jacket Set","₹4,299","₹3,299","₹3,134"],["Off White Giza Cotton Moti Work Kurta","₹3,999","₹2,999","₹2,849"]].map(function(r){return ph(0,0,0,1)+'<h3>'+r[0]+'</h3><div class="price"><s>'+r[1]+'</s>'+r[2]+' <b>'+r[3]+' prepaid</b></div><div class="acts"><a class="btn b1" href="#">Add to bag</a><a class="btn b2" href="#" aria-label="Wishlist">♡</a></div></div>'}).join('');
+document.getElementById('wedp').innerHTML=ph("Haldi","",1,1)+'</div>'+ph("Mehndi","",1,1)+'</div>';
+</script></body></html>
