@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>SOHRAAZ — The Art of Modern Indian Elegance</title>
+<meta name="description" content="Sohraaz — Kolkata-born house of modern Indian menswear. Kurtas, sherwanis and festive wear crafted for every celebration.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2338281C'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23EDE4D2' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&display=swap" rel="stylesheet">
+<!--
+  SOHRAAZ — static homepage template (single self-contained file).
+  Photos below are web-sourced placeholders for preview only — replace the src
+  URLs with your own product/campaign photography before going live.
+  Offer messaging follows the approved plan: free shipping above Rs 999,
+  5% extra off online payment, one new-buyer offer, no fake MRPs, no fake urgency.
+-->
+<style>
+  :root{
+    --cream:#EAE3D3;          /* page background        */
+    --cream-2:#F1EBDE;        /* cards, tiles           */
+    --tan:#DCCEB6;            /* story panel            */
+    --ink:#2C2117;            /* body text              */
+    --muted:#77664F;          /* secondary text         */
+    --brown-950:#33241A;      /* footer                 */
+    --brown-900:#3D2C20;      /* hero base              */
+    --brown-850:#4A3828;      /* announcement bar       */
+    --gold:#B2916B;           /* accent                 */
+    --line:#C9BBA1;           /* hairlines on cream     */
+    --line-dark:rgba(240,231,213,.22);
+    --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --caps:'Marcellus', 'Cormorant Garamond', Georgia, serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+  .container{max-width:1280px;margin:0 auto;padding:0 40px}
+  .icon{width:20px;height:20px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ============ announcement bar ============ */
+  .announce{background:var(--brown-850);color:#EFE6D4;text-align:center;overflow:hidden}
+  .announce-track{position:relative;height:36px}
+  .announce-track span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--caps);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;opacity:0;
+    transition:opacity .6s ease;padding:0 16px;white-space:nowrap}
+  .announce-track span.on{opacity:1}
+  .announce-track b{color:#D9BE93;font-weight:400}
+
+  /* ============ header ============ */
+  .header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--line)}
+  .header.scrolled{box-shadow:0 6px 24px rgba(44,33,23,.10)}
+  .header-in{position:relative;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav ul{display:flex;gap:22px}
+  .nav a{white-space:nowrap;font-family:var(--caps);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4C3B29;
+    padding:6px 0;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
+  .nav a:hover{color:var(--ink);border-color:var(--gold)}
+  .logo{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--caps);font-size:27px;letter-spacing:.42em;text-indent:.42em;color:var(--ink);white-space:nowrap}
+  .actions{display:flex;align-items:center;gap:20px}
+  .actions button,.actions a{color:#4C3B29;display:inline-flex;transition:color .25s}
+  .actions button:hover,.actions a:hover{color:var(--gold)}
+  .burger{display:none}
+
+  /* mobile nav */
+  .mnav{display:none;background:var(--cream);border-bottom:1px solid var(--line)}
+  .mnav.open{display:block}
+  .mnav a{display:block;padding:14px 24px;font-family:var(--caps);font-size:13px;letter-spacing:.18em;text-transform:uppercase;border-top:1px solid var(--line)}
+
+  /* ============ hero ============ */
+  .hero{position:relative;background:linear-gradient(100deg,#2C1F17 0%,var(--brown-900) 55%,#55402D 100%);overflow:hidden}
+  .hero-media{position:absolute;inset:0 0 0 40%}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+  .hero-media::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,var(--brown-900) 0%,rgba(61,44,32,.55) 22%,rgba(61,44,32,0) 55%)}
+  .hero-inner{position:relative;z-index:2;display:flex;align-items:center;min-height:520px;padding-top:56px;padding-bottom:56px}
+  .hero-copy{max-width:540px;color:#F1E8D7}
+  .hero-copy .brand{font-family:var(--caps);font-size:clamp(44px,5.6vw,68px);letter-spacing:.14em;line-height:1.05}
+  .hero-copy .rule{width:64px;height:1px;background:var(--gold);margin:22px 0 18px}
+  .hero-copy .kicker{font-family:var(--caps);font-size:14px;letter-spacing:.34em;text-transform:uppercase;color:#E4D5BB}
+  .hero-copy .tag{font-style:italic;font-size:20px;color:#D8C7A9;margin-top:14px}
+  .btn{display:inline-flex;align-items:center;gap:12px;border:1px solid currentColor;padding:13px 26px;
+    font-family:var(--caps);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;
+    transition:background .3s,color .3s,border-color .3s;background:transparent}
+  .btn .icon{width:16px;height:16px;transition:transform .3s}
+  .btn:hover .icon{transform:translateX(4px)}
+  .btn-cream{color:#F1E8D7}
+  .btn-cream:hover{background:#F1E8D7;color:var(--brown-900);border-color:#F1E8D7}
+  .btn-dark{color:var(--ink)}
+  .btn-dark:hover{background:var(--ink);color:#F1E8D7;border-color:var(--ink)}
+  .hero-cta{margin-top:30px}
+  .hero-note{margin-top:26px;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#CBB18F}
+  .hero-note b{color:#E2CEA6;font-weight:400}
+
+  /* ============ section heading ============ */
+  section{padding:64px 0}
+  .sec-head{display:flex;align-items:center;gap:24px;justify-content:center;margin-bottom:38px}
+  .sec-head::before,.sec-head::after{content:"";height:1px;background:var(--line);flex:0 0 clamp(40px,12vw,150px)}
+  .sec-head h2{font-family:var(--caps);font-weight:400;font-size:21px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:#3E2F20;text-align:center}
+  .sec-sub{text-align:center;font-style:italic;color:var(--muted);margin:-26px 0 36px;font-size:17px}
+
+  /* ============ occasions ============ */
+  .occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .occ{position:relative;aspect-ratio:3/4.1;overflow:hidden;background:#CDBDA2;display:block}
+  .occ img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .occ:hover img{transform:scale(1.05)}
+  .occ::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,13,8,0) 42%,rgba(20,13,8,.78) 100%)}
+  .occ span{position:absolute;z-index:2;left:0;right:0;bottom:22px;text-align:center;color:#F2EADA;
+    font-family:var(--caps);font-size:14.5px;letter-spacing:.2em;line-height:1.55;text-transform:uppercase;padding:0 10px}
+
+  /* ============ products ============ */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prod{position:relative}
+  .prod-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--cream-2)}
+  .prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .prod:hover .prod-img img{transform:scale(1.04)}
+  .wish{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;border-radius:50%;
+    background:rgba(241,235,222,.92);display:flex;align-items:center;justify-content:center;color:#5A4832;transition:color .25s,transform .25s}
+  .wish:hover{transform:scale(1.08)}
+  .wish.on{color:#8E3B2F}
+  .wish.on .icon{fill:currentColor}
+  .prod-meta{padding:14px 4px 0}
+  .prod-name{font-size:16.5px;color:#37291C;letter-spacing:.02em}
+  .prod-price{margin-top:4px;font-size:15.5px;color:var(--ink);font-weight:600;font-family:var(--caps);letter-spacing:.06em}
+  .swatches{display:flex;gap:7px;margin-top:10px}
+  .swatches i{width:11px;height:11px;border-radius:50%;border:1px solid rgba(44,33,23,.25)}
+
+  /* ============ story ============ */
+  .story{padding:0}
+  .story-grid{display:grid;grid-template-columns:48fr 52fr;min-height:420px}
+  .story-media{position:relative;background:#CDBDA2}
+  .story-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .story-panel{background:var(--tan);display:flex;align-items:center}
+  .story-copy{padding:72px 68px;max-width:560px}
+  .story-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,38px);line-height:1.2;color:#33261A;letter-spacing:.02em}
+  .story-copy p{margin:22px 0 30px;color:#5E4E3B;font-size:17.5px;line-height:1.75;max-width:46ch}
+
+  /* ============ wedding banner ============ */
+  .banner{position:relative;min-height:400px;display:flex;align-items:center;overflow:hidden;padding:64px 0}
+  .banner-bg{position:absolute;inset:0;background:#2E2019}
+  .banner-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .banner-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(30,20,13,.30) 0%,rgba(30,20,13,.16) 40%,rgba(30,20,13,.72) 100%)}
+  .banner .container{position:relative;z-index:2;display:flex;justify-content:flex-end;width:100%}
+  .banner-copy{max-width:500px;color:#F2EADA;text-align:left}
+  .banner-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.4vw,42px);line-height:1.18;letter-spacing:.03em}
+  .banner-copy .rule{width:64px;height:1px;background:var(--gold);margin:20px 0 26px}
+  .banner-copy p{font-style:italic;color:#E0D2B8;margin-bottom:30px;font-size:18px}
+
+  /* ============ values ============ */
+  .values{padding:52px 0}
+  .val-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+  .val{padding:8px 36px;text-align:center;border-left:1px solid var(--line)}
+  .val:first-child{border-left:none}
+  .val .icon{width:30px;height:30px;stroke:var(--gold);margin:0 auto 14px}
+  .val h3{font-family:var(--caps);font-weight:400;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#3E2F20}
+  .val p{margin-top:8px;font-style:italic;color:var(--muted);font-size:15px}
+
+  /* ============ gallery ============ */
+  .gal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .gal{position:relative;aspect-ratio:3/3.7;overflow:hidden;background:#CDBDA2}
+  .gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .gal:hover img{transform:scale(1.06)}
+
+  /* ============ footer ============ */
+  .footer{background:var(--brown-950);color:#D9CDB6}
+  .footer-in{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.5fr;gap:40px;padding:58px 0 44px}
+  .f-brand .f-logo{font-family:var(--caps);font-size:26px;letter-spacing:.4em;color:#EFE4CE}
+  .f-brand p{margin-top:12px;font-style:italic;font-size:15px;color:#B4A385}
+  .f-col h4{font-family:var(--caps);font-weight:400;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#A5946F;margin-bottom:18px}
+  .f-col a{display:block;padding:5px 0;font-size:15.5px;color:#D9CDB6;transition:color .25s}
+  .f-col a:hover{color:#E2CEA6}
+  .f-news p{font-family:var(--caps);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A5946F;margin-bottom:16px}
+  .f-form{display:flex;border:1px solid var(--line-dark)}
+  .f-form input{flex:1;background:transparent;border:none;outline:none;color:#EFE4CE;padding:12px 16px;font-family:var(--serif);font-size:15px}
+  .f-form input::placeholder{color:#8D7C60}
+  .f-form button{background:var(--gold);color:#2C2117;padding:0 18px;display:flex;align-items:center;transition:background .25s}
+  .f-form button:hover{background:#C6A578}
+  .f-ok{margin-top:10px;font-size:14px;font-style:italic;color:#B49F7E}
+  .f-bottom{border-top:1px solid var(--line-dark)}
+  .f-bottom-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+  .f-bottom small{font-size:13.5px;color:#8D7C60}
+  .socials{display:flex;gap:18px}
+  .socials a{color:#B4A385;transition:color .25s}
+  .socials a:hover{color:#E2CEA6}
+
+  /* ============ responsive ============ */
+  @media (max-width:1024px){
+    .nav{display:none}
+    .burger{display:inline-flex}
+    .occ-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+    .prod-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+    .story-grid{grid-template-columns:1fr}
+    .story-media{min-height:300px;position:relative}
+    .story-copy{padding:48px 32px}
+    .footer-in{grid-template-columns:1fr 1fr;gap:32px}
+    .banner .container{justify-content:flex-start}
+    .banner-bg::after{background:linear-gradient(90deg,rgba(30,20,13,.68) 0%,rgba(30,20,13,.3) 60%,rgba(30,20,13,.35) 100%)}
+  }
+  @media (max-width:640px){
+    .container{padding:0 20px}
+    .hero-media{inset:0}
+    .hero-media::after{background:linear-gradient(180deg,rgba(44,31,23,.30) 0%,rgba(44,31,23,.78) 78%)}
+    .hero-inner{min-height:460px}
+    .hero-copy{text-align:center;margin:0 auto}
+    .hero-copy .rule{margin:22px auto 18px}
+    .header-in{height:60px}
+    .logo{font-size:21px;letter-spacing:.34em}
+    section{padding:48px 0}
+    .val-grid{grid-template-columns:1fr;gap:28px}
+    .val{border-left:none;padding:0}
+    .gal-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+    .footer-in{grid-template-columns:1fr;gap:28px;padding:44px 0 36px}
+    .f-bottom-in{flex-direction:column}
+    .announce-track span{font-size:9.5px;letter-spacing:.18em}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======= announcement bar (plan-approved messaging only) ======= -->
+<div class="announce" role="region" aria-label="Store announcements">
+  <div class="announce-track" id="announce">
+    <span class="on">Crafted for every celebration &nbsp;&nbsp;|&nbsp;&nbsp; Discover the new collection</span>
+    <span>Free shipping on orders above <b>&#8377;999</b></span>
+    <span>Pay online &amp; save an extra <b>5%</b> — no hidden charges</span>
+  </div>
+</div>
+
+<!-- ======= header ======= -->
+<header class="header" id="header">
+  <div class="container header-in">
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="#latest">New Arrivals</a></li>
+        <li><a href="#occasions">Kurtas</a></li>
+        <li><a href="#occasions">Festive</a></li>
+        <li><a href="#wedding">Wedding</a></li>
+        <li><a href="#occasions">Indo-Western</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="logo" href="#">SOHRAAZ</a>
+    <div class="actions">
+      <button aria-label="Search">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <a href="#" aria-label="Account">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-3.8 4.5-6 8-6s6.5 2.2 8 6"/></svg>
+      </a>
+      <a href="#" aria-label="Wishlist">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
+      </a>
+      <a href="#" aria-label="Bag">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.8H8a1.8 1.8 0 0 1-1.8-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
+      </a>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="#latest">New Arrivals</a>
+    <a href="#occasions">Kurtas</a>
+    <a href="#occasions">Festive</a>
+    <a href="#wedding">Wedding</a>
+    <a href="#occasions">Indo-Western</a>
+  </nav>
+</header>
+
+<!-- ======= hero ======= -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/21e0868d2d15.jpg" alt="Sohraaz cream embroidered sherwani in a heritage palace corridor">
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="brand">SOHRAAZ</div>
+      <div class="rule"></div>
+      <div class="kicker">The Art of Modern Indian Elegance</div>
+      <p class="tag">Redefining the language of Indian celebration</p>
+      <div class="hero-cta">
+        <a class="btn btn-cream" href="#occasions">Explore the Collection
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="hero-note">Free shipping above <b>&#8377;999</b> &nbsp;&middot;&nbsp; Pay online &amp; save extra <b>5%</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= shop by occasion ======= -->
+<section id="occasions">
+  <div class="container">
+    <div class="sec-head"><h2>Shop by Occasion</h2></div>
+    <div class="occ-grid">
+      <a class="occ" href="#latest">
+        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/366a0d0cf795.png" alt="Everyday Elegance — white kurta" loading="lazy">
+        <span>Everyday<br>Elegance</span>
+      </a>
+      <a class="occ" href="#latest">
+        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ccc5eb932cb9.jpg" alt="Festive Collection — black embroidered kurta" loading="lazy">
+        <span>Festive<br>Collection</span>
+      </a>
+      <a class="occ" href="#wedding">
+        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/85553f2d588a.jpg" alt="Wedding Edit — groom in sherwani and turban" loading="lazy">
+        <span>Wedding<br>Edit</span>
+      </a>
+      <a class="occ" href="#latest">
+        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0be6d8c16c11.jpg" alt="Signature Style — heavily embroidered kurta" loading="lazy">
+        <span>Signature<br>Style</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= latest collection ======= -->
+<section id="latest" style="padding-top:8px">
+  <div class="container">
+    <div class="sec-head"><h2>The Latest Collection</h2></div>
+    <p class="sec-sub">Discover the newest expressions of modern Indian elegance.</p>
+    <div class="prod-grid">
+      <article class="prod">
+        <div class="prod-img">
+          <button class="wish" aria-label="Add to wishlist">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
+          </button>
+          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/00140a0ce253.jpeg" alt="Embroidered Giza Cotton Kurta" loading="lazy">
+        </div>
+        <div class="prod-meta">
+          <h3 class="prod-name">Embroidered Giza Cotton Kurta</h3>
+          <div class="prod-price">&#8377;2,999</div>
+          <div class="swatches"><i style="background:#F4EFE6"></i><i style="background:#D8CBB4"></i><i style="background:#33261C"></i></div>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="prod-img">
+          <button class="wish" aria-label="Add to wishlist">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
+          </button>
+          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/22dadf11bae3.jpg" alt="Textured Festive Kurta" loading="lazy">
+        </div>
+        <div class="prod-meta">
+          <h3 class="prod-name">Textured Festive Kurta</h3>
+          <div class="prod-price">&#8377;2,549</div>
+          <div class="swatches"><i style="background:#1A1512"></i><i style="background:#4A3A2C"></i><i style="background:#7A6A58"></i></div>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="prod-img">
+          <button class="wish" aria-label="Add to wishlist">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
+          </button>
+          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2bd065e52633.jpg" alt="Kurta Jacket Set" loading="lazy">
+        </div>
+        <div class="prod-meta">
+          <h3 class="prod-name">Kurta Jacket Set</h3>
+          <div class="prod-price">&#8377;4,999</div>
+          <div class="swatches"><i style="background:#E3D3B8"></i><i style="background:#B2916B"></i><i style="background:#33261C"></i></div>
+        </div>
+      </article>
+      <article class="prod">
+        <div class="prod-img">
+          <button class="wish" aria-label="Add to wishlist">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5C7 16.5 3.5 13.4 3.5 9.6 3.5 7 5.5 5 8 5c1.6 0 3.1.8 4 2.1C12.9 5.8 14.4 5 16 5c2.5 0 4.5 2 4.5 4.6 0 3.8-3.5 6.9-8.5 10.9z"/></svg>
+          </button>
+          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7844fd85e9a4.jpg" alt="Celebration Kurta" loading="lazy">
+        </div>
+        <div class="prod-meta">
+          <h3 class="prod-name">Celebration Kurta</h3>
+          <div class="prod-price">&#8377;6,999</div>
+          <div class="swatches"><i style="background:#6E1E27"></i><i style="background:#33261C"></i><i style="background:#D8CBB4"></i></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======= brand story ======= -->
+<section class="story">
+  <div class="story-grid">
+    <div class="story-media">
+      <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/547eecfd55f8.png" alt="Chikankari hand embroidery on cream fabric" loading="lazy">
+    </div>
+    <div class="story-panel">
+      <div class="story-copy">
+        <h2>Rooted in heritage.<br>Designed for today.</h2>
+        <p>At Sohraaz, we are a Kolkata-born brand, celebrating the timeless spirit of Indian dressing through contemporary design and thoughtful craftsmanship.</p>
+        <a class="btn btn-dark" href="#">Discover Our Story
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= wedding banner ======= -->
+<section class="banner" id="wedding" style="padding:0">
+  <div class="banner-bg">
+    <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0884222c1902.jpg" alt="Groom in gold sherwani inside a palace" loading="lazy">
+  </div>
+  <div class="container" style="display:flex;justify-content:flex-end;width:100%">
+    <div class="banner-copy">
+      <h2>Made for moments<br>that last forever.</h2>
+      <div class="rule"></div>
+      <p>Sherwanis and wedding edit crafted for the celebrations you will never forget.</p>
+      <a class="btn btn-cream" href="#occasions">Explore Wedding Collection
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= values ======= -->
+<section class="values">
+  <div class="container val-grid">
+    <div class="val">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 21h18M4 21v-9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9"/><path d="M8 10V7a2 2 0 0 1 2-2h1.5"/><circle cx="15" cy="13" r="1.6"/><path d="M9.5 14.5h2M6 17h12"/></svg>
+      <h3>Craftsmanship</h3>
+      <p>Thoughtful details. Exceptional finishing.</p>
+    </div>
+    <div class="val">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 21c-4.5-2.6-7-6-7-10 2.3.4 4.3 1.6 7 4.3 2.7-2.7 4.7-3.9 7-4.3 0 4-2.5 7.4-7 10z"/><path d="M12 15.3C10.8 12 10.8 8.6 12 5c1.2 3.6 1.2 7 0 10.3z"/><path d="M5 21h14"/></svg>
+      <h3>Designed for Celebrations</h3>
+      <p>Indian fashion for unforgettable occasions.</p>
+    </div>
+    <div class="val">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 18h16M5 18l-1-8 4.5 3L12 7l3.5 6L20 10l-1 8"/><circle cx="12" cy="4.6" r="1.2"/></svg>
+      <h3>The Sohraaz Experience</h3>
+      <p>A refined approach to modern Indian dressing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= gallery ======= -->
+<section id="world" style="padding-top:8px">
+  <div class="container">
+    <div class="sec-head"><h2>The World of Sohraaz</h2></div>
+    <div class="gal-grid">
+      <a class="gal" href="#"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7afb51ba7013.jpg" alt="Golden turban detail" loading="lazy"></a>
+      <a class="gal" href="#"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eeb58906f550.jpg" alt="Beige textured kurta" loading="lazy"></a>
+      <a class="gal" href="#"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e329ba4cffb6.jpg" alt="Cream kurta editorial look" loading="lazy"></a>
+      <a class="gal" href="#"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d45ee5699e4c.jpg" alt="Ivory sherwani with beadwork" loading="lazy"></a>
+      <a class="gal" href="#"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/fb537e734c96.jpg" alt="Printed festive kurta look" loading="lazy"></a>
+      <a class="gal" href="#"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2a9592053cc0.jpg" alt="Sherwani embroidery close-up" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= footer ======= -->
+<footer class="footer">
+  <div class="container footer-in">
+    <div class="f-brand">
+      <div class="f-logo">SOHRAAZ</div>
+      <p>The Art of Modern Indian Elegance.</p>
+    </div>
+    <div class="f-col">
+      <h4>Explore</h4>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+      <a href="#occasions">Shop Collections</a>
+    </div>
+    <div class="f-col">
+      <h4>Support</h4>
+      <a href="#">Shipping Information</a>
+      <a href="#">Returns &amp; Exchanges</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="f-news">
+      <p>Be part of the Sohraaz world</p>
+      <form class="f-form" id="newsForm">
+        <input type="email" required placeholder="Enter your email address" aria-label="Email address">
+        <button type="submit" aria-label="Subscribe">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <div class="f-ok" id="newsOk" hidden>Thank you — you are part of the world.</div>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <div class="container f-bottom-in">
+      <small>&copy; 2026 Sohraaz. All rights reserved.</small>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14A4.5 4.5 0 0 0 9.5 9v2.5H7V15h2.5v6H13v-6h2.5l.5-3.5H13V9a1 1 0 0 1 1-1z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.8v4.4l4-2.2z" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="Pinterest">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 20.5 12 11m-2.8-1.2c.3-1.7 1.7-2.8 3.3-2.6 1.9.2 3 1.6 2.7 3.4-.3 2.2-1.8 3.6-3.5 3.3-.9-.2-1.5-.8-1.7-1.6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* announcement rotation */
+  (function(){
+    var msgs=document.querySelectorAll('#announce span'),i=0;
+    if(msgs.length<2)return;
+    setInterval(function(){
+      msgs[i].classList.remove('on');
+      i=(i+1)%msgs.length;
+      msgs[i].classList.add('on');
+    },4000);
+  })();
+
+  /* sticky header shadow */
+  (function(){
+    var h=document.getElementById('header');
+    window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>8)},{passive:true});
+  })();
+
+  /* mobile nav */
+  (function(){
+    var b=document.getElementById('burger'),m=document.getElementById('mnav');
+    b.addEventListener('click',function(){
+      var open=m.classList.toggle('open');
+      b.setAttribute('aria-expanded',open?'true':'false');
+    });
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open')})});
+  })();
+
+  /* wishlist hearts (visual only) */
+  document.querySelectorAll('.wish').forEach(function(w){
+    w.addEventListener('click',function(){w.classList.toggle('on')});
+  });
+
+  /* newsletter (demo) */
+  (function(){
+    var f=document.getElementById('newsForm');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      f.hidden=true;
+      document.getElementById('newsOk').hidden=false;
+    });
+  })();
+</script>
+</body>
+</html>

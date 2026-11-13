@@ -2633,6 +2633,25 @@ const CDN = {
 };
 const IMG = (name) => ASSET(name);
 
+/* Display-sized copies of the heavy photographs. The originals stay in the
+   library as the masters and the zoom lightbox still opens them - a card
+   ships ~120 KB instead of 3.5 MB. */
+const PHOTO_DISPLAY = {
+  "DSC_5755.jpg":"DSC_5755-1200.jpg",
+  "DSC_5757.jpg":"DSC_5757-1200.jpg",
+  "DSC_6020.jpg":"DSC_6020-1200.jpg",
+  "DSC_6025.jpg":"DSC_6025-1200.jpg",
+  "prod/p9.png":"prod/p9-1200.jpg",
+  "prod/p9_1.png":"prod/p9_1-1200.jpg",
+  "prod/p9_2.png":"prod/p9_2-1200.jpg",
+  "prod/p1_2.jpg":"prod/p1_2-1200.jpg",
+  "prod/p2_2.jpg":"prod/p2_2-1200.jpg",
+  "ai_gal2.jpg":"ai_gal2-1200.jpg",
+  "ai_gal3.jpg":"ai_gal3-1200.jpg",
+  "ai_gal6.jpg":"ai_gal6-1200.jpg"
+};
+const IMG_D = (name) => ASSET(PHOTO_DISPLAY[name] || name);
+
 /* ================================================================
    OFFER TIMER — change this ONE block to a REAL offer + REAL end date.
    Honesty rule: never count down to a false deadline. The bar/timer
@@ -2867,7 +2886,7 @@ function prodCardHTML(p){
       <button class="wish ${store.wish.includes(p.id)?"on":""}" data-wish="${p.id}" aria-label="Wishlist">
         <svg class="icon sm" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.5-9C1.2 8 2.6 4.9 5.7 4.4 7.8 4 9.7 5 12 7.6 14.3 5 16.2 4 18.3 4.4c3.1.5 4.5 3.6 3.2 6.6-2 4.4-9.5 9-9.5 9z"/></svg>
       </button>
-      <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+      <img src="${IMG_D(p.img)}" alt="${p.name}" loading="lazy" width="600" height="750">
       <span class="qv-label">Quick View</span>
     </div>
     <div class="prod-info">
@@ -2885,7 +2904,7 @@ function cartLineHTML(l){
   const p=P(l.id);
   const dl=new Date(Date.now()+4*864e5).toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
   return `<div class="cart-line">
-    <img class="cl-img" src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+    <img class="cl-img" src="${IMG_D(p.img)}" alt="${p.name}" loading="lazy">
     <div>
       <div class="cl-name">${p.name}</div>
       <div class="cl-meta">Size ${l.size} · ${inr(p.price)} each</div>
@@ -2986,7 +3005,7 @@ function drawerUpsellHTML(){
   if(!picks.length) return "";
   return `<div class="drawer-upsell">
     <h4><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Complete the look — one tap to add</h4>
-    <div class="drawer-upsell-row">${picks.map(id=>{const p=P(id);return `<div class="du-item"><img src="${IMG(p.img)}" alt="${p.name}" loading="lazy"><span>${p.name}</span><small>${inr(p.price)}</small><button class="du-add" data-quickadd="${p.id}|M" aria-label="Add ${p.name} to bag">Add</button></div>`;}).join("")}</div>
+    <div class="drawer-upsell-row">${picks.map(id=>{const p=P(id);return `<div class="du-item"><img src="${IMG_D(p.img)}" alt="${p.name}" loading="lazy" width="600" height="750"><span>${p.name}</span><small>${inr(p.price)}</small><button class="du-add" data-quickadd="${p.id}|M" aria-label="Add ${p.name} to bag">Add</button></div>`;}).join("")}</div>
   </div>`;
 }
 function drawerPriceHTML(t){
@@ -3800,8 +3819,8 @@ function renderProduct(id){
   <div class="container"><div class="crumb"><a href="index.html">Home</a> / <a data-nav="#/shop">Shop</a> / <a data-nav="#/shop?cat=${p.cat}">${p.cat}</a> / <span>${p.name}</span></div>
   <div class="pdp">
     <div class="pdp-gallery">
-      <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}"><img src="${IMG(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
-      <div class="main"><img class="zoomable" src="${IMG(img)}" alt="${p.name}" style="cursor:zoom-in"></div>
+      <div class="thumbs">${gal.map((g,i)=>`<button class="${i===st.imgIdx?"on":""}" data-thumb="${i}" data-full="${IMG(g)}"><img src="${IMG_D(g)}" alt="view ${i+1}" loading="lazy"></button>`).join("")}</div>
+      <div class="main"><img class="zoomable" src="${IMG_D(img)}" data-full="${IMG(img)}" alt="${p.name}" style="cursor:zoom-in"></div>
     </div>
     <div>
       <h1>${p.name}</h1>
@@ -3913,7 +3932,7 @@ function savingsBannerHTML(t){
 function cartLeftHTML(t){
   const addons=pairAddons(3);
   const addl=addons.map(id=>{ const p=P(id); return `<div class="upsell-item">
-      <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy">
+      <img src="${IMG_D(p.img)}" alt="${p.name}" loading="lazy" width="600" height="750">
       <b>${p.name}</b>
       <div><span>${inr(p.price)}</span></div>
       <button data-quickadd="${p.id}|M" aria-label="Add ${p.name} to bag">Add to bag</button>
@@ -4828,8 +4847,11 @@ document.addEventListener('click', e => {
   const t = e.target.closest && e.target.closest('.zoomable');
   if(!t) return;
   e.preventDefault();
-  const imgs = [...document.querySelectorAll('.thumbs button img')];
-  const currentSrc = t.src;
+  const imgs = [...document.querySelectorAll('.thumbs button img')].map(i => ({
+    src: i.closest('button').getAttribute('data-full') || i.src,
+    alt: i.alt
+  }));
+  const currentSrc = t.getAttribute('data-full') || t.src;
   const startIdx = Math.max(0, imgs.findIndex(i => i.src === currentSrc));
   lbxOpen(imgs, startIdx);
 });
